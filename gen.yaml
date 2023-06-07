@@ -1,0 +1,13 @@
+configVersion: 1.0.0
+generation:
+  comments:
+    disableComments: false
+    omitDescriptionIfSummaryPresent: false
+  baseServerURL: ""
+  sdkClassName: Smartcar-API
+  singleTagPerOp: false
+  tagNamespacingDisabled: false
+go:
+  version: 0.0.1
+  maxMethodParams: "0"
+  packageName: Smartcar-API
