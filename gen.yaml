@@ -14,5 +14,5 @@ generation:
   tagNamespacingDisabled: false
 go:
   version: 1.0.0
-  maxMethodParams: "0"
+  maxMethodParams: "1"
   packageName: smartcar
