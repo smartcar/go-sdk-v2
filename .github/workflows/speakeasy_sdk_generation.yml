@@ -22,8 +22,8 @@ jobs:
         - go
       mode: pr
       openapi_docs: |
-        - https://raw.githubusercontent.com/smartcar/api-schema/master/speakeasy/openapi.yaml?token=GHSAT0AAAAAACBBXC62TGQ7JLU5DA4NNKWIZEBCAUQ
+        - https://raw.githubusercontent.com/smartcar/api-schema/master/speakeasy/openapi.yaml
       speakeasy_version: latest
     secrets:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
-      speakeasy_api_key: ${{ secrets.SPEAKEASY_PROD_API_KEY }}
+      speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
