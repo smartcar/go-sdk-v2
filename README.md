@@ -1,4 +1,8 @@
-# Smartcar-API
+# Smartcar Go SDK [![GoDoc](http://img.shields.io/badge/godoc-reference-blue.svg)](http://godoc.org/github.com/smartcar/go-sdk-v2)
+
+## Overview
+
+The [Smartcar API](https://smartcar.com/docs) lets you read vehicle data (location, odometer, fuel, etc.) and send commands to vehicles (lock, unlock) using HTTP requests.
 
 <!-- Start SDK Installation -->
 ## SDK Installation
