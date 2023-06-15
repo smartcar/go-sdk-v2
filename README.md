@@ -1,4 +1,4 @@
-# Smartcar Go SDK [![GoDoc](http://img.shields.io/badge/godoc-reference-blue.svg)](http://godoc.org/github.com/smartcar/go-sdk-v2)
+# Smartcar Go SDK [![Build Status][ci-image]][ci-url] [![Release][release-image]][release-url] [![GoDoc][doc-image]][doc-url]
 
 ## Overview
 
@@ -122,3 +122,11 @@ While we value open-source contributions to this SDK, this library is generated 
 Feel free to open a PR or a Github issue as a proof of concept and we'll do our best to include it in a future release !
 
 ### SDK Created by [Speakeasy](https://docs.speakeasyapi.dev/docs/using-speakeasy/client-sdks)
+
+[ci-url]: https://travis-ci.com/smartcar/python-sdk
+[ci-image]: https://travis-ci.com/smartcar/python-sdk.svg?token=FcsopC3DdDmqUpnZsrwg&branch=master
+[release-url]: https://github.com/smartcar/go-sdk-v2/releases
+[release-image]: https://img.shields.io/github/v/release/smartcar/go-sdk-v2?sort=semver
+[doc-url]: http://godoc.org/github.com/smartcar/go-sdk-v2
+[doc-image]: http://img.shields.io/badge/godoc-reference-blue.svg 
+
