@@ -1,4 +1,4 @@
-module Smartcar-API
+module smartcar
 
 go 1.14
 

@@ -3,8 +3,8 @@
 package operations
 
 import (
-	"Smartcar-API/pkg/models/shared"
 	"net/http"
+	"smartcar/pkg/models/shared"
 )
 
 type GetBatteryLevelRequest struct {

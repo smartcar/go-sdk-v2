@@ -5,21 +5,19 @@ package main
 import(
 	"context"
 	"log"
-	"Smartcar-API"
-	"Smartcar-API/pkg/models/operations"
+	"smartcar"
+	"smartcar/pkg/models/operations"
 )
 
 func main() {
-    s := smartcarapi.New(
-        smartcarapi.WithSecurity(shared.Security{
+    s := smartcar.New(
+        smartcar.WithSecurity(shared.Security{
             BearerAuth: "",
         }),
     )
 
     ctx := context.Background()
-    res, err := s.Vehicles.GetLocation(ctx, operations.GetLocationRequest{
-        VehicleID: "36ab27d0-fd9d-4455-823a-ce30af709ffc",
-    })
+    res, err := s.Vehicles.GetLocation(ctx, "36ab27d0-fd9d-4455-823a-ce30af709ffc")
     if err != nil {
         log.Fatal(err)
     }

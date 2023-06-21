@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	"Smartcar-API/pkg/types"
+	"smartcar/pkg/types"
 )
 
 const (
