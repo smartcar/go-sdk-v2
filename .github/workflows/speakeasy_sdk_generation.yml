@@ -21,11 +21,11 @@ jobs:
       languages: |
         - go
       mode: pr
-      openapi_doc_auth_header: Bearer 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
+      openapi_doc_auth_header: x-api-key
       openapi_docs: |
-        - https://raw.githubusercontent.com/smartcar/api-schema/master/speakeasy/openapi.yaml
+        - https://app.speakeasyapi.dev/v1/apis/Smartcar-API/version/v2.0/schema/download
       speakeasy_version: latest
     secrets:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
-      openapi_doc_auth_token: ${{ secrets.SPEC_TOKEN }}
+      openapi_doc_auth_token: ${{ secrets.SPEAKEASY_API_KEY }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
