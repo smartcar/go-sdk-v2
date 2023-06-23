@@ -1,4 +1,9 @@
 configVersion: 1.0.0
+management:
+  docChecksum: 13775327236da5d795d52fc1316d576e
+  docVersion: 1.0.0
+  speakeasyVersion: 1.50.1
+  generationVersion: 2.43.2
 generation:
   comments:
     disableComments: false
@@ -8,6 +13,6 @@ generation:
   singleTagPerOp: false
   tagNamespacingDisabled: false
 go:
-  version: 0.0.1
+  version: 1.0.0
   maxMethodParams: 0
   packageName: smartcar
