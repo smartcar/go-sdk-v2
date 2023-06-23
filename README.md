@@ -1,4 +1,8 @@
-# smartcar
+# Smartcar Go SDK [![Build Status][ci-image]][ci-url] [![Release][release-image]][release-url] [![GoDoc][doc-image]][doc-url]
+
+## Overview
+
+The [Smartcar API](https://smartcar.com/docs) lets you read vehicle data (location, odometer, fuel, etc.) and send commands to vehicles (lock, unlock) using HTTP requests.
 
 <!-- Start SDK Installation -->
 ## SDK Installation
@@ -118,3 +122,10 @@ While we value open-source contributions to this SDK, this library is generated 
 Feel free to open a PR or a Github issue as a proof of concept and we'll do our best to include it in a future release !
 
 ### SDK Created by [Speakeasy](https://docs.speakeasyapi.dev/docs/using-speakeasy/client-sdks)
+
+[ci-url]: https://github.com/smartcar/go-sdk-v2/actions/workflows/speakeasy_sdk_generation.yml
+[ci-image]: https://github.com/smartcar/go-sdk-v2/actions/workflows/speakeasy_sdk_generation.yml/badge.svg
+[release-url]: https://github.com/smartcar/go-sdk-v2/releases
+[release-image]: https://img.shields.io/github/v/release/smartcar/go-sdk-v2?sort=semver
+[doc-url]: http://godoc.org/github.com/smartcar/go-sdk-v2
+[doc-image]: http://img.shields.io/badge/godoc-reference-blue.svg
