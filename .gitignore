@@ -1,0 +1,32 @@
+# System generated files
+*.log
+*.lnk
+.DS_Store
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+
+# Editors
+
+## Vscode
+.vscode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+
+## Vim
+*~
+.netrwhist
+Session.vim
+Sessionx.vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]*.un~
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+tags
+.vimspector.json
