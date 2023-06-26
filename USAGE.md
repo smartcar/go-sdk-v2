@@ -5,8 +5,8 @@ package main
 import(
 	"context"
 	"log"
-	"smartcar"
-	"smartcar/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {

@@ -6,11 +6,11 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	"github.com/smartcar/go-sdk-v2/pkg/utils"
 	"io"
 	"net/http"
-	"smartcar/pkg/models/operations"
-	"smartcar/pkg/models/shared"
-	"smartcar/pkg/utils"
 )
 
 type tesla struct {

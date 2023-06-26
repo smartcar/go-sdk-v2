@@ -18,7 +18,7 @@ package main
 import(
 	"context"
 	"log"
-	"smartcar"
+	"github.com/smartcar/go-sdk-v2"
 )
 
 func main() {

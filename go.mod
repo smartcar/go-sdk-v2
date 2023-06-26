@@ -1,4 +1,4 @@
-module smartcar
+module github.com/smartcar/go-sdk-v2
 
 go 1.14
 

@@ -4,9 +4,9 @@ package smartcar
 
 import (
 	"fmt"
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	"github.com/smartcar/go-sdk-v2/pkg/utils"
 	"net/http"
-	"smartcar/pkg/models/shared"
-	"smartcar/pkg/utils"
 	"time"
 )
 
@@ -128,8 +128,8 @@ func New(opts ...SDKOption) *Smartcar {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "1.0.0",
-			GenVersion:        "2.43.2",
+			SDKVersion:        "1.1.0",
+			GenVersion:        "2.50.2",
 		},
 	}
 	for _, opt := range opts {

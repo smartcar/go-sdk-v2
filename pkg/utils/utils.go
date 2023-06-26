@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	"smartcar/pkg/types"
+	"github.com/smartcar/go-sdk-v2/pkg/types"
 )
 
 const (

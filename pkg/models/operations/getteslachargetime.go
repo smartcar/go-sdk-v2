@@ -3,8 +3,8 @@
 package operations
 
 import (
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	"net/http"
-	"smartcar/pkg/models/shared"
 )
 
 type GetTeslaChargeTimeRequest struct {
