@@ -14,5 +14,5 @@ generation:
   tagNamespacingDisabled: false
 go:
   version: 1.1.0
-  maxMethodParams: 0
+  maxMethodParams: 4
   packageName: github.com/smartcar/go-sdk-v2
