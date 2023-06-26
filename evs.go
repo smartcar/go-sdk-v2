@@ -38,7 +38,11 @@ func newEvs(sdkConfig sdkConfiguration) *evs {
 // |  Name 	|Type   	|Boolean   	|
 // |---	|---	|---	|
 // |  capacity|   number|  The total capacity of the vehicle's battery (in kilowatt-hours). 	|
-func (s *evs) GetBatteryCapacity(ctx context.Context, request operations.GetBatteryCapacityRequest) (*operations.GetBatteryCapacityResponse, error) {
+func (s *evs) GetBatteryCapacity(ctx context.Context, vehicleID string) (*operations.GetBatteryCapacityResponse, error) {
+	request := operations.GetBatteryCapacityRequest{
+		VehicleID: vehicleID,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/battery/capacity", request, nil)
 	if err != nil {
@@ -107,7 +111,11 @@ func (s *evs) GetBatteryCapacity(ctx context.Context, request operations.GetBatt
 // |---	|---	|---	|
 // |  `percentRemaining`|   number|  An EV battery’s state of charge (in percent). 	|
 // |   `range`|   number	|   The estimated remaining distance the vehicle can travel (in kilometers by default or in miles using the [sc-unit-system](https://smartcar.com/docs/api?version=v2.0&language=cURL#request-headers).	|
-func (s *evs) GetBatteryLevel(ctx context.Context, request operations.GetBatteryLevelRequest) (*operations.GetBatteryLevelResponse, error) {
+func (s *evs) GetBatteryLevel(ctx context.Context, vehicleID string) (*operations.GetBatteryLevelResponse, error) {
+	request := operations.GetBatteryLevelRequest{
+		VehicleID: vehicleID,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/battery", request, nil)
 	if err != nil {
@@ -165,7 +173,11 @@ func (s *evs) GetBatteryLevel(ctx context.Context, request operations.GetBattery
 // __Description__
 //
 // Returns the current charge limit of an electric vehicle.
-func (s *evs) GetChargingLimit(ctx context.Context, request operations.GetChargingLimitRequest) (*operations.GetChargingLimitResponse, error) {
+func (s *evs) GetChargingLimit(ctx context.Context, vehicleID string) (*operations.GetChargingLimitResponse, error) {
+	request := operations.GetChargingLimitRequest{
+		VehicleID: vehicleID,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/charge/limit", request, nil)
 	if err != nil {
@@ -234,7 +246,11 @@ func (s *evs) GetChargingLimit(ctx context.Context, request operations.GetChargi
 // |---	|---	|---	|
 // |  `isPluggedIn` 	|   boolean	|  Indicates whether a charging cable is currently plugged into the vehicle’s charge port. 	|
 // |   `state`	|   string	|   Indicates whether the vehicle is currently charging. Options: `CHARGING` `FULLY_CHARGED` `NOT_CHARGING`	|
-func (s *evs) GetChargingStatus(ctx context.Context, request operations.GetChargingStatusRequest) (*operations.GetChargingStatusResponse, error) {
+func (s *evs) GetChargingStatus(ctx context.Context, vehicleID string) (*operations.GetChargingStatusResponse, error) {
+	request := operations.GetChargingStatusRequest{
+		VehicleID: vehicleID,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/charge", request, nil)
 	if err != nil {
@@ -292,7 +308,12 @@ func (s *evs) GetChargingStatus(ctx context.Context, request operations.GetCharg
 // __Description__
 //
 // Returns the current charge limit of an electric vehicle.
-func (s *evs) SetChargingLimit(ctx context.Context, request operations.SetChargingLimitRequest) (*operations.SetChargingLimitResponse, error) {
+func (s *evs) SetChargingLimit(ctx context.Context, vehicleID string, chargeLimit *shared.ChargeLimit) (*operations.SetChargingLimitResponse, error) {
+	request := operations.SetChargingLimitRequest{
+		VehicleID:   vehicleID,
+		ChargeLimit: chargeLimit,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/charge/limit", request, nil)
 	if err != nil {
@@ -368,7 +389,12 @@ func (s *evs) SetChargingLimit(ctx context.Context, request operations.SetChargi
 // |---	|---	|---	|
 // |  `isPluggedIn` 	|   boolean	|  Indicates whether a charging cable is currently plugged into the vehicle’s charge port. 	|
 // |   `state`	|   string	|   Indicates whether the vehicle is currently charging. Options: `CHARGING` `FULLY_CHARGED` `NOT_CHARGING`	|
-func (s *evs) StartStopCharge(ctx context.Context, request operations.StartStopChargeRequest) (*operations.StartStopChargeResponse, error) {
+func (s *evs) StartStopCharge(ctx context.Context, vehicleID string, chargeAction *shared.ChargeAction) (*operations.StartStopChargeResponse, error) {
+	request := operations.StartStopChargeRequest{
+		VehicleID:    vehicleID,
+		ChargeAction: chargeAction,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/charge", request, nil)
 	if err != nil {

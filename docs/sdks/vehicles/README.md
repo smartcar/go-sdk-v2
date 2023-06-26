@@ -43,12 +43,11 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Vehicles.Batch(ctx, operations.BatchRequest{
-        RequestBody: []string{
-            "/odometer",
-            "/odometer",
-        },
-        VehicleID: "corporis",
+    res, err := s.Vehicles.Batch(ctx, "molestiae", []string{
+        "/odometer",
+        "/odometer",
+        "/odometer",
+        "/odometer",
     })
     if err != nil {
         log.Fatal(err)
@@ -62,10 +61,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                          | Type                                                               | Required                                                           | Description                                                        |
-| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| `ctx`                                                              | [context.Context](https://pkg.go.dev/context#Context)              | :heavy_check_mark:                                                 | The context to use for the request.                                |
-| `request`                                                          | [operations.BatchRequest](../../models/operations/batchrequest.md) | :heavy_check_mark:                                                 | The request object to use for the request.                         |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
+| `requestBody`                                         | []*string*                                            | :heavy_minus_sign:                                    | N/A                                                   |
 
 
 ### Response
@@ -105,9 +105,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Vehicles.Disconnect(ctx, operations.DisconnectRequest{
-        VehicleID: "iste",
-    })
+    res, err := s.Vehicles.Disconnect(ctx, "placeat")
     if err != nil {
         log.Fatal(err)
     }
@@ -120,10 +118,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
-| `request`                                                                    | [operations.DisconnectRequest](../../models/operations/disconnectrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
 
 
 ### Response
@@ -170,9 +168,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Vehicles.Get(ctx, operations.GetVehicleRequest{
-        VehicleID: "iure",
-    })
+    res, err := s.Vehicles.Get(ctx, "voluptatum")
     if err != nil {
         log.Fatal(err)
     }
@@ -185,10 +181,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
-| `request`                                                                    | [operations.GetVehicleRequest](../../models/operations/getvehiclerequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
 
 
 ### Response
@@ -232,9 +228,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Vehicles.GetEngineOil(ctx, operations.GetEngineOilRequest{
-        VehicleID: "saepe",
-    })
+    res, err := s.Vehicles.GetEngineOil(ctx, "iusto")
     if err != nil {
         log.Fatal(err)
     }
@@ -247,10 +241,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
-| `request`                                                                        | [operations.GetEngineOilRequest](../../models/operations/getengineoilrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
 
 
 ### Response
@@ -296,9 +290,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Vehicles.GetFuelTank(ctx, operations.GetFuelTankRequest{
-        VehicleID: "quidem",
-    })
+    res, err := s.Vehicles.GetFuelTank(ctx, "excepturi")
     if err != nil {
         log.Fatal(err)
     }
@@ -311,10 +303,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
-| `request`                                                                      | [operations.GetFuelTankRequest](../../models/operations/getfueltankrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
 
 
 ### Response
@@ -359,9 +351,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Vehicles.GetLocation(ctx, operations.GetLocationRequest{
-        VehicleID: "36ab27d0-fd9d-4455-823a-ce30af709ffc",
-    })
+    res, err := s.Vehicles.GetLocation(ctx, "36ab27d0-fd9d-4455-823a-ce30af709ffc")
     if err != nil {
         log.Fatal(err)
     }
@@ -374,10 +364,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
-| `request`                                                                      | [operations.GetLocationRequest](../../models/operations/getlocationrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           | Example                                               |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |                                                       |
+| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   | 36ab27d0-fd9d-4455-823a-ce30af709ffc                  |
 
 
 ### Response
@@ -421,9 +411,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Vehicles.GetOdometer(ctx, operations.GetOdometerRequest{
-        VehicleID: "architecto",
-    })
+    res, err := s.Vehicles.GetOdometer(ctx, "nisi")
     if err != nil {
         log.Fatal(err)
     }
@@ -436,10 +424,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
-| `request`                                                                      | [operations.GetOdometerRequest](../../models/operations/getodometerrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
 
 
 ### Response
@@ -490,11 +478,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Vehicles.GetPermissions(ctx, operations.GetPermissionsRequest{
-        Limit: smartcar.Int64(60225),
-        Offset: smartcar.Int64(969810),
-        VehicleID: "est",
-    })
+    res, err := s.Vehicles.GetPermissions(ctx, "recusandae", 836079, 71036)
     if err != nil {
         log.Fatal(err)
     }
@@ -507,10 +491,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
-| `request`                                                                            | [operations.GetPermissionsRequest](../../models/operations/getpermissionsrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
+| `limit`                                               | **int64*                                              | :heavy_minus_sign:                                    | Number of vehicles to return                          |
+| `offset`                                              | **int64*                                              | :heavy_minus_sign:                                    | Index to start vehicle list at                        |
 
 
 ### Response
@@ -556,9 +542,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Vehicles.GetTirePressure(ctx, operations.GetTirePressureRequest{
-        VehicleID: "mollitia",
-    })
+    res, err := s.Vehicles.GetTirePressure(ctx, "quis")
     if err != nil {
         log.Fatal(err)
     }
@@ -571,10 +555,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `request`                                                                              | [operations.GetTirePressureRequest](../../models/operations/gettirepressurerequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
 
 
 ### Response
@@ -608,9 +592,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Vehicles.GetVin(ctx, operations.GetVinRequest{
-        VehicleID: "laborum",
-    })
+    res, err := s.Vehicles.GetVin(ctx, "veritatis")
     if err != nil {
         log.Fatal(err)
     }
@@ -623,10 +605,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
-| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `ctx`                                                                | [context.Context](https://pkg.go.dev/context#Context)                | :heavy_check_mark:                                                   | The context to use for the request.                                  |
-| `request`                                                            | [operations.GetVinRequest](../../models/operations/getvinrequest.md) | :heavy_check_mark:                                                   | The request object to use for the request.                           |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
 
 
 ### Response
@@ -677,10 +659,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Vehicles.ListVehicles(ctx, operations.ListVehiclesRequest{
-        Limit: smartcar.Int64(170909),
-        Offset: smartcar.Int64(210382),
-    })
+    res, err := s.Vehicles.ListVehicles(ctx, 648172, 20218)
     if err != nil {
         log.Fatal(err)
     }
@@ -693,10 +672,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
-| `request`                                                                        | [operations.ListVehiclesRequest](../../models/operations/listvehiclesrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `limit`                                               | **int64*                                              | :heavy_minus_sign:                                    | Number of vehicles to return                          |
+| `offset`                                              | **int64*                                              | :heavy_minus_sign:                                    | Index to start vehicle list at                        |
 
 
 ### Response
@@ -741,11 +721,8 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Vehicles.LockUnlock(ctx, operations.LockUnlockRequest{
-        SecurityAction: &shared.SecurityAction{
-            Action: shared.SecurityActionActionUnlock.ToPointer(),
-        },
-        VehicleID: "corporis",
+    res, err := s.Vehicles.LockUnlock(ctx, "ipsam", &shared.SecurityAction{
+        Action: shared.SecurityActionActionUnlock.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -759,10 +736,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
-| `request`                                                                    | [operations.LockUnlockRequest](../../models/operations/lockunlockrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `ctx`                                                           | [context.Context](https://pkg.go.dev/context#Context)           | :heavy_check_mark:                                              | The context to use for the request.                             |
+| `vehicleID`                                                     | *string*                                                        | :heavy_check_mark:                                              | N/A                                                             |
+| `securityAction`                                                | [*shared.SecurityAction](../../models/shared/securityaction.md) | :heavy_minus_sign:                                              | N/A                                                             |
 
 
 ### Response

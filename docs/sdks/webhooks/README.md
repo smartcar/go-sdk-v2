@@ -42,13 +42,9 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Webhooks.Subscribe(ctx, operations.SubscribeRequest{
-        WebhookInfo: &shared.WebhookInfo{
-            Vehicleid: smartcar.String("dc6ea99e-57d1-4e41-b129-27e7eb58713e"),
-            Webhookid: smartcar.String("9b6ae692-60cc-4b3e-89d8-71e7549cf805"),
-        },
-        VehicleID: "explicabo",
-        WebhookID: "nobis",
+    res, err := s.Webhooks.Subscribe(ctx, "repellendus", "sapiente", &shared.WebhookInfo{
+        Vehicleid: smartcar.String("dc6ea99e-57d1-4e41-b129-27e7eb58713e"),
+        Webhookid: smartcar.String("9b6ae692-60cc-4b3e-89d8-71e7549cf805"),
     })
     if err != nil {
         log.Fatal(err)
@@ -62,10 +58,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
-| `request`                                                                  | [operations.SubscribeRequest](../../models/operations/subscriberequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
+| Parameter                                                 | Type                                                      | Required                                                  | Description                                               |
+| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
+| `ctx`                                                     | [context.Context](https://pkg.go.dev/context#Context)     | :heavy_check_mark:                                        | The context to use for the request.                       |
+| `vehicleID`                                               | *string*                                                  | :heavy_check_mark:                                        | N/A                                                       |
+| `webhookID`                                               | *string*                                                  | :heavy_check_mark:                                        | N/A                                                       |
+| `webhookInfo`                                             | [*shared.WebhookInfo](../../models/shared/webhookinfo.md) | :heavy_minus_sign:                                        | N/A                                                       |
 
 
 ### Response
@@ -109,10 +107,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Webhooks.Unsubscribe(ctx, operations.UnsubscribeRequest{
-        VehicleID: "enim",
-        WebhookID: "omnis",
-    })
+    res, err := s.Webhooks.Unsubscribe(ctx, "quo", "odit")
     if err != nil {
         log.Fatal(err)
     }
@@ -125,10 +120,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
-| `request`                                                                      | [operations.UnsubscribeRequest](../../models/operations/unsubscriberequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
+| `webhookID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
 
 
 ### Response

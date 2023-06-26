@@ -27,7 +27,11 @@ func newCadillac(sdkConfig sdkConfiguration) *cadillac {
 // __Description__
 //
 // When the vehicle is charging, this endpoint returns the date and time the vehicle expects to complete this charging session. When the vehicle is not charging, this endpoint results in a vehicle state error.
-func (s *cadillac) GetChargeTime(ctx context.Context, request operations.GetCadillacChargeTimeRequest) (*operations.GetCadillacChargeTimeResponse, error) {
+func (s *cadillac) GetChargeTime(ctx context.Context, vehicleID string) (*operations.GetCadillacChargeTimeResponse, error) {
+	request := operations.GetCadillacChargeTimeRequest{
+		VehicleID: vehicleID,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/cadillac/charge/completion", request, nil)
 	if err != nil {
@@ -85,7 +89,11 @@ func (s *cadillac) GetChargeTime(ctx context.Context, request operations.GetCadi
 // __Description__
 //
 // When the vehicle is plugged in, this endpoint returns the voltage of the charger measured by the vehicle. When the vehicle is not plugged in, this endpoint results in a vehicle state error.
-func (s *cadillac) GetVoltage(ctx context.Context, request operations.GetCadillacVoltageRequest) (*operations.GetCadillacVoltageResponse, error) {
+func (s *cadillac) GetVoltage(ctx context.Context, vehicleID string) (*operations.GetCadillacVoltageResponse, error) {
+	request := operations.GetCadillacVoltageRequest{
+		VehicleID: vehicleID,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/cadillac/charge/voltmeter", request, nil)
 	if err != nil {

@@ -8,9 +8,9 @@ import (
 )
 
 type SubscribeRequest struct {
-	WebhookInfo *shared.WebhookInfo `request:"mediaType=application/json"`
 	VehicleID   string              `pathParam:"style=simple,explode=false,name=vehicle_id"`
 	WebhookID   string              `pathParam:"style=simple,explode=false,name=webhookId"`
+	WebhookInfo *shared.WebhookInfo `request:"mediaType=application/json"`
 }
 
 type SubscribeResponse struct {

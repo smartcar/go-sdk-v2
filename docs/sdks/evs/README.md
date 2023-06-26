@@ -49,9 +49,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Evs.GetBatteryCapacity(ctx, operations.GetBatteryCapacityRequest{
-        VehicleID: "unde",
-    })
+    res, err := s.Evs.GetBatteryCapacity(ctx, "unde")
     if err != nil {
         log.Fatal(err)
     }
@@ -64,10 +62,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `request`                                                                                    | [operations.GetBatteryCapacityRequest](../../models/operations/getbatterycapacityrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
 
 
 ### Response
@@ -112,9 +110,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Evs.GetBatteryLevel(ctx, operations.GetBatteryLevelRequest{
-        VehicleID: "nulla",
-    })
+    res, err := s.Evs.GetBatteryLevel(ctx, "nulla")
     if err != nil {
         log.Fatal(err)
     }
@@ -127,10 +123,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `request`                                                                              | [operations.GetBatteryLevelRequest](../../models/operations/getbatterylevelrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
 
 
 ### Response
@@ -164,9 +160,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Evs.GetChargingLimit(ctx, operations.GetChargingLimitRequest{
-        VehicleID: "corrupti",
-    })
+    res, err := s.Evs.GetChargingLimit(ctx, "corrupti")
     if err != nil {
         log.Fatal(err)
     }
@@ -179,10 +173,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `request`                                                                                | [operations.GetChargingLimitRequest](../../models/operations/getcharginglimitrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
 
 
 ### Response
@@ -227,9 +221,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Evs.GetChargingStatus(ctx, operations.GetChargingStatusRequest{
-        VehicleID: "illum",
-    })
+    res, err := s.Evs.GetChargingStatus(ctx, "illum")
     if err != nil {
         log.Fatal(err)
     }
@@ -242,10 +234,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
-| `request`                                                                                  | [operations.GetChargingStatusRequest](../../models/operations/getchargingstatusrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
 
 
 ### Response
@@ -280,11 +272,8 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Evs.SetChargingLimit(ctx, operations.SetChargingLimitRequest{
-        ChargeLimit: &shared.ChargeLimit{
-            Limit: smartcar.Float32(1),
-        },
-        VehicleID: "vel",
+    res, err := s.Evs.SetChargingLimit(ctx, "vel", &shared.ChargeLimit{
+        Limit: smartcar.Float32(1),
     })
     if err != nil {
         log.Fatal(err)
@@ -298,10 +287,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `request`                                                                                | [operations.SetChargingLimitRequest](../../models/operations/setcharginglimitrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| Parameter                                                 | Type                                                      | Required                                                  | Description                                               |
+| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
+| `ctx`                                                     | [context.Context](https://pkg.go.dev/context#Context)     | :heavy_check_mark:                                        | The context to use for the request.                       |
+| `vehicleID`                                               | *string*                                                  | :heavy_check_mark:                                        | N/A                                                       |
+| `chargeLimit`                                             | [*shared.ChargeLimit](../../models/shared/chargelimit.md) | :heavy_minus_sign:                                        | N/A                                                       |
 
 
 ### Response
@@ -347,11 +337,8 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Evs.StartStopCharge(ctx, operations.StartStopChargeRequest{
-        ChargeAction: &shared.ChargeAction{
-            Action: shared.ChargeActionActionStart.ToPointer(),
-        },
-        VehicleID: "error",
+    res, err := s.Evs.StartStopCharge(ctx, "error", &shared.ChargeAction{
+        Action: shared.ChargeActionActionStart.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -365,10 +352,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `request`                                                                              | [operations.StartStopChargeRequest](../../models/operations/startstopchargerequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
+| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| `ctx`                                                       | [context.Context](https://pkg.go.dev/context#Context)       | :heavy_check_mark:                                          | The context to use for the request.                         |
+| `vehicleID`                                                 | *string*                                                    | :heavy_check_mark:                                          | N/A                                                         |
+| `chargeAction`                                              | [*shared.ChargeAction](../../models/shared/chargeaction.md) | :heavy_minus_sign:                                          | N/A                                                         |
 
 
 ### Response

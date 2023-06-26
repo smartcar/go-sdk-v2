@@ -8,8 +8,8 @@ import (
 )
 
 type LockUnlockRequest struct {
-	SecurityAction *shared.SecurityAction `request:"mediaType=application/json"`
 	VehicleID      string                 `pathParam:"style=simple,explode=false,name=vehicle_id"`
+	SecurityAction *shared.SecurityAction `request:"mediaType=application/json"`
 }
 
 type LockUnlockResponse struct {

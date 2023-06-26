@@ -37,7 +37,13 @@ func newWebhooks(sdkConfig sdkConfiguration) *webhooks {
 // |  Name 	|Type   	|Boolean   	|
 // |---	|---	|---	|
 // |  status|   string|  If the request is successful, Smartcar will return “success” (HTTP 200 status).|
-func (s *webhooks) Subscribe(ctx context.Context, request operations.SubscribeRequest) (*operations.SubscribeResponse, error) {
+func (s *webhooks) Subscribe(ctx context.Context, vehicleID string, webhookID string, webhookInfo *shared.WebhookInfo) (*operations.SubscribeResponse, error) {
+	request := operations.SubscribeRequest{
+		VehicleID:   vehicleID,
+		WebhookID:   webhookID,
+		WebhookInfo: webhookInfo,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/webhooks/{webhookId}", request, nil)
 	if err != nil {
@@ -112,7 +118,12 @@ func (s *webhooks) Subscribe(ctx context.Context, request operations.SubscribeRe
 // |  Name 	|Type   	|Boolean   	|
 // |---	|---	|---	|
 // |  status|   string|  If the request is successful, Smartcar will return “success” (HTTP 200 status).|
-func (s *webhooks) Unsubscribe(ctx context.Context, request operations.UnsubscribeRequest) (*operations.UnsubscribeResponse, error) {
+func (s *webhooks) Unsubscribe(ctx context.Context, vehicleID string, webhookID string) (*operations.UnsubscribeResponse, error) {
+	request := operations.UnsubscribeRequest{
+		VehicleID: vehicleID,
+		WebhookID: webhookID,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/webhooks/{webhookId}", request, nil)
 	if err != nil {

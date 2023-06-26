@@ -8,8 +8,8 @@ import (
 )
 
 type SetTeslaAmmeterRequest struct {
-	ChargeAmmeter *shared.ChargeAmmeter `request:"mediaType=application/json"`
 	VehicleID     string                `pathParam:"style=simple,explode=false,name=vehicle_id"`
+	ChargeAmmeter *shared.ChargeAmmeter `request:"mediaType=application/json"`
 }
 
 type SetTeslaAmmeterResponse struct {

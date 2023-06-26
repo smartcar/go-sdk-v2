@@ -65,11 +65,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Compatibility.ListCompatibility(ctx, operations.ListCompatibilityRequest{
-        Country: smartcar.String("{country}"),
-        Scope: smartcar.String("{scope}"),
-        Vin: smartcar.String("{vin}"),
-    })
+    res, err := s.Compatibility.ListCompatibility(ctx, "{country}", "{scope}", "{vin}")
     if err != nil {
         log.Fatal(err)
     }
@@ -82,10 +78,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
-| `request`                                                                                  | [operations.ListCompatibilityRequest](../../models/operations/listcompatibilityrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           | Example                                               |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |                                                       |
+| `country`                                             | **string*                                             | :heavy_minus_sign:                                    | N/A                                                   | {country}                                             |
+| `scope`                                               | **string*                                             | :heavy_minus_sign:                                    | N/A                                                   | {scope}                                               |
+| `vin`                                                 | **string*                                             | :heavy_minus_sign:                                    | N/A                                                   | {vin}                                                 |
 
 
 ### Response

@@ -128,7 +128,7 @@ func New(opts ...SDKOption) *Smartcar {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "1.1.0",
+			SDKVersion:        "1.1.1",
 			GenVersion:        "2.50.2",
 		},
 	}

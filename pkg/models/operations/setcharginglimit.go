@@ -8,8 +8,8 @@ import (
 )
 
 type SetChargingLimitRequest struct {
-	ChargeLimit *shared.ChargeLimit `request:"mediaType=application/json"`
 	VehicleID   string              `pathParam:"style=simple,explode=false,name=vehicle_id"`
+	ChargeLimit *shared.ChargeLimit `request:"mediaType=application/json"`
 }
 
 type SetChargingLimitResponse struct {

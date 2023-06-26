@@ -8,11 +8,11 @@ import (
 )
 
 type GetPermissionsRequest struct {
+	VehicleID string `pathParam:"style=simple,explode=false,name=vehicle_id"`
 	// Number of vehicles to return
 	Limit *int64 `queryParam:"style=form,explode=true,name=limit"`
 	// Index to start vehicle list at
-	Offset    *int64 `queryParam:"style=form,explode=true,name=offset"`
-	VehicleID string `pathParam:"style=simple,explode=false,name=vehicle_id"`
+	Offset *int64 `queryParam:"style=form,explode=true,name=offset"`
 }
 
 type GetPermissionsResponse struct {

@@ -8,8 +8,8 @@ import (
 )
 
 type StartStopChargeRequest struct {
-	ChargeAction *shared.ChargeAction `request:"mediaType=application/json"`
 	VehicleID    string               `pathParam:"style=simple,explode=false,name=vehicle_id"`
+	ChargeAction *shared.ChargeAction `request:"mediaType=application/json"`
 }
 
 type StartStopChargeResponse struct {

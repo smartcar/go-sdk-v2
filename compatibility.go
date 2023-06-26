@@ -60,7 +60,13 @@ func newCompatibility(sdkConfig sdkConfiguration) *compatibility {
 // |  |   MAKE_NOT_COMPATIBLE|  Smartcar is not yet compatible with the vehicle's make in the specified country.|
 // |  capabilities[].reason|   VEHICLE_NOT_CAPABLE|  TThe vehicle does not support this feature.|
 // |  |   SMARTCAR_NOT_CAPABLE|  Smartcar is not capable of supporting the given feature on the vehicle's make.|
-func (s *compatibility) ListCompatibility(ctx context.Context, request operations.ListCompatibilityRequest) (*operations.ListCompatibilityResponse, error) {
+func (s *compatibility) ListCompatibility(ctx context.Context, country *string, scope *string, vin *string) (*operations.ListCompatibilityResponse, error) {
+	request := operations.ListCompatibilityRequest{
+		Country: country,
+		Scope:   scope,
+		Vin:     vin,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/compatibility"
 

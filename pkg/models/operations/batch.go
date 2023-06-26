@@ -8,8 +8,8 @@ import (
 )
 
 type BatchRequest struct {
-	RequestBody []string `request:"mediaType=application/json"`
 	VehicleID   string   `pathParam:"style=simple,explode=false,name=vehicle_id"`
+	RequestBody []string `request:"mediaType=application/json"`
 }
 
 type BatchResponse struct {
