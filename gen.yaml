@@ -15,4 +15,4 @@ generation:
 go:
   version: 1.0.0
   maxMethodParams: 0
-  packageName: smartcar
+  packageName: github.com/smartcar/go-sdk-v2
