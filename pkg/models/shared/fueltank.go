@@ -11,3 +11,24 @@ type FuelTank struct {
 	// The estimated remaining distance the car can travel (in kilometers by default or in miles using the sc-unit-system).
 	Range *float32 `json:"range,omitempty"`
 }
+
+func (o *FuelTank) GetAmountRemaining() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.AmountRemaining
+}
+
+func (o *FuelTank) GetPercentRemaining() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.PercentRemaining
+}
+
+func (o *FuelTank) GetRange() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.Range
+}

@@ -13,3 +13,31 @@ type TirePressure struct {
 	// The current air pressure of the front right tire (in kilopascals by default or in pounds per square inch using the sc-unit-system).
 	FrontRight *float32 `json:"frontRight,omitempty"`
 }
+
+func (o *TirePressure) GetBackLeft() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.BackLeft
+}
+
+func (o *TirePressure) GetBackRight() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.BackRight
+}
+
+func (o *TirePressure) GetFrontLeft() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.FrontLeft
+}
+
+func (o *TirePressure) GetFrontRight() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.FrontRight
+}

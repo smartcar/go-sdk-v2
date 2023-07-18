@@ -12,10 +12,52 @@ type StartStopChargeRequest struct {
 	ChargeAction *shared.ChargeAction `request:"mediaType=application/json"`
 }
 
+func (o *StartStopChargeRequest) GetVehicleID() string {
+	if o == nil {
+		return ""
+	}
+	return o.VehicleID
+}
+
+func (o *StartStopChargeRequest) GetChargeAction() *shared.ChargeAction {
+	if o == nil {
+		return nil
+	}
+	return o.ChargeAction
+}
+
 type StartStopChargeResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// return Success Response
 	SuccessResponse *shared.SuccessResponse
+}
+
+func (o *StartStopChargeResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *StartStopChargeResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *StartStopChargeResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *StartStopChargeResponse) GetSuccessResponse() *shared.SuccessResponse {
+	if o == nil {
+		return nil
+	}
+	return o.SuccessResponse
 }
