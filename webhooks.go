@@ -7,6 +7,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/pkg/models/sdkerrors"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	"github.com/smartcar/go-sdk-v2/pkg/utils"
 	"io"
@@ -98,6 +99,8 @@ func (s *webhooks) Subscribe(ctx context.Context, vehicleID string, webhookID st
 			}
 
 			res.SuccessResponse = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -171,6 +174,8 @@ func (s *webhooks) Unsubscribe(ctx context.Context, vehicleID string, webhookID 
 			}
 
 			res.SuccessResponse = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

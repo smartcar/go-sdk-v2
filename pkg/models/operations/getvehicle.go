@@ -11,10 +11,45 @@ type GetVehicleRequest struct {
 	VehicleID string `pathParam:"style=simple,explode=false,name=vehicle_id"`
 }
 
+func (o *GetVehicleRequest) GetVehicleID() string {
+	if o == nil {
+		return ""
+	}
+	return o.VehicleID
+}
+
 type GetVehicleResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// A single vehicles
 	VehicleInfo *shared.VehicleInfo
+}
+
+func (o *GetVehicleResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetVehicleResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetVehicleResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetVehicleResponse) GetVehicleInfo() *shared.VehicleInfo {
+	if o == nil {
+		return nil
+	}
+	return o.VehicleInfo
 }

@@ -37,3 +37,10 @@ func (e *ChargeActionAction) UnmarshalJSON(data []byte) error {
 type ChargeAction struct {
 	Action *ChargeActionAction `json:"action,omitempty"`
 }
+
+func (o *ChargeAction) GetAction() *ChargeActionAction {
+	if o == nil {
+		return nil
+	}
+	return o.Action
+}

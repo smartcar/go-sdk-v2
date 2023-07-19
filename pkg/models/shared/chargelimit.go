@@ -6,3 +6,10 @@ type ChargeLimit struct {
 	// The level at which the vehicle should stop charging and be considered fully charged (in percent).
 	Limit *float32 `json:"limit,omitempty"`
 }
+
+func (o *ChargeLimit) GetLimit() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.Limit
+}

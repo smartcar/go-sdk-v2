@@ -422,3 +422,31 @@ type Response struct {
 	Headers []Header      `json:"headers,omitempty"`
 	Path    *string       `json:"path,omitempty"`
 }
+
+func (o *Response) GetBody() *ResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.Body
+}
+
+func (o *Response) GetCode() *ResponseCode {
+	if o == nil {
+		return nil
+	}
+	return o.Code
+}
+
+func (o *Response) GetHeaders() []Header {
+	if o == nil {
+		return nil
+	}
+	return o.Headers
+}
+
+func (o *Response) GetPath() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Path
+}
