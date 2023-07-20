@@ -6,3 +6,10 @@ package shared
 type UserInfo struct {
 	ID *string `json:"id,omitempty"`
 }
+
+func (o *UserInfo) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}

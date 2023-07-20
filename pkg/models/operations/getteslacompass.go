@@ -11,10 +11,45 @@ type GetTeslaCompassRequest struct {
 	VehicleID string `pathParam:"style=simple,explode=false,name=vehicle_id"`
 }
 
+func (o *GetTeslaCompassRequest) GetVehicleID() string {
+	if o == nil {
+		return ""
+	}
+	return o.VehicleID
+}
+
 type GetTeslaCompassResponse struct {
 	// returns the compass heading of a Tesla.
 	Compass     *shared.Compass
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
+}
+
+func (o *GetTeslaCompassResponse) GetCompass() *shared.Compass {
+	if o == nil {
+		return nil
+	}
+	return o.Compass
+}
+
+func (o *GetTeslaCompassResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetTeslaCompassResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetTeslaCompassResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

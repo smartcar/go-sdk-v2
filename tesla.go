@@ -7,6 +7,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/pkg/models/sdkerrors"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	"github.com/smartcar/go-sdk-v2/pkg/utils"
 	"io"
@@ -79,6 +80,8 @@ func (s *tesla) GetAmmeter(ctx context.Context, vehicleID string) (*operations.G
 			}
 
 			res.ChargeAmmeter = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -141,6 +144,8 @@ func (s *tesla) GetChargeTime(ctx context.Context, vehicleID string) (*operation
 			}
 
 			res.ChargeTime = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -203,6 +208,8 @@ func (s *tesla) GetCompass(ctx context.Context, vehicleID string) (*operations.G
 			}
 
 			res.Compass = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -265,6 +272,8 @@ func (s *tesla) GetExteriorTemperature(ctx context.Context, id string) (*operati
 			}
 
 			res.Temperature = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -327,6 +336,8 @@ func (s *tesla) GetInteriorTemperature(ctx context.Context, id string) (*operati
 			}
 
 			res.Temperature = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -389,6 +400,8 @@ func (s *tesla) GetSpeedometer(ctx context.Context, vehicleID string) (*operatio
 			}
 
 			res.Speed = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -451,6 +464,8 @@ func (s *tesla) GetVoltage(ctx context.Context, vehicleID string) (*operations.G
 			}
 
 			res.ChargeVoltage = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -513,6 +528,8 @@ func (s *tesla) GetWattmeter(ctx context.Context, vehicleID string) (*operations
 			}
 
 			res.ChargeWattage = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -583,6 +600,8 @@ func (s *tesla) SetAmmeter(ctx context.Context, vehicleID string, chargeAmmeter 
 			}
 
 			res.SuccessResponse = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

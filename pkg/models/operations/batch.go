@@ -12,10 +12,52 @@ type BatchRequest struct {
 	RequestBody []string `request:"mediaType=application/json"`
 }
 
+func (o *BatchRequest) GetVehicleID() string {
+	if o == nil {
+		return ""
+	}
+	return o.VehicleID
+}
+
+func (o *BatchRequest) GetRequestBody() []string {
+	if o == nil {
+		return nil
+	}
+	return o.RequestBody
+}
+
 type BatchResponse struct {
 	// A list of responses from multiple Smartcar endpoints
 	BatchResponse *shared.BatchResponse
 	ContentType   string
 	StatusCode    int
 	RawResponse   *http.Response
+}
+
+func (o *BatchResponse) GetBatchResponse() *shared.BatchResponse {
+	if o == nil {
+		return nil
+	}
+	return o.BatchResponse
+}
+
+func (o *BatchResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *BatchResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *BatchResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }
