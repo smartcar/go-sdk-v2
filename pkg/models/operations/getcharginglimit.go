@@ -11,10 +11,45 @@ type GetChargingLimitRequest struct {
 	VehicleID string `pathParam:"style=simple,explode=false,name=vehicle_id"`
 }
 
+func (o *GetChargingLimitRequest) GetVehicleID() string {
+	if o == nil {
+		return ""
+	}
+	return o.VehicleID
+}
+
 type GetChargingLimitResponse struct {
 	// return EV Charge Limit
 	ChargeLimit *shared.ChargeLimit
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
+}
+
+func (o *GetChargingLimitResponse) GetChargeLimit() *shared.ChargeLimit {
+	if o == nil {
+		return nil
+	}
+	return o.ChargeLimit
+}
+
+func (o *GetChargingLimitResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetChargingLimitResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetChargingLimitResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

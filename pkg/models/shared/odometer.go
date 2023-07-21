@@ -6,3 +6,10 @@ package shared
 type Odometer struct {
 	Distance *float32 `json:"distance,omitempty"`
 }
+
+func (o *Odometer) GetDistance() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.Distance
+}

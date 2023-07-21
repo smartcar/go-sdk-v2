@@ -7,6 +7,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/pkg/models/sdkerrors"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	"github.com/smartcar/go-sdk-v2/pkg/utils"
 	"io"
@@ -90,6 +91,8 @@ func (s *evs) GetBatteryCapacity(ctx context.Context, vehicleID string) (*operat
 			}
 
 			res.BatteryCapacity = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -163,6 +166,8 @@ func (s *evs) GetBatteryLevel(ctx context.Context, vehicleID string) (*operation
 			}
 
 			res.BatteryLevel = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -225,6 +230,8 @@ func (s *evs) GetChargingLimit(ctx context.Context, vehicleID string) (*operatio
 			}
 
 			res.ChargeLimit = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -298,6 +305,8 @@ func (s *evs) GetChargingStatus(ctx context.Context, vehicleID string) (*operati
 			}
 
 			res.ChargeStatus = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -368,6 +377,8 @@ func (s *evs) SetChargingLimit(ctx context.Context, vehicleID string, chargeLimi
 			}
 
 			res.SuccessResponse = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -449,6 +460,8 @@ func (s *evs) StartStopCharge(ctx context.Context, vehicleID string, chargeActio
 			}
 
 			res.SuccessResponse = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

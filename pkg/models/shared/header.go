@@ -6,3 +6,17 @@ type Header struct {
 	ScDataAge    *string `json:"sc-data-age,omitempty"`
 	ScUnitSystem *string `json:"sc-unit-system,omitempty"`
 }
+
+func (o *Header) GetScDataAge() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ScDataAge
+}
+
+func (o *Header) GetScUnitSystem() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ScUnitSystem
+}

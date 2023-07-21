@@ -11,10 +11,45 @@ type GetTeslaAmmeterRequest struct {
 	VehicleID string `pathParam:"style=simple,explode=false,name=vehicle_id"`
 }
 
+func (o *GetTeslaAmmeterRequest) GetVehicleID() string {
+	if o == nil {
+		return ""
+	}
+	return o.VehicleID
+}
+
 type GetTeslaAmmeterResponse struct {
 	// returns the amperage of the charger measured by the vehicle.
 	ChargeAmmeter *shared.ChargeAmmeter
 	ContentType   string
 	StatusCode    int
 	RawResponse   *http.Response
+}
+
+func (o *GetTeslaAmmeterResponse) GetChargeAmmeter() *shared.ChargeAmmeter {
+	if o == nil {
+		return nil
+	}
+	return o.ChargeAmmeter
+}
+
+func (o *GetTeslaAmmeterResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetTeslaAmmeterResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetTeslaAmmeterResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

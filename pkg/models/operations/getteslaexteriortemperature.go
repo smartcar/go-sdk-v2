@@ -11,10 +11,45 @@ type GetTeslaExteriorTemperatureRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (o *GetTeslaExteriorTemperatureRequest) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
 type GetTeslaExteriorTemperatureResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// returns the exterior temperature of a Tesla.
 	Temperature *shared.Temperature
+}
+
+func (o *GetTeslaExteriorTemperatureResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetTeslaExteriorTemperatureResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetTeslaExteriorTemperatureResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetTeslaExteriorTemperatureResponse) GetTemperature() *shared.Temperature {
+	if o == nil {
+		return nil
+	}
+	return o.Temperature
 }

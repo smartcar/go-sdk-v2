@@ -11,10 +11,45 @@ type GetCadillacChargeTimeRequest struct {
 	VehicleID string `pathParam:"style=simple,explode=false,name=vehicle_id"`
 }
 
+func (o *GetCadillacChargeTimeRequest) GetVehicleID() string {
+	if o == nil {
+		return ""
+	}
+	return o.VehicleID
+}
+
 type GetCadillacChargeTimeResponse struct {
 	// returns the date and time the vehicle expects to "complete" this charging session.
 	ChargeTime  *shared.ChargeTime
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
+}
+
+func (o *GetCadillacChargeTimeResponse) GetChargeTime() *shared.ChargeTime {
+	if o == nil {
+		return nil
+	}
+	return o.ChargeTime
+}
+
+func (o *GetCadillacChargeTimeResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetCadillacChargeTimeResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetCadillacChargeTimeResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }
