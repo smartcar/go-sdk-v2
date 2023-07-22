@@ -12,10 +12,52 @@ type SetChargingLimitRequest struct {
 	ChargeLimit *shared.ChargeLimit `request:"mediaType=application/json"`
 }
 
+func (o *SetChargingLimitRequest) GetVehicleID() string {
+	if o == nil {
+		return ""
+	}
+	return o.VehicleID
+}
+
+func (o *SetChargingLimitRequest) GetChargeLimit() *shared.ChargeLimit {
+	if o == nil {
+		return nil
+	}
+	return o.ChargeLimit
+}
+
 type SetChargingLimitResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// return Success Response
 	SuccessResponse *shared.SuccessResponse
+}
+
+func (o *SetChargingLimitResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *SetChargingLimitResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *SetChargingLimitResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *SetChargingLimitResponse) GetSuccessResponse() *shared.SuccessResponse {
+	if o == nil {
+		return nil
+	}
+	return o.SuccessResponse
 }

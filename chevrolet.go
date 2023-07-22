@@ -7,6 +7,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/pkg/models/sdkerrors"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	"github.com/smartcar/go-sdk-v2/pkg/utils"
 	"io"
@@ -79,6 +80,8 @@ func (s *chevrolet) GetChargeTime(ctx context.Context, vehicleID string) (*opera
 			}
 
 			res.ChargeTime = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -141,6 +144,8 @@ func (s *chevrolet) GetVoltage(ctx context.Context, vehicleID string) (*operatio
 			}
 
 			res.ChargeVoltage = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

@@ -11,10 +11,45 @@ type GetBatteryCapacityRequest struct {
 	VehicleID string `pathParam:"style=simple,explode=false,name=vehicle_id"`
 }
 
+func (o *GetBatteryCapacityRequest) GetVehicleID() string {
+	if o == nil {
+		return ""
+	}
+	return o.VehicleID
+}
+
 type GetBatteryCapacityResponse struct {
 	// return EV Battery Capacity reading
 	BatteryCapacity *shared.BatteryCapacity
 	ContentType     string
 	StatusCode      int
 	RawResponse     *http.Response
+}
+
+func (o *GetBatteryCapacityResponse) GetBatteryCapacity() *shared.BatteryCapacity {
+	if o == nil {
+		return nil
+	}
+	return o.BatteryCapacity
+}
+
+func (o *GetBatteryCapacityResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetBatteryCapacityResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetBatteryCapacityResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

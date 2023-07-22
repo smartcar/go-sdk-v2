@@ -12,10 +12,52 @@ type SetTeslaAmmeterRequest struct {
 	ChargeAmmeter *shared.ChargeAmmeter `request:"mediaType=application/json"`
 }
 
+func (o *SetTeslaAmmeterRequest) GetVehicleID() string {
+	if o == nil {
+		return ""
+	}
+	return o.VehicleID
+}
+
+func (o *SetTeslaAmmeterRequest) GetChargeAmmeter() *shared.ChargeAmmeter {
+	if o == nil {
+		return nil
+	}
+	return o.ChargeAmmeter
+}
+
 type SetTeslaAmmeterResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// returns the amperage of the charger measured by the vehicle.
 	SuccessResponse *shared.SuccessResponse
+}
+
+func (o *SetTeslaAmmeterResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *SetTeslaAmmeterResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *SetTeslaAmmeterResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *SetTeslaAmmeterResponse) GetSuccessResponse() *shared.SuccessResponse {
+	if o == nil {
+		return nil
+	}
+	return o.SuccessResponse
 }
