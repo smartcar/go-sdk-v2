@@ -8,3 +8,17 @@ type BatteryLevel struct {
 	// The estimated remaining distance the vehicle can travel (in kilometers by default or in miles using the sc-unit-system).
 	Range *float32 `json:"range,omitempty"`
 }
+
+func (o *BatteryLevel) GetPercentRemaining() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.PercentRemaining
+}
+
+func (o *BatteryLevel) GetRange() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.Range
+}

@@ -39,3 +39,17 @@ type SuccessResponse struct {
 	Message *string                `json:"message,omitempty"`
 	Status  *SuccessResponseStatus `json:"status,omitempty"`
 }
+
+func (o *SuccessResponse) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *SuccessResponse) GetStatus() *SuccessResponseStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}

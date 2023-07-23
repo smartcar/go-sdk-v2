@@ -8,3 +8,24 @@ type CompatibilityResponse struct {
 	Compatible   *bool        `json:"compatible,omitempty"`
 	Reason       *string      `json:"reason,omitempty"`
 }
+
+func (o *CompatibilityResponse) GetCapabilities() []Capability {
+	if o == nil {
+		return nil
+	}
+	return o.Capabilities
+}
+
+func (o *CompatibilityResponse) GetCompatible() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Compatible
+}
+
+func (o *CompatibilityResponse) GetReason() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Reason
+}

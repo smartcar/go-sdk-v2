@@ -13,10 +13,59 @@ type ListCompatibilityRequest struct {
 	Vin     *string `queryParam:"style=form,explode=true,name=vin"`
 }
 
+func (o *ListCompatibilityRequest) GetCountry() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Country
+}
+
+func (o *ListCompatibilityRequest) GetScope() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Scope
+}
+
+func (o *ListCompatibilityRequest) GetVin() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Vin
+}
+
 type ListCompatibilityResponse struct {
 	// return Compatibility
 	CompatibilityResponse *shared.CompatibilityResponse
 	ContentType           string
 	StatusCode            int
 	RawResponse           *http.Response
+}
+
+func (o *ListCompatibilityResponse) GetCompatibilityResponse() *shared.CompatibilityResponse {
+	if o == nil {
+		return nil
+	}
+	return o.CompatibilityResponse
+}
+
+func (o *ListCompatibilityResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ListCompatibilityResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ListCompatibilityResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

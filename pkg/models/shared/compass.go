@@ -60,3 +60,17 @@ type Compass struct {
 	// The direction the vehicle is traveling (in degrees).
 	Heading *float32 `json:"heading,omitempty"`
 }
+
+func (o *Compass) GetDirection() *CompassDirection {
+	if o == nil {
+		return nil
+	}
+	return o.Direction
+}
+
+func (o *Compass) GetHeading() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.Heading
+}

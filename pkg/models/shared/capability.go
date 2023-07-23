@@ -8,3 +8,31 @@ type Capability struct {
 	Permission *string `json:"permission,omitempty"`
 	Reason     *string `json:"reason,omitempty"`
 }
+
+func (o *Capability) GetCapable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Capable
+}
+
+func (o *Capability) GetEndpoint() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Endpoint
+}
+
+func (o *Capability) GetPermission() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Permission
+}
+
+func (o *Capability) GetReason() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Reason
+}
