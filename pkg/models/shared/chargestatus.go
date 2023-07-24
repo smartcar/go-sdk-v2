@@ -42,3 +42,17 @@ type ChargeStatus struct {
 	IsPluggedIn *bool              `json:"isPluggedIn,omitempty"`
 	State       *ChargeStatusState `json:"state,omitempty"`
 }
+
+func (o *ChargeStatus) GetIsPluggedIn() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IsPluggedIn
+}
+
+func (o *ChargeStatus) GetState() *ChargeStatusState {
+	if o == nil {
+		return nil
+	}
+	return o.State
+}

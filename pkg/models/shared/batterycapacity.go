@@ -6,3 +6,10 @@ type BatteryCapacity struct {
 	// The total capacity of the vehicle's battery (in kilowatt-hours).
 	Capacity *float32 `json:"capacity,omitempty"`
 }
+
+func (o *BatteryCapacity) GetCapacity() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.Capacity
+}
