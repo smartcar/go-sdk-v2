@@ -7,3 +7,17 @@ type Location struct {
 	Latitude  float32 `json:"latitude"`
 	Longitude float32 `json:"longitude"`
 }
+
+func (o *Location) GetLatitude() float32 {
+	if o == nil {
+		return float32{}
+	}
+	return o.Latitude
+}
+
+func (o *Location) GetLongitude() float32 {
+	if o == nil {
+		return float32{}
+	}
+	return o.Longitude
+}

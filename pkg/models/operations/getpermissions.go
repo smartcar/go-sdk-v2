@@ -15,10 +15,59 @@ type GetPermissionsRequest struct {
 	Offset *int64 `queryParam:"style=form,explode=true,name=offset"`
 }
 
+func (o *GetPermissionsRequest) GetVehicleID() string {
+	if o == nil {
+		return ""
+	}
+	return o.VehicleID
+}
+
+func (o *GetPermissionsRequest) GetLimit() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Limit
+}
+
+func (o *GetPermissionsRequest) GetOffset() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Offset
+}
+
 type GetPermissionsResponse struct {
 	ContentType string
 	// The applications permissions
 	Permission  *shared.Permission
 	StatusCode  int
 	RawResponse *http.Response
+}
+
+func (o *GetPermissionsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetPermissionsResponse) GetPermission() *shared.Permission {
+	if o == nil {
+		return nil
+	}
+	return o.Permission
+}
+
+func (o *GetPermissionsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetPermissionsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

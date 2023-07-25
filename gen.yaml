@@ -1,9 +1,9 @@
 configVersion: 1.0.0
 management:
-  docChecksum: 13775327236da5d795d52fc1316d576e
+  docChecksum: 0d987b6e73538948dea9391d3d33e182
   docVersion: 1.0.0
-  speakeasyVersion: 1.51.0
-  generationVersion: 2.50.2
+  speakeasyVersion: 1.64.1
+  generationVersion: 2.71.0
 generation:
   comments:
     disableComments: false
@@ -13,6 +13,6 @@ generation:
   singleTagPerOp: false
   tagNamespacingDisabled: false
 go:
-  version: 1.1.1
+  version: 1.2.0
   maxMethodParams: 4
   packageName: github.com/smartcar/go-sdk-v2
