@@ -37,3 +37,10 @@ func (e *SecurityActionAction) UnmarshalJSON(data []byte) error {
 type SecurityAction struct {
 	Action *SecurityActionAction `json:"action,omitempty"`
 }
+
+func (o *SecurityAction) GetAction() *SecurityActionAction {
+	if o == nil {
+		return nil
+	}
+	return o.Action
+}

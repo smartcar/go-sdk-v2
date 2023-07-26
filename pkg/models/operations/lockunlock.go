@@ -12,10 +12,52 @@ type LockUnlockRequest struct {
 	SecurityAction *shared.SecurityAction `request:"mediaType=application/json"`
 }
 
+func (o *LockUnlockRequest) GetVehicleID() string {
+	if o == nil {
+		return ""
+	}
+	return o.VehicleID
+}
+
+func (o *LockUnlockRequest) GetSecurityAction() *shared.SecurityAction {
+	if o == nil {
+		return nil
+	}
+	return o.SecurityAction
+}
+
 type LockUnlockResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// return Compatibility
 	SuccessResponse *shared.SuccessResponse
+}
+
+func (o *LockUnlockResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *LockUnlockResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *LockUnlockResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *LockUnlockResponse) GetSuccessResponse() *shared.SuccessResponse {
+	if o == nil {
+		return nil
+	}
+	return o.SuccessResponse
 }

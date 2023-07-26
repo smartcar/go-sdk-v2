@@ -12,10 +12,52 @@ type UnsubscribeRequest struct {
 	WebhookID string `pathParam:"style=simple,explode=false,name=webhookId"`
 }
 
+func (o *UnsubscribeRequest) GetVehicleID() string {
+	if o == nil {
+		return ""
+	}
+	return o.VehicleID
+}
+
+func (o *UnsubscribeRequest) GetWebhookID() string {
+	if o == nil {
+		return ""
+	}
+	return o.WebhookID
+}
+
 type UnsubscribeResponse struct {
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// Ubsubscribe from a webhook
 	SuccessResponse *shared.SuccessResponse
+}
+
+func (o *UnsubscribeResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *UnsubscribeResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *UnsubscribeResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *UnsubscribeResponse) GetSuccessResponse() *shared.SuccessResponse {
+	if o == nil {
+		return nil
+	}
+	return o.SuccessResponse
 }

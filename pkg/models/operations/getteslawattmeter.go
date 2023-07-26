@@ -11,10 +11,45 @@ type GetTeslaWattmeterRequest struct {
 	VehicleID string `pathParam:"style=simple,explode=false,name=vehicle_id"`
 }
 
+func (o *GetTeslaWattmeterRequest) GetVehicleID() string {
+	if o == nil {
+		return ""
+	}
+	return o.VehicleID
+}
+
 type GetTeslaWattmeterResponse struct {
 	// returns the wattage of the charger measured by the vehicle.
 	ChargeWattage *shared.ChargeWattage
 	ContentType   string
 	StatusCode    int
 	RawResponse   *http.Response
+}
+
+func (o *GetTeslaWattmeterResponse) GetChargeWattage() *shared.ChargeWattage {
+	if o == nil {
+		return nil
+	}
+	return o.ChargeWattage
+}
+
+func (o *GetTeslaWattmeterResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetTeslaWattmeterResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetTeslaWattmeterResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }
