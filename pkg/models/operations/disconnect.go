@@ -12,6 +12,13 @@ type DisconnectRequest struct {
 	VehicleID string `pathParam:"style=simple,explode=false,name=vehicle_id"`
 }
 
+func (o *DisconnectRequest) GetVehicleID() string {
+	if o == nil {
+		return ""
+	}
+	return o.VehicleID
+}
+
 // DisconnectStatus - Revoke application access
 type DisconnectStatus string
 
@@ -43,4 +50,32 @@ type DisconnectResponse struct {
 	Status      *DisconnectStatus
 	StatusCode  int
 	RawResponse *http.Response
+}
+
+func (o *DisconnectResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *DisconnectResponse) GetStatus() *DisconnectStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}
+
+func (o *DisconnectResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *DisconnectResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

@@ -7,3 +7,17 @@ type WebhookInfo struct {
 	Vehicleid *string `json:"vehicleid,omitempty"`
 	Webhookid *string `json:"webhookid,omitempty"`
 }
+
+func (o *WebhookInfo) GetVehicleid() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Vehicleid
+}
+
+func (o *WebhookInfo) GetWebhookid() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Webhookid
+}

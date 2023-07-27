@@ -11,10 +11,45 @@ type GetTeslaSpeedRequest struct {
 	VehicleID string `pathParam:"style=simple,explode=false,name=vehicle_id"`
 }
 
+func (o *GetTeslaSpeedRequest) GetVehicleID() string {
+	if o == nil {
+		return ""
+	}
+	return o.VehicleID
+}
+
 type GetTeslaSpeedResponse struct {
 	ContentType string
 	// returns the speed of a Tesla.
 	Speed       *shared.Speed
 	StatusCode  int
 	RawResponse *http.Response
+}
+
+func (o *GetTeslaSpeedResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetTeslaSpeedResponse) GetSpeed() *shared.Speed {
+	if o == nil {
+		return nil
+	}
+	return o.Speed
+}
+
+func (o *GetTeslaSpeedResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetTeslaSpeedResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }
