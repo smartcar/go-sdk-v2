@@ -6,3 +6,10 @@ package shared
 type VinInfo struct {
 	Vin *string `json:"vin,omitempty"`
 }
+
+func (o *VinInfo) GetVin() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Vin
+}

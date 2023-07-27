@@ -7,3 +7,10 @@ type ChargeWattage struct {
 	// The wattage of the charger measured by the vehicle.
 	Wattage *float32 `json:"wattage,omitempty"`
 }
+
+func (o *ChargeWattage) GetWattage() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.Wattage
+}
