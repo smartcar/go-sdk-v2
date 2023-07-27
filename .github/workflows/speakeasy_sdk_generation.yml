@@ -24,6 +24,7 @@ jobs:
       openapi_docs: |
         - https://raw.githubusercontent.com/smartcar/api-schema/master/speakeasy/openapi.yaml
       speakeasy_version: latest
+      create_release: true
     secrets:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
       openapi_doc_auth_token: ${{ secrets.SPEC_TOKEN }}
