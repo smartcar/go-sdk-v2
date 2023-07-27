@@ -11,10 +11,45 @@ type GetEngineOilRequest struct {
 	VehicleID string `pathParam:"style=simple,explode=false,name=vehicle_id"`
 }
 
+func (o *GetEngineOilRequest) GetVehicleID() string {
+	if o == nil {
+		return ""
+	}
+	return o.VehicleID
+}
+
 type GetEngineOilResponse struct {
 	ContentType string
 	// return engine oil reading
 	EngineOil   *shared.EngineOil
 	StatusCode  int
 	RawResponse *http.Response
+}
+
+func (o *GetEngineOilResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetEngineOilResponse) GetEngineOil() *shared.EngineOil {
+	if o == nil {
+		return nil
+	}
+	return o.EngineOil
+}
+
+func (o *GetEngineOilResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetEngineOilResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

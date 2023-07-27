@@ -9,3 +9,31 @@ type VehicleInfo struct {
 	Model string `json:"model"`
 	Year  int64  `json:"year"`
 }
+
+func (o *VehicleInfo) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *VehicleInfo) GetMake() string {
+	if o == nil {
+		return ""
+	}
+	return o.Make
+}
+
+func (o *VehicleInfo) GetModel() string {
+	if o == nil {
+		return ""
+	}
+	return o.Model
+}
+
+func (o *VehicleInfo) GetYear() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.Year
+}

@@ -7,8 +7,36 @@ type VehiclesResponsePaging struct {
 	Offset *int64 `json:"offset,omitempty"`
 }
 
+func (o *VehiclesResponsePaging) GetCount() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Count
+}
+
+func (o *VehiclesResponsePaging) GetOffset() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Offset
+}
+
 // VehiclesResponse - A list of vehicles
 type VehiclesResponse struct {
 	Paging   *VehiclesResponsePaging `json:"paging,omitempty"`
 	Vehicles []string                `json:"vehicles,omitempty"`
+}
+
+func (o *VehiclesResponse) GetPaging() *VehiclesResponsePaging {
+	if o == nil {
+		return nil
+	}
+	return o.Paging
+}
+
+func (o *VehiclesResponse) GetVehicles() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Vehicles
 }

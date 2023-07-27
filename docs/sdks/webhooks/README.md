@@ -30,8 +30,8 @@ import(
 	"context"
 	"log"
 	"github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
@@ -96,6 +96,7 @@ import(
 	"context"
 	"log"
 	"github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
