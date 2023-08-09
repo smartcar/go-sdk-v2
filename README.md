@@ -119,8 +119,6 @@ looking for the latest version.
 While we value open-source contributions to this SDK, this library is generated programmatically.
 Feel free to open a PR or a Github issue as a proof of concept and we'll do our best to include it in a future release !
 
-### SDK Created by [Speakeasy](https://docs.speakeasyapi.dev/docs/using-speakeasy/client-sdks)
-
 [ci-url]: https://github.com/smartcar/go-sdk-v2/actions/workflows/speakeasy_sdk_generation.yml
 [ci-image]: https://github.com/smartcar/go-sdk-v2/actions/workflows/speakeasy_sdk_generation.yml/badge.svg
 [release-url]: https://github.com/smartcar/go-sdk-v2/releases
