@@ -7,8 +7,36 @@ type PermissionPaging struct {
 	Offset *int64 `json:"offset,omitempty"`
 }
 
+func (o *PermissionPaging) GetCount() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Count
+}
+
+func (o *PermissionPaging) GetOffset() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Offset
+}
+
 // Permission - The applications permissions
 type Permission struct {
 	Paging      *PermissionPaging `json:"paging,omitempty"`
 	Permissions []string          `json:"permissions,omitempty"`
+}
+
+func (o *Permission) GetPaging() *PermissionPaging {
+	if o == nil {
+		return nil
+	}
+	return o.Paging
+}
+
+func (o *Permission) GetPermissions() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Permissions
 }

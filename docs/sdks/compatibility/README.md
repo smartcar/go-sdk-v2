@@ -54,6 +54,7 @@ import(
 	"context"
 	"log"
 	"github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
@@ -63,9 +64,12 @@ func main() {
             BearerAuth: "",
         }),
     )
+    country := "{country}"
+    scope := "{scope}"
+    vin := "{vin}"
 
     ctx := context.Background()
-    res, err := s.Compatibility.ListCompatibility(ctx, "{country}", "{scope}", "{vin}")
+    res, err := s.Compatibility.ListCompatibility(ctx, country, scope, vin)
     if err != nil {
         log.Fatal(err)
     }

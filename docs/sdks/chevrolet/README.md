@@ -20,6 +20,7 @@ import(
 	"context"
 	"log"
 	"github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
@@ -29,9 +30,10 @@ func main() {
             BearerAuth: "",
         }),
     )
+    vehicleID := "distinctio"
 
     ctx := context.Background()
-    res, err := s.Chevrolet.GetChargeTime(ctx, "distinctio")
+    res, err := s.Chevrolet.GetChargeTime(ctx, vehicleID)
     if err != nil {
         log.Fatal(err)
     }
@@ -70,6 +72,7 @@ import(
 	"context"
 	"log"
 	"github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
@@ -79,9 +82,10 @@ func main() {
             BearerAuth: "",
         }),
     )
+    vehicleID := "quibusdam"
 
     ctx := context.Background()
-    res, err := s.Chevrolet.GetVoltage(ctx, "quibusdam")
+    res, err := s.Chevrolet.GetVoltage(ctx, vehicleID)
     if err != nil {
         log.Fatal(err)
     }

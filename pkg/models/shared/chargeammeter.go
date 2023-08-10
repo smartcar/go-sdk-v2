@@ -7,3 +7,10 @@ type ChargeAmmeter struct {
 	// The amperage of the charger measured by the vehicle.
 	Amperage *float32 `json:"amperage,omitempty"`
 }
+
+func (o *ChargeAmmeter) GetAmperage() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.Amperage
+}

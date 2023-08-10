@@ -7,6 +7,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/pkg/models/sdkerrors"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	"github.com/smartcar/go-sdk-v2/pkg/utils"
 	"io"
@@ -87,6 +88,8 @@ func (s *vehicles) Batch(ctx context.Context, vehicleID string, requestBody []st
 			}
 
 			res.BatchResponse = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -155,6 +158,8 @@ func (s *vehicles) Disconnect(ctx context.Context, vehicleID string) (*operation
 			}
 
 			res.Status = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -230,6 +235,8 @@ func (s *vehicles) Get(ctx context.Context, vehicleID string) (*operations.GetVe
 			}
 
 			res.VehicleInfo = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -302,6 +309,8 @@ func (s *vehicles) GetEngineOil(ctx context.Context, vehicleID string) (*operati
 			}
 
 			res.EngineOil = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -376,6 +385,8 @@ func (s *vehicles) GetFuelTank(ctx context.Context, vehicleID string) (*operatio
 			}
 
 			res.FuelTank = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -449,6 +460,8 @@ func (s *vehicles) GetLocation(ctx context.Context, vehicleID string) (*operatio
 			}
 
 			res.Location = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -521,6 +534,8 @@ func (s *vehicles) GetOdometer(ctx context.Context, vehicleID string) (*operatio
 			}
 
 			res.Odometer = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -606,13 +621,15 @@ func (s *vehicles) GetPermissions(ctx context.Context, vehicleID string, limit *
 			}
 
 			res.Permission = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
 	return res, nil
 }
 
-// GetTirePressure - Tire pressure
+// GetTirePressure - Tire Pressure
 // __Description__
 //
 // Returns the air pressure of each of the vehicle’s tires.
@@ -680,6 +697,8 @@ func (s *vehicles) GetTirePressure(ctx context.Context, vehicleID string) (*oper
 			}
 
 			res.TirePressure = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -742,6 +761,8 @@ func (s *vehicles) GetVin(ctx context.Context, vehicleID string) (*operations.Ge
 			}
 
 			res.VinInfo = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -823,6 +844,8 @@ func (s *vehicles) ListVehicles(ctx context.Context, limit *int64, offset *int64
 			}
 
 			res.VehiclesResponse = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 
@@ -903,6 +926,8 @@ func (s *vehicles) LockUnlock(ctx context.Context, vehicleID string, securityAct
 			}
 
 			res.SuccessResponse = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	}
 

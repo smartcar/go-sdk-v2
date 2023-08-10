@@ -30,8 +30,8 @@ import(
 	"context"
 	"log"
 	"github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
@@ -40,12 +40,15 @@ func main() {
             BearerAuth: "",
         }),
     )
-
-    ctx := context.Background()
-    res, err := s.Webhooks.Subscribe(ctx, "repellendus", "sapiente", &shared.WebhookInfo{
+    vehicleID := "repellendus"
+    webhookID := "sapiente"
+    webhookInfo := &shared.WebhookInfo{
         Vehicleid: smartcar.String("dc6ea99e-57d1-4e41-b129-27e7eb58713e"),
         Webhookid: smartcar.String("9b6ae692-60cc-4b3e-89d8-71e7549cf805"),
-    })
+    }
+
+    ctx := context.Background()
+    res, err := s.Webhooks.Subscribe(ctx, vehicleID, webhookID, webhookInfo)
     if err != nil {
         log.Fatal(err)
     }
@@ -96,6 +99,7 @@ import(
 	"context"
 	"log"
 	"github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
@@ -105,9 +109,11 @@ func main() {
             BearerAuth: "",
         }),
     )
+    vehicleID := "quo"
+    webhookID := "odit"
 
     ctx := context.Background()
-    res, err := s.Webhooks.Unsubscribe(ctx, "quo", "odit")
+    res, err := s.Webhooks.Unsubscribe(ctx, vehicleID, webhookID)
     if err != nil {
         log.Fatal(err)
     }

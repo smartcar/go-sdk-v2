@@ -6,3 +6,10 @@ package shared
 type Temperature struct {
 	Temperature *float32 `json:"temperature,omitempty"`
 }
+
+func (o *Temperature) GetTemperature() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.Temperature
+}

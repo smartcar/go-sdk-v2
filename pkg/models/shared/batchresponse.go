@@ -6,3 +6,10 @@ package shared
 type BatchResponse struct {
 	Responses []Response `json:"responses,omitempty"`
 }
+
+func (o *BatchResponse) GetResponses() []Response {
+	if o == nil {
+		return nil
+	}
+	return o.Responses
+}

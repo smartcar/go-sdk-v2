@@ -14,3 +14,31 @@ type GetInfoResponse struct {
 	// return User's information
 	UserInfo *shared.UserInfo
 }
+
+func (o *GetInfoResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetInfoResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetInfoResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetInfoResponse) GetUserInfo() *shared.UserInfo {
+	if o == nil {
+		return nil
+	}
+	return o.UserInfo
+}

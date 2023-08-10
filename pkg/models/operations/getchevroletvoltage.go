@@ -11,10 +11,45 @@ type GetChevroletVoltageRequest struct {
 	VehicleID string `pathParam:"style=simple,explode=false,name=vehicle_id"`
 }
 
+func (o *GetChevroletVoltageRequest) GetVehicleID() string {
+	if o == nil {
+		return ""
+	}
+	return o.VehicleID
+}
+
 type GetChevroletVoltageResponse struct {
 	// returns the voltage of the charger measured by the vehicle.
 	ChargeVoltage *shared.ChargeVoltage
 	ContentType   string
 	StatusCode    int
 	RawResponse   *http.Response
+}
+
+func (o *GetChevroletVoltageResponse) GetChargeVoltage() *shared.ChargeVoltage {
+	if o == nil {
+		return nil
+	}
+	return o.ChargeVoltage
+}
+
+func (o *GetChevroletVoltageResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetChevroletVoltageResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetChevroletVoltageResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

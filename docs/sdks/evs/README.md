@@ -38,6 +38,7 @@ import(
 	"context"
 	"log"
 	"github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
@@ -47,9 +48,10 @@ func main() {
             BearerAuth: "",
         }),
     )
+    vehicleID := "unde"
 
     ctx := context.Background()
-    res, err := s.Evs.GetBatteryCapacity(ctx, "unde")
+    res, err := s.Evs.GetBatteryCapacity(ctx, vehicleID)
     if err != nil {
         log.Fatal(err)
     }
@@ -99,6 +101,7 @@ import(
 	"context"
 	"log"
 	"github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
@@ -108,9 +111,10 @@ func main() {
             BearerAuth: "",
         }),
     )
+    vehicleID := "nulla"
 
     ctx := context.Background()
-    res, err := s.Evs.GetBatteryLevel(ctx, "nulla")
+    res, err := s.Evs.GetBatteryLevel(ctx, vehicleID)
     if err != nil {
         log.Fatal(err)
     }
@@ -149,6 +153,7 @@ import(
 	"context"
 	"log"
 	"github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
@@ -158,9 +163,10 @@ func main() {
             BearerAuth: "",
         }),
     )
+    vehicleID := "corrupti"
 
     ctx := context.Background()
-    res, err := s.Evs.GetChargingLimit(ctx, "corrupti")
+    res, err := s.Evs.GetChargingLimit(ctx, vehicleID)
     if err != nil {
         log.Fatal(err)
     }
@@ -210,6 +216,7 @@ import(
 	"context"
 	"log"
 	"github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
@@ -219,9 +226,10 @@ func main() {
             BearerAuth: "",
         }),
     )
+    vehicleID := "illum"
 
     ctx := context.Background()
-    res, err := s.Evs.GetChargingStatus(ctx, "illum")
+    res, err := s.Evs.GetChargingStatus(ctx, vehicleID)
     if err != nil {
         log.Fatal(err)
     }
@@ -260,8 +268,8 @@ import(
 	"context"
 	"log"
 	"github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
@@ -270,11 +278,13 @@ func main() {
             BearerAuth: "",
         }),
     )
+    vehicleID := "vel"
+    chargeLimit := &shared.ChargeLimit{
+        Limit: smartcar.Float32(1),
+    }
 
     ctx := context.Background()
-    res, err := s.Evs.SetChargingLimit(ctx, "vel", &shared.ChargeLimit{
-        Limit: smartcar.Float32(1),
-    })
+    res, err := s.Evs.SetChargingLimit(ctx, vehicleID, chargeLimit)
     if err != nil {
         log.Fatal(err)
     }
@@ -325,8 +335,8 @@ import(
 	"context"
 	"log"
 	"github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
@@ -335,11 +345,13 @@ func main() {
             BearerAuth: "",
         }),
     )
+    vehicleID := "error"
+    chargeAction := &shared.ChargeAction{
+        Action: shared.ChargeActionActionStart.ToPointer(),
+    }
 
     ctx := context.Background()
-    res, err := s.Evs.StartStopCharge(ctx, "error", &shared.ChargeAction{
-        Action: shared.ChargeActionActionStart.ToPointer(),
-    })
+    res, err := s.Evs.StartStopCharge(ctx, vehicleID, chargeAction)
     if err != nil {
         log.Fatal(err)
     }
