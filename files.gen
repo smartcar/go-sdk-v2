@@ -4,6 +4,7 @@ compatibility.go
 evs.go
 tesla.go
 user.go
+vehiclemanagement.go
 vehicles.go
 webhooks.go
 smartcar.go
@@ -43,6 +44,8 @@ pkg/models/operations/getteslavoltage.go
 pkg/models/operations/getteslawattmeter.go
 pkg/models/operations/setteslaammeter.go
 pkg/models/operations/getinfo.go
+pkg/models/operations/deletemanagementvehicleconnections.go
+pkg/models/operations/getmanagementvehicleconnections.go
 pkg/models/operations/batch.go
 pkg/models/operations/disconnect.go
 pkg/models/operations/getvehicle.go
@@ -53,6 +56,7 @@ pkg/models/operations/getodometer.go
 pkg/models/operations/getpermissions.go
 pkg/models/operations/gettirepressure.go
 pkg/models/operations/getvin.go
+pkg/models/operations/getvehiclesvehicleidsecurity.go
 pkg/models/operations/listvehicles.go
 pkg/models/operations/lockunlock.go
 pkg/models/operations/subscribe.go
@@ -73,6 +77,10 @@ pkg/models/shared/temperature.go
 pkg/models/shared/speed.go
 pkg/models/shared/chargewattage.go
 pkg/models/shared/userinfo.go
+pkg/models/shared/deletedconnection.go
+pkg/models/shared/connectionsresponse.go
+pkg/models/shared/cursorpaging.go
+pkg/models/shared/getconnection.go
 pkg/models/shared/batchresponse.go
 pkg/models/shared/response.go
 pkg/models/shared/header.go
@@ -82,6 +90,7 @@ pkg/models/shared/fueltank.go
 pkg/models/shared/tirepressure.go
 pkg/models/shared/engineoil.go
 pkg/models/shared/vininfo.go
+pkg/models/shared/securityread.go
 pkg/models/shared/vehicleinfo.go
 pkg/models/shared/permission.go
 pkg/models/shared/vehiclesresponse.go
@@ -95,6 +104,8 @@ docs/sdks/compatibility/README.md
 docs/sdks/evs/README.md
 docs/sdks/tesla/README.md
 docs/sdks/user/README.md
+docs/models/operations/option.md
+docs/sdks/vehiclemanagement/README.md
 docs/sdks/vehicles/README.md
 docs/sdks/webhooks/README.md
 USAGE.md
@@ -139,6 +150,12 @@ docs/models/operations/getteslawattmeterresponse.md
 docs/models/operations/setteslaammeterrequest.md
 docs/models/operations/setteslaammeterresponse.md
 docs/models/operations/getinforesponse.md
+docs/models/operations/deletemanagementvehicleconnectionssecurity.md
+docs/models/operations/deletemanagementvehicleconnectionsrequest.md
+docs/models/operations/deletemanagementvehicleconnectionsresponse.md
+docs/models/operations/getmanagementvehicleconnectionssecurity.md
+docs/models/operations/getmanagementvehicleconnectionsrequest.md
+docs/models/operations/getmanagementvehicleconnectionsresponse.md
 docs/models/operations/batchrequest.md
 docs/models/operations/batchresponse.md
 docs/models/operations/disconnectrequest.md
@@ -160,6 +177,8 @@ docs/models/operations/gettirepressurerequest.md
 docs/models/operations/gettirepressureresponse.md
 docs/models/operations/getvinrequest.md
 docs/models/operations/getvinresponse.md
+docs/models/operations/getvehiclesvehicleidsecurityrequest.md
+docs/models/operations/getvehiclesvehicleidsecurityresponse.md
 docs/models/operations/listvehiclesrequest.md
 docs/models/operations/listvehiclesresponse.md
 docs/models/operations/lockunlockrequest.md
@@ -188,6 +207,10 @@ docs/models/shared/temperature.md
 docs/models/shared/speed.md
 docs/models/shared/chargewattage.md
 docs/models/shared/userinfo.md
+docs/models/shared/deletedconnection.md
+docs/models/shared/connectionsresponse.md
+docs/models/shared/cursorpaging.md
+docs/models/shared/getconnection.md
 docs/models/shared/batchresponse.md
 docs/models/shared/responsebody.md
 docs/models/shared/responsecode.md
@@ -199,6 +222,22 @@ docs/models/shared/fueltank.md
 docs/models/shared/tirepressure.md
 docs/models/shared/engineoil.md
 docs/models/shared/vininfo.md
+docs/models/shared/securityreadchargingportstatus.md
+docs/models/shared/securityreadchargingporttype.md
+docs/models/shared/securityreadchargingport.md
+docs/models/shared/securityreaddoorsstatus.md
+docs/models/shared/securityreaddoorstype.md
+docs/models/shared/securityreaddoors.md
+docs/models/shared/securityreadstoragestatus.md
+docs/models/shared/securityreadstoragetype.md
+docs/models/shared/securityreadstorage.md
+docs/models/shared/securityreadsunroofstatus.md
+docs/models/shared/securityreadsunrooftype.md
+docs/models/shared/securityreadsunroof.md
+docs/models/shared/securityreadwindowsstatus.md
+docs/models/shared/securityreadwindowstype.md
+docs/models/shared/securityreadwindows.md
+docs/models/shared/securityread.md
 docs/models/shared/vehicleinfo.md
 docs/models/shared/permissionpaging.md
 docs/models/shared/permission.md
@@ -207,4 +246,6 @@ docs/models/shared/vehiclesresponse.md
 docs/models/shared/securityactionaction.md
 docs/models/shared/securityaction.md
 docs/models/shared/webhookinfo.md
+docs/models/shared/schemebasicauth.md
 docs/models/shared/security.md
+pkg/models/operations/options.go

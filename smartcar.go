@@ -59,17 +59,17 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 	return ServerList[c.ServerIndex], nil
 }
 
-// Smartcar - Smartcar API: # How do I use Postman with Smartcar?
-// We've detailed how to get started with Smartcar in Postman [here](https://www.notion.so/smartcarapi/How-do-I-use-Postman-with-Smartcar-b8e8483bae8b43a986715582beb54bd4).
+// Smartcar - Smartcar API: OpenAPI schema for Smartcar's API
 type Smartcar struct {
 	Cadillac  *cadillac
 	Chevrolet *chevrolet
 	// Compatibility - Operations about compatibility
 	Compatibility *compatibility
 	// Evs - Operations about electric vehicles
-	Evs   *evs
-	Tesla *tesla
-	User  *user
+	Evs               *evs
+	Tesla             *tesla
+	User              *user
+	VehicleManagement *vehicleManagement
 	// Vehicles - Operations about vehicles
 	Vehicles *vehicles
 	Webhooks *webhooks
@@ -128,8 +128,8 @@ func New(opts ...SDKOption) *Smartcar {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "1.2.0",
-			GenVersion:        "2.75.1",
+			SDKVersion:        "1.3.0",
+			GenVersion:        "2.88.5",
 		},
 	}
 	for _, opt := range opts {
@@ -159,6 +159,8 @@ func New(opts ...SDKOption) *Smartcar {
 	sdk.Tesla = newTesla(sdk.sdkConfiguration)
 
 	sdk.User = newUser(sdk.sdkConfiguration)
+
+	sdk.VehicleManagement = newVehicleManagement(sdk.sdkConfiguration)
 
 	sdk.Vehicles = newVehicles(sdk.sdkConfiguration)
 

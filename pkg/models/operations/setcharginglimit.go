@@ -8,15 +8,8 @@ import (
 )
 
 type SetChargingLimitRequest struct {
-	VehicleID   string              `pathParam:"style=simple,explode=false,name=vehicle_id"`
 	ChargeLimit *shared.ChargeLimit `request:"mediaType=application/json"`
-}
-
-func (o *SetChargingLimitRequest) GetVehicleID() string {
-	if o == nil {
-		return ""
-	}
-	return o.VehicleID
+	VehicleID   string              `pathParam:"style=simple,explode=false,name=vehicle_id"`
 }
 
 func (o *SetChargingLimitRequest) GetChargeLimit() *shared.ChargeLimit {
@@ -24,6 +17,13 @@ func (o *SetChargingLimitRequest) GetChargeLimit() *shared.ChargeLimit {
 		return nil
 	}
 	return o.ChargeLimit
+}
+
+func (o *SetChargingLimitRequest) GetVehicleID() string {
+	if o == nil {
+		return ""
+	}
+	return o.VehicleID
 }
 
 type SetChargingLimitResponse struct {

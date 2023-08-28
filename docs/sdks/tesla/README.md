@@ -34,13 +34,17 @@ import(
 func main() {
     s := smartcar.New(
         smartcar.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
         }),
     )
-    vehicleID := "deserunt"
 
     ctx := context.Background()
-    res, err := s.Tesla.GetAmmeter(ctx, vehicleID)
+    res, err := s.Tesla.GetAmmeter(ctx, operations.GetTeslaAmmeterRequest{
+        VehicleID: "deserunt",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -53,10 +57,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.GetTeslaAmmeterRequest](../../models/operations/getteslaammeterrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 
 
 ### Response
@@ -86,13 +90,17 @@ import(
 func main() {
     s := smartcar.New(
         smartcar.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
         }),
     )
-    vehicleID := "suscipit"
 
     ctx := context.Background()
-    res, err := s.Tesla.GetChargeTime(ctx, vehicleID)
+    res, err := s.Tesla.GetChargeTime(ctx, operations.GetTeslaChargeTimeRequest{
+        VehicleID: "suscipit",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -105,10 +113,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
+| `request`                                                                                    | [operations.GetTeslaChargeTimeRequest](../../models/operations/getteslachargetimerequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 
 
 ### Response
@@ -138,13 +146,17 @@ import(
 func main() {
     s := smartcar.New(
         smartcar.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
         }),
     )
-    vehicleID := "iure"
 
     ctx := context.Background()
-    res, err := s.Tesla.GetCompass(ctx, vehicleID)
+    res, err := s.Tesla.GetCompass(ctx, operations.GetTeslaCompassRequest{
+        VehicleID: "iure",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -157,10 +169,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.GetTeslaCompassRequest](../../models/operations/getteslacompassrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 
 
 ### Response
@@ -190,13 +202,17 @@ import(
 func main() {
     s := smartcar.New(
         smartcar.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
         }),
     )
-    id := "magnam"
 
     ctx := context.Background()
-    res, err := s.Tesla.GetExteriorTemperature(ctx, id)
+    res, err := s.Tesla.GetExteriorTemperature(ctx, operations.GetTeslaExteriorTemperatureRequest{
+        ID: "4e0f467c-c879-46ed-951a-05dfc2ddf7cc",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -209,10 +225,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
+| Parameter                                                                                                      | Type                                                                                                           | Required                                                                                                       | Description                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                                          | :heavy_check_mark:                                                                                             | The context to use for the request.                                                                            |
+| `request`                                                                                                      | [operations.GetTeslaExteriorTemperatureRequest](../../models/operations/getteslaexteriortemperaturerequest.md) | :heavy_check_mark:                                                                                             | The request object to use for the request.                                                                     |
 
 
 ### Response
@@ -242,13 +258,17 @@ import(
 func main() {
     s := smartcar.New(
         smartcar.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
         }),
     )
-    id := "debitis"
 
     ctx := context.Background()
-    res, err := s.Tesla.GetInteriorTemperature(ctx, id)
+    res, err := s.Tesla.GetInteriorTemperature(ctx, operations.GetTeslaInteriorTemperatureRequest{
+        ID: "78ca1ba9-28fc-4816-b42c-b73920592939",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -261,10 +281,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
+| Parameter                                                                                                      | Type                                                                                                           | Required                                                                                                       | Description                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                                          | :heavy_check_mark:                                                                                             | The context to use for the request.                                                                            |
+| `request`                                                                                                      | [operations.GetTeslaInteriorTemperatureRequest](../../models/operations/getteslainteriortemperaturerequest.md) | :heavy_check_mark:                                                                                             | The request object to use for the request.                                                                     |
 
 
 ### Response
@@ -294,13 +314,17 @@ import(
 func main() {
     s := smartcar.New(
         smartcar.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
         }),
     )
-    vehicleID := "ipsa"
 
     ctx := context.Background()
-    res, err := s.Tesla.GetSpeedometer(ctx, vehicleID)
+    res, err := s.Tesla.GetSpeedometer(ctx, operations.GetTeslaSpeedRequest{
+        VehicleID: "laboriosam",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -313,10 +337,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `request`                                                                          | [operations.GetTeslaSpeedRequest](../../models/operations/getteslaspeedrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 
 
 ### Response
@@ -346,13 +370,17 @@ import(
 func main() {
     s := smartcar.New(
         smartcar.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
         }),
     )
-    vehicleID := "delectus"
 
     ctx := context.Background()
-    res, err := s.Tesla.GetVoltage(ctx, vehicleID)
+    res, err := s.Tesla.GetVoltage(ctx, operations.GetTeslaVoltageRequest{
+        VehicleID: "hic",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -365,10 +393,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.GetTeslaVoltageRequest](../../models/operations/getteslavoltagerequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 
 
 ### Response
@@ -398,13 +426,17 @@ import(
 func main() {
     s := smartcar.New(
         smartcar.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
         }),
     )
-    vehicleID := "tempora"
 
     ctx := context.Background()
-    res, err := s.Tesla.GetWattmeter(ctx, vehicleID)
+    res, err := s.Tesla.GetWattmeter(ctx, operations.GetTeslaWattmeterRequest{
+        VehicleID: "saepe",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -417,10 +449,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
+| `request`                                                                                  | [operations.GetTeslaWattmeterRequest](../../models/operations/getteslawattmeterrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 
 
 ### Response
@@ -450,16 +482,20 @@ import(
 func main() {
     s := smartcar.New(
         smartcar.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
         }),
     )
-    vehicleID := "suscipit"
-    chargeAmmeter := &shared.ChargeAmmeter{
-        Amperage: smartcar.Float32(48),
-    }
 
     ctx := context.Background()
-    res, err := s.Tesla.SetAmmeter(ctx, vehicleID, chargeAmmeter)
+    res, err := s.Tesla.SetAmmeter(ctx, operations.SetTeslaAmmeterRequest{
+        ChargeAmmeter: &shared.ChargeAmmeter{
+            Amperage: smartcar.Float32(48),
+        },
+        VehicleID: "fuga",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -472,11 +508,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   |
-| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
-| `ctx`                                                         | [context.Context](https://pkg.go.dev/context#Context)         | :heavy_check_mark:                                            | The context to use for the request.                           |
-| `vehicleID`                                                   | *string*                                                      | :heavy_check_mark:                                            | N/A                                                           |
-| `chargeAmmeter`                                               | [*shared.ChargeAmmeter](../../models/shared/chargeammeter.md) | :heavy_minus_sign:                                            | N/A                                                           |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.SetTeslaAmmeterRequest](../../models/operations/setteslaammeterrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 
 
 ### Response

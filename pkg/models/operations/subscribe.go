@@ -8,9 +8,16 @@ import (
 )
 
 type SubscribeRequest struct {
+	WebhookInfo *shared.WebhookInfo `request:"mediaType=application/json"`
 	VehicleID   string              `pathParam:"style=simple,explode=false,name=vehicle_id"`
 	WebhookID   string              `pathParam:"style=simple,explode=false,name=webhookId"`
-	WebhookInfo *shared.WebhookInfo `request:"mediaType=application/json"`
+}
+
+func (o *SubscribeRequest) GetWebhookInfo() *shared.WebhookInfo {
+	if o == nil {
+		return nil
+	}
+	return o.WebhookInfo
 }
 
 func (o *SubscribeRequest) GetVehicleID() string {
@@ -25,13 +32,6 @@ func (o *SubscribeRequest) GetWebhookID() string {
 		return ""
 	}
 	return o.WebhookID
-}
-
-func (o *SubscribeRequest) GetWebhookInfo() *shared.WebhookInfo {
-	if o == nil {
-		return nil
-	}
-	return o.WebhookInfo
 }
 
 type SubscribeResponse struct {
