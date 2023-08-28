@@ -2,8 +2,8 @@ name: Generate
 permissions:
   checks: write
   contents: write
-  statuses: write
   pull-requests: write
+  statuses: write
 "on":
   workflow_dispatch:
     inputs:
@@ -20,14 +20,12 @@ jobs:
       force: ${{ github.event.inputs.force }}
       languages: |
         - go
-      mode: pr
-      openapi_doc_auth_header: Authorization
+      mode: direct
+      openapi_doc_auth_header: x-api-key
       openapi_docs: |
-        - https://raw.githubusercontent.com/smartcar/api-schema/master/speakeasy/openapi.yaml
+        - https://app.speakeasyapi.dev/v1/apis/smartcar/version/v2.0/schema/download
       speakeasy_version: latest
-      create_release: true
     secrets:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
-      openapi_doc_auth_token: ${{ secrets.SPEC_TOKEN }}
+      openapi_doc_auth_token: ${{ secrets.SPEAKEASY_API_KEY }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
-      slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
