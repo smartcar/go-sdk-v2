@@ -16,6 +16,7 @@ Operations about vehicles
 * [GetPermissions](#getpermissions) - Application Permissions
 * [GetTirePressure](#gettirepressure) - Tire Pressure
 * [GetVin](#getvin) - Returns the vehicle’s manufacturer identifier.
+* [GetVehiclesVehicleIDSecurity](#getvehiclesvehicleidsecurity) - Returns the lock status for a vehicle and the open status of its doors, windows, storage units, sunroof and charging port where available. The open status array(s) will be empty if a vehicle has partial support. The request will error if lock status can not be retrieved from the vehicle or the brand is not supported.
 * [ListVehicles](#listvehicles) - All Vehicles
 * [LockUnlock](#lockunlock) - Lock/Unlock Vehicle
 
@@ -39,19 +40,20 @@ import(
 func main() {
     s := smartcar.New(
         smartcar.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
         }),
     )
-    vehicleID := "molestiae"
-    requestBody := []string{
-        "/odometer",
-        "/odometer",
-        "/odometer",
-        "/odometer",
-    }
 
     ctx := context.Background()
-    res, err := s.Vehicles.Batch(ctx, vehicleID, requestBody)
+    res, err := s.Vehicles.Batch(ctx, operations.BatchRequest{
+        RequestBody: []string{
+            "/odometer",
+        },
+        VehicleID: "ipsa",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -64,11 +66,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
-| `requestBody`                                         | []*string*                                            | :heavy_minus_sign:                                    | N/A                                                   |
+| Parameter                                                          | Type                                                               | Required                                                           | Description                                                        |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| `ctx`                                                              | [context.Context](https://pkg.go.dev/context#Context)              | :heavy_check_mark:                                                 | The context to use for the request.                                |
+| `request`                                                          | [operations.BatchRequest](../../models/operations/batchrequest.md) | :heavy_check_mark:                                                 | The request object to use for the request.                         |
 
 
 ### Response
@@ -104,13 +105,17 @@ import(
 func main() {
     s := smartcar.New(
         smartcar.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
         }),
     )
-    vehicleID := "placeat"
 
     ctx := context.Background()
-    res, err := s.Vehicles.Disconnect(ctx, vehicleID)
+    res, err := s.Vehicles.Disconnect(ctx, operations.DisconnectRequest{
+        VehicleID: "reiciendis",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -123,10 +128,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
+| `request`                                                                    | [operations.DisconnectRequest](../../models/operations/disconnectrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 
 
 ### Response
@@ -169,13 +174,17 @@ import(
 func main() {
     s := smartcar.New(
         smartcar.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
         }),
     )
-    vehicleID := "voluptatum"
 
     ctx := context.Background()
-    res, err := s.Vehicles.Get(ctx, vehicleID)
+    res, err := s.Vehicles.Get(ctx, operations.GetVehicleRequest{
+        VehicleID: "est",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -188,10 +197,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
+| `request`                                                                    | [operations.GetVehicleRequest](../../models/operations/getvehiclerequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 
 
 ### Response
@@ -231,13 +240,17 @@ import(
 func main() {
     s := smartcar.New(
         smartcar.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
         }),
     )
-    vehicleID := "iusto"
 
     ctx := context.Background()
-    res, err := s.Vehicles.GetEngineOil(ctx, vehicleID)
+    res, err := s.Vehicles.GetEngineOil(ctx, operations.GetEngineOilRequest{
+        VehicleID: "mollitia",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -250,10 +263,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `request`                                                                        | [operations.GetEngineOilRequest](../../models/operations/getengineoilrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
 
 ### Response
@@ -295,13 +308,17 @@ import(
 func main() {
     s := smartcar.New(
         smartcar.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
         }),
     )
-    vehicleID := "excepturi"
 
     ctx := context.Background()
-    res, err := s.Vehicles.GetFuelTank(ctx, vehicleID)
+    res, err := s.Vehicles.GetFuelTank(ctx, operations.GetFuelTankRequest{
+        VehicleID: "laborum",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -314,10 +331,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `request`                                                                      | [operations.GetFuelTankRequest](../../models/operations/getfueltankrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 
 
 ### Response
@@ -358,13 +375,17 @@ import(
 func main() {
     s := smartcar.New(
         smartcar.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
         }),
     )
-    vehicleID := "36ab27d0-fd9d-4455-823a-ce30af709ffc"
 
     ctx := context.Background()
-    res, err := s.Vehicles.GetLocation(ctx, vehicleID)
+    res, err := s.Vehicles.GetLocation(ctx, operations.GetLocationRequest{
+        VehicleID: "36ab27d0-fd9d-4455-823a-ce30af709ffc",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -377,10 +398,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           | Example                                               |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |                                                       |
-| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   | 36ab27d0-fd9d-4455-823a-ce30af709ffc                  |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `request`                                                                      | [operations.GetLocationRequest](../../models/operations/getlocationrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 
 
 ### Response
@@ -420,13 +441,17 @@ import(
 func main() {
     s := smartcar.New(
         smartcar.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
         }),
     )
-    vehicleID := "nisi"
 
     ctx := context.Background()
-    res, err := s.Vehicles.GetOdometer(ctx, vehicleID)
+    res, err := s.Vehicles.GetOdometer(ctx, operations.GetOdometerRequest{
+        VehicleID: "dolores",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -439,10 +464,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `request`                                                                      | [operations.GetOdometerRequest](../../models/operations/getodometerrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 
 
 ### Response
@@ -489,15 +514,19 @@ import(
 func main() {
     s := smartcar.New(
         smartcar.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
         }),
     )
-    vehicleID := "recusandae"
-    limit := 836079
-    offset := 71036
 
     ctx := context.Background()
-    res, err := s.Vehicles.GetPermissions(ctx, vehicleID, limit, offset)
+    res, err := s.Vehicles.GetPermissions(ctx, operations.GetPermissionsRequest{
+        Limit: smartcar.Int64(210382),
+        Offset: smartcar.Int64(358152),
+        VehicleID: "explicabo",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -510,12 +539,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
-| `limit`                                               | **int64*                                              | :heavy_minus_sign:                                    | Number of vehicles to return                          |
-| `offset`                                              | **int64*                                              | :heavy_minus_sign:                                    | Index to start vehicle list at                        |
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
+| `request`                                                                            | [operations.GetPermissionsRequest](../../models/operations/getpermissionsrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 
 
 ### Response
@@ -557,13 +584,17 @@ import(
 func main() {
     s := smartcar.New(
         smartcar.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
         }),
     )
-    vehicleID := "quis"
 
     ctx := context.Background()
-    res, err := s.Vehicles.GetTirePressure(ctx, vehicleID)
+    res, err := s.Vehicles.GetTirePressure(ctx, operations.GetTirePressureRequest{
+        VehicleID: "nobis",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -576,10 +607,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.GetTirePressureRequest](../../models/operations/gettirepressurerequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 
 
 ### Response
@@ -609,13 +640,17 @@ import(
 func main() {
     s := smartcar.New(
         smartcar.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
         }),
     )
-    vehicleID := "veritatis"
 
     ctx := context.Background()
-    res, err := s.Vehicles.GetVin(ctx, vehicleID)
+    res, err := s.Vehicles.GetVin(ctx, operations.GetVinRequest{
+        VehicleID: "enim",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -628,15 +663,69 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
+| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `ctx`                                                                | [context.Context](https://pkg.go.dev/context#Context)                | :heavy_check_mark:                                                   | The context to use for the request.                                  |
+| `request`                                                            | [operations.GetVinRequest](../../models/operations/getvinrequest.md) | :heavy_check_mark:                                                   | The request object to use for the request.                           |
 
 
 ### Response
 
 **[*operations.GetVinResponse](../../models/operations/getvinresponse.md), error**
+
+
+## GetVehiclesVehicleIDSecurity
+
+Returns the lock status for a vehicle and the open status of its doors, windows, storage units, sunroof and charging port where available. The open status array(s) will be empty if a vehicle has partial support. The request will error if lock status can not be retrieved from the vehicle or the brand is not supported.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
+)
+
+func main() {
+    s := smartcar.New(
+        smartcar.WithSecurity(shared.Security{
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.Vehicles.GetVehiclesVehicleIDSecurity(ctx, operations.GetVehiclesVehicleIDSecurityRequest{
+        VehicleID: "omnis",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.SecurityRead != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                        | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      |
+| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                                            | :heavy_check_mark:                                                                                               | The context to use for the request.                                                                              |
+| `request`                                                                                                        | [operations.GetVehiclesVehicleIDSecurityRequest](../../models/operations/getvehiclesvehicleidsecurityrequest.md) | :heavy_check_mark:                                                                                               | The request object to use for the request.                                                                       |
+
+
+### Response
+
+**[*operations.GetVehiclesVehicleIDSecurityResponse](../../models/operations/getvehiclesvehicleidsecurityresponse.md), error**
 
 
 ## ListVehicles
@@ -678,14 +767,18 @@ import(
 func main() {
     s := smartcar.New(
         smartcar.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
         }),
     )
-    limit := 648172
-    offset := 20218
 
     ctx := context.Background()
-    res, err := s.Vehicles.ListVehicles(ctx, limit, offset)
+    res, err := s.Vehicles.ListVehicles(ctx, operations.ListVehiclesRequest{
+        Limit: smartcar.Int64(363711),
+        Offset: smartcar.Int64(325047),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -698,11 +791,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `limit`                                               | **int64*                                              | :heavy_minus_sign:                                    | Number of vehicles to return                          |
-| `offset`                                              | **int64*                                              | :heavy_minus_sign:                                    | Index to start vehicle list at                        |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `request`                                                                        | [operations.ListVehiclesRequest](../../models/operations/listvehiclesrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
 
 ### Response
@@ -742,16 +834,20 @@ import(
 func main() {
     s := smartcar.New(
         smartcar.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
         }),
     )
-    vehicleID := "ipsam"
-    securityAction := &shared.SecurityAction{
-        Action: shared.SecurityActionActionUnlock.ToPointer(),
-    }
 
     ctx := context.Background()
-    res, err := s.Vehicles.LockUnlock(ctx, vehicleID, securityAction)
+    res, err := s.Vehicles.LockUnlock(ctx, operations.LockUnlockRequest{
+        SecurityAction: &shared.SecurityAction{
+            Action: shared.SecurityActionActionUnlock.ToPointer(),
+        },
+        VehicleID: "excepturi",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -764,11 +860,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
-| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
-| `ctx`                                                           | [context.Context](https://pkg.go.dev/context#Context)           | :heavy_check_mark:                                              | The context to use for the request.                             |
-| `vehicleID`                                                     | *string*                                                        | :heavy_check_mark:                                              | N/A                                                             |
-| `securityAction`                                                | [*shared.SecurityAction](../../models/shared/securityaction.md) | :heavy_minus_sign:                                              | N/A                                                             |
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
+| `request`                                                                    | [operations.LockUnlockRequest](../../models/operations/lockunlockrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 
 
 ### Response

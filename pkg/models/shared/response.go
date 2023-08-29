@@ -27,6 +27,7 @@ const (
 	ResponseBodyTypeVinInfo               ResponseBodyType = "VinInfo"
 	ResponseBodyTypeUserInfo              ResponseBodyType = "UserInfo"
 	ResponseBodyTypeSuccessResponse       ResponseBodyType = "SuccessResponse"
+	ResponseBodyTypeSecurityRead          ResponseBodyType = "SecurityRead"
 )
 
 type ResponseBody struct {
@@ -45,6 +46,7 @@ type ResponseBody struct {
 	VinInfo               *VinInfo
 	UserInfo              *UserInfo
 	SuccessResponse       *SuccessResponse
+	SecurityRead          *SecurityRead
 
 	Type ResponseBodyType
 }
@@ -181,6 +183,15 @@ func CreateResponseBodySuccessResponse(successResponse SuccessResponse) Response
 	return ResponseBody{
 		SuccessResponse: &successResponse,
 		Type:            typ,
+	}
+}
+
+func CreateResponseBodySecurityRead(securityRead SecurityRead) ResponseBody {
+	typ := ResponseBodyTypeSecurityRead
+
+	return ResponseBody{
+		SecurityRead: &securityRead,
+		Type:         typ,
 	}
 }
 
@@ -322,6 +333,15 @@ func (u *ResponseBody) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
+	securityRead := new(SecurityRead)
+	d = json.NewDecoder(bytes.NewReader(data))
+	d.DisallowUnknownFields()
+	if err := d.Decode(&securityRead); err == nil {
+		u.SecurityRead = securityRead
+		u.Type = ResponseBodyTypeSecurityRead
+		return nil
+	}
+
 	return errors.New("could not unmarshal into supported union types")
 }
 
@@ -384,6 +404,10 @@ func (u ResponseBody) MarshalJSON() ([]byte, error) {
 
 	if u.SuccessResponse != nil {
 		return json.Marshal(u.SuccessResponse)
+	}
+
+	if u.SecurityRead != nil {
+		return json.Marshal(u.SecurityRead)
 	}
 
 	return nil, nil

@@ -61,13 +61,7 @@ func newCompatibility(sdkConfig sdkConfiguration) *compatibility {
 // |  |   MAKE_NOT_COMPATIBLE|  Smartcar is not yet compatible with the vehicle's make in the specified country.|
 // |  capabilities[].reason|   VEHICLE_NOT_CAPABLE|  TThe vehicle does not support this feature.|
 // |  |   SMARTCAR_NOT_CAPABLE|  Smartcar is not capable of supporting the given feature on the vehicle's make.|
-func (s *compatibility) ListCompatibility(ctx context.Context, country *string, scope *string, vin *string) (*operations.ListCompatibilityResponse, error) {
-	request := operations.ListCompatibilityRequest{
-		Country: country,
-		Scope:   scope,
-		Vin:     vin,
-	}
-
+func (s *compatibility) ListCompatibility(ctx context.Context, request operations.ListCompatibilityRequest) (*operations.ListCompatibilityResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/compatibility"
 
@@ -119,6 +113,10 @@ func (s *compatibility) ListCompatibility(ctx context.Context, country *string, 
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

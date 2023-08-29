@@ -8,18 +8,11 @@ import (
 )
 
 type GetPermissionsRequest struct {
-	VehicleID string `pathParam:"style=simple,explode=false,name=vehicle_id"`
 	// Number of vehicles to return
 	Limit *int64 `queryParam:"style=form,explode=true,name=limit"`
 	// Index to start vehicle list at
-	Offset *int64 `queryParam:"style=form,explode=true,name=offset"`
-}
-
-func (o *GetPermissionsRequest) GetVehicleID() string {
-	if o == nil {
-		return ""
-	}
-	return o.VehicleID
+	Offset    *int64 `queryParam:"style=form,explode=true,name=offset"`
+	VehicleID string `pathParam:"style=simple,explode=false,name=vehicle_id"`
 }
 
 func (o *GetPermissionsRequest) GetLimit() *int64 {
@@ -34,6 +27,13 @@ func (o *GetPermissionsRequest) GetOffset() *int64 {
 		return nil
 	}
 	return o.Offset
+}
+
+func (o *GetPermissionsRequest) GetVehicleID() string {
+	if o == nil {
+		return ""
+	}
+	return o.VehicleID
 }
 
 type GetPermissionsResponse struct {

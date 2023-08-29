@@ -8,15 +8,8 @@ import (
 )
 
 type LockUnlockRequest struct {
-	VehicleID      string                 `pathParam:"style=simple,explode=false,name=vehicle_id"`
 	SecurityAction *shared.SecurityAction `request:"mediaType=application/json"`
-}
-
-func (o *LockUnlockRequest) GetVehicleID() string {
-	if o == nil {
-		return ""
-	}
-	return o.VehicleID
+	VehicleID      string                 `pathParam:"style=simple,explode=false,name=vehicle_id"`
 }
 
 func (o *LockUnlockRequest) GetSecurityAction() *shared.SecurityAction {
@@ -24,6 +17,13 @@ func (o *LockUnlockRequest) GetSecurityAction() *shared.SecurityAction {
 		return nil
 	}
 	return o.SecurityAction
+}
+
+func (o *LockUnlockRequest) GetVehicleID() string {
+	if o == nil {
+		return ""
+	}
+	return o.VehicleID
 }
 
 type LockUnlockResponse struct {

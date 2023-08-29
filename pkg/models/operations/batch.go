@@ -8,15 +8,8 @@ import (
 )
 
 type BatchRequest struct {
-	VehicleID   string   `pathParam:"style=simple,explode=false,name=vehicle_id"`
 	RequestBody []string `request:"mediaType=application/json"`
-}
-
-func (o *BatchRequest) GetVehicleID() string {
-	if o == nil {
-		return ""
-	}
-	return o.VehicleID
+	VehicleID   string   `pathParam:"style=simple,explode=false,name=vehicle_id"`
 }
 
 func (o *BatchRequest) GetRequestBody() []string {
@@ -24,6 +17,13 @@ func (o *BatchRequest) GetRequestBody() []string {
 		return nil
 	}
 	return o.RequestBody
+}
+
+func (o *BatchRequest) GetVehicleID() string {
+	if o == nil {
+		return ""
+	}
+	return o.VehicleID
 }
 
 type BatchResponse struct {

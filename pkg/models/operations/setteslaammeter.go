@@ -8,15 +8,8 @@ import (
 )
 
 type SetTeslaAmmeterRequest struct {
-	VehicleID     string                `pathParam:"style=simple,explode=false,name=vehicle_id"`
 	ChargeAmmeter *shared.ChargeAmmeter `request:"mediaType=application/json"`
-}
-
-func (o *SetTeslaAmmeterRequest) GetVehicleID() string {
-	if o == nil {
-		return ""
-	}
-	return o.VehicleID
+	VehicleID     string                `pathParam:"style=simple,explode=false,name=vehicle_id"`
 }
 
 func (o *SetTeslaAmmeterRequest) GetChargeAmmeter() *shared.ChargeAmmeter {
@@ -24,6 +17,13 @@ func (o *SetTeslaAmmeterRequest) GetChargeAmmeter() *shared.ChargeAmmeter {
 		return nil
 	}
 	return o.ChargeAmmeter
+}
+
+func (o *SetTeslaAmmeterRequest) GetVehicleID() string {
+	if o == nil {
+		return ""
+	}
+	return o.VehicleID
 }
 
 type SetTeslaAmmeterResponse struct {

@@ -93,3 +93,9 @@ responseBody := shared.CreateResponseBodyUserInfo(shared.UserInfo{/* values here
 responseBody := shared.CreateResponseBodySuccessResponse(shared.SuccessResponse{/* values here */})
 ```
 
+### SecurityRead
+
+```go
+responseBody := shared.CreateResponseBodySecurityRead(shared.SecurityRead{/* values here */})
+```
+
