@@ -11,7 +11,7 @@ Operations about electric vehicles
 * [GetChargingLimit](#getcharginglimit) - EV Charging Limit
 * [GetChargingStatus](#getchargingstatus) - EV Charging Status
 * [SetChargingLimit](#setcharginglimit) - Set EV Charging Limit
-* [StartStopCharge](#startstopcharge) - Start or stop charging an electric vehicle. Please contact us to request early access.
+* [StartStopCharge](#startstopcharge) - Start or stop charging an electric vehicle.
 
 ## GetBatteryCapacity
 
@@ -45,13 +45,17 @@ import(
 func main() {
     s := smartcar.New(
         smartcar.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
         }),
     )
-    vehicleID := "unde"
 
     ctx := context.Background()
-    res, err := s.Evs.GetBatteryCapacity(ctx, vehicleID)
+    res, err := s.Evs.GetBatteryCapacity(ctx, operations.GetBatteryCapacityRequest{
+        VehicleID: "unde",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -64,10 +68,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
+| `request`                                                                                    | [operations.GetBatteryCapacityRequest](../../models/operations/getbatterycapacityrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 
 
 ### Response
@@ -108,13 +112,17 @@ import(
 func main() {
     s := smartcar.New(
         smartcar.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
         }),
     )
-    vehicleID := "nulla"
 
     ctx := context.Background()
-    res, err := s.Evs.GetBatteryLevel(ctx, vehicleID)
+    res, err := s.Evs.GetBatteryLevel(ctx, operations.GetBatteryLevelRequest{
+        VehicleID: "nulla",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -127,10 +135,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.GetBatteryLevelRequest](../../models/operations/getbatterylevelrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 
 
 ### Response
@@ -160,13 +168,17 @@ import(
 func main() {
     s := smartcar.New(
         smartcar.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
         }),
     )
-    vehicleID := "corrupti"
 
     ctx := context.Background()
-    res, err := s.Evs.GetChargingLimit(ctx, vehicleID)
+    res, err := s.Evs.GetChargingLimit(ctx, operations.GetChargingLimitRequest{
+        VehicleID: "corrupti",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -179,10 +191,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
+| `request`                                                                                | [operations.GetChargingLimitRequest](../../models/operations/getcharginglimitrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 
 
 ### Response
@@ -223,13 +235,17 @@ import(
 func main() {
     s := smartcar.New(
         smartcar.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
         }),
     )
-    vehicleID := "illum"
 
     ctx := context.Background()
-    res, err := s.Evs.GetChargingStatus(ctx, vehicleID)
+    res, err := s.Evs.GetChargingStatus(ctx, operations.GetChargingStatusRequest{
+        VehicleID: "illum",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -242,10 +258,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `vehicleID`                                           | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
+| `request`                                                                                  | [operations.GetChargingStatusRequest](../../models/operations/getchargingstatusrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 
 
 ### Response
@@ -275,16 +291,20 @@ import(
 func main() {
     s := smartcar.New(
         smartcar.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
         }),
     )
-    vehicleID := "vel"
-    chargeLimit := &shared.ChargeLimit{
-        Limit: smartcar.Float32(1),
-    }
 
     ctx := context.Background()
-    res, err := s.Evs.SetChargingLimit(ctx, vehicleID, chargeLimit)
+    res, err := s.Evs.SetChargingLimit(ctx, operations.SetChargingLimitRequest{
+        ChargeLimit: &shared.ChargeLimit{
+            Limit: smartcar.Float32(1),
+        },
+        VehicleID: "vel",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -297,11 +317,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                 | Type                                                      | Required                                                  | Description                                               |
-| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| `ctx`                                                     | [context.Context](https://pkg.go.dev/context#Context)     | :heavy_check_mark:                                        | The context to use for the request.                       |
-| `vehicleID`                                               | *string*                                                  | :heavy_check_mark:                                        | N/A                                                       |
-| `chargeLimit`                                             | [*shared.ChargeLimit](../../models/shared/chargelimit.md) | :heavy_minus_sign:                                        | N/A                                                       |
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
+| `request`                                                                                | [operations.SetChargingLimitRequest](../../models/operations/setcharginglimitrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 
 
 ### Response
@@ -342,16 +361,20 @@ import(
 func main() {
     s := smartcar.New(
         smartcar.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
         }),
     )
-    vehicleID := "error"
-    chargeAction := &shared.ChargeAction{
-        Action: shared.ChargeActionActionStart.ToPointer(),
-    }
 
     ctx := context.Background()
-    res, err := s.Evs.StartStopCharge(ctx, vehicleID, chargeAction)
+    res, err := s.Evs.StartStopCharge(ctx, operations.StartStopChargeRequest{
+        ChargeAction: &shared.ChargeAction{
+            Action: shared.ChargeActionActionStart.ToPointer(),
+        },
+        VehicleID: "error",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -364,11 +387,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
-| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| `ctx`                                                       | [context.Context](https://pkg.go.dev/context#Context)       | :heavy_check_mark:                                          | The context to use for the request.                         |
-| `vehicleID`                                                 | *string*                                                    | :heavy_check_mark:                                          | N/A                                                         |
-| `chargeAction`                                              | [*shared.ChargeAction](../../models/shared/chargeaction.md) | :heavy_minus_sign:                                          | N/A                                                         |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.StartStopChargeRequest](../../models/operations/startstopchargerequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 
 
 ### Response

@@ -28,11 +28,7 @@ func newTesla(sdkConfig sdkConfiguration) *tesla {
 // __Description__
 //
 // When the vehicle is plugged in, this endpoint returns the amperage of the charger measured by the vehicle. When the vehicle is not plugged in, this endpoint results in a vehicle state error.
-func (s *tesla) GetAmmeter(ctx context.Context, vehicleID string) (*operations.GetTeslaAmmeterResponse, error) {
-	request := operations.GetTeslaAmmeterRequest{
-		VehicleID: vehicleID,
-	}
-
+func (s *tesla) GetAmmeter(ctx context.Context, request operations.GetTeslaAmmeterRequest) (*operations.GetTeslaAmmeterResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/tesla/charge/ammeter", request, nil)
 	if err != nil {
@@ -83,6 +79,10 @@ func (s *tesla) GetAmmeter(ctx context.Context, vehicleID string) (*operations.G
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -92,11 +92,7 @@ func (s *tesla) GetAmmeter(ctx context.Context, vehicleID string) (*operations.G
 // __Description__
 //
 // When the vehicle is charging, this endpoint returns the date and time the vehicle expects to complete this charging session. When the vehicle is not charging, this endpoint results in a vehicle state error.
-func (s *tesla) GetChargeTime(ctx context.Context, vehicleID string) (*operations.GetTeslaChargeTimeResponse, error) {
-	request := operations.GetTeslaChargeTimeRequest{
-		VehicleID: vehicleID,
-	}
-
+func (s *tesla) GetChargeTime(ctx context.Context, request operations.GetTeslaChargeTimeRequest) (*operations.GetTeslaChargeTimeResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/tesla/charge/completion", request, nil)
 	if err != nil {
@@ -147,6 +143,10 @@ func (s *tesla) GetChargeTime(ctx context.Context, vehicleID string) (*operation
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -156,11 +156,7 @@ func (s *tesla) GetChargeTime(ctx context.Context, vehicleID string) (*operation
 // __Description__
 //
 // This endpoint returns the compass heading of a Tesla. The value is in degrees, with 0 degrees being North.
-func (s *tesla) GetCompass(ctx context.Context, vehicleID string) (*operations.GetTeslaCompassResponse, error) {
-	request := operations.GetTeslaCompassRequest{
-		VehicleID: vehicleID,
-	}
-
+func (s *tesla) GetCompass(ctx context.Context, request operations.GetTeslaCompassRequest) (*operations.GetTeslaCompassResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/tesla/compass", request, nil)
 	if err != nil {
@@ -211,6 +207,10 @@ func (s *tesla) GetCompass(ctx context.Context, vehicleID string) (*operations.G
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -220,11 +220,7 @@ func (s *tesla) GetCompass(ctx context.Context, vehicleID string) (*operations.G
 // __Description__
 //
 // This endpoint returns the exterior temperature of a Tesla, in celsius by default.
-func (s *tesla) GetExteriorTemperature(ctx context.Context, id string) (*operations.GetTeslaExteriorTemperatureResponse, error) {
-	request := operations.GetTeslaExteriorTemperatureRequest{
-		ID: id,
-	}
-
+func (s *tesla) GetExteriorTemperature(ctx context.Context, request operations.GetTeslaExteriorTemperatureRequest) (*operations.GetTeslaExteriorTemperatureResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{id}/tesla/thermometer/exterior", request, nil)
 	if err != nil {
@@ -275,6 +271,10 @@ func (s *tesla) GetExteriorTemperature(ctx context.Context, id string) (*operati
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -284,11 +284,7 @@ func (s *tesla) GetExteriorTemperature(ctx context.Context, id string) (*operati
 // __Description__
 //
 // This endpoint returns the interior temperature of a Tesla, in celsius by default.
-func (s *tesla) GetInteriorTemperature(ctx context.Context, id string) (*operations.GetTeslaInteriorTemperatureResponse, error) {
-	request := operations.GetTeslaInteriorTemperatureRequest{
-		ID: id,
-	}
-
+func (s *tesla) GetInteriorTemperature(ctx context.Context, request operations.GetTeslaInteriorTemperatureRequest) (*operations.GetTeslaInteriorTemperatureResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{id}/tesla/thermometer/interior", request, nil)
 	if err != nil {
@@ -339,6 +335,10 @@ func (s *tesla) GetInteriorTemperature(ctx context.Context, id string) (*operati
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -348,11 +348,7 @@ func (s *tesla) GetInteriorTemperature(ctx context.Context, id string) (*operati
 // __Description__
 //
 // This endpoint returns the speed of a Tesla (in kilometers/hour by default or in miles/hour using the sc-unit-system).
-func (s *tesla) GetSpeedometer(ctx context.Context, vehicleID string) (*operations.GetTeslaSpeedResponse, error) {
-	request := operations.GetTeslaSpeedRequest{
-		VehicleID: vehicleID,
-	}
-
+func (s *tesla) GetSpeedometer(ctx context.Context, request operations.GetTeslaSpeedRequest) (*operations.GetTeslaSpeedResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/tesla/speedometer", request, nil)
 	if err != nil {
@@ -403,6 +399,10 @@ func (s *tesla) GetSpeedometer(ctx context.Context, vehicleID string) (*operatio
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -412,11 +412,7 @@ func (s *tesla) GetSpeedometer(ctx context.Context, vehicleID string) (*operatio
 // __Description__
 //
 // When the vehicle is plugged in, this endpoint returns the voltage of the charger measured by the vehicle. When the vehicle is not plugged in, this endpoint results in a vehicle state error.
-func (s *tesla) GetVoltage(ctx context.Context, vehicleID string) (*operations.GetTeslaVoltageResponse, error) {
-	request := operations.GetTeslaVoltageRequest{
-		VehicleID: vehicleID,
-	}
-
+func (s *tesla) GetVoltage(ctx context.Context, request operations.GetTeslaVoltageRequest) (*operations.GetTeslaVoltageResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/tesla/charge/voltmeter", request, nil)
 	if err != nil {
@@ -467,6 +463,10 @@ func (s *tesla) GetVoltage(ctx context.Context, vehicleID string) (*operations.G
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -476,11 +476,7 @@ func (s *tesla) GetVoltage(ctx context.Context, vehicleID string) (*operations.G
 // __Description__
 //
 // When the vehicle is plugged in, this endpoint returns the wattage of the charger measured by the vehicle. When the vehicle is not plugged in, this endpoint results in a vehicle state error.
-func (s *tesla) GetWattmeter(ctx context.Context, vehicleID string) (*operations.GetTeslaWattmeterResponse, error) {
-	request := operations.GetTeslaWattmeterRequest{
-		VehicleID: vehicleID,
-	}
-
+func (s *tesla) GetWattmeter(ctx context.Context, request operations.GetTeslaWattmeterRequest) (*operations.GetTeslaWattmeterResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/tesla/charge/wattmeter", request, nil)
 	if err != nil {
@@ -531,6 +527,10 @@ func (s *tesla) GetWattmeter(ctx context.Context, vehicleID string) (*operations
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -540,12 +540,7 @@ func (s *tesla) GetWattmeter(ctx context.Context, vehicleID string) (*operations
 // __Description__
 //
 // When the vehicle is plugged in, this endpoint sets the amperage of the charger measured by the vehicle. When the vehicle is not plugged in, this endpoint results in a vehicle state error.
-func (s *tesla) SetAmmeter(ctx context.Context, vehicleID string, chargeAmmeter *shared.ChargeAmmeter) (*operations.SetTeslaAmmeterResponse, error) {
-	request := operations.SetTeslaAmmeterRequest{
-		VehicleID:     vehicleID,
-		ChargeAmmeter: chargeAmmeter,
-	}
-
+func (s *tesla) SetAmmeter(ctx context.Context, request operations.SetTeslaAmmeterRequest) (*operations.SetTeslaAmmeterResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/tesla/charge/ammeter", request, nil)
 	if err != nil {
@@ -603,6 +598,10 @@ func (s *tesla) SetAmmeter(ctx context.Context, vehicleID string, chargeAmmeter 
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

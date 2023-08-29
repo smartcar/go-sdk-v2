@@ -30,13 +30,17 @@ import(
 func main() {
     s := smartcar.New(
         smartcar.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
         }),
     )
-    vehicleID := "36ab27d0-fd9d-4455-823a-ce30af709ffc"
 
     ctx := context.Background()
-    res, err := s.Vehicles.GetLocation(ctx, vehicleID)
+    res, err := s.Vehicles.GetLocation(ctx, operations.GetLocationRequest{
+        VehicleID: "36ab27d0-fd9d-4455-823a-ce30af709ffc",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -73,7 +77,7 @@ func main() {
 * [GetChargingLimit](docs/sdks/evs/README.md#getcharginglimit) - EV Charging Limit
 * [GetChargingStatus](docs/sdks/evs/README.md#getchargingstatus) - EV Charging Status
 * [SetChargingLimit](docs/sdks/evs/README.md#setcharginglimit) - Set EV Charging Limit
-* [StartStopCharge](docs/sdks/evs/README.md#startstopcharge) - Start or stop charging an electric vehicle. Please contact us to request early access.
+* [StartStopCharge](docs/sdks/evs/README.md#startstopcharge) - Start or stop charging an electric vehicle.
 
 ### [Tesla](docs/sdks/tesla/README.md)
 
@@ -91,6 +95,11 @@ func main() {
 
 * [GetInfo](docs/sdks/user/README.md#getinfo) - User Info
 
+### [VehicleManagement](docs/sdks/vehiclemanagement/README.md)
+
+* [DeleteManagementVehicleConnections](docs/sdks/vehiclemanagement/README.md#deletemanagementvehicleconnections) - Delete vehicle connections by user_id or vehicle_id
+* [GetManagementVehicleConnections](docs/sdks/vehiclemanagement/README.md#getmanagementvehicleconnections) - Retrieve vehicle connections
+
 ### [Vehicles](docs/sdks/vehicles/README.md)
 
 * [Batch](docs/sdks/vehicles/README.md#batch) - Batch
@@ -103,6 +112,7 @@ func main() {
 * [GetPermissions](docs/sdks/vehicles/README.md#getpermissions) - Application Permissions
 * [GetTirePressure](docs/sdks/vehicles/README.md#gettirepressure) - Tire Pressure
 * [GetVin](docs/sdks/vehicles/README.md#getvin) - Returns the vehicle’s manufacturer identifier.
+* [GetVehiclesVehicleIDSecurity](docs/sdks/vehicles/README.md#getvehiclesvehicleidsecurity) - Returns the lock status for a vehicle and the open status of its doors, windows, storage units, sunroof and charging port where available. The open status array(s) will be empty if a vehicle has partial support. The request will error if lock status can not be retrieved from the vehicle or the brand is not supported.
 * [ListVehicles](docs/sdks/vehicles/README.md#listvehicles) - All Vehicles
 * [LockUnlock](docs/sdks/vehicles/README.md#lockunlock) - Lock/Unlock Vehicle
 

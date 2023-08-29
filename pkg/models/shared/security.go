@@ -2,13 +2,40 @@
 
 package shared
 
-type Security struct {
-	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+type SchemeBasicAuth struct {
+	Password string `security:"name=password"`
+	Username string `security:"name=username"`
 }
 
-func (o *Security) GetBearerAuth() string {
+func (o *SchemeBasicAuth) GetPassword() string {
 	if o == nil {
 		return ""
+	}
+	return o.Password
+}
+
+func (o *SchemeBasicAuth) GetUsername() string {
+	if o == nil {
+		return ""
+	}
+	return o.Username
+}
+
+type Security struct {
+	BasicAuth  *SchemeBasicAuth `security:"scheme,type=http,subtype=basic"`
+	BearerAuth *string          `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (o *Security) GetBasicAuth() *SchemeBasicAuth {
+	if o == nil {
+		return nil
+	}
+	return o.BasicAuth
+}
+
+func (o *Security) GetBearerAuth() *string {
+	if o == nil {
+		return nil
 	}
 	return o.BearerAuth
 }

@@ -39,11 +39,7 @@ func newEvs(sdkConfig sdkConfiguration) *evs {
 // |  Name 	|Type   	|Boolean   	|
 // |---	|---	|---	|
 // |  capacity|   number|  The total capacity of the vehicle's battery (in kilowatt-hours). 	|
-func (s *evs) GetBatteryCapacity(ctx context.Context, vehicleID string) (*operations.GetBatteryCapacityResponse, error) {
-	request := operations.GetBatteryCapacityRequest{
-		VehicleID: vehicleID,
-	}
-
+func (s *evs) GetBatteryCapacity(ctx context.Context, request operations.GetBatteryCapacityRequest) (*operations.GetBatteryCapacityResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/battery/capacity", request, nil)
 	if err != nil {
@@ -94,6 +90,10 @@ func (s *evs) GetBatteryCapacity(ctx context.Context, vehicleID string) (*operat
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -114,11 +114,7 @@ func (s *evs) GetBatteryCapacity(ctx context.Context, vehicleID string) (*operat
 // |---	|---	|---	|
 // |  `percentRemaining`|   number|  An EV battery’s state of charge (in percent). 	|
 // |   `range`|   number	|   The estimated remaining distance the vehicle can travel (in kilometers by default or in miles using the [sc-unit-system](https://smartcar.com/docs/api?version=v2.0&language=cURL#request-headers).	|
-func (s *evs) GetBatteryLevel(ctx context.Context, vehicleID string) (*operations.GetBatteryLevelResponse, error) {
-	request := operations.GetBatteryLevelRequest{
-		VehicleID: vehicleID,
-	}
-
+func (s *evs) GetBatteryLevel(ctx context.Context, request operations.GetBatteryLevelRequest) (*operations.GetBatteryLevelResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/battery", request, nil)
 	if err != nil {
@@ -169,6 +165,10 @@ func (s *evs) GetBatteryLevel(ctx context.Context, vehicleID string) (*operation
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -178,11 +178,7 @@ func (s *evs) GetBatteryLevel(ctx context.Context, vehicleID string) (*operation
 // __Description__
 //
 // Returns the current charge limit of an electric vehicle.
-func (s *evs) GetChargingLimit(ctx context.Context, vehicleID string) (*operations.GetChargingLimitResponse, error) {
-	request := operations.GetChargingLimitRequest{
-		VehicleID: vehicleID,
-	}
-
+func (s *evs) GetChargingLimit(ctx context.Context, request operations.GetChargingLimitRequest) (*operations.GetChargingLimitResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/charge/limit", request, nil)
 	if err != nil {
@@ -233,6 +229,10 @@ func (s *evs) GetChargingLimit(ctx context.Context, vehicleID string) (*operatio
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -253,11 +253,7 @@ func (s *evs) GetChargingLimit(ctx context.Context, vehicleID string) (*operatio
 // |---	|---	|---	|
 // |  `isPluggedIn` 	|   boolean	|  Indicates whether a charging cable is currently plugged into the vehicle’s charge port. 	|
 // |   `state`	|   string	|   Indicates whether the vehicle is currently charging. Options: `CHARGING` `FULLY_CHARGED` `NOT_CHARGING`	|
-func (s *evs) GetChargingStatus(ctx context.Context, vehicleID string) (*operations.GetChargingStatusResponse, error) {
-	request := operations.GetChargingStatusRequest{
-		VehicleID: vehicleID,
-	}
-
+func (s *evs) GetChargingStatus(ctx context.Context, request operations.GetChargingStatusRequest) (*operations.GetChargingStatusResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/charge", request, nil)
 	if err != nil {
@@ -308,6 +304,10 @@ func (s *evs) GetChargingStatus(ctx context.Context, vehicleID string) (*operati
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -317,12 +317,7 @@ func (s *evs) GetChargingStatus(ctx context.Context, vehicleID string) (*operati
 // __Description__
 //
 // Returns the current charge limit of an electric vehicle.
-func (s *evs) SetChargingLimit(ctx context.Context, vehicleID string, chargeLimit *shared.ChargeLimit) (*operations.SetChargingLimitResponse, error) {
-	request := operations.SetChargingLimitRequest{
-		VehicleID:   vehicleID,
-		ChargeLimit: chargeLimit,
-	}
-
+func (s *evs) SetChargingLimit(ctx context.Context, request operations.SetChargingLimitRequest) (*operations.SetChargingLimitResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/charge/limit", request, nil)
 	if err != nil {
@@ -380,12 +375,16 @@ func (s *evs) SetChargingLimit(ctx context.Context, vehicleID string, chargeLimi
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
 }
 
-// StartStopCharge - Start or stop charging an electric vehicle. Please contact us to request early access.
+// StartStopCharge - Start or stop charging an electric vehicle.
 // __Description__
 //
 // Returns the current charge status of an electric vehicle.
@@ -400,12 +399,7 @@ func (s *evs) SetChargingLimit(ctx context.Context, vehicleID string, chargeLimi
 // |---	|---	|---	|
 // |  `isPluggedIn` 	|   boolean	|  Indicates whether a charging cable is currently plugged into the vehicle’s charge port. 	|
 // |   `state`	|   string	|   Indicates whether the vehicle is currently charging. Options: `CHARGING` `FULLY_CHARGED` `NOT_CHARGING`	|
-func (s *evs) StartStopCharge(ctx context.Context, vehicleID string, chargeAction *shared.ChargeAction) (*operations.StartStopChargeResponse, error) {
-	request := operations.StartStopChargeRequest{
-		VehicleID:    vehicleID,
-		ChargeAction: chargeAction,
-	}
-
+func (s *evs) StartStopCharge(ctx context.Context, request operations.StartStopChargeRequest) (*operations.StartStopChargeResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/charge", request, nil)
 	if err != nil {
@@ -463,6 +457,10 @@ func (s *evs) StartStopCharge(ctx context.Context, vehicleID string, chargeActio
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

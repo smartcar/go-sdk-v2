@@ -8,15 +8,8 @@ import (
 )
 
 type StartStopChargeRequest struct {
-	VehicleID    string               `pathParam:"style=simple,explode=false,name=vehicle_id"`
 	ChargeAction *shared.ChargeAction `request:"mediaType=application/json"`
-}
-
-func (o *StartStopChargeRequest) GetVehicleID() string {
-	if o == nil {
-		return ""
-	}
-	return o.VehicleID
+	VehicleID    string               `pathParam:"style=simple,explode=false,name=vehicle_id"`
 }
 
 func (o *StartStopChargeRequest) GetChargeAction() *shared.ChargeAction {
@@ -24,6 +17,13 @@ func (o *StartStopChargeRequest) GetChargeAction() *shared.ChargeAction {
 		return nil
 	}
 	return o.ChargeAction
+}
+
+func (o *StartStopChargeRequest) GetVehicleID() string {
+	if o == nil {
+		return ""
+	}
+	return o.VehicleID
 }
 
 type StartStopChargeResponse struct {

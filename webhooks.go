@@ -38,13 +38,7 @@ func newWebhooks(sdkConfig sdkConfiguration) *webhooks {
 // |  Name 	|Type   	|Boolean   	|
 // |---	|---	|---	|
 // |  status|   string|  If the request is successful, Smartcar will return “success” (HTTP 200 status).|
-func (s *webhooks) Subscribe(ctx context.Context, vehicleID string, webhookID string, webhookInfo *shared.WebhookInfo) (*operations.SubscribeResponse, error) {
-	request := operations.SubscribeRequest{
-		VehicleID:   vehicleID,
-		WebhookID:   webhookID,
-		WebhookInfo: webhookInfo,
-	}
-
+func (s *webhooks) Subscribe(ctx context.Context, request operations.SubscribeRequest) (*operations.SubscribeResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/webhooks/{webhookId}", request, nil)
 	if err != nil {
@@ -102,6 +96,10 @@ func (s *webhooks) Subscribe(ctx context.Context, vehicleID string, webhookID st
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil
@@ -121,12 +119,7 @@ func (s *webhooks) Subscribe(ctx context.Context, vehicleID string, webhookID st
 // |  Name 	|Type   	|Boolean   	|
 // |---	|---	|---	|
 // |  status|   string|  If the request is successful, Smartcar will return “success” (HTTP 200 status).|
-func (s *webhooks) Unsubscribe(ctx context.Context, vehicleID string, webhookID string) (*operations.UnsubscribeResponse, error) {
-	request := operations.UnsubscribeRequest{
-		VehicleID: vehicleID,
-		WebhookID: webhookID,
-	}
-
+func (s *webhooks) Unsubscribe(ctx context.Context, request operations.UnsubscribeRequest) (*operations.UnsubscribeResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/webhooks/{webhookId}", request, nil)
 	if err != nil {
@@ -177,6 +170,10 @@ func (s *webhooks) Unsubscribe(ctx context.Context, vehicleID string, webhookID 
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		fallthrough
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
 	return res, nil

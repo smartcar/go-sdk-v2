@@ -15,13 +15,17 @@ import(
 func main() {
     s := smartcar.New(
         smartcar.WithSecurity(shared.Security{
-            BearerAuth: "",
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
         }),
     )
-    vehicleID := "36ab27d0-fd9d-4455-823a-ce30af709ffc"
 
     ctx := context.Background()
-    res, err := s.Vehicles.GetLocation(ctx, vehicleID)
+    res, err := s.Vehicles.GetLocation(ctx, operations.GetLocationRequest{
+        VehicleID: "36ab27d0-fd9d-4455-823a-ce30af709ffc",
+    })
     if err != nil {
         log.Fatal(err)
     }
