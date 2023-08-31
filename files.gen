@@ -249,3 +249,4 @@ docs/models/shared/webhookinfo.md
 docs/models/shared/schemebasicauth.md
 docs/models/shared/security.md
 pkg/models/operations/options.go
+.gitattributes

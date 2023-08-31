@@ -128,8 +128,8 @@ func New(opts ...SDKOption) *Smartcar {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "1.3.0",
-			GenVersion:        "2.88.6",
+			SDKVersion:        "1.4.0",
+			GenVersion:        "2.89.1",
 		},
 	}
 	for _, opt := range opts {
