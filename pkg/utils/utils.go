@@ -154,3 +154,11 @@ func populateFromGlobals(fieldType reflect.StructField, valType reflect.Value, p
 
 	return valType
 }
+
+func isNil(typ reflect.Type, val reflect.Value) bool {
+	if typ.Kind() == reflect.Ptr || typ.Kind() == reflect.Map || typ.Kind() == reflect.Slice || typ.Kind() == reflect.Interface {
+		return val.IsNil()
+	}
+
+	return false
+}

@@ -50,8 +50,8 @@ func main() {
             Vehicleid: smartcar.String("dc6ea99e-57d1-4e41-b129-27e7eb58713e"),
             Webhookid: smartcar.String("9b6ae692-60cc-4b3e-89d8-71e7549cf805"),
         },
-        VehicleID: "accusantium",
-        WebhookID: "iure",
+        VehicleID: "excepturi",
+        WebhookID: "accusantium",
     })
     if err != nil {
         log.Fatal(err)
@@ -117,8 +117,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Webhooks.Unsubscribe(ctx, operations.UnsubscribeRequest{
-        VehicleID: "culpa",
-        WebhookID: "doloribus",
+        VehicleID: "iure",
+        WebhookID: "culpa",
     })
     if err != nil {
         log.Fatal(err)

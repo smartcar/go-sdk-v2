@@ -59,18 +59,18 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 	return ServerList[c.ServerIndex], nil
 }
 
-// Smartcar - Smartcar API: OpenAPI schema for Smartcar's API
+// Smartcar API: OpenAPI schema for Smartcar's API
 type Smartcar struct {
 	Cadillac  *cadillac
 	Chevrolet *chevrolet
-	// Compatibility - Operations about compatibility
+	// Operations about compatibility
 	Compatibility *compatibility
-	// Evs - Operations about electric vehicles
+	// Operations about electric vehicles
 	Evs               *evs
 	Tesla             *tesla
 	User              *user
 	VehicleManagement *vehicleManagement
-	// Vehicles - Operations about vehicles
+	// Operations about vehicles
 	Vehicles *vehicles
 	Webhooks *webhooks
 
@@ -128,8 +128,8 @@ func New(opts ...SDKOption) *Smartcar {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "1.4.0",
-			GenVersion:        "2.89.1",
+			SDKVersion:        "1.5.0",
+			GenVersion:        "2.101.0",
 		},
 	}
 	for _, opt := range opts {

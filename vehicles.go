@@ -26,7 +26,7 @@ func newVehicles(sdkConfig sdkConfiguration) *vehicles {
 	}
 }
 
-// Batch - Batch
+// Batch
 // __Description__ Returns a list of responses from multiple Smartcar endpoints, all combined into a single request. Note: Batch requests is a paid feature. Please contact us to upgrade your plan and obtain access.
 func (s *vehicles) Batch(ctx context.Context, request operations.BatchRequest) (*operations.BatchResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())

@@ -52,7 +52,7 @@ func main() {
         RequestBody: []string{
             "/odometer",
         },
-        VehicleID: "ipsa",
+        VehicleID: "architecto",
     })
     if err != nil {
         log.Fatal(err)
@@ -114,7 +114,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.Disconnect(ctx, operations.DisconnectRequest{
-        VehicleID: "reiciendis",
+        VehicleID: "ipsa",
     })
     if err != nil {
         log.Fatal(err)
@@ -183,7 +183,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.Get(ctx, operations.GetVehicleRequest{
-        VehicleID: "est",
+        VehicleID: "reiciendis",
     })
     if err != nil {
         log.Fatal(err)
@@ -249,7 +249,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.GetEngineOil(ctx, operations.GetEngineOilRequest{
-        VehicleID: "mollitia",
+        VehicleID: "est",
     })
     if err != nil {
         log.Fatal(err)
@@ -317,7 +317,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.GetFuelTank(ctx, operations.GetFuelTankRequest{
-        VehicleID: "laborum",
+        VehicleID: "mollitia",
     })
     if err != nil {
         log.Fatal(err)
@@ -450,7 +450,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.GetOdometer(ctx, operations.GetOdometerRequest{
-        VehicleID: "dolores",
+        VehicleID: "laborum",
     })
     if err != nil {
         log.Fatal(err)
@@ -523,9 +523,9 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.GetPermissions(ctx, operations.GetPermissionsRequest{
-        Limit: smartcar.Int64(210382),
-        Offset: smartcar.Int64(358152),
-        VehicleID: "explicabo",
+        Limit: smartcar.Int64(170909),
+        Offset: smartcar.Int64(210382),
+        VehicleID: "corporis",
     })
     if err != nil {
         log.Fatal(err)
@@ -593,7 +593,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.GetTirePressure(ctx, operations.GetTirePressureRequest{
-        VehicleID: "nobis",
+        VehicleID: "explicabo",
     })
     if err != nil {
         log.Fatal(err)
@@ -649,7 +649,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.GetVin(ctx, operations.GetVinRequest{
-        VehicleID: "enim",
+        VehicleID: "nobis",
     })
     if err != nil {
         log.Fatal(err)
@@ -703,7 +703,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.GetVehiclesVehicleIDSecurity(ctx, operations.GetVehiclesVehicleIDSecurityRequest{
-        VehicleID: "omnis",
+        VehicleID: "enim",
     })
     if err != nil {
         log.Fatal(err)
@@ -776,8 +776,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.ListVehicles(ctx, operations.ListVehiclesRequest{
-        Limit: smartcar.Int64(363711),
-        Offset: smartcar.Int64(325047),
+        Limit: smartcar.Int64(607831),
+        Offset: smartcar.Int64(363711),
     })
     if err != nil {
         log.Fatal(err)
@@ -846,7 +846,7 @@ func main() {
         SecurityAction: &shared.SecurityAction{
             Action: shared.SecurityActionActionUnlock.ToPointer(),
         },
-        VehicleID: "excepturi",
+        VehicleID: "minima",
     })
     if err != nil {
         log.Fatal(err)
