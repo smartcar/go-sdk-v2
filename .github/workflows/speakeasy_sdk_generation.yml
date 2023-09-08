@@ -23,10 +23,9 @@ jobs:
       mode: direct
       openapi_doc_auth_header: x-api-key
       openapi_docs: |
-        - https://app.speakeasyapi.dev/v1/apis/smartcar/version/v2.0/schema/download
+        - https://raw.githubusercontent.com/smartcar/api-schema/master/speakeasy/openapi.yaml
       speakeasy_version: latest
-      create_release: true
     secrets:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
-      openapi_doc_auth_token: ${{ secrets.SPEAKEASY_API_KEY }}
+      openapi_doc_auth_token: ${{ secrets.SPEC_TOKEN }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
