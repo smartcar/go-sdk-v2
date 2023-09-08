@@ -2,7 +2,6 @@
 
 package shared
 
-// CompatibilityResponse - return Compatibility
 type CompatibilityResponse struct {
 	Capabilities []Capability `json:"capabilities,omitempty"`
 	Compatible   *bool        `json:"compatible,omitempty"`

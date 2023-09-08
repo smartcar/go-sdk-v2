@@ -2,7 +2,6 @@
 
 package shared
 
-// FuelTank - return fuel tank reading
 type FuelTank struct {
 	// The amount of fuel in the tank (in liters by default or in gallons (U.S.) using the sc-unit-system).
 	AmountRemaining *float32 `json:"amountRemaining,omitempty"`

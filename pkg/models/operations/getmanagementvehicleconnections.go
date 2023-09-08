@@ -32,7 +32,7 @@ func (o *GetManagementVehicleConnectionsSecurity) GetUsername() string {
 
 type GetManagementVehicleConnectionsRequest struct {
 	// Used for accessing pages other than the first page. Each page returned has a cursor value that can be passed here to fetch the “next” page.
-	Cursor *int64 `queryParam:"style=form,explode=true,name=cursor"`
+	Cursor *string `queryParam:"style=form,explode=true,name=cursor"`
 	// Number of connections to return (default: 10, maximum: 100).
 	Limit *int64 `queryParam:"style=form,explode=true,name=limit"`
 	// Filter for connections created by the provider user ID.
@@ -41,7 +41,7 @@ type GetManagementVehicleConnectionsRequest struct {
 	VehicleID *string `queryParam:"style=form,explode=true,name=vehicle_id"`
 }
 
-func (o *GetManagementVehicleConnectionsRequest) GetCursor() *int64 {
+func (o *GetManagementVehicleConnectionsRequest) GetCursor() *string {
 	if o == nil {
 		return nil
 	}

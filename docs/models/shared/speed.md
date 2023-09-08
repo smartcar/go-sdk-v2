@@ -1,7 +1,5 @@
 # Speed
 
-returns the speed of a Tesla.
-
 
 ## Fields
 

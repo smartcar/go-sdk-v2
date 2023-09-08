@@ -1,7 +1,5 @@
 # CompatibilityResponse
 
-return Compatibility
-
 
 ## Fields
 

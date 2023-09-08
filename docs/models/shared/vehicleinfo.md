@@ -1,7 +1,5 @@
 # VehicleInfo
 
-A single vehicles
-
 
 ## Fields
 

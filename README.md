@@ -103,6 +103,7 @@ func main() {
 ### [Vehicles](docs/sdks/vehicles/README.md)
 
 * [Batch](docs/sdks/vehicles/README.md#batch) - Batch
+* [LockStatus](docs/sdks/vehicles/README.md#lockstatus) - Returns the lock status for a vehicle and the open status of its doors, windows, storage units, sunroof and charging port where available. The open status array(s) will be empty if a vehicle has partial support. The request will error if lock status can not be retrieved from the vehicle or the brand is not supported.
 * [Disconnect](docs/sdks/vehicles/README.md#disconnect) - Revoke Access
 * [Get](docs/sdks/vehicles/README.md#get) - Vehicle Info
 * [GetEngineOil](docs/sdks/vehicles/README.md#getengineoil) - Engine Oil Life
@@ -112,7 +113,6 @@ func main() {
 * [GetPermissions](docs/sdks/vehicles/README.md#getpermissions) - Application Permissions
 * [GetTirePressure](docs/sdks/vehicles/README.md#gettirepressure) - Tire Pressure
 * [GetVin](docs/sdks/vehicles/README.md#getvin) - Returns the vehicle’s manufacturer identifier.
-* [GetVehiclesVehicleIDSecurity](docs/sdks/vehicles/README.md#getvehiclesvehicleidsecurity) - Returns the lock status for a vehicle and the open status of its doors, windows, storage units, sunroof and charging port where available. The open status array(s) will be empty if a vehicle has partial support. The request will error if lock status can not be retrieved from the vehicle or the brand is not supported.
 * [ListVehicles](docs/sdks/vehicles/README.md#listvehicles) - All Vehicles
 * [LockUnlock](docs/sdks/vehicles/README.md#lockunlock) - Lock/Unlock Vehicle
 

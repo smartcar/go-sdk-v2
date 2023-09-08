@@ -2,7 +2,6 @@
 
 package shared
 
-// ConnectionsResponse - returns vehicle connections
 type ConnectionsResponse struct {
 	Connections []GetConnection `json:"connections,omitempty"`
 	Paging      *CursorPaging   `json:"paging,omitempty"`

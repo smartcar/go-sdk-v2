@@ -21,7 +21,6 @@ func (o *VehiclesResponsePaging) GetOffset() *int64 {
 	return o.Offset
 }
 
-// VehiclesResponse - A list of vehicles
 type VehiclesResponse struct {
 	Paging   *VehiclesResponsePaging `json:"paging,omitempty"`
 	Vehicles []string                `json:"vehicles,omitempty"`

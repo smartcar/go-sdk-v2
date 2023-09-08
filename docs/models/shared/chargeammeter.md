@@ -1,7 +1,5 @@
 # ChargeAmmeter
 
-returns the amperage of the charger measured by the vehicle.
-
 
 ## Fields
 

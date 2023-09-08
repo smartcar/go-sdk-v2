@@ -2,7 +2,6 @@
 
 package shared
 
-// Location - A list of vehicles
 type Location struct {
 	Latitude  float32 `json:"latitude"`
 	Longitude float32 `json:"longitude"`

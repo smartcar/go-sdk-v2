@@ -1,7 +1,5 @@
 # VehiclesResponse
 
-A list of vehicles
-
 
 ## Fields
 

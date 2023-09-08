@@ -10,6 +10,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/ericlagergren/decimal"
+
 	"github.com/smartcar/go-sdk-v2/pkg/types"
 )
 
@@ -36,6 +38,10 @@ func populateForm(paramName string, explode bool, objType reflect.Type, objValue
 		case types.BigInt:
 			formValues.Add(paramName, valToString(objValue.Interface()))
 		case big.Int:
+			formValues.Add(paramName, valToString(objValue.Interface()))
+		case types.Decimal:
+			formValues.Add(paramName, valToString(objValue.Interface()))
+		case decimal.Big:
 			formValues.Add(paramName, valToString(objValue.Interface()))
 		default:
 			var items []string

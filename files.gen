@@ -14,6 +14,7 @@ pkg/models/sdkerrors/sdkerror.go
 pkg/types/bigint.go
 pkg/types/date.go
 pkg/types/datetime.go
+pkg/types/decimal.go
 pkg/utils/contenttype.go
 pkg/utils/form.go
 pkg/utils/headers.go
@@ -47,6 +48,7 @@ pkg/models/operations/getinfo.go
 pkg/models/operations/deletemanagementvehicleconnections.go
 pkg/models/operations/getmanagementvehicleconnections.go
 pkg/models/operations/batch.go
+pkg/models/operations/lockstatus.go
 pkg/models/operations/disconnect.go
 pkg/models/operations/getvehicle.go
 pkg/models/operations/getengineoil.go
@@ -56,7 +58,6 @@ pkg/models/operations/getodometer.go
 pkg/models/operations/getpermissions.go
 pkg/models/operations/gettirepressure.go
 pkg/models/operations/getvin.go
-pkg/models/operations/getvehiclesvehicleidsecurity.go
 pkg/models/operations/listvehicles.go
 pkg/models/operations/lockunlock.go
 pkg/models/operations/subscribe.go
@@ -158,6 +159,8 @@ docs/models/operations/getmanagementvehicleconnectionsrequest.md
 docs/models/operations/getmanagementvehicleconnectionsresponse.md
 docs/models/operations/batchrequest.md
 docs/models/operations/batchresponse.md
+docs/models/operations/lockstatusrequest.md
+docs/models/operations/lockstatusresponse.md
 docs/models/operations/disconnectrequest.md
 docs/models/operations/disconnectstatus.md
 docs/models/operations/disconnectresponse.md
@@ -177,8 +180,6 @@ docs/models/operations/gettirepressurerequest.md
 docs/models/operations/gettirepressureresponse.md
 docs/models/operations/getvinrequest.md
 docs/models/operations/getvinresponse.md
-docs/models/operations/getvehiclesvehicleidsecurityrequest.md
-docs/models/operations/getvehiclesvehicleidsecurityresponse.md
 docs/models/operations/listvehiclesrequest.md
 docs/models/operations/listvehiclesresponse.md
 docs/models/operations/lockunlockrequest.md

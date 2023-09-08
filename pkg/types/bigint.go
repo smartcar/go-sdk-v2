@@ -35,15 +35,54 @@ func (b *BigInt) UnmarshalJSON(p []byte) error {
 	return nil
 }
 
-// MustBigIntFromString provides a helper function to return a big.Int from a string
+// BigIntFromString returns a BigInt from a string
 // The string is assumed to be base 10 and if it is not a valid big.Int
-// then the function will return nil
-func MustBigIntFromString(s string) *BigInt {
+// then the function will return an error
+func BigIntFromString(s string) (BigInt, error) {
 	i, ok := new(big.Int).SetString(s, 10)
 	if !ok {
-		return nil
+		return BigInt{}, fmt.Errorf("failed to parse string as bigint")
 	}
-	return &BigInt{
+
+	return BigInt{
 		Int: *i,
+	}, nil
+}
+
+// NewBigIntFromString returns an instance of BigInt from a string
+// The string is assumed to be base 10 and if it is not a valid big.Int
+// then the function will return an error
+func NewBigIntFromString(s string) (*BigInt, error) {
+	i, err := BigIntFromString(s)
+	if err != nil {
+		return nil, err
 	}
+
+	return &i, nil
+}
+
+// MustNewBigIntFromString returns an instance of BigInt from a string
+// The string is assumed to be base 10 and if it is not a valid big.Int
+// then the function panics.
+// Avoid using this function in production code.
+func MustNewBigIntFromString(s string) *BigInt {
+	i, err := NewBigIntFromString(s)
+	if err != nil {
+		panic(err)
+	}
+
+	return i
+}
+
+// MustBigIntFromString returns an instance of BigInt from a string
+// The string is assumed to be base 10 and if it is not a valid big.Int
+// then the function panics.
+// Avoid using this function in production code.
+func MustBigIntFromString(s string) BigInt {
+	i, err := BigIntFromString(s)
+	if err != nil {
+		panic(err)
+	}
+
+	return i
 }

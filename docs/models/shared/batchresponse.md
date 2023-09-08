@@ -1,7 +1,5 @@
 # BatchResponse
 
-A list of responses from multiple Smartcar endpoints
-
 
 ## Fields
 

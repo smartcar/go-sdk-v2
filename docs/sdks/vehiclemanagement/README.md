@@ -83,7 +83,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.VehicleManagement.GetManagementVehicleConnections(ctx, operations.GetManagementVehicleConnectionsRequest{
-        Cursor: smartcar.Int64(613064),
+        Cursor: smartcar.String("iste"),
         Limit: smartcar.Int64(437032),
         UserID: smartcar.String("saepe"),
         VehicleID: smartcar.String("quidem"),

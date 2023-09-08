@@ -1,7 +1,5 @@
 # Compass
 
-returns the compass heading of a Tesla.
-
 
 ## Fields
 

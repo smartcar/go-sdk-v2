@@ -1,7 +1,5 @@
 # SuccessResponse
 
-return Success Response
-
 
 ## Fields
 

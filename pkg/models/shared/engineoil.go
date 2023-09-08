@@ -2,7 +2,6 @@
 
 package shared
 
-// EngineOil - return engine oil reading
 type EngineOil struct {
 	// The engine oil’s remaining life span (as a percentage). Oil life is based on the current quality of the oil. (in percent).
 	LifeRemaining *float32 `json:"lifeRemaining,omitempty"`

@@ -7,18 +7,18 @@ import (
 	"net/http"
 )
 
-type GetVehiclesVehicleIDSecurityRequest struct {
+type LockStatusRequest struct {
 	VehicleID string `pathParam:"style=simple,explode=false,name=vehicle_id"`
 }
 
-func (o *GetVehiclesVehicleIDSecurityRequest) GetVehicleID() string {
+func (o *LockStatusRequest) GetVehicleID() string {
 	if o == nil {
 		return ""
 	}
 	return o.VehicleID
 }
 
-type GetVehiclesVehicleIDSecurityResponse struct {
+type LockStatusResponse struct {
 	ContentType string
 	// Returns the lock status for a vehicle and the open status of its doors, windows, storage units, sunroof and charging port where available.
 	SecurityRead *shared.SecurityRead
@@ -26,28 +26,28 @@ type GetVehiclesVehicleIDSecurityResponse struct {
 	RawResponse  *http.Response
 }
 
-func (o *GetVehiclesVehicleIDSecurityResponse) GetContentType() string {
+func (o *LockStatusResponse) GetContentType() string {
 	if o == nil {
 		return ""
 	}
 	return o.ContentType
 }
 
-func (o *GetVehiclesVehicleIDSecurityResponse) GetSecurityRead() *shared.SecurityRead {
+func (o *LockStatusResponse) GetSecurityRead() *shared.SecurityRead {
 	if o == nil {
 		return nil
 	}
 	return o.SecurityRead
 }
 
-func (o *GetVehiclesVehicleIDSecurityResponse) GetStatusCode() int {
+func (o *LockStatusResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
 	}
 	return o.StatusCode
 }
 
-func (o *GetVehiclesVehicleIDSecurityResponse) GetRawResponse() *http.Response {
+func (o *LockStatusResponse) GetRawResponse() *http.Response {
 	if o == nil {
 		return nil
 	}

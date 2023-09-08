@@ -1,7 +1,5 @@
 # Odometer
 
-return odometer reading
-
 
 ## Fields
 

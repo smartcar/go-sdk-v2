@@ -7,6 +7,7 @@ Operations about vehicles
 ### Available Operations
 
 * [Batch](#batch) - Batch
+* [LockStatus](#lockstatus) - Returns the lock status for a vehicle and the open status of its doors, windows, storage units, sunroof and charging port where available. The open status array(s) will be empty if a vehicle has partial support. The request will error if lock status can not be retrieved from the vehicle or the brand is not supported.
 * [Disconnect](#disconnect) - Revoke Access
 * [Get](#get) - Vehicle Info
 * [GetEngineOil](#getengineoil) - Engine Oil Life
@@ -16,7 +17,6 @@ Operations about vehicles
 * [GetPermissions](#getpermissions) - Application Permissions
 * [GetTirePressure](#gettirepressure) - Tire Pressure
 * [GetVin](#getvin) - Returns the vehicle’s manufacturer identifier.
-* [GetVehiclesVehicleIDSecurity](#getvehiclesvehicleidsecurity) - Returns the lock status for a vehicle and the open status of its doors, windows, storage units, sunroof and charging port where available. The open status array(s) will be empty if a vehicle has partial support. The request will error if lock status can not be retrieved from the vehicle or the brand is not supported.
 * [ListVehicles](#listvehicles) - All Vehicles
 * [LockUnlock](#lockunlock) - Lock/Unlock Vehicle
 
@@ -77,6 +77,60 @@ func main() {
 **[*operations.BatchResponse](../../models/operations/batchresponse.md), error**
 
 
+## LockStatus
+
+Returns the lock status for a vehicle and the open status of its doors, windows, storage units, sunroof and charging port where available. The open status array(s) will be empty if a vehicle has partial support. The request will error if lock status can not be retrieved from the vehicle or the brand is not supported.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	"github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
+)
+
+func main() {
+    s := smartcar.New(
+        smartcar.WithSecurity(shared.Security{
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.Vehicles.LockStatus(ctx, operations.LockStatusRequest{
+        VehicleID: "ipsa",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.SecurityRead != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
+| `request`                                                                    | [operations.LockStatusRequest](../../models/operations/lockstatusrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+
+
+### Response
+
+**[*operations.LockStatusResponse](../../models/operations/lockstatusresponse.md), error**
+
+
 ## Disconnect
 
 __Description__
@@ -114,7 +168,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.Disconnect(ctx, operations.DisconnectRequest{
-        VehicleID: "ipsa",
+        VehicleID: "reiciendis",
     })
     if err != nil {
         log.Fatal(err)
@@ -183,7 +237,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.Get(ctx, operations.GetVehicleRequest{
-        VehicleID: "reiciendis",
+        VehicleID: "est",
     })
     if err != nil {
         log.Fatal(err)
@@ -249,7 +303,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.GetEngineOil(ctx, operations.GetEngineOilRequest{
-        VehicleID: "est",
+        VehicleID: "mollitia",
     })
     if err != nil {
         log.Fatal(err)
@@ -317,7 +371,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.GetFuelTank(ctx, operations.GetFuelTankRequest{
-        VehicleID: "mollitia",
+        VehicleID: "laborum",
     })
     if err != nil {
         log.Fatal(err)
@@ -450,7 +504,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.GetOdometer(ctx, operations.GetOdometerRequest{
-        VehicleID: "laborum",
+        VehicleID: "dolores",
     })
     if err != nil {
         log.Fatal(err)
@@ -523,9 +577,9 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.GetPermissions(ctx, operations.GetPermissionsRequest{
-        Limit: smartcar.Int64(170909),
-        Offset: smartcar.Int64(210382),
-        VehicleID: "corporis",
+        Limit: smartcar.Int64(210382),
+        Offset: smartcar.Int64(358152),
+        VehicleID: "explicabo",
     })
     if err != nil {
         log.Fatal(err)
@@ -593,7 +647,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.GetTirePressure(ctx, operations.GetTirePressureRequest{
-        VehicleID: "explicabo",
+        VehicleID: "nobis",
     })
     if err != nil {
         log.Fatal(err)
@@ -649,7 +703,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.GetVin(ctx, operations.GetVinRequest{
-        VehicleID: "nobis",
+        VehicleID: "enim",
     })
     if err != nil {
         log.Fatal(err)
@@ -672,60 +726,6 @@ func main() {
 ### Response
 
 **[*operations.GetVinResponse](../../models/operations/getvinresponse.md), error**
-
-
-## GetVehiclesVehicleIDSecurity
-
-Returns the lock status for a vehicle and the open status of its doors, windows, storage units, sunroof and charging port where available. The open status array(s) will be empty if a vehicle has partial support. The request will error if lock status can not be retrieved from the vehicle or the brand is not supported.
-
-### Example Usage
-
-```go
-package main
-
-import(
-	"context"
-	"log"
-	"github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
-)
-
-func main() {
-    s := smartcar.New(
-        smartcar.WithSecurity(shared.Security{
-            BasicAuth: &shared.SchemeBasicAuth{
-                Password: "",
-                Username: "",
-            },
-        }),
-    )
-
-    ctx := context.Background()
-    res, err := s.Vehicles.GetVehiclesVehicleIDSecurity(ctx, operations.GetVehiclesVehicleIDSecurityRequest{
-        VehicleID: "enim",
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    if res.SecurityRead != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                        | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      |
-| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                                            | :heavy_check_mark:                                                                                               | The context to use for the request.                                                                              |
-| `request`                                                                                                        | [operations.GetVehiclesVehicleIDSecurityRequest](../../models/operations/getvehiclesvehicleidsecurityrequest.md) | :heavy_check_mark:                                                                                               | The request object to use for the request.                                                                       |
-
-
-### Response
-
-**[*operations.GetVehiclesVehicleIDSecurityResponse](../../models/operations/getvehiclesvehicleidsecurityresponse.md), error**
 
 
 ## ListVehicles
