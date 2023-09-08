@@ -21,7 +21,7 @@ jobs:
       languages: |
         - go
       mode: direct
-      openapi_doc_auth_header: x-api-key
+      openapi_doc_auth_header: Authorization
       openapi_docs: |
         - https://raw.githubusercontent.com/smartcar/api-schema/master/speakeasy/openapi.yaml
       speakeasy_version: latest
