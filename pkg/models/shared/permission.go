@@ -21,7 +21,6 @@ func (o *PermissionPaging) GetOffset() *int64 {
 	return o.Offset
 }
 
-// Permission - The applications permissions
 type Permission struct {
 	Paging      *PermissionPaging `json:"paging,omitempty"`
 	Permissions []string          `json:"permissions,omitempty"`

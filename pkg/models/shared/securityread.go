@@ -393,7 +393,6 @@ func (o *SecurityReadWindows) GetType() *SecurityReadWindowsType {
 	return o.Type
 }
 
-// SecurityRead - Returns the lock status for a vehicle and the open status of its doors, windows, storage units, sunroof and charging port where available.
 type SecurityRead struct {
 	ChargingPort []SecurityReadChargingPort `json:"chargingPort,omitempty"`
 	Doors        []SecurityReadDoors        `json:"doors,omitempty"`

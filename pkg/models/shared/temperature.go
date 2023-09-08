@@ -2,7 +2,6 @@
 
 package shared
 
-// Temperature - returns the exterior temperature of a Tesla.
 type Temperature struct {
 	Temperature *float32 `json:"temperature,omitempty"`
 }

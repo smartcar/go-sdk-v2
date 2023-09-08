@@ -2,7 +2,6 @@
 
 package shared
 
-// TirePressure - return Pressure reading
 type TirePressure struct {
 	// The current air pressure of the back left tire (in kilopascals by default or in pounds per square inch using the sc-unit-system).
 	BackLeft *float32 `json:"backLeft,omitempty"`

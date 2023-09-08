@@ -34,7 +34,6 @@ func (e *SuccessResponseStatus) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// SuccessResponse - return Success Response
 type SuccessResponse struct {
 	Message *string                `json:"message,omitempty"`
 	Status  *SuccessResponseStatus `json:"status,omitempty"`

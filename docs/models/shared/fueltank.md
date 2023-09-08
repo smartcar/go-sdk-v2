@@ -1,7 +1,5 @@
 # FuelTank
 
-return fuel tank reading
-
 
 ## Fields
 

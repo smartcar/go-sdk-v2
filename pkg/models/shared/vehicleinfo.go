@@ -2,7 +2,6 @@
 
 package shared
 
-// VehicleInfo - A single vehicles
 type VehicleInfo struct {
 	ID    string `json:"id"`
 	Make  string `json:"make"`

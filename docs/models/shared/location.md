@@ -1,7 +1,5 @@
 # Location
 
-A list of vehicles
-
 
 ## Fields
 

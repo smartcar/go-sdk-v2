@@ -1,7 +1,5 @@
 # Permission
 
-The applications permissions
-
 
 ## Fields
 

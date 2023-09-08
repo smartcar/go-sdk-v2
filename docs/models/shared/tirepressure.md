@@ -1,7 +1,5 @@
 # TirePressure
 
-return Pressure reading
-
 
 ## Fields
 

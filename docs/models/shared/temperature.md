@@ -1,7 +1,5 @@
 # Temperature
 
-returns the exterior temperature of a Tesla.
-
 
 ## Fields
 

@@ -2,7 +2,6 @@
 
 package shared
 
-// Odometer - return odometer reading
 type Odometer struct {
 	Distance *float32 `json:"distance,omitempty"`
 }

@@ -2,7 +2,6 @@
 
 package shared
 
-// Speed - returns the speed of a Tesla.
 type Speed struct {
 	Speed *float32 `json:"speed,omitempty"`
 }

@@ -12,6 +12,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/ericlagergren/decimal"
+
 	"github.com/smartcar/go-sdk-v2/pkg/types"
 )
 
@@ -130,6 +132,10 @@ func valToString(val interface{}) string {
 	case types.BigInt:
 		return v.String()
 	case big.Int:
+		return v.String()
+	case types.Decimal:
+		return v.String()
+	case decimal.Big:
 		return v.String()
 	default:
 		return fmt.Sprintf("%v", v)

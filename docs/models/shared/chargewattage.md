@@ -1,7 +1,5 @@
 # ChargeWattage
 
-returns the wattage of the charger measured by the vehicle.
-
 
 ## Fields
 

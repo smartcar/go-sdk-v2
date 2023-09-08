@@ -1,7 +1,5 @@
 # EngineOil
 
-return engine oil reading
-
 
 ## Fields
 

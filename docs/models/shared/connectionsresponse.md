@@ -1,7 +1,5 @@
 # ConnectionsResponse
 
-returns vehicle connections
-
 
 ## Fields
 

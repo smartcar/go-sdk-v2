@@ -53,7 +53,6 @@ func (e *CompassDirection) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// Compass - returns the compass heading of a Tesla.
 type Compass struct {
 	// The direction the vehicle is traveling.
 	Direction *CompassDirection `json:"direction,omitempty"`

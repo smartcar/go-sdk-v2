@@ -2,7 +2,6 @@
 
 package shared
 
-// ChargeWattage - returns the wattage of the charger measured by the vehicle.
 type ChargeWattage struct {
 	// The wattage of the charger measured by the vehicle.
 	Wattage *float32 `json:"wattage,omitempty"`

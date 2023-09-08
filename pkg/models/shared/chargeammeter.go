@@ -2,7 +2,6 @@
 
 package shared
 
-// ChargeAmmeter - returns the amperage of the charger measured by the vehicle.
 type ChargeAmmeter struct {
 	// The amperage of the charger measured by the vehicle.
 	Amperage *float32 `json:"amperage,omitempty"`
