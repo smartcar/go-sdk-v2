@@ -2,8 +2,8 @@ configVersion: 1.0.0
 management:
   docChecksum: 18e06b8e96809f897f6b0874db6967e7
   docVersion: 1.0.0
-  speakeasyVersion: 1.82.3
-  generationVersion: 2.107.3
+  speakeasyVersion: 1.89.0
+  generationVersion: 2.125.1
 generation:
   comments:
     disableComments: false
@@ -14,16 +14,17 @@ generation:
   tagNamespacingDisabled: false
 features:
   go:
-    core: 2.88.0
+    constsAndDefaults: 0.1.0
+    core: 2.88.4
     examples: 2.81.2
     globalSecurity: 2.81.1
     globalServerURLs: 2.82.0
-    methodSecurity: 2.81.2
+    methodSecurity: 2.82.0
     methodServerURLs: 2.82.0
     nameOverrides: 2.81.1
-    unions: 2.82.0
+    unions: 2.83.0
 go:
-  version: 1.6.0
+  version: 1.7.0
   clientServerStatusCodesAsErrors: true
   maxMethodParams: 0
   packageName: github.com/smartcar/go-sdk-v2

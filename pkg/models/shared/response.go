@@ -3,10 +3,10 @@
 package shared
 
 import (
-	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/smartcar/go-sdk-v2/pkg/utils"
 )
 
 type ResponseBodyType string
@@ -196,147 +196,114 @@ func CreateResponseBodySecurityRead(securityRead SecurityRead) ResponseBody {
 }
 
 func (u *ResponseBody) UnmarshalJSON(data []byte) error {
-	var d *json.Decoder
 
 	odometer := new(Odometer)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&odometer); err == nil {
+	if err := utils.UnmarshalJSON(data, &odometer, "", true, true); err == nil {
 		u.Odometer = odometer
 		u.Type = ResponseBodyTypeOdometer
 		return nil
 	}
 
 	engineOil := new(EngineOil)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&engineOil); err == nil {
+	if err := utils.UnmarshalJSON(data, &engineOil, "", true, true); err == nil {
 		u.EngineOil = engineOil
 		u.Type = ResponseBodyTypeEngineOil
 		return nil
 	}
 
 	chargeLimit := new(ChargeLimit)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&chargeLimit); err == nil {
+	if err := utils.UnmarshalJSON(data, &chargeLimit, "", true, true); err == nil {
 		u.ChargeLimit = chargeLimit
 		u.Type = ResponseBodyTypeChargeLimit
 		return nil
 	}
 
 	chargeTime := new(ChargeTime)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&chargeTime); err == nil {
+	if err := utils.UnmarshalJSON(data, &chargeTime, "", true, true); err == nil {
 		u.ChargeTime = chargeTime
 		u.Type = ResponseBodyTypeChargeTime
 		return nil
 	}
 
 	chargeVoltage := new(ChargeVoltage)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&chargeVoltage); err == nil {
+	if err := utils.UnmarshalJSON(data, &chargeVoltage, "", true, true); err == nil {
 		u.ChargeVoltage = chargeVoltage
 		u.Type = ResponseBodyTypeChargeVoltage
 		return nil
 	}
 
 	batteryCapacity := new(BatteryCapacity)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&batteryCapacity); err == nil {
+	if err := utils.UnmarshalJSON(data, &batteryCapacity, "", true, true); err == nil {
 		u.BatteryCapacity = batteryCapacity
 		u.Type = ResponseBodyTypeBatteryCapacity
 		return nil
 	}
 
 	vinInfo := new(VinInfo)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&vinInfo); err == nil {
+	if err := utils.UnmarshalJSON(data, &vinInfo, "", true, true); err == nil {
 		u.VinInfo = vinInfo
 		u.Type = ResponseBodyTypeVinInfo
 		return nil
 	}
 
 	userInfo := new(UserInfo)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&userInfo); err == nil {
+	if err := utils.UnmarshalJSON(data, &userInfo, "", true, true); err == nil {
 		u.UserInfo = userInfo
 		u.Type = ResponseBodyTypeUserInfo
 		return nil
 	}
 
 	location := new(Location)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&location); err == nil {
+	if err := utils.UnmarshalJSON(data, &location, "", true, true); err == nil {
 		u.Location = location
 		u.Type = ResponseBodyTypeLocation
 		return nil
 	}
 
 	chargeStatus := new(ChargeStatus)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&chargeStatus); err == nil {
+	if err := utils.UnmarshalJSON(data, &chargeStatus, "", true, true); err == nil {
 		u.ChargeStatus = chargeStatus
 		u.Type = ResponseBodyTypeChargeStatus
 		return nil
 	}
 
 	batteryLevel := new(BatteryLevel)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&batteryLevel); err == nil {
+	if err := utils.UnmarshalJSON(data, &batteryLevel, "", true, true); err == nil {
 		u.BatteryLevel = batteryLevel
 		u.Type = ResponseBodyTypeBatteryLevel
 		return nil
 	}
 
 	successResponse := new(SuccessResponse)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&successResponse); err == nil {
+	if err := utils.UnmarshalJSON(data, &successResponse, "", true, true); err == nil {
 		u.SuccessResponse = successResponse
 		u.Type = ResponseBodyTypeSuccessResponse
 		return nil
 	}
 
 	fuelTank := new(FuelTank)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&fuelTank); err == nil {
+	if err := utils.UnmarshalJSON(data, &fuelTank, "", true, true); err == nil {
 		u.FuelTank = fuelTank
 		u.Type = ResponseBodyTypeFuelTank
 		return nil
 	}
 
 	compatibilityResponse := new(CompatibilityResponse)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&compatibilityResponse); err == nil {
+	if err := utils.UnmarshalJSON(data, &compatibilityResponse, "", true, true); err == nil {
 		u.CompatibilityResponse = compatibilityResponse
 		u.Type = ResponseBodyTypeCompatibilityResponse
 		return nil
 	}
 
 	tirePressure := new(TirePressure)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&tirePressure); err == nil {
+	if err := utils.UnmarshalJSON(data, &tirePressure, "", true, true); err == nil {
 		u.TirePressure = tirePressure
 		u.Type = ResponseBodyTypeTirePressure
 		return nil
 	}
 
 	securityRead := new(SecurityRead)
-	d = json.NewDecoder(bytes.NewReader(data))
-	d.DisallowUnknownFields()
-	if err := d.Decode(&securityRead); err == nil {
+	if err := utils.UnmarshalJSON(data, &securityRead, "", true, true); err == nil {
 		u.SecurityRead = securityRead
 		u.Type = ResponseBodyTypeSecurityRead
 		return nil
@@ -346,71 +313,71 @@ func (u *ResponseBody) UnmarshalJSON(data []byte) error {
 }
 
 func (u ResponseBody) MarshalJSON() ([]byte, error) {
-	if u.Odometer != nil {
-		return json.Marshal(u.Odometer)
-	}
-
-	if u.EngineOil != nil {
-		return json.Marshal(u.EngineOil)
-	}
-
-	if u.ChargeLimit != nil {
-		return json.Marshal(u.ChargeLimit)
-	}
-
-	if u.ChargeTime != nil {
-		return json.Marshal(u.ChargeTime)
-	}
-
-	if u.ChargeVoltage != nil {
-		return json.Marshal(u.ChargeVoltage)
-	}
-
-	if u.BatteryCapacity != nil {
-		return json.Marshal(u.BatteryCapacity)
-	}
-
-	if u.VinInfo != nil {
-		return json.Marshal(u.VinInfo)
-	}
-
-	if u.UserInfo != nil {
-		return json.Marshal(u.UserInfo)
-	}
-
 	if u.Location != nil {
-		return json.Marshal(u.Location)
+		return utils.MarshalJSON(u.Location, "", true)
 	}
 
-	if u.ChargeStatus != nil {
-		return json.Marshal(u.ChargeStatus)
-	}
-
-	if u.BatteryLevel != nil {
-		return json.Marshal(u.BatteryLevel)
-	}
-
-	if u.SuccessResponse != nil {
-		return json.Marshal(u.SuccessResponse)
+	if u.Odometer != nil {
+		return utils.MarshalJSON(u.Odometer, "", true)
 	}
 
 	if u.FuelTank != nil {
-		return json.Marshal(u.FuelTank)
-	}
-
-	if u.CompatibilityResponse != nil {
-		return json.Marshal(u.CompatibilityResponse)
+		return utils.MarshalJSON(u.FuelTank, "", true)
 	}
 
 	if u.TirePressure != nil {
-		return json.Marshal(u.TirePressure)
+		return utils.MarshalJSON(u.TirePressure, "", true)
+	}
+
+	if u.EngineOil != nil {
+		return utils.MarshalJSON(u.EngineOil, "", true)
+	}
+
+	if u.ChargeStatus != nil {
+		return utils.MarshalJSON(u.ChargeStatus, "", true)
+	}
+
+	if u.ChargeLimit != nil {
+		return utils.MarshalJSON(u.ChargeLimit, "", true)
+	}
+
+	if u.ChargeTime != nil {
+		return utils.MarshalJSON(u.ChargeTime, "", true)
+	}
+
+	if u.ChargeVoltage != nil {
+		return utils.MarshalJSON(u.ChargeVoltage, "", true)
+	}
+
+	if u.BatteryLevel != nil {
+		return utils.MarshalJSON(u.BatteryLevel, "", true)
+	}
+
+	if u.BatteryCapacity != nil {
+		return utils.MarshalJSON(u.BatteryCapacity, "", true)
+	}
+
+	if u.CompatibilityResponse != nil {
+		return utils.MarshalJSON(u.CompatibilityResponse, "", true)
+	}
+
+	if u.VinInfo != nil {
+		return utils.MarshalJSON(u.VinInfo, "", true)
+	}
+
+	if u.UserInfo != nil {
+		return utils.MarshalJSON(u.UserInfo, "", true)
+	}
+
+	if u.SuccessResponse != nil {
+		return utils.MarshalJSON(u.SuccessResponse, "", true)
 	}
 
 	if u.SecurityRead != nil {
-		return json.Marshal(u.SecurityRead)
+		return utils.MarshalJSON(u.SecurityRead, "", true)
 	}
 
-	return nil, nil
+	return nil, errors.New("could not marshal union type: all fields are null")
 }
 
 type ResponseCode string

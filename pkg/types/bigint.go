@@ -7,81 +7,14 @@ import (
 	"math/big"
 )
 
-// BigInt is a wrapper around big.Int that allows for JSON marshaling a big integer as a string.
-type BigInt struct {
-	big.Int
-}
-
-func (b BigInt) MarshalJSON() ([]byte, error) {
-	return []byte(`"` + b.String() + `"`), nil
-}
-
-func (b *BigInt) UnmarshalJSON(p []byte) error {
-	if string(p) == "null" {
-		return nil
-	}
-
-	stringVal := string(p)
-	if len(stringVal) > 2 && stringVal[0] == '"' && stringVal[len(stringVal)-1] == '"' {
-		stringVal = stringVal[1 : len(stringVal)-1]
-	}
-
-	var z big.Int
-	_, ok := z.SetString(string(stringVal), 10)
-	if !ok {
-		return fmt.Errorf("not a valid big integer: %s", p)
-	}
-	b.Int = z
-	return nil
-}
-
-// BigIntFromString returns a BigInt from a string
+// MustNewBigIntFromString returns an instance of big.Int from a string
 // The string is assumed to be base 10 and if it is not a valid big.Int
-// then the function will return an error
-func BigIntFromString(s string) (BigInt, error) {
+// then the function panics.
+// Avoid using this function in production code.
+func MustNewBigIntFromString(s string) *big.Int {
 	i, ok := new(big.Int).SetString(s, 10)
 	if !ok {
-		return BigInt{}, fmt.Errorf("failed to parse string as bigint")
-	}
-
-	return BigInt{
-		Int: *i,
-	}, nil
-}
-
-// NewBigIntFromString returns an instance of BigInt from a string
-// The string is assumed to be base 10 and if it is not a valid big.Int
-// then the function will return an error
-func NewBigIntFromString(s string) (*BigInt, error) {
-	i, err := BigIntFromString(s)
-	if err != nil {
-		return nil, err
-	}
-
-	return &i, nil
-}
-
-// MustNewBigIntFromString returns an instance of BigInt from a string
-// The string is assumed to be base 10 and if it is not a valid big.Int
-// then the function panics.
-// Avoid using this function in production code.
-func MustNewBigIntFromString(s string) *BigInt {
-	i, err := NewBigIntFromString(s)
-	if err != nil {
-		panic(err)
-	}
-
-	return i
-}
-
-// MustBigIntFromString returns an instance of BigInt from a string
-// The string is assumed to be base 10 and if it is not a valid big.Int
-// then the function panics.
-// Avoid using this function in production code.
-func MustBigIntFromString(s string) BigInt {
-	i, err := BigIntFromString(s)
-	if err != nil {
-		panic(err)
+		panic(fmt.Errorf("failed to parse string as big.Int"))
 	}
 
 	return i

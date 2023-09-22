@@ -18,13 +18,13 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/smartcar/go-sdk-v2"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 )
 
 func main() {
-    s := smartcar.New(
-        smartcar.WithSecurity(shared.Security{
+    s := gosdkv2.New(
+        gosdkv2.WithSecurity(shared.Security{
             BasicAuth: &shared.SchemeBasicAuth{
                 Password: "",
                 Username: "",

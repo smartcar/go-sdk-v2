@@ -106,11 +106,7 @@ func getSimplePathParams(ctx context.Context, parentName string, objType reflect
 			pathParams[parentName] = valToString(objValue.Interface())
 		case types.Date:
 			pathParams[parentName] = valToString(objValue.Interface())
-		case types.BigInt:
-			pathParams[parentName] = valToString(objValue.Interface())
 		case big.Int:
-			pathParams[parentName] = valToString(objValue.Interface())
-		case types.Decimal:
 			pathParams[parentName] = valToString(objValue.Interface())
 		case decimal.Big:
 			pathParams[parentName] = valToString(objValue.Interface())

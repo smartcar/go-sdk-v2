@@ -3,16 +3,40 @@
 
 ## Supported Types
 
+### Location
+
+```go
+responseBody := shared.CreateResponseBodyLocation(shared.Location{/* values here */})
+```
+
 ### Odometer
 
 ```go
 responseBody := shared.CreateResponseBodyOdometer(shared.Odometer{/* values here */})
 ```
 
+### FuelTank
+
+```go
+responseBody := shared.CreateResponseBodyFuelTank(shared.FuelTank{/* values here */})
+```
+
+### TirePressure
+
+```go
+responseBody := shared.CreateResponseBodyTirePressure(shared.TirePressure{/* values here */})
+```
+
 ### EngineOil
 
 ```go
 responseBody := shared.CreateResponseBodyEngineOil(shared.EngineOil{/* values here */})
+```
+
+### ChargeStatus
+
+```go
+responseBody := shared.CreateResponseBodyChargeStatus(shared.ChargeStatus{/* values here */})
 ```
 
 ### ChargeLimit
@@ -33,10 +57,22 @@ responseBody := shared.CreateResponseBodyChargeTime(shared.ChargeTime{/* values 
 responseBody := shared.CreateResponseBodyChargeVoltage(shared.ChargeVoltage{/* values here */})
 ```
 
+### BatteryLevel
+
+```go
+responseBody := shared.CreateResponseBodyBatteryLevel(shared.BatteryLevel{/* values here */})
+```
+
 ### BatteryCapacity
 
 ```go
 responseBody := shared.CreateResponseBodyBatteryCapacity(shared.BatteryCapacity{/* values here */})
+```
+
+### CompatibilityResponse
+
+```go
+responseBody := shared.CreateResponseBodyCompatibilityResponse(shared.CompatibilityResponse{/* values here */})
 ```
 
 ### VinInfo
@@ -51,46 +87,10 @@ responseBody := shared.CreateResponseBodyVinInfo(shared.VinInfo{/* values here *
 responseBody := shared.CreateResponseBodyUserInfo(shared.UserInfo{/* values here */})
 ```
 
-### Location
-
-```go
-responseBody := shared.CreateResponseBodyLocation(shared.Location{/* values here */})
-```
-
-### ChargeStatus
-
-```go
-responseBody := shared.CreateResponseBodyChargeStatus(shared.ChargeStatus{/* values here */})
-```
-
-### BatteryLevel
-
-```go
-responseBody := shared.CreateResponseBodyBatteryLevel(shared.BatteryLevel{/* values here */})
-```
-
 ### SuccessResponse
 
 ```go
 responseBody := shared.CreateResponseBodySuccessResponse(shared.SuccessResponse{/* values here */})
-```
-
-### FuelTank
-
-```go
-responseBody := shared.CreateResponseBodyFuelTank(shared.FuelTank{/* values here */})
-```
-
-### CompatibilityResponse
-
-```go
-responseBody := shared.CreateResponseBodyCompatibilityResponse(shared.CompatibilityResponse{/* values here */})
-```
-
-### TirePressure
-
-```go
-responseBody := shared.CreateResponseBodyTirePressure(shared.TirePressure{/* values here */})
 ```
 
 ### SecurityRead

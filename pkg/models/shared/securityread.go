@@ -5,6 +5,8 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/smartcar/go-sdk-v2/pkg/types"
+	"github.com/smartcar/go-sdk-v2/pkg/utils"
 )
 
 type SecurityReadChargingPortStatus string
@@ -37,33 +39,20 @@ func (e *SecurityReadChargingPortStatus) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type SecurityReadChargingPortType string
-
-const (
-	SecurityReadChargingPortTypeChargingPort SecurityReadChargingPortType = "chargingPort"
-)
-
-func (e SecurityReadChargingPortType) ToPointer() *SecurityReadChargingPortType {
-	return &e
-}
-
-func (e *SecurityReadChargingPortType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "chargingPort":
-		*e = SecurityReadChargingPortType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for SecurityReadChargingPortType: %v", v)
-	}
-}
-
 type SecurityReadChargingPort struct {
 	Status *SecurityReadChargingPortStatus `json:"status,omitempty"`
-	Type   *SecurityReadChargingPortType   `json:"type,omitempty"`
+	type_  *string                         `const:"chargingPort" json:"type,omitempty"`
+}
+
+func (s SecurityReadChargingPort) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SecurityReadChargingPort) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *SecurityReadChargingPort) GetStatus() *SecurityReadChargingPortStatus {
@@ -73,11 +62,8 @@ func (o *SecurityReadChargingPort) GetStatus() *SecurityReadChargingPortStatus {
 	return o.Status
 }
 
-func (o *SecurityReadChargingPort) GetType() *SecurityReadChargingPortType {
-	if o == nil {
-		return nil
-	}
-	return o.Type
+func (o *SecurityReadChargingPort) GetType() *string {
+	return types.String("chargingPort")
 }
 
 type SecurityReadDoorsStatus string
@@ -268,33 +254,20 @@ func (e *SecurityReadSunroofStatus) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type SecurityReadSunroofType string
-
-const (
-	SecurityReadSunroofTypeSunroof SecurityReadSunroofType = "sunroof"
-)
-
-func (e SecurityReadSunroofType) ToPointer() *SecurityReadSunroofType {
-	return &e
-}
-
-func (e *SecurityReadSunroofType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "sunroof":
-		*e = SecurityReadSunroofType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for SecurityReadSunroofType: %v", v)
-	}
-}
-
 type SecurityReadSunroof struct {
 	Status *SecurityReadSunroofStatus `json:"status,omitempty"`
-	Type   *SecurityReadSunroofType   `json:"type,omitempty"`
+	type_  *string                    `const:"sunroof" json:"type,omitempty"`
+}
+
+func (s SecurityReadSunroof) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SecurityReadSunroof) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *SecurityReadSunroof) GetStatus() *SecurityReadSunroofStatus {
@@ -304,11 +277,8 @@ func (o *SecurityReadSunroof) GetStatus() *SecurityReadSunroofStatus {
 	return o.Status
 }
 
-func (o *SecurityReadSunroof) GetType() *SecurityReadSunroofType {
-	if o == nil {
-		return nil
-	}
-	return o.Type
+func (o *SecurityReadSunroof) GetType() *string {
+	return types.String("sunroof")
 }
 
 type SecurityReadWindowsStatus string

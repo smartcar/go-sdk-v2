@@ -17,12 +17,12 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/smartcar/go-sdk-v2"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
-    s := smartcar.New()
+    s := gosdkv2.New()
     operationSecurity := operations.DeleteManagementVehicleConnectionsSecurity{
             Password: "",
             Username: "",
@@ -30,8 +30,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.VehicleManagement.DeleteManagementVehicleConnections(ctx, operations.DeleteManagementVehicleConnectionsRequest{
-        UserID: smartcar.String("in"),
-        VehicleID: smartcar.String("corporis"),
+        UserID: gosdkv2.String("in"),
+        VehicleID: gosdkv2.String("corporis"),
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)
@@ -70,12 +70,12 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/smartcar/go-sdk-v2"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
-    s := smartcar.New()
+    s := gosdkv2.New()
     operationSecurity := operations.GetManagementVehicleConnectionsSecurity{
             Password: "",
             Username: "",
@@ -83,10 +83,10 @@ func main() {
 
     ctx := context.Background()
     res, err := s.VehicleManagement.GetManagementVehicleConnections(ctx, operations.GetManagementVehicleConnectionsRequest{
-        Cursor: smartcar.String("iste"),
-        Limit: smartcar.Int64(437032),
-        UserID: smartcar.String("saepe"),
-        VehicleID: smartcar.String("quidem"),
+        Cursor: gosdkv2.String("iste"),
+        Limit: gosdkv2.Int64(437032),
+        UserID: gosdkv2.String("saepe"),
+        VehicleID: gosdkv2.String("quidem"),
     }, operationSecurity)
     if err != nil {
         log.Fatal(err)

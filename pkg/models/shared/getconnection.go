@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"github.com/smartcar/go-sdk-v2/pkg/utils"
 	"time"
 )
 
@@ -10,6 +11,17 @@ type GetConnection struct {
 	ConnectedAt *time.Time `json:"connectedAt,omitempty"`
 	UserID      *string    `json:"userId,omitempty"`
 	VehicleID   *string    `json:"vehicleId,omitempty"`
+}
+
+func (g GetConnection) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetConnection) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *GetConnection) GetConnectedAt() *time.Time {

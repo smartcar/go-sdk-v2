@@ -53,14 +53,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/smartcar/go-sdk-v2"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
-    s := smartcar.New(
-        smartcar.WithSecurity(shared.Security{
+    s := gosdkv2.New(
+        gosdkv2.WithSecurity(shared.Security{
             BasicAuth: &shared.SchemeBasicAuth{
                 Password: "",
                 Username: "",
@@ -70,9 +70,9 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Compatibility.ListCompatibility(ctx, operations.ListCompatibilityRequest{
-        Country: smartcar.String("{country}"),
-        Scope: smartcar.String("{scope}"),
-        Vin: smartcar.String("{vin}"),
+        Country: gosdkv2.String("{country}"),
+        Scope: gosdkv2.String("{scope}"),
+        Vin: gosdkv2.String("{vin}"),
     })
     if err != nil {
         log.Fatal(err)

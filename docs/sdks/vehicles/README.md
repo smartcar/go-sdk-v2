@@ -32,14 +32,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/smartcar/go-sdk-v2"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
-    s := smartcar.New(
-        smartcar.WithSecurity(shared.Security{
+    s := gosdkv2.New(
+        gosdkv2.WithSecurity(shared.Security{
             BasicAuth: &shared.SchemeBasicAuth{
                 Password: "",
                 Username: "",
@@ -89,14 +89,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/smartcar/go-sdk-v2"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
-    s := smartcar.New(
-        smartcar.WithSecurity(shared.Security{
+    s := gosdkv2.New(
+        gosdkv2.WithSecurity(shared.Security{
             BasicAuth: &shared.SchemeBasicAuth{
                 Password: "",
                 Username: "",
@@ -151,14 +151,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/smartcar/go-sdk-v2"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
-    s := smartcar.New(
-        smartcar.WithSecurity(shared.Security{
+    s := gosdkv2.New(
+        gosdkv2.WithSecurity(shared.Security{
             BasicAuth: &shared.SchemeBasicAuth{
                 Password: "",
                 Username: "",
@@ -220,14 +220,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/smartcar/go-sdk-v2"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
-    s := smartcar.New(
-        smartcar.WithSecurity(shared.Security{
+    s := gosdkv2.New(
+        gosdkv2.WithSecurity(shared.Security{
             BasicAuth: &shared.SchemeBasicAuth{
                 Password: "",
                 Username: "",
@@ -286,14 +286,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/smartcar/go-sdk-v2"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
-    s := smartcar.New(
-        smartcar.WithSecurity(shared.Security{
+    s := gosdkv2.New(
+        gosdkv2.WithSecurity(shared.Security{
             BasicAuth: &shared.SchemeBasicAuth{
                 Password: "",
                 Username: "",
@@ -354,14 +354,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/smartcar/go-sdk-v2"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
-    s := smartcar.New(
-        smartcar.WithSecurity(shared.Security{
+    s := gosdkv2.New(
+        gosdkv2.WithSecurity(shared.Security{
             BasicAuth: &shared.SchemeBasicAuth{
                 Password: "",
                 Username: "",
@@ -421,14 +421,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/smartcar/go-sdk-v2"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
-    s := smartcar.New(
-        smartcar.WithSecurity(shared.Security{
+    s := gosdkv2.New(
+        gosdkv2.WithSecurity(shared.Security{
             BasicAuth: &shared.SchemeBasicAuth{
                 Password: "",
                 Username: "",
@@ -487,14 +487,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/smartcar/go-sdk-v2"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
-    s := smartcar.New(
-        smartcar.WithSecurity(shared.Security{
+    s := gosdkv2.New(
+        gosdkv2.WithSecurity(shared.Security{
             BasicAuth: &shared.SchemeBasicAuth{
                 Password: "",
                 Username: "",
@@ -560,14 +560,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/smartcar/go-sdk-v2"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
-    s := smartcar.New(
-        smartcar.WithSecurity(shared.Security{
+    s := gosdkv2.New(
+        gosdkv2.WithSecurity(shared.Security{
             BasicAuth: &shared.SchemeBasicAuth{
                 Password: "",
                 Username: "",
@@ -577,8 +577,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.GetPermissions(ctx, operations.GetPermissionsRequest{
-        Limit: smartcar.Int64(210382),
-        Offset: smartcar.Int64(358152),
+        Limit: gosdkv2.Int64(210382),
+        Offset: gosdkv2.Int64(358152),
         VehicleID: "explicabo",
     })
     if err != nil {
@@ -630,14 +630,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/smartcar/go-sdk-v2"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
-    s := smartcar.New(
-        smartcar.WithSecurity(shared.Security{
+    s := gosdkv2.New(
+        gosdkv2.WithSecurity(shared.Security{
             BasicAuth: &shared.SchemeBasicAuth{
                 Password: "",
                 Username: "",
@@ -686,14 +686,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/smartcar/go-sdk-v2"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
-    s := smartcar.New(
-        smartcar.WithSecurity(shared.Security{
+    s := gosdkv2.New(
+        gosdkv2.WithSecurity(shared.Security{
             BasicAuth: &shared.SchemeBasicAuth{
                 Password: "",
                 Username: "",
@@ -759,14 +759,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/smartcar/go-sdk-v2"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
-    s := smartcar.New(
-        smartcar.WithSecurity(shared.Security{
+    s := gosdkv2.New(
+        gosdkv2.WithSecurity(shared.Security{
             BasicAuth: &shared.SchemeBasicAuth{
                 Password: "",
                 Username: "",
@@ -776,8 +776,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.ListVehicles(ctx, operations.ListVehiclesRequest{
-        Limit: smartcar.Int64(607831),
-        Offset: smartcar.Int64(363711),
+        Limit: gosdkv2.Int64(607831),
+        Offset: gosdkv2.Int64(363711),
     })
     if err != nil {
         log.Fatal(err)
@@ -826,14 +826,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/smartcar/go-sdk-v2"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
-    s := smartcar.New(
-        smartcar.WithSecurity(shared.Security{
+    s := gosdkv2.New(
+        gosdkv2.WithSecurity(shared.Security{
             BasicAuth: &shared.SchemeBasicAuth{
                 Password: "",
                 Username: "",

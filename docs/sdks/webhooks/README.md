@@ -29,14 +29,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/smartcar/go-sdk-v2"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
-    s := smartcar.New(
-        smartcar.WithSecurity(shared.Security{
+    s := gosdkv2.New(
+        gosdkv2.WithSecurity(shared.Security{
             BasicAuth: &shared.SchemeBasicAuth{
                 Password: "",
                 Username: "",
@@ -47,8 +47,8 @@ func main() {
     ctx := context.Background()
     res, err := s.Webhooks.Subscribe(ctx, operations.SubscribeRequest{
         WebhookInfo: &shared.WebhookInfo{
-            Vehicleid: smartcar.String("dc6ea99e-57d1-4e41-b129-27e7eb58713e"),
-            Webhookid: smartcar.String("9b6ae692-60cc-4b3e-89d8-71e7549cf805"),
+            Vehicleid: gosdkv2.String("dc6ea99e-57d1-4e41-b129-27e7eb58713e"),
+            Webhookid: gosdkv2.String("9b6ae692-60cc-4b3e-89d8-71e7549cf805"),
         },
         VehicleID: "excepturi",
         WebhookID: "accusantium",
@@ -100,14 +100,14 @@ package main
 import(
 	"context"
 	"log"
-	"github.com/smartcar/go-sdk-v2"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
-    s := smartcar.New(
-        smartcar.WithSecurity(shared.Security{
+    s := gosdkv2.New(
+        gosdkv2.WithSecurity(shared.Security{
             BasicAuth: &shared.SchemeBasicAuth{
                 Password: "",
                 Username: "",

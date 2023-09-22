@@ -35,11 +35,7 @@ func populateForm(paramName string, explode bool, objType reflect.Type, objValue
 			formValues.Add(paramName, valToString(objValue.Interface()))
 		case types.Date:
 			formValues.Add(paramName, valToString(objValue.Interface()))
-		case types.BigInt:
-			formValues.Add(paramName, valToString(objValue.Interface()))
 		case big.Int:
-			formValues.Add(paramName, valToString(objValue.Interface()))
-		case types.Decimal:
 			formValues.Add(paramName, valToString(objValue.Interface()))
 		case decimal.Big:
 			formValues.Add(paramName, valToString(objValue.Interface()))

@@ -3,7 +3,6 @@
 package utils
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 	"math/big"
@@ -13,8 +12,6 @@ import (
 	"time"
 
 	"github.com/ericlagergren/decimal"
-
-	"github.com/smartcar/go-sdk-v2/pkg/types"
 )
 
 const (
@@ -34,12 +31,12 @@ var (
 	}
 )
 
-func UnmarshalJsonFromResponseBody(body io.Reader, out interface{}) error {
+func UnmarshalJsonFromResponseBody(body io.Reader, out interface{}, tag string) error {
 	data, err := io.ReadAll(body)
 	if err != nil {
 		return fmt.Errorf("error reading response body: %w", err)
 	}
-	if err := json.Unmarshal(data, &out); err != nil {
+	if err := UnmarshalJSON(data, out, reflect.StructTag(tag), true, false); err != nil {
 		return fmt.Errorf("error unmarshalling json response body: %w", err)
 	}
 
@@ -129,11 +126,7 @@ func valToString(val interface{}) string {
 	switch v := val.(type) {
 	case time.Time:
 		return v.Format(time.RFC3339Nano)
-	case types.BigInt:
-		return v.String()
 	case big.Int:
-		return v.String()
-	case types.Decimal:
 		return v.String()
 	case decimal.Big:
 		return v.String()
