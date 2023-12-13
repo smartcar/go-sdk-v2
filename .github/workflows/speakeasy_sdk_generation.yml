@@ -20,7 +20,7 @@ jobs:
       force: ${{ github.event.inputs.force }}
       languages: |
         - go
-      mode: direct
+      mode: pr
       openapi_doc_auth_header: Authorization
       openapi_docs: |
         - https://raw.githubusercontent.com/smartcar/api-schema/master/speakeasy/openapi.yaml
