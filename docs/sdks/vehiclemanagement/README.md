@@ -1,4 +1,9 @@
 # VehicleManagement
+(*VehicleManagement*)
+
+## Overview
+
+Operations to manage vehicle connections
 
 ### Available Operations
 
@@ -15,24 +20,23 @@ Delete all connections by vehicle or user ID.
 package main
 
 import(
+	gosdkv2 "github.com/smartcar/go-sdk-v2/v2"
+	"github.com/smartcar/go-sdk-v2/v2/pkg/models/operations"
 	"context"
 	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
     s := gosdkv2.New()
+
+
     operationSecurity := operations.DeleteManagementVehicleConnectionsSecurity{
-            Password: "",
-            Username: "",
+            Password: "<YOUR_PASSWORD_HERE>",
+            Username: "<YOUR_USERNAME_HERE>",
         }
 
     ctx := context.Background()
-    res, err := s.VehicleManagement.DeleteManagementVehicleConnections(ctx, operations.DeleteManagementVehicleConnectionsRequest{
-        UserID: gosdkv2.String("in"),
-        VehicleID: gosdkv2.String("corporis"),
-    }, operationSecurity)
+    res, err := s.VehicleManagement.DeleteManagementVehicleConnections(ctx, operations.DeleteManagementVehicleConnectionsRequest{}, operationSecurity)
     if err != nil {
         log.Fatal(err)
     }
@@ -45,18 +49,20 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                                      | Type                                                                                                                           | Required                                                                                                                       | Description                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                                                          | :heavy_check_mark:                                                                                                             | The context to use for the request.                                                                                            |
-| `request`                                                                                                                      | [operations.DeleteManagementVehicleConnectionsRequest](../../models/operations/deletemanagementvehicleconnectionsrequest.md)   | :heavy_check_mark:                                                                                                             | The request object to use for the request.                                                                                     |
-| `security`                                                                                                                     | [operations.DeleteManagementVehicleConnectionsSecurity](../../models/operations/deletemanagementvehicleconnectionssecurity.md) | :heavy_check_mark:                                                                                                             | The security requirements to use for the request.                                                                              |
-| `opts`                                                                                                                         | [][operations.Option](../../models/operations/option.md)                                                                       | :heavy_minus_sign:                                                                                                             | The options for this request.                                                                                                  |
+| Parameter                                                                                                                          | Type                                                                                                                               | Required                                                                                                                           | Description                                                                                                                        |
+| ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                                                              | :heavy_check_mark:                                                                                                                 | The context to use for the request.                                                                                                |
+| `request`                                                                                                                          | [operations.DeleteManagementVehicleConnectionsRequest](../../pkg/models/operations/deletemanagementvehicleconnectionsrequest.md)   | :heavy_check_mark:                                                                                                                 | The request object to use for the request.                                                                                         |
+| `security`                                                                                                                         | [operations.DeleteManagementVehicleConnectionsSecurity](../../pkg/models/operations/deletemanagementvehicleconnectionssecurity.md) | :heavy_check_mark:                                                                                                                 | The security requirements to use for the request.                                                                                  |
+| `opts`                                                                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                                                                       | :heavy_minus_sign:                                                                                                                 | The options for this request.                                                                                                      |
 
 
 ### Response
 
-**[*operations.DeleteManagementVehicleConnectionsResponse](../../models/operations/deletemanagementvehicleconnectionsresponse.md), error**
-
+**[*operations.DeleteManagementVehicleConnectionsResponse](../../pkg/models/operations/deletemanagementvehicleconnectionsresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |
 
 ## GetManagementVehicleConnections
 
@@ -68,26 +74,23 @@ Returns a paged list of all the vehicles that are connected to the application a
 package main
 
 import(
+	gosdkv2 "github.com/smartcar/go-sdk-v2/v2"
+	"github.com/smartcar/go-sdk-v2/v2/pkg/models/operations"
 	"context"
 	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
     s := gosdkv2.New()
+
+
     operationSecurity := operations.GetManagementVehicleConnectionsSecurity{
-            Password: "",
-            Username: "",
+            Password: "<YOUR_PASSWORD_HERE>",
+            Username: "<YOUR_USERNAME_HERE>",
         }
 
     ctx := context.Background()
-    res, err := s.VehicleManagement.GetManagementVehicleConnections(ctx, operations.GetManagementVehicleConnectionsRequest{
-        Cursor: gosdkv2.String("iste"),
-        Limit: gosdkv2.Int64(437032),
-        UserID: gosdkv2.String("saepe"),
-        VehicleID: gosdkv2.String("quidem"),
-    }, operationSecurity)
+    res, err := s.VehicleManagement.GetManagementVehicleConnections(ctx, operations.GetManagementVehicleConnectionsRequest{}, operationSecurity)
     if err != nil {
         log.Fatal(err)
     }
@@ -100,15 +103,17 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                                    | :heavy_check_mark:                                                                                                       | The context to use for the request.                                                                                      |
-| `request`                                                                                                                | [operations.GetManagementVehicleConnectionsRequest](../../models/operations/getmanagementvehicleconnectionsrequest.md)   | :heavy_check_mark:                                                                                                       | The request object to use for the request.                                                                               |
-| `security`                                                                                                               | [operations.GetManagementVehicleConnectionsSecurity](../../models/operations/getmanagementvehicleconnectionssecurity.md) | :heavy_check_mark:                                                                                                       | The security requirements to use for the request.                                                                        |
-| `opts`                                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                                 | :heavy_minus_sign:                                                                                                       | The options for this request.                                                                                            |
+| Parameter                                                                                                                    | Type                                                                                                                         | Required                                                                                                                     | Description                                                                                                                  |
+| ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                                                        | :heavy_check_mark:                                                                                                           | The context to use for the request.                                                                                          |
+| `request`                                                                                                                    | [operations.GetManagementVehicleConnectionsRequest](../../pkg/models/operations/getmanagementvehicleconnectionsrequest.md)   | :heavy_check_mark:                                                                                                           | The request object to use for the request.                                                                                   |
+| `security`                                                                                                                   | [operations.GetManagementVehicleConnectionsSecurity](../../pkg/models/operations/getmanagementvehicleconnectionssecurity.md) | :heavy_check_mark:                                                                                                           | The security requirements to use for the request.                                                                            |
+| `opts`                                                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                                                 | :heavy_minus_sign:                                                                                                           | The options for this request.                                                                                                |
 
 
 ### Response
 
-**[*operations.GetManagementVehicleConnectionsResponse](../../models/operations/getmanagementvehicleconnectionsresponse.md), error**
-
+**[*operations.GetManagementVehicleConnectionsResponse](../../pkg/models/operations/getmanagementvehicleconnectionsresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 400-600            | */*                |

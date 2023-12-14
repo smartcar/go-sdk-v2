@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	"github.com/smartcar/go-sdk-v2/v2/pkg/models/shared"
 	"net/http"
 )
 
@@ -19,10 +19,13 @@ func (o *GetEngineOilRequest) GetVehicleID() string {
 }
 
 type GetEngineOilResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// return engine oil reading
-	EngineOil   *shared.EngineOil
-	StatusCode  int
+	EngineOil *shared.EngineOil
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 

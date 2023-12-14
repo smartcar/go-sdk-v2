@@ -4,7 +4,7 @@ package operations
 
 import (
 	"errors"
-	"github.com/smartcar/go-sdk-v2/pkg/utils"
+	"github.com/smartcar/go-sdk-v2/v2/pkg/utils"
 )
 
 var ErrUnsupportedOption = errors.New("unsupported option")

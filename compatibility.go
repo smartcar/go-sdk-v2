@@ -6,22 +6,22 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
-	"github.com/smartcar/go-sdk-v2/pkg/models/sdkerrors"
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
-	"github.com/smartcar/go-sdk-v2/pkg/utils"
+	"github.com/smartcar/go-sdk-v2/v2/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/v2/pkg/models/sdkerrors"
+	"github.com/smartcar/go-sdk-v2/v2/pkg/models/shared"
+	"github.com/smartcar/go-sdk-v2/v2/pkg/utils"
 	"io"
 	"net/http"
 	"strings"
 )
 
-// compatibility - Operations about compatibility
-type compatibility struct {
+// Compatibility - Operations about compatibility
+type Compatibility struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newCompatibility(sdkConfig sdkConfiguration) *compatibility {
-	return &compatibility{
+func newCompatibility(sdkConfig sdkConfiguration) *Compatibility {
+	return &Compatibility{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -61,7 +61,7 @@ func newCompatibility(sdkConfig sdkConfiguration) *compatibility {
 // |  |   MAKE_NOT_COMPATIBLE|  Smartcar is not yet compatible with the vehicle's make in the specified country.|
 // |  capabilities[].reason|   VEHICLE_NOT_CAPABLE|  TThe vehicle does not support this feature.|
 // |  |   SMARTCAR_NOT_CAPABLE|  Smartcar is not capable of supporting the given feature on the vehicle's make.|
-func (s *compatibility) ListCompatibility(ctx context.Context, request operations.ListCompatibilityRequest) (*operations.ListCompatibilityResponse, error) {
+func (s *Compatibility) ListCompatibility(ctx context.Context, request operations.ListCompatibilityRequest) (*operations.ListCompatibilityResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/compatibility"
 
@@ -70,7 +70,7 @@ func (s *compatibility) ListCompatibility(ctx context.Context, request operation
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
+	req.Header.Set("user-agent", s.sdkConfiguration.UserAgent)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -86,13 +86,6 @@ func (s *compatibility) ListCompatibility(ctx context.Context, request operation
 		return nil, fmt.Errorf("error sending request: no response")
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.ListCompatibilityResponse{
@@ -100,6 +93,13 @@ func (s *compatibility) ListCompatibility(ctx context.Context, request operation
 		ContentType: contentType,
 		RawResponse: httpRes,
 	}
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {

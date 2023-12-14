@@ -1,38 +1,37 @@
-<!-- Start SDK Example Usage -->
-
-
+<!-- Start SDK Example Usage [usage] -->
 ```go
 package main
 
-import(
+import (
 	"context"
+	gosdkv2 "github.com/smartcar/go-sdk-v2/v2"
+	"github.com/smartcar/go-sdk-v2/v2/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/v2/pkg/models/shared"
 	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
-    s := gosdkv2.New(
-        gosdkv2.WithSecurity(shared.Security{
-            BasicAuth: &shared.SchemeBasicAuth{
-                Password: "",
-                Username: "",
-            },
-        }),
-    )
+	s := gosdkv2.New(
+		gosdkv2.WithSecurity(shared.Security{
+			BasicAuth: &shared.SchemeBasicAuth{
+				Password: "<YOUR_PASSWORD_HERE>",
+				Username: "<YOUR_USERNAME_HERE>",
+			},
+		}),
+	)
 
-    ctx := context.Background()
-    res, err := s.Vehicles.GetLocation(ctx, operations.GetLocationRequest{
-        VehicleID: "36ab27d0-fd9d-4455-823a-ce30af709ffc",
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
+	ctx := context.Background()
+	res, err := s.Vehicles.GetLocation(ctx, operations.GetLocationRequest{
+		VehicleID: "36ab27d0-fd9d-4455-823a-ce30af709ffc",
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
 
-    if res.Location != nil {
-        // handle response
-    }
+	if res.Location != nil {
+		// handle response
+	}
 }
+
 ```
-<!-- End SDK Example Usage -->
+<!-- End SDK Example Usage [usage] -->

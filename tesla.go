@@ -6,20 +6,20 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
-	"github.com/smartcar/go-sdk-v2/pkg/models/sdkerrors"
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
-	"github.com/smartcar/go-sdk-v2/pkg/utils"
+	"github.com/smartcar/go-sdk-v2/v2/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/v2/pkg/models/sdkerrors"
+	"github.com/smartcar/go-sdk-v2/v2/pkg/models/shared"
+	"github.com/smartcar/go-sdk-v2/v2/pkg/utils"
 	"io"
 	"net/http"
 )
 
-type tesla struct {
+type Tesla struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newTesla(sdkConfig sdkConfiguration) *tesla {
-	return &tesla{
+func newTesla(sdkConfig sdkConfiguration) *Tesla {
+	return &Tesla{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -28,7 +28,7 @@ func newTesla(sdkConfig sdkConfiguration) *tesla {
 // __Description__
 //
 // When the vehicle is plugged in, this endpoint returns the amperage of the charger measured by the vehicle. When the vehicle is not plugged in, this endpoint results in a vehicle state error.
-func (s *tesla) GetAmmeter(ctx context.Context, request operations.GetTeslaAmmeterRequest) (*operations.GetTeslaAmmeterResponse, error) {
+func (s *Tesla) GetAmmeter(ctx context.Context, request operations.GetTeslaAmmeterRequest) (*operations.GetTeslaAmmeterResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/tesla/charge/ammeter", request, nil)
 	if err != nil {
@@ -40,7 +40,7 @@ func (s *tesla) GetAmmeter(ctx context.Context, request operations.GetTeslaAmmet
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
+	req.Header.Set("user-agent", s.sdkConfiguration.UserAgent)
 
 	client := s.sdkConfiguration.SecurityClient
 
@@ -52,13 +52,6 @@ func (s *tesla) GetAmmeter(ctx context.Context, request operations.GetTeslaAmmet
 		return nil, fmt.Errorf("error sending request: no response")
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.GetTeslaAmmeterResponse{
@@ -66,6 +59,13 @@ func (s *tesla) GetAmmeter(ctx context.Context, request operations.GetTeslaAmmet
 		ContentType: contentType,
 		RawResponse: httpRes,
 	}
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
@@ -92,7 +92,7 @@ func (s *tesla) GetAmmeter(ctx context.Context, request operations.GetTeslaAmmet
 // __Description__
 //
 // When the vehicle is charging, this endpoint returns the date and time the vehicle expects to complete this charging session. When the vehicle is not charging, this endpoint results in a vehicle state error.
-func (s *tesla) GetChargeTime(ctx context.Context, request operations.GetTeslaChargeTimeRequest) (*operations.GetTeslaChargeTimeResponse, error) {
+func (s *Tesla) GetChargeTime(ctx context.Context, request operations.GetTeslaChargeTimeRequest) (*operations.GetTeslaChargeTimeResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/tesla/charge/completion", request, nil)
 	if err != nil {
@@ -104,7 +104,7 @@ func (s *tesla) GetChargeTime(ctx context.Context, request operations.GetTeslaCh
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
+	req.Header.Set("user-agent", s.sdkConfiguration.UserAgent)
 
 	client := s.sdkConfiguration.SecurityClient
 
@@ -116,13 +116,6 @@ func (s *tesla) GetChargeTime(ctx context.Context, request operations.GetTeslaCh
 		return nil, fmt.Errorf("error sending request: no response")
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.GetTeslaChargeTimeResponse{
@@ -130,6 +123,13 @@ func (s *tesla) GetChargeTime(ctx context.Context, request operations.GetTeslaCh
 		ContentType: contentType,
 		RawResponse: httpRes,
 	}
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
@@ -156,7 +156,7 @@ func (s *tesla) GetChargeTime(ctx context.Context, request operations.GetTeslaCh
 // __Description__
 //
 // This endpoint returns the compass heading of a Tesla. The value is in degrees, with 0 degrees being North.
-func (s *tesla) GetCompass(ctx context.Context, request operations.GetTeslaCompassRequest) (*operations.GetTeslaCompassResponse, error) {
+func (s *Tesla) GetCompass(ctx context.Context, request operations.GetTeslaCompassRequest) (*operations.GetTeslaCompassResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/tesla/compass", request, nil)
 	if err != nil {
@@ -168,7 +168,7 @@ func (s *tesla) GetCompass(ctx context.Context, request operations.GetTeslaCompa
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
+	req.Header.Set("user-agent", s.sdkConfiguration.UserAgent)
 
 	client := s.sdkConfiguration.SecurityClient
 
@@ -180,13 +180,6 @@ func (s *tesla) GetCompass(ctx context.Context, request operations.GetTeslaCompa
 		return nil, fmt.Errorf("error sending request: no response")
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.GetTeslaCompassResponse{
@@ -194,6 +187,13 @@ func (s *tesla) GetCompass(ctx context.Context, request operations.GetTeslaCompa
 		ContentType: contentType,
 		RawResponse: httpRes,
 	}
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
@@ -220,7 +220,7 @@ func (s *tesla) GetCompass(ctx context.Context, request operations.GetTeslaCompa
 // __Description__
 //
 // This endpoint returns the exterior temperature of a Tesla, in celsius by default.
-func (s *tesla) GetExteriorTemperature(ctx context.Context, request operations.GetTeslaExteriorTemperatureRequest) (*operations.GetTeslaExteriorTemperatureResponse, error) {
+func (s *Tesla) GetExteriorTemperature(ctx context.Context, request operations.GetTeslaExteriorTemperatureRequest) (*operations.GetTeslaExteriorTemperatureResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{id}/tesla/thermometer/exterior", request, nil)
 	if err != nil {
@@ -232,7 +232,7 @@ func (s *tesla) GetExteriorTemperature(ctx context.Context, request operations.G
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
+	req.Header.Set("user-agent", s.sdkConfiguration.UserAgent)
 
 	client := s.sdkConfiguration.SecurityClient
 
@@ -244,13 +244,6 @@ func (s *tesla) GetExteriorTemperature(ctx context.Context, request operations.G
 		return nil, fmt.Errorf("error sending request: no response")
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.GetTeslaExteriorTemperatureResponse{
@@ -258,6 +251,13 @@ func (s *tesla) GetExteriorTemperature(ctx context.Context, request operations.G
 		ContentType: contentType,
 		RawResponse: httpRes,
 	}
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
@@ -284,7 +284,7 @@ func (s *tesla) GetExteriorTemperature(ctx context.Context, request operations.G
 // __Description__
 //
 // This endpoint returns the interior temperature of a Tesla, in celsius by default.
-func (s *tesla) GetInteriorTemperature(ctx context.Context, request operations.GetTeslaInteriorTemperatureRequest) (*operations.GetTeslaInteriorTemperatureResponse, error) {
+func (s *Tesla) GetInteriorTemperature(ctx context.Context, request operations.GetTeslaInteriorTemperatureRequest) (*operations.GetTeslaInteriorTemperatureResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{id}/tesla/thermometer/interior", request, nil)
 	if err != nil {
@@ -296,7 +296,7 @@ func (s *tesla) GetInteriorTemperature(ctx context.Context, request operations.G
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
+	req.Header.Set("user-agent", s.sdkConfiguration.UserAgent)
 
 	client := s.sdkConfiguration.SecurityClient
 
@@ -308,13 +308,6 @@ func (s *tesla) GetInteriorTemperature(ctx context.Context, request operations.G
 		return nil, fmt.Errorf("error sending request: no response")
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.GetTeslaInteriorTemperatureResponse{
@@ -322,6 +315,13 @@ func (s *tesla) GetInteriorTemperature(ctx context.Context, request operations.G
 		ContentType: contentType,
 		RawResponse: httpRes,
 	}
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
@@ -348,7 +348,7 @@ func (s *tesla) GetInteriorTemperature(ctx context.Context, request operations.G
 // __Description__
 //
 // This endpoint returns the speed of a Tesla (in kilometers/hour by default or in miles/hour using the sc-unit-system).
-func (s *tesla) GetSpeedometer(ctx context.Context, request operations.GetTeslaSpeedRequest) (*operations.GetTeslaSpeedResponse, error) {
+func (s *Tesla) GetSpeedometer(ctx context.Context, request operations.GetTeslaSpeedRequest) (*operations.GetTeslaSpeedResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/tesla/speedometer", request, nil)
 	if err != nil {
@@ -360,7 +360,7 @@ func (s *tesla) GetSpeedometer(ctx context.Context, request operations.GetTeslaS
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
+	req.Header.Set("user-agent", s.sdkConfiguration.UserAgent)
 
 	client := s.sdkConfiguration.SecurityClient
 
@@ -372,13 +372,6 @@ func (s *tesla) GetSpeedometer(ctx context.Context, request operations.GetTeslaS
 		return nil, fmt.Errorf("error sending request: no response")
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.GetTeslaSpeedResponse{
@@ -386,6 +379,13 @@ func (s *tesla) GetSpeedometer(ctx context.Context, request operations.GetTeslaS
 		ContentType: contentType,
 		RawResponse: httpRes,
 	}
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
@@ -412,7 +412,7 @@ func (s *tesla) GetSpeedometer(ctx context.Context, request operations.GetTeslaS
 // __Description__
 //
 // When the vehicle is plugged in, this endpoint returns the voltage of the charger measured by the vehicle. When the vehicle is not plugged in, this endpoint results in a vehicle state error.
-func (s *tesla) GetVoltage(ctx context.Context, request operations.GetTeslaVoltageRequest) (*operations.GetTeslaVoltageResponse, error) {
+func (s *Tesla) GetVoltage(ctx context.Context, request operations.GetTeslaVoltageRequest) (*operations.GetTeslaVoltageResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/tesla/charge/voltmeter", request, nil)
 	if err != nil {
@@ -424,7 +424,7 @@ func (s *tesla) GetVoltage(ctx context.Context, request operations.GetTeslaVolta
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
+	req.Header.Set("user-agent", s.sdkConfiguration.UserAgent)
 
 	client := s.sdkConfiguration.SecurityClient
 
@@ -436,13 +436,6 @@ func (s *tesla) GetVoltage(ctx context.Context, request operations.GetTeslaVolta
 		return nil, fmt.Errorf("error sending request: no response")
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.GetTeslaVoltageResponse{
@@ -450,6 +443,13 @@ func (s *tesla) GetVoltage(ctx context.Context, request operations.GetTeslaVolta
 		ContentType: contentType,
 		RawResponse: httpRes,
 	}
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
@@ -476,7 +476,7 @@ func (s *tesla) GetVoltage(ctx context.Context, request operations.GetTeslaVolta
 // __Description__
 //
 // When the vehicle is plugged in, this endpoint returns the wattage of the charger measured by the vehicle. When the vehicle is not plugged in, this endpoint results in a vehicle state error.
-func (s *tesla) GetWattmeter(ctx context.Context, request operations.GetTeslaWattmeterRequest) (*operations.GetTeslaWattmeterResponse, error) {
+func (s *Tesla) GetWattmeter(ctx context.Context, request operations.GetTeslaWattmeterRequest) (*operations.GetTeslaWattmeterResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/tesla/charge/wattmeter", request, nil)
 	if err != nil {
@@ -488,7 +488,7 @@ func (s *tesla) GetWattmeter(ctx context.Context, request operations.GetTeslaWat
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
+	req.Header.Set("user-agent", s.sdkConfiguration.UserAgent)
 
 	client := s.sdkConfiguration.SecurityClient
 
@@ -500,13 +500,6 @@ func (s *tesla) GetWattmeter(ctx context.Context, request operations.GetTeslaWat
 		return nil, fmt.Errorf("error sending request: no response")
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.GetTeslaWattmeterResponse{
@@ -514,6 +507,13 @@ func (s *tesla) GetWattmeter(ctx context.Context, request operations.GetTeslaWat
 		ContentType: contentType,
 		RawResponse: httpRes,
 	}
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
@@ -540,7 +540,7 @@ func (s *tesla) GetWattmeter(ctx context.Context, request operations.GetTeslaWat
 // __Description__
 //
 // When the vehicle is plugged in, this endpoint sets the amperage of the charger measured by the vehicle. When the vehicle is not plugged in, this endpoint results in a vehicle state error.
-func (s *tesla) SetAmmeter(ctx context.Context, request operations.SetTeslaAmmeterRequest) (*operations.SetTeslaAmmeterResponse, error) {
+func (s *Tesla) SetAmmeter(ctx context.Context, request operations.SetTeslaAmmeterRequest) (*operations.SetTeslaAmmeterResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/tesla/charge/ammeter", request, nil)
 	if err != nil {
@@ -557,7 +557,7 @@ func (s *tesla) SetAmmeter(ctx context.Context, request operations.SetTeslaAmmet
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
+	req.Header.Set("user-agent", s.sdkConfiguration.UserAgent)
 
 	req.Header.Set("Content-Type", reqContentType)
 
@@ -571,13 +571,6 @@ func (s *tesla) SetAmmeter(ctx context.Context, request operations.SetTeslaAmmet
 		return nil, fmt.Errorf("error sending request: no response")
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.SetTeslaAmmeterResponse{
@@ -585,6 +578,13 @@ func (s *tesla) SetAmmeter(ctx context.Context, request operations.SetTeslaAmmet
 		ContentType: contentType,
 		RawResponse: httpRes,
 	}
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {

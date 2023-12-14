@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/smartcar/go-sdk-v2/pkg/utils"
+	"github.com/smartcar/go-sdk-v2/v2/pkg/utils"
 	"time"
 )
 
@@ -17,7 +17,7 @@ func (c ChargeTime) MarshalJSON() ([]byte, error) {
 }
 
 func (c *ChargeTime) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
 		return err
 	}
 	return nil

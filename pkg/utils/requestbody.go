@@ -30,7 +30,7 @@ func SerializeRequestBody(ctx context.Context, request interface{}, nullable, op
 	requestValType := reflect.ValueOf(request)
 
 	if isNil(requestStructType, requestValType) {
-		if optional || !nullable {
+		if !nullable && optional {
 			return nil, "", nil
 		}
 
@@ -54,11 +54,11 @@ func SerializeRequestBody(ctx context.Context, request interface{}, nullable, op
 			// request object (non-flattened)
 			requestVal := requestValType.FieldByName(requestFieldName)
 			if isNil(requestField.Type, requestVal) {
-				if optional || !nullable {
+				if !nullable && optional {
 					return nil, "", nil
 				}
 
-				return serializeContentType(requestFieldName, SerializationMethodToContentType[serializationMethod], requestVal, tag.MediaType)
+				return serializeContentType(requestFieldName, tag.MediaType, requestVal, string(requestField.Tag))
 			}
 
 			return serializeContentType(requestFieldName, tag.MediaType, requestVal, string(requestField.Tag))

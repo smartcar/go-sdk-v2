@@ -6,20 +6,20 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
-	"github.com/smartcar/go-sdk-v2/pkg/models/sdkerrors"
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
-	"github.com/smartcar/go-sdk-v2/pkg/utils"
+	"github.com/smartcar/go-sdk-v2/v2/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/v2/pkg/models/sdkerrors"
+	"github.com/smartcar/go-sdk-v2/v2/pkg/models/shared"
+	"github.com/smartcar/go-sdk-v2/v2/pkg/utils"
 	"io"
 	"net/http"
 )
 
-type chevrolet struct {
+type Chevrolet struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newChevrolet(sdkConfig sdkConfiguration) *chevrolet {
-	return &chevrolet{
+func newChevrolet(sdkConfig sdkConfiguration) *Chevrolet {
+	return &Chevrolet{
 		sdkConfiguration: sdkConfig,
 	}
 }
@@ -28,7 +28,7 @@ func newChevrolet(sdkConfig sdkConfiguration) *chevrolet {
 // __Description__
 //
 // When the vehicle is charging, this endpoint returns the date and time the vehicle expects to complete this charging session. When the vehicle is not charging, this endpoint results in a vehicle state error.
-func (s *chevrolet) GetChargeTime(ctx context.Context, request operations.GetChevroletChargeTimeRequest) (*operations.GetChevroletChargeTimeResponse, error) {
+func (s *Chevrolet) GetChargeTime(ctx context.Context, request operations.GetChevroletChargeTimeRequest) (*operations.GetChevroletChargeTimeResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/chevrolet/charge/completion", request, nil)
 	if err != nil {
@@ -40,7 +40,7 @@ func (s *chevrolet) GetChargeTime(ctx context.Context, request operations.GetChe
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
+	req.Header.Set("user-agent", s.sdkConfiguration.UserAgent)
 
 	client := s.sdkConfiguration.SecurityClient
 
@@ -52,13 +52,6 @@ func (s *chevrolet) GetChargeTime(ctx context.Context, request operations.GetChe
 		return nil, fmt.Errorf("error sending request: no response")
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.GetChevroletChargeTimeResponse{
@@ -66,6 +59,13 @@ func (s *chevrolet) GetChargeTime(ctx context.Context, request operations.GetChe
 		ContentType: contentType,
 		RawResponse: httpRes,
 	}
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
@@ -92,7 +92,7 @@ func (s *chevrolet) GetChargeTime(ctx context.Context, request operations.GetChe
 // __Description__
 //
 // When the vehicle is plugged in, this endpoint returns the voltage of the charger measured by the vehicle. When the vehicle is not plugged in, this endpoint results in a vehicle state error.
-func (s *chevrolet) GetVoltage(ctx context.Context, request operations.GetChevroletVoltageRequest) (*operations.GetChevroletVoltageResponse, error) {
+func (s *Chevrolet) GetVoltage(ctx context.Context, request operations.GetChevroletVoltageRequest) (*operations.GetChevroletVoltageResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/vehicles/{vehicle_id}/chevrolet/charge/voltmeter", request, nil)
 	if err != nil {
@@ -104,7 +104,7 @@ func (s *chevrolet) GetVoltage(ctx context.Context, request operations.GetChevro
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
+	req.Header.Set("user-agent", s.sdkConfiguration.UserAgent)
 
 	client := s.sdkConfiguration.SecurityClient
 
@@ -116,13 +116,6 @@ func (s *chevrolet) GetVoltage(ctx context.Context, request operations.GetChevro
 		return nil, fmt.Errorf("error sending request: no response")
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.GetChevroletVoltageResponse{
@@ -130,6 +123,13 @@ func (s *chevrolet) GetVoltage(ctx context.Context, request operations.GetChevro
 		ContentType: contentType,
 		RawResponse: httpRes,
 	}
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {

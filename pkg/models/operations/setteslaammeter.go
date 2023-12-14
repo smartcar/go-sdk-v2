@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	"github.com/smartcar/go-sdk-v2/v2/pkg/models/shared"
 	"net/http"
 )
 
@@ -27,8 +27,11 @@ func (o *SetTeslaAmmeterRequest) GetVehicleID() string {
 }
 
 type SetTeslaAmmeterResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
-	StatusCode  int
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// returns the amperage of the charger measured by the vehicle.
 	SuccessResponse *shared.SuccessResponse

@@ -6,28 +6,29 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
-	"github.com/smartcar/go-sdk-v2/pkg/models/sdkerrors"
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
-	"github.com/smartcar/go-sdk-v2/pkg/utils"
+	"github.com/smartcar/go-sdk-v2/v2/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/v2/pkg/models/sdkerrors"
+	"github.com/smartcar/go-sdk-v2/v2/pkg/models/shared"
+	"github.com/smartcar/go-sdk-v2/v2/pkg/utils"
 	"io"
 	"net/http"
 	"strings"
 )
 
-type vehicleManagement struct {
+// VehicleManagement - Operations to manage vehicle connections
+type VehicleManagement struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newVehicleManagement(sdkConfig sdkConfiguration) *vehicleManagement {
-	return &vehicleManagement{
+func newVehicleManagement(sdkConfig sdkConfiguration) *VehicleManagement {
+	return &VehicleManagement{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // DeleteManagementVehicleConnections - Delete vehicle connections by user_id or vehicle_id
 // Delete all connections by vehicle or user ID.
-func (s *vehicleManagement) DeleteManagementVehicleConnections(ctx context.Context, request operations.DeleteManagementVehicleConnectionsRequest, security operations.DeleteManagementVehicleConnectionsSecurity, opts ...operations.Option) (*operations.DeleteManagementVehicleConnectionsResponse, error) {
+func (s *VehicleManagement) DeleteManagementVehicleConnections(ctx context.Context, request operations.DeleteManagementVehicleConnectionsRequest, security operations.DeleteManagementVehicleConnectionsSecurity, opts ...operations.Option) (*operations.DeleteManagementVehicleConnectionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionServerURL,
@@ -50,13 +51,13 @@ func (s *vehicleManagement) DeleteManagementVehicleConnections(ctx context.Conte
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
+	req.Header.Set("user-agent", s.sdkConfiguration.UserAgent)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.sdkConfiguration.DefaultClient, security)
+	client := utils.ConfigureSecurityClient(s.sdkConfiguration.DefaultClient, withSecurity(security))
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -66,13 +67,6 @@ func (s *vehicleManagement) DeleteManagementVehicleConnections(ctx context.Conte
 		return nil, fmt.Errorf("error sending request: no response")
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.DeleteManagementVehicleConnectionsResponse{
@@ -80,6 +74,13 @@ func (s *vehicleManagement) DeleteManagementVehicleConnections(ctx context.Conte
 		ContentType: contentType,
 		RawResponse: httpRes,
 	}
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
@@ -104,7 +105,7 @@ func (s *vehicleManagement) DeleteManagementVehicleConnections(ctx context.Conte
 
 // GetManagementVehicleConnections - Retrieve vehicle connections
 // Returns a paged list of all the vehicles that are connected to the application associated with the management API token used sorted in descending order by connection date.
-func (s *vehicleManagement) GetManagementVehicleConnections(ctx context.Context, request operations.GetManagementVehicleConnectionsRequest, security operations.GetManagementVehicleConnectionsSecurity, opts ...operations.Option) (*operations.GetManagementVehicleConnectionsResponse, error) {
+func (s *VehicleManagement) GetManagementVehicleConnections(ctx context.Context, request operations.GetManagementVehicleConnectionsRequest, security operations.GetManagementVehicleConnectionsSecurity, opts ...operations.Option) (*operations.GetManagementVehicleConnectionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionServerURL,
@@ -127,13 +128,13 @@ func (s *vehicleManagement) GetManagementVehicleConnections(ctx context.Context,
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
+	req.Header.Set("user-agent", s.sdkConfiguration.UserAgent)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := utils.ConfigureSecurityClient(s.sdkConfiguration.DefaultClient, security)
+	client := utils.ConfigureSecurityClient(s.sdkConfiguration.DefaultClient, withSecurity(security))
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -143,13 +144,6 @@ func (s *vehicleManagement) GetManagementVehicleConnections(ctx context.Context,
 		return nil, fmt.Errorf("error sending request: no response")
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.GetManagementVehicleConnectionsResponse{
@@ -157,6 +151,13 @@ func (s *vehicleManagement) GetManagementVehicleConnections(ctx context.Context,
 		ContentType: contentType,
 		RawResponse: httpRes,
 	}
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
