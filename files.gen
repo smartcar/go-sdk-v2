@@ -225,6 +225,7 @@ docs/pkg/models/shared/tirepressureschemas.md
 docs/pkg/models/shared/fueltankschemas.md
 docs/pkg/models/shared/odometerschemas.md
 docs/pkg/models/shared/locationschemas.md
+docs/pkg/models/shared/body.md
 docs/pkg/models/shared/code.md
 docs/pkg/models/shared/response.md
 docs/pkg/models/shared/header.md
