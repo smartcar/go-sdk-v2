@@ -69,7 +69,7 @@ func main() {
 **[*operations.GetTeslaAmmeterResponse](../../pkg/models/operations/getteslaammeterresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetChargeTime
 
@@ -127,7 +127,7 @@ func main() {
 **[*operations.GetTeslaChargeTimeResponse](../../pkg/models/operations/getteslachargetimeresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetCompass
 
@@ -185,7 +185,7 @@ func main() {
 **[*operations.GetTeslaCompassResponse](../../pkg/models/operations/getteslacompassresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetExteriorTemperature
 
@@ -243,7 +243,7 @@ func main() {
 **[*operations.GetTeslaExteriorTemperatureResponse](../../pkg/models/operations/getteslaexteriortemperatureresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetInteriorTemperature
 
@@ -301,7 +301,7 @@ func main() {
 **[*operations.GetTeslaInteriorTemperatureResponse](../../pkg/models/operations/getteslainteriortemperatureresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetSpeedometer
 
@@ -359,7 +359,7 @@ func main() {
 **[*operations.GetTeslaSpeedResponse](../../pkg/models/operations/getteslaspeedresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetVoltage
 
@@ -417,7 +417,7 @@ func main() {
 **[*operations.GetTeslaVoltageResponse](../../pkg/models/operations/getteslavoltageresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetWattmeter
 
@@ -475,7 +475,7 @@ func main() {
 **[*operations.GetTeslaWattmeterResponse](../../pkg/models/operations/getteslawattmeterresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## SetAmmeter
 
@@ -536,4 +536,4 @@ func main() {
 **[*operations.SetTeslaAmmeterResponse](../../pkg/models/operations/setteslaammeterresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

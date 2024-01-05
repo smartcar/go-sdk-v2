@@ -1,28 +1,11 @@
-configVersion: 1.0.0
-management:
-  docChecksum: 203e4bd19c2b39b1533102dd566af1ff
-  docVersion: 1.0.0
-  speakeasyVersion: 1.126.4
-  generationVersion: 2.214.10
+configVersion: 2.0.0
 generation:
-  comments: {}
   sdkClassName: smartcar
-  repoURL: https://github.com/smartcar/go-sdk-v2.git
   usageSnippets:
     optionalPropertyRendering: withExample
-  baseServerURL: ""
   fixes:
     nameResolutionDec2023: false
-features:
-  go:
-    core: 3.2.2
-    examples: 2.81.3
-    globalSecurity: 2.82.3
-    globalServerURLs: 2.82.1
-    methodSecurity: 2.82.1
-    methodServerURLs: 2.82.1
-    nameOverrides: 2.81.1
-    unions: 2.85.2
+  baseServerURL: ""
 go:
   version: 2.0.1
   clientServerStatusCodesAsErrors: true
@@ -36,9 +19,6 @@ go:
       shared: pkg/models/shared
       webhooks: pkg/models/webhooks
   inputModelSuffix: input
-  installationURL: https://github.com/smartcar/go-sdk-v2
   maxMethodParams: 0
   outputModelSuffix: output
   packageName: github.com/smartcar/go-sdk-v2
-  published: true
-  repoSubDirectory: .

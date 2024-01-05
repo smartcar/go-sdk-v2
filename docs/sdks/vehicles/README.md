@@ -79,7 +79,7 @@ func main() {
 **[*operations.BatchResponse](../../pkg/models/operations/batchresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## LockStatus
 
@@ -135,7 +135,7 @@ func main() {
 **[*operations.LockStatusResponse](../../pkg/models/operations/lockstatusresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## Disconnect
 
@@ -199,7 +199,7 @@ func main() {
 **[*operations.DisconnectResponse](../../pkg/models/operations/disconnectresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## Get
 
@@ -270,7 +270,7 @@ func main() {
 **[*operations.GetVehicleResponse](../../pkg/models/operations/getvehicleresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetEngineOil
 
@@ -338,7 +338,7 @@ func main() {
 **[*operations.GetEngineOilResponse](../../pkg/models/operations/getengineoilresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetFuelTank
 
@@ -408,7 +408,7 @@ func main() {
 **[*operations.GetFuelTankResponse](../../pkg/models/operations/getfueltankresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetLocation
 
@@ -477,7 +477,7 @@ func main() {
 **[*operations.GetLocationResponse](../../pkg/models/operations/getlocationresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetOdometer
 
@@ -545,7 +545,7 @@ func main() {
 **[*operations.GetOdometerResponse](../../pkg/models/operations/getodometerresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetPermissions
 
@@ -620,7 +620,7 @@ func main() {
 **[*operations.GetPermissionsResponse](../../pkg/models/operations/getpermissionsresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetTirePressure
 
@@ -690,7 +690,7 @@ func main() {
 **[*operations.GetTirePressureResponse](../../pkg/models/operations/gettirepressureresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetVin
 
@@ -748,7 +748,7 @@ func main() {
 **[*operations.GetVinResponse](../../pkg/models/operations/getvinresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## ListVehicles
 
@@ -821,7 +821,7 @@ func main() {
 **[*operations.ListVehiclesResponse](../../pkg/models/operations/listvehiclesresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## LockUnlock
 
@@ -892,7 +892,7 @@ func main() {
 **[*operations.LockUnlockResponse](../../pkg/models/operations/lockunlockresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## SendDestination
 
@@ -954,4 +954,4 @@ func main() {
 **[*operations.SendDestinationResponse](../../pkg/models/operations/senddestinationresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

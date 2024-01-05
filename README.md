@@ -143,7 +143,7 @@ Handling errors in this SDK should largely match your expectations.  All operati
 
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ### Example
 

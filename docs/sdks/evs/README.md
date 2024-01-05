@@ -80,7 +80,7 @@ func main() {
 **[*operations.GetBatteryCapacityResponse](../../pkg/models/operations/getbatterycapacityresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetBatteryLevel
 
@@ -149,7 +149,7 @@ func main() {
 **[*operations.GetBatteryLevelResponse](../../pkg/models/operations/getbatterylevelresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetChargingLimit
 
@@ -207,7 +207,7 @@ func main() {
 **[*operations.GetChargingLimitResponse](../../pkg/models/operations/getcharginglimitresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetChargingStatus
 
@@ -276,7 +276,7 @@ func main() {
 **[*operations.GetChargingStatusResponse](../../pkg/models/operations/getchargingstatusresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## SetChargingLimit
 
@@ -337,7 +337,7 @@ func main() {
 **[*operations.SetChargingLimitResponse](../../pkg/models/operations/setcharginglimitresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## StartStopCharge
 
@@ -409,4 +409,4 @@ func main() {
 **[*operations.StartStopChargeResponse](../../pkg/models/operations/startstopchargeresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

@@ -62,7 +62,7 @@ func main() {
 **[*operations.DeleteManagementVehicleConnectionsResponse](../../pkg/models/operations/deletemanagementvehicleconnectionsresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetManagementVehicleConnections
 
@@ -116,4 +116,4 @@ func main() {
 **[*operations.GetManagementVehicleConnectionsResponse](../../pkg/models/operations/getmanagementvehicleconnectionsresponse.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| sdkerrors.SDKError | 400-600            | */*                |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
