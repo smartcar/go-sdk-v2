@@ -1,6 +1,6 @@
 module github.com/smartcar/go-sdk-v2/v2
 
-go 1.14
+go 1.20
 
 require (
 	github.com/cenkalti/backoff/v4 v4.2.0
