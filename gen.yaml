@@ -7,7 +7,7 @@ generation:
     nameResolutionDec2023: false
   baseServerURL: ""
 go:
-  version: 2.0.2
+  version: 2.0.3
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: false
   imports:
