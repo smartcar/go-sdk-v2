@@ -17,8 +17,8 @@ Returns the id of the vehicle owner who granted access to your application. This
 package main
 
 import(
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/shared"
-	gosdkv2 "github.com/smartcar/go-sdk-v2/v2"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2/v3"
 	"context"
 	"log"
 )

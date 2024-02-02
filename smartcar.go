@@ -5,8 +5,8 @@ package gosdkv2
 import (
 	"context"
 	"fmt"
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/shared"
-	"github.com/smartcar/go-sdk-v2/v2/pkg/utils"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -153,9 +153,9 @@ func New(opts ...SDKOption) *Smartcar {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "2.0.3",
-			GenVersion:        "2.237.2",
-			UserAgent:         "speakeasy-sdk/go 2.0.3 2.237.2 1.0.0 github.com/smartcar/go-sdk-v2",
+			SDKVersion:        "3.0.0",
+			GenVersion:        "2.248.1",
+			UserAgent:         "speakeasy-sdk/go 3.0.0 2.248.1 1.0.0 github.com/smartcar/go-sdk-v2",
 		},
 	}
 	for _, opt := range opts {

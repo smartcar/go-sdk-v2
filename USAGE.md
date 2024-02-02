@@ -4,9 +4,9 @@ package main
 
 import (
 	"context"
-	gosdkv2 "github.com/smartcar/go-sdk-v2/v2"
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/operations"
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2/v3"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
 	"log"
 )
 

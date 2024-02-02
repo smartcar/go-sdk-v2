@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/shared"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
 	"net/http"
 )
 

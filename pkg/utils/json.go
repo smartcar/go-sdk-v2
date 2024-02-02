@@ -12,7 +12,7 @@ import (
 	"time"
 	"unsafe"
 
-	"github.com/smartcar/go-sdk-v2/v2/pkg/types"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/types"
 
 	"github.com/ericlagergren/decimal"
 )

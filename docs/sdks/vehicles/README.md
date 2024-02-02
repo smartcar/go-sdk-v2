@@ -32,10 +32,10 @@ __Description__ Returns a list of responses from multiple Smartcar endpoints, al
 package main
 
 import(
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/shared"
-	gosdkv2 "github.com/smartcar/go-sdk-v2/v2"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2/v3"
 	"context"
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/operations"
 	"log"
 )
 
@@ -91,10 +91,10 @@ Returns the lock status for a vehicle and the open status of its doors, windows,
 package main
 
 import(
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/shared"
-	gosdkv2 "github.com/smartcar/go-sdk-v2/v2"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2/v3"
 	"context"
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/operations"
 	"log"
 )
 
@@ -155,10 +155,10 @@ __Response body__
 package main
 
 import(
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/shared"
-	gosdkv2 "github.com/smartcar/go-sdk-v2/v2"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2/v3"
 	"context"
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/operations"
 	"log"
 )
 
@@ -226,10 +226,10 @@ __Response Body__
 package main
 
 import(
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/shared"
-	gosdkv2 "github.com/smartcar/go-sdk-v2/v2"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2/v3"
 	"context"
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/operations"
 	"log"
 )
 
@@ -294,10 +294,10 @@ __Response body__
 package main
 
 import(
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/shared"
-	gosdkv2 "github.com/smartcar/go-sdk-v2/v2"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2/v3"
 	"context"
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/operations"
 	"log"
 )
 
@@ -364,10 +364,10 @@ __Response Body__
 package main
 
 import(
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/shared"
-	gosdkv2 "github.com/smartcar/go-sdk-v2/v2"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2/v3"
 	"context"
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/operations"
 	"log"
 )
 
@@ -433,10 +433,10 @@ __Response Body__
 package main
 
 import(
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/shared"
-	gosdkv2 "github.com/smartcar/go-sdk-v2/v2"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2/v3"
 	"context"
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/operations"
 	"log"
 )
 
@@ -501,10 +501,10 @@ __Response Body__
 package main
 
 import(
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/shared"
-	gosdkv2 "github.com/smartcar/go-sdk-v2/v2"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2/v3"
 	"context"
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/operations"
 	"log"
 )
 
@@ -576,10 +576,10 @@ __Response Body__
 package main
 
 import(
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/shared"
-	gosdkv2 "github.com/smartcar/go-sdk-v2/v2"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2/v3"
 	"context"
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/operations"
 	"log"
 )
 
@@ -646,10 +646,10 @@ __Example Response__
 package main
 
 import(
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/shared"
-	gosdkv2 "github.com/smartcar/go-sdk-v2/v2"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2/v3"
 	"context"
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/operations"
 	"log"
 )
 
@@ -704,10 +704,10 @@ Returns the vehicle’s manufacturer identifier.
 package main
 
 import(
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/shared"
-	gosdkv2 "github.com/smartcar/go-sdk-v2/v2"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2/v3"
 	"context"
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/operations"
 	"log"
 )
 
@@ -779,10 +779,10 @@ __Response Body__
 package main
 
 import(
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/shared"
-	gosdkv2 "github.com/smartcar/go-sdk-v2/v2"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2/v3"
 	"context"
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/operations"
 	"log"
 )
 
@@ -845,10 +845,10 @@ __Response body__
 package main
 
 import(
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/shared"
-	gosdkv2 "github.com/smartcar/go-sdk-v2/v2"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2/v3"
 	"context"
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/operations"
 	"log"
 )
 
@@ -906,10 +906,10 @@ Send destination coordinates to the vehicle's navigation system.
 package main
 
 import(
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/shared"
-	gosdkv2 "github.com/smartcar/go-sdk-v2/v2"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2/v3"
 	"context"
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/operations"
 	"log"
 )
 

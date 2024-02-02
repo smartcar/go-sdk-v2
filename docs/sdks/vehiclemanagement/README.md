@@ -20,8 +20,8 @@ Delete all connections by vehicle or user ID.
 package main
 
 import(
-	gosdkv2 "github.com/smartcar/go-sdk-v2/v2"
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/operations"
+	gosdkv2 "github.com/smartcar/go-sdk-v2/v3"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/operations"
 	"context"
 	"log"
 )
@@ -74,8 +74,8 @@ Returns a paged list of all the vehicles that are connected to the application a
 package main
 
 import(
-	gosdkv2 "github.com/smartcar/go-sdk-v2/v2"
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/operations"
+	gosdkv2 "github.com/smartcar/go-sdk-v2/v3"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/operations"
 	"context"
 	"log"
 )

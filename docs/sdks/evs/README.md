@@ -36,10 +36,10 @@ __Response body__
 package main
 
 import(
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/shared"
-	gosdkv2 "github.com/smartcar/go-sdk-v2/v2"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2/v3"
 	"context"
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/operations"
 	"log"
 )
 
@@ -105,10 +105,10 @@ __Response body__
 package main
 
 import(
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/shared"
-	gosdkv2 "github.com/smartcar/go-sdk-v2/v2"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2/v3"
 	"context"
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/operations"
 	"log"
 )
 
@@ -163,10 +163,10 @@ Returns the current charge limit of an electric vehicle.
 package main
 
 import(
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/shared"
-	gosdkv2 "github.com/smartcar/go-sdk-v2/v2"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2/v3"
 	"context"
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/operations"
 	"log"
 )
 
@@ -232,10 +232,10 @@ __Response body__
 package main
 
 import(
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/shared"
-	gosdkv2 "github.com/smartcar/go-sdk-v2/v2"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2/v3"
 	"context"
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/operations"
 	"log"
 )
 
@@ -290,10 +290,10 @@ Returns the current charge limit of an electric vehicle.
 package main
 
 import(
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/shared"
-	gosdkv2 "github.com/smartcar/go-sdk-v2/v2"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2/v3"
 	"context"
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/operations"
 	"log"
 )
 
@@ -362,10 +362,10 @@ __Response body__
 package main
 
 import(
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/shared"
-	gosdkv2 "github.com/smartcar/go-sdk-v2/v2"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2/v3"
 	"context"
-	"github.com/smartcar/go-sdk-v2/v2/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/operations"
 	"log"
 )
 
