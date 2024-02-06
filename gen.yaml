@@ -8,7 +8,7 @@ generation:
     parameterOrderingFeb2024: false
   baseServerURL: ""
 go:
-  version: 3.0.0
+  version: 3.0.1
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: false
   imports:
