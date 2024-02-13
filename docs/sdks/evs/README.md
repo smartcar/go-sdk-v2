@@ -309,9 +309,6 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Evs.SetChargingLimit(ctx, operations.SetChargingLimitRequest{
-        ChargeLimit: &shared.ChargeLimit{
-            Limit: gosdkv2.Float32(1),
-        },
         VehicleID: "string",
     })
     if err != nil {
@@ -381,9 +378,6 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Evs.StartStopCharge(ctx, operations.StartStopChargeRequest{
-        ChargeAction: &shared.ChargeAction{
-            Action: shared.ActionStart.ToPointer(),
-        },
         VehicleID: "string",
     })
     if err != nil {

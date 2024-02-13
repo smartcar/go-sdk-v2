@@ -51,9 +51,6 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.Batch(ctx, operations.BatchRequest{
-        RequestBody: []string{
-            "/odometer",
-        },
         VehicleID: "string",
     })
     if err != nil {
@@ -864,9 +861,6 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.LockUnlock(ctx, operations.LockUnlockRequest{
-        SecurityAction: &shared.SecurityAction{
-            Action: shared.SecurityActionActionUnlock.ToPointer(),
-        },
         VehicleID: "string",
     })
     if err != nil {
@@ -925,10 +919,6 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.SendDestination(ctx, operations.SendDestinationRequest{
-        SendDestination: &shared.SendDestination{
-            Latitude: 37.4292,
-            Longitude: 122.1381,
-        },
         VehicleID: "string",
     })
     if err != nil {

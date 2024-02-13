@@ -6,9 +6,10 @@ generation:
   fixes:
     nameResolutionDec2023: false
     parameterOrderingFeb2024: false
+    requestResponseComponentNamesFeb2024: false
   baseServerURL: ""
 go:
-  version: 3.0.1
+  version: 3.0.2
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: false
   imports:

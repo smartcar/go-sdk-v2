@@ -47,10 +47,6 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Webhooks.Subscribe(ctx, operations.SubscribeRequest{
-        WebhookInfo: &shared.WebhookInfo{
-            Vehicleid: gosdkv2.String("dc6ea99e-57d1-4e41-b129-27e7eb58713e"),
-            Webhookid: gosdkv2.String("9b6ae692-60cc-4b3e-89d8-71e7549cf805"),
-        },
         VehicleID: "string",
         WebhookID: "string",
     })

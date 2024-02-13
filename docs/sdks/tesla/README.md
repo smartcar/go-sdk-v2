@@ -508,9 +508,6 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Tesla.SetAmmeter(ctx, operations.SetTeslaAmmeterRequest{
-        ChargeAmmeter: &shared.ChargeAmmeter{
-            Amperage: gosdkv2.Float32(48),
-        },
         VehicleID: "string",
     })
     if err != nil {
