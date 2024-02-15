@@ -55,7 +55,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Evs.GetBatteryCapacity(ctx, operations.GetBatteryCapacityRequest{
-        VehicleID: "string",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -124,7 +124,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Evs.GetBatteryLevel(ctx, operations.GetBatteryLevelRequest{
-        VehicleID: "string",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -182,7 +182,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Evs.GetChargingLimit(ctx, operations.GetChargingLimitRequest{
-        VehicleID: "string",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -251,7 +251,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Evs.GetChargingStatus(ctx, operations.GetChargingStatusRequest{
-        VehicleID: "string",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -309,7 +309,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Evs.SetChargingLimit(ctx, operations.SetChargingLimitRequest{
-        VehicleID: "string",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -378,7 +378,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Evs.StartStopCharge(ctx, operations.StartStopChargeRequest{
-        VehicleID: "string",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)

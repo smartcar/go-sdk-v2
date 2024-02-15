@@ -47,8 +47,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Webhooks.Subscribe(ctx, operations.SubscribeRequest{
-        VehicleID: "string",
-        WebhookID: "string",
+        VehicleID: "<value>",
+        WebhookID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -116,8 +116,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Webhooks.Unsubscribe(ctx, operations.UnsubscribeRequest{
-        VehicleID: "string",
-        WebhookID: "string",
+        VehicleID: "<value>",
+        WebhookID: "<value>",
     })
     if err != nil {
         log.Fatal(err)

@@ -6,13 +6,14 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"github.com/smartcar/go-sdk-v2/v3/internal/hooks"
 	"github.com/smartcar/go-sdk-v2/v3/pkg/models/operations"
 	"github.com/smartcar/go-sdk-v2/v3/pkg/models/sdkerrors"
 	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
 	"github.com/smartcar/go-sdk-v2/v3/pkg/utils"
 	"io"
 	"net/http"
-	"strings"
+	"net/url"
 )
 
 // VehicleManagement - Operations to manage vehicle connections
@@ -29,6 +30,8 @@ func newVehicleManagement(sdkConfig sdkConfiguration) *VehicleManagement {
 // DeleteManagementVehicleConnections - Delete vehicle connections by user_id or vehicle_id
 // Delete all connections by vehicle or user ID.
 func (s *VehicleManagement) DeleteManagementVehicleConnections(ctx context.Context, request operations.DeleteManagementVehicleConnectionsRequest, security operations.DeleteManagementVehicleConnectionsSecurity, opts ...operations.Option) (*operations.DeleteManagementVehicleConnectionsResponse, error) {
+	hookCtx := hooks.HookContext{OperationID: "deleteManagementVehicleConnections"}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionServerURL,
@@ -44,14 +47,17 @@ func (s *VehicleManagement) DeleteManagementVehicleConnections(ctx context.Conte
 		baseURL = *o.ServerURL
 	}
 
-	url := strings.TrimSuffix(baseURL, "/") + "/management/connections"
+	opURL, err := url.JoinPath(baseURL, "/management/connections")
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
-	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
+	req, err := http.NewRequestWithContext(ctx, "DELETE", opURL, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", s.sdkConfiguration.UserAgent)
+	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -59,12 +65,31 @@ func (s *VehicleManagement) DeleteManagementVehicleConnections(ctx context.Conte
 
 	client := utils.ConfigureSecurityClient(s.sdkConfiguration.DefaultClient, withSecurity(security))
 
-	httpRes, err := client.Do(req)
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
 	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
+		return nil, err
 	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
+
+	httpRes, err := client.Do(req)
+	if err != nil || httpRes == nil {
+		if err != nil {
+			err = fmt.Errorf("error sending request: %w", err)
+		} else {
+			err = fmt.Errorf("error sending request: no response")
+		}
+
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		return nil, err
+	} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		if err != nil {
+			return nil, err
+		}
 	}
 
 	contentType := httpRes.Header.Get("Content-Type")
@@ -81,6 +106,7 @@ func (s *VehicleManagement) DeleteManagementVehicleConnections(ctx context.Conte
 	}
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
+
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
@@ -106,6 +132,8 @@ func (s *VehicleManagement) DeleteManagementVehicleConnections(ctx context.Conte
 // GetManagementVehicleConnections - Retrieve vehicle connections
 // Returns a paged list of all the vehicles that are connected to the application associated with the management API token used sorted in descending order by connection date.
 func (s *VehicleManagement) GetManagementVehicleConnections(ctx context.Context, request operations.GetManagementVehicleConnectionsRequest, security operations.GetManagementVehicleConnectionsSecurity, opts ...operations.Option) (*operations.GetManagementVehicleConnectionsResponse, error) {
+	hookCtx := hooks.HookContext{OperationID: "getManagementVehicleConnections"}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionServerURL,
@@ -121,14 +149,17 @@ func (s *VehicleManagement) GetManagementVehicleConnections(ctx context.Context,
 		baseURL = *o.ServerURL
 	}
 
-	url := strings.TrimSuffix(baseURL, "/") + "/management/connections"
+	opURL, err := url.JoinPath(baseURL, "/management/connections")
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	req, err := http.NewRequestWithContext(ctx, "GET", opURL, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", s.sdkConfiguration.UserAgent)
+	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
@@ -136,12 +167,31 @@ func (s *VehicleManagement) GetManagementVehicleConnections(ctx context.Context,
 
 	client := utils.ConfigureSecurityClient(s.sdkConfiguration.DefaultClient, withSecurity(security))
 
-	httpRes, err := client.Do(req)
+	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{hookCtx}, req)
 	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
+		return nil, err
 	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
+
+	httpRes, err := client.Do(req)
+	if err != nil || httpRes == nil {
+		if err != nil {
+			err = fmt.Errorf("error sending request: %w", err)
+		} else {
+			err = fmt.Errorf("error sending request: no response")
+		}
+
+		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, nil, err)
+		return nil, err
+	} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
+		httpRes, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{hookCtx}, httpRes, nil)
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{hookCtx}, httpRes)
+		if err != nil {
+			return nil, err
+		}
 	}
 
 	contentType := httpRes.Header.Get("Content-Type")
@@ -158,6 +208,7 @@ func (s *VehicleManagement) GetManagementVehicleConnections(ctx context.Context,
 	}
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
+
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {

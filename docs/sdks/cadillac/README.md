@@ -37,7 +37,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Cadillac.GetChargeTime(ctx, operations.GetCadillacChargeTimeRequest{
-        VehicleID: "string",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -95,7 +95,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Cadillac.GetVoltage(ctx, operations.GetCadillacVoltageRequest{
-        VehicleID: "string",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)

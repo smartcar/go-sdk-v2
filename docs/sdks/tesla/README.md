@@ -44,7 +44,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Tesla.GetAmmeter(ctx, operations.GetTeslaAmmeterRequest{
-        VehicleID: "string",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -102,7 +102,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Tesla.GetChargeTime(ctx, operations.GetTeslaChargeTimeRequest{
-        VehicleID: "string",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -160,7 +160,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Tesla.GetCompass(ctx, operations.GetTeslaCompassRequest{
-        VehicleID: "string",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -218,7 +218,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Tesla.GetExteriorTemperature(ctx, operations.GetTeslaExteriorTemperatureRequest{
-        ID: "<ID>",
+        ID: "<id>",
     })
     if err != nil {
         log.Fatal(err)
@@ -276,7 +276,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Tesla.GetInteriorTemperature(ctx, operations.GetTeslaInteriorTemperatureRequest{
-        ID: "<ID>",
+        ID: "<id>",
     })
     if err != nil {
         log.Fatal(err)
@@ -334,7 +334,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Tesla.GetSpeedometer(ctx, operations.GetTeslaSpeedRequest{
-        VehicleID: "string",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -392,7 +392,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Tesla.GetVoltage(ctx, operations.GetTeslaVoltageRequest{
-        VehicleID: "string",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -450,7 +450,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Tesla.GetWattmeter(ctx, operations.GetTeslaWattmeterRequest{
-        VehicleID: "string",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -508,7 +508,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Tesla.SetAmmeter(ctx, operations.SetTeslaAmmeterRequest{
-        VehicleID: "string",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)

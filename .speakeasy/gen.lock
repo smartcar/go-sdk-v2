@@ -4,16 +4,16 @@ management:
   docChecksum: 203e4bd19c2b39b1533102dd566af1ff
   docVersion: 1.0.0
   speakeasyVersion: internal
-  generationVersion: 2.253.0
-  releaseVersion: 3.0.2
-  configChecksum: c235d61b6880f185f8f3958bb66ff2bf
+  generationVersion: 2.258.0
+  releaseVersion: 3.1.0
+  configChecksum: 7ff8b071f8b317db693978c174105714
   repoURL: https://github.com/smartcar/go-sdk-v2.git
   repoSubDirectory: .
   installationURL: https://github.com/smartcar/go-sdk-v2
   published: true
 features:
   go:
-    core: 3.3.2
+    core: 3.4.0
     examples: 2.81.3
     globalSecurity: 2.82.6
     globalServerURLs: 2.82.1
@@ -316,3 +316,4 @@ generatedFiles:
   - USAGE.md
   - pkg/models/operations/options.go
   - .gitattributes
+  - internal/hooks/hooks.go

@@ -51,7 +51,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.Batch(ctx, operations.BatchRequest{
-        VehicleID: "string",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -107,7 +107,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.LockStatus(ctx, operations.LockStatusRequest{
-        VehicleID: "string",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -171,7 +171,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.Disconnect(ctx, operations.DisconnectRequest{
-        VehicleID: "string",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -242,7 +242,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.Get(ctx, operations.GetVehicleRequest{
-        VehicleID: "string",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -310,7 +310,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.GetEngineOil(ctx, operations.GetEngineOilRequest{
-        VehicleID: "string",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -380,7 +380,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.GetFuelTank(ctx, operations.GetFuelTankRequest{
-        VehicleID: "string",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -517,7 +517,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.GetOdometer(ctx, operations.GetOdometerRequest{
-        VehicleID: "string",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -592,7 +592,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.GetPermissions(ctx, operations.GetPermissionsRequest{
-        VehicleID: "string",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -662,7 +662,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.GetTirePressure(ctx, operations.GetTirePressureRequest{
-        VehicleID: "string",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -720,7 +720,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.GetVin(ctx, operations.GetVinRequest{
-        VehicleID: "string",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -861,7 +861,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.LockUnlock(ctx, operations.LockUnlockRequest{
-        VehicleID: "string",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -919,7 +919,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.SendDestination(ctx, operations.SendDestinationRequest{
-        VehicleID: "string",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)

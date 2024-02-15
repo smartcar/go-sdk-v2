@@ -37,7 +37,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Chevrolet.GetChargeTime(ctx, operations.GetChevroletChargeTimeRequest{
-        VehicleID: "string",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
@@ -95,7 +95,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Chevrolet.GetVoltage(ctx, operations.GetChevroletVoltageRequest{
-        VehicleID: "string",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
