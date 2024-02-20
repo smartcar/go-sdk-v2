@@ -53,7 +53,7 @@ type afterSuccessHook interface {
 	AfterSuccess(hookCtx AfterSuccessContext, res *http.Response) (*http.Response, error)
 }
 
-// afterSuccessHook is called after the SDK encounters an error, or a non-successful response. The hook can modify the response if available otherwise modify the error.
+// afterErrorHook is called after the SDK encounters an error, or a non-successful response. The hook can modify the response if available otherwise modify the error.
 // All afterErrorHook hooks are called and returning an error won't stop the other hooks from being called. But if you want to stop the other hooks from being called, you can return a FailEarly error wrapping your error.
 type afterErrorHook interface {
 	AfterError(hookCtx AfterErrorContext, res *http.Response, err error) (*http.Response, error)

@@ -4,16 +4,16 @@ management:
   docChecksum: 203e4bd19c2b39b1533102dd566af1ff
   docVersion: 1.0.0
   speakeasyVersion: internal
-  generationVersion: 2.258.0
-  releaseVersion: 3.1.0
-  configChecksum: 7ff8b071f8b317db693978c174105714
+  generationVersion: 2.263.3
+  releaseVersion: 3.1.1
+  configChecksum: c94ea48da306511c4a0fa2df552b08fc
   repoURL: https://github.com/smartcar/go-sdk-v2.git
   repoSubDirectory: .
   installationURL: https://github.com/smartcar/go-sdk-v2
   published: true
 features:
   go:
-    core: 3.4.0
+    core: 3.4.1
     examples: 2.81.3
     globalSecurity: 2.82.6
     globalServerURLs: 2.82.1
@@ -33,7 +33,6 @@ generatedFiles:
   - webhooks.go
   - smartcar.go
   - go.mod
-  - go.sum
   - pkg/models/sdkerrors/sdkerror.go
   - pkg/types/bigint.go
   - pkg/types/date.go
