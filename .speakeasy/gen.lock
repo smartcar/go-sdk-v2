@@ -4,9 +4,9 @@ management:
   docChecksum: 203e4bd19c2b39b1533102dd566af1ff
   docVersion: 1.0.0
   speakeasyVersion: internal
-  generationVersion: 2.272.7
-  releaseVersion: 3.1.3
-  configChecksum: eab0d5f978ddf37d5d795b735ef2d6cb
+  generationVersion: 2.277.0
+  releaseVersion: 3.1.4
+  configChecksum: 3bf289aa7645c100b107460bf8833386
   repoURL: https://github.com/smartcar/go-sdk-v2.git
   repoSubDirectory: .
   installationURL: https://github.com/smartcar/go-sdk-v2
@@ -20,7 +20,7 @@ features:
     methodSecurity: 2.82.2
     methodServerURLs: 2.82.1
     nameOverrides: 2.81.1
-    unions: 2.85.3
+    unions: 2.85.4
 generatedFiles:
   - compatibility.go
   - vehiclemanagement.go
