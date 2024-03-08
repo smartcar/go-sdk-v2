@@ -53,7 +53,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.SuccessResponse != nil {
         // handle response
     }
@@ -122,7 +121,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.SuccessResponse != nil {
         // handle response
     }

@@ -45,7 +45,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.Location != nil {
 		// handle response
 	}
@@ -233,7 +232,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.CompatibilityResponse != nil {
 		// handle response
 	}
@@ -276,7 +274,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.CompatibilityResponse != nil {
 		// handle response
 	}
@@ -310,7 +307,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.DeletedConnectionsResponse != nil {
 		// handle response
 	}
@@ -391,7 +387,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.CompatibilityResponse != nil {
 		// handle response
 	}
@@ -425,7 +420,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.DeletedConnectionsResponse != nil {
 		// handle response
 	}

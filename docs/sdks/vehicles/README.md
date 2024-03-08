@@ -56,7 +56,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.BatchResponse != nil {
         // handle response
     }
@@ -112,7 +111,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.SecurityRead != nil {
         // handle response
     }
@@ -176,7 +174,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Status != nil {
         // handle response
     }
@@ -247,7 +244,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.VehicleInfo != nil {
         // handle response
     }
@@ -315,7 +311,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.EngineOil != nil {
         // handle response
     }
@@ -385,7 +380,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.FuelTank != nil {
         // handle response
     }
@@ -454,7 +448,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Location != nil {
         // handle response
     }
@@ -522,7 +515,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Odometer != nil {
         // handle response
     }
@@ -597,7 +589,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Permission != nil {
         // handle response
     }
@@ -667,7 +658,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.TirePressure != nil {
         // handle response
     }
@@ -725,7 +715,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.VinInfo != nil {
         // handle response
     }
@@ -798,7 +787,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.VehiclesResponse != nil {
         // handle response
     }
@@ -866,7 +854,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.SuccessResponse != nil {
         // handle response
     }
@@ -924,7 +911,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.SuccessResponse != nil {
         // handle response
     }

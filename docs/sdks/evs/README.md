@@ -60,7 +60,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.BatteryCapacity != nil {
         // handle response
     }
@@ -129,7 +128,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.BatteryLevel != nil {
         // handle response
     }
@@ -187,7 +185,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.ChargeLimit != nil {
         // handle response
     }
@@ -256,7 +253,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.ChargeStatus != nil {
         // handle response
     }
@@ -314,7 +310,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.SuccessResponse != nil {
         // handle response
     }
@@ -383,7 +378,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.SuccessResponse != nil {
         // handle response
     }

@@ -49,7 +49,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.ChargeAmmeter != nil {
         // handle response
     }
@@ -107,7 +106,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.ChargeTime != nil {
         // handle response
     }
@@ -165,7 +163,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Compass != nil {
         // handle response
     }
@@ -223,7 +220,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Temperature != nil {
         // handle response
     }
@@ -281,7 +277,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Temperature != nil {
         // handle response
     }
@@ -339,7 +334,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Speed != nil {
         // handle response
     }
@@ -397,7 +391,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.ChargeVoltage != nil {
         // handle response
     }
@@ -455,7 +448,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.ChargeWattage != nil {
         // handle response
     }
@@ -513,7 +505,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.SuccessResponse != nil {
         // handle response
     }
