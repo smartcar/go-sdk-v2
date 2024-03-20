@@ -29,11 +29,11 @@ func newVehicleManagement(sdkConfig sdkConfiguration) *VehicleManagement {
 
 // DeleteManagementVehicleConnections - Delete vehicle connections by user_id or vehicle_id
 // Delete all connections by vehicle or user ID.
-func (s *VehicleManagement) DeleteManagementVehicleConnections(ctx context.Context, request operations.DeleteManagementVehicleConnectionsRequest, security operations.DeleteManagementVehicleConnectionsSecurity, opts ...operations.Option) (*operations.DeleteManagementVehicleConnectionsResponse, error) {
+func (s *VehicleManagement) DeleteManagementVehicleConnections(ctx context.Context, request operations.DeleteManagementVehicleConnectionsRequest, opts ...operations.Option) (*operations.DeleteManagementVehicleConnectionsResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "deleteManagementVehicleConnections",
-		SecuritySource: withSecurity(security),
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	o := operations.Options{}
@@ -67,7 +67,7 @@ func (s *VehicleManagement) DeleteManagementVehicleConnections(ctx context.Conte
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, withSecurity(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -137,11 +137,11 @@ func (s *VehicleManagement) DeleteManagementVehicleConnections(ctx context.Conte
 
 // GetManagementVehicleConnections - Retrieve vehicle connections
 // Returns a paged list of all the vehicles that are connected to the application associated with the management API token used sorted in descending order by connection date.
-func (s *VehicleManagement) GetManagementVehicleConnections(ctx context.Context, request operations.GetManagementVehicleConnectionsRequest, security operations.GetManagementVehicleConnectionsSecurity, opts ...operations.Option) (*operations.GetManagementVehicleConnectionsResponse, error) {
+func (s *VehicleManagement) GetManagementVehicleConnections(ctx context.Context, request operations.GetManagementVehicleConnectionsRequest, opts ...operations.Option) (*operations.GetManagementVehicleConnectionsResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "getManagementVehicleConnections",
-		SecuritySource: withSecurity(security),
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	o := operations.Options{}
@@ -175,7 +175,7 @@ func (s *VehicleManagement) GetManagementVehicleConnections(ctx context.Context,
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, withSecurity(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 

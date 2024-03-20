@@ -11,25 +11,6 @@ var DeleteManagementVehicleConnectionsServerList = []string{
 	"https://management.smartcar.com/v2.0",
 }
 
-type DeleteManagementVehicleConnectionsSecurity struct {
-	Password string `security:"scheme,type=http,subtype=basic,name=password"`
-	Username string `security:"scheme,type=http,subtype=basic,name=username"`
-}
-
-func (o *DeleteManagementVehicleConnectionsSecurity) GetPassword() string {
-	if o == nil {
-		return ""
-	}
-	return o.Password
-}
-
-func (o *DeleteManagementVehicleConnectionsSecurity) GetUsername() string {
-	if o == nil {
-		return ""
-	}
-	return o.Username
-}
-
 type DeleteManagementVehicleConnectionsRequest struct {
 	// Delete all connections containing this user ID (UUID v4).
 	UserID *string `queryParam:"style=form,explode=true,name=user_id"`

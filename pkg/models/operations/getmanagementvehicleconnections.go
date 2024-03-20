@@ -11,25 +11,6 @@ var GetManagementVehicleConnectionsServerList = []string{
 	"https://management.smartcar.com/v2.0",
 }
 
-type GetManagementVehicleConnectionsSecurity struct {
-	Password string `security:"scheme,type=http,subtype=basic,name=password"`
-	Username string `security:"scheme,type=http,subtype=basic,name=username"`
-}
-
-func (o *GetManagementVehicleConnectionsSecurity) GetPassword() string {
-	if o == nil {
-		return ""
-	}
-	return o.Password
-}
-
-func (o *GetManagementVehicleConnectionsSecurity) GetUsername() string {
-	if o == nil {
-		return ""
-	}
-	return o.Username
-}
-
 type GetManagementVehicleConnectionsRequest struct {
 	// Used for accessing pages other than the first page. Each page returned has a cursor value that can be passed here to fetch the “next” page.
 	Cursor *string `queryParam:"style=form,explode=true,name=cursor"`

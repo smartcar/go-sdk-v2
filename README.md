@@ -291,19 +291,22 @@ import (
 	"context"
 	gosdkv2 "github.com/smartcar/go-sdk-v2/v3"
 	"github.com/smartcar/go-sdk-v2/v3/pkg/models/operations"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
 	"log"
 )
 
 func main() {
-	s := gosdkv2.New()
-
-	operationSecurity := operations.DeleteManagementVehicleConnectionsSecurity{
-		Password: "<YOUR_PASSWORD_HERE>",
-		Username: "<YOUR_USERNAME_HERE>",
-	}
+	s := gosdkv2.New(
+		gosdkv2.WithSecurity(shared.Security{
+			BasicAuth: &shared.SchemeBasicAuth{
+				Password: "<YOUR_PASSWORD_HERE>",
+				Username: "<YOUR_USERNAME_HERE>",
+			},
+		}),
+	)
 
 	ctx := context.Background()
-	res, err := s.VehicleManagement.DeleteManagementVehicleConnections(ctx, operations.DeleteManagementVehicleConnectionsRequest{}, operationSecurity, operations.WithServerURL("https://management.smartcar.com/v2.0"))
+	res, err := s.VehicleManagement.DeleteManagementVehicleConnections(ctx, operations.DeleteManagementVehicleConnectionsRequest{}, operations.WithServerURL("https://management.smartcar.com/v2.0"))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -388,39 +391,6 @@ func main() {
 		log.Fatal(err)
 	}
 	if res.CompatibilityResponse != nil {
-		// handle response
-	}
-}
-
-```
-
-### Per-Operation Security Schemes
-
-Some operations in this SDK require the security scheme to be specified at the request level. For example:
-```go
-package main
-
-import (
-	"context"
-	gosdkv2 "github.com/smartcar/go-sdk-v2/v3"
-	"github.com/smartcar/go-sdk-v2/v3/pkg/models/operations"
-	"log"
-)
-
-func main() {
-	s := gosdkv2.New()
-
-	operationSecurity := operations.DeleteManagementVehicleConnectionsSecurity{
-		Password: "<YOUR_PASSWORD_HERE>",
-		Username: "<YOUR_USERNAME_HERE>",
-	}
-
-	ctx := context.Background()
-	res, err := s.VehicleManagement.DeleteManagementVehicleConnections(ctx, operations.DeleteManagementVehicleConnectionsRequest{}, operationSecurity)
-	if err != nil {
-		log.Fatal(err)
-	}
-	if res.DeletedConnectionsResponse != nil {
 		// handle response
 	}
 }
