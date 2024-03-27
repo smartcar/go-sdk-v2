@@ -7,18 +7,18 @@ import (
 	"fmt"
 )
 
-type ChargeActionAction string
+type Action string
 
 const (
-	ChargeActionActionStart ChargeActionAction = "START"
-	ChargeActionActionStop  ChargeActionAction = "STOP"
+	ActionStart Action = "START"
+	ActionStop  Action = "STOP"
 )
 
-func (e ChargeActionAction) ToPointer() *ChargeActionAction {
+func (e Action) ToPointer() *Action {
 	return &e
 }
 
-func (e *ChargeActionAction) UnmarshalJSON(data []byte) error {
+func (e *Action) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -27,18 +27,18 @@ func (e *ChargeActionAction) UnmarshalJSON(data []byte) error {
 	case "START":
 		fallthrough
 	case "STOP":
-		*e = ChargeActionAction(v)
+		*e = Action(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ChargeActionAction: %v", v)
+		return fmt.Errorf("invalid value for Action: %v", v)
 	}
 }
 
 type ChargeAction struct {
-	Action *ChargeActionAction `json:"action,omitempty"`
+	Action *Action `json:"action,omitempty"`
 }
 
-func (o *ChargeAction) GetAction() *ChargeActionAction {
+func (o *ChargeAction) GetAction() *Action {
 	if o == nil {
 		return nil
 	}

@@ -1,4 +1,5 @@
 # User
+(*User*)
 
 ### Available Operations
 
@@ -16,18 +17,18 @@ Returns the id of the vehicle owner who granted access to your application. This
 package main
 
 import(
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2/v3"
 	"context"
 	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 )
 
 func main() {
     s := gosdkv2.New(
         gosdkv2.WithSecurity(shared.Security{
             BasicAuth: &shared.SchemeBasicAuth{
-                Password: "",
-                Username: "",
+                Password: "<YOUR_PASSWORD_HERE>",
+                Username: "<YOUR_USERNAME_HERE>",
             },
         }),
     )
@@ -37,7 +38,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.UserInfo != nil {
         // handle response
     }
@@ -53,5 +53,7 @@ func main() {
 
 ### Response
 
-**[*operations.GetInfoResponse](../../models/operations/getinforesponse.md), error**
-
+**[*operations.GetInfoResponse](../../pkg/models/operations/getinforesponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

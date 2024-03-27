@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
 	"net/http"
 )
 
@@ -21,9 +21,12 @@ func (o *GetBatteryCapacityRequest) GetVehicleID() string {
 type GetBatteryCapacityResponse struct {
 	// return EV Battery Capacity reading
 	BatteryCapacity *shared.BatteryCapacity
-	ContentType     string
-	StatusCode      int
-	RawResponse     *http.Response
+	// HTTP response content type for this operation
+	ContentType string
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *GetBatteryCapacityResponse) GetBatteryCapacity() *shared.BatteryCapacity {

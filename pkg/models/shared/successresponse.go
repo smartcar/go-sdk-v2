@@ -7,18 +7,18 @@ import (
 	"fmt"
 )
 
-type SuccessResponseStatus string
+type Status string
 
 const (
-	SuccessResponseStatusSuccess SuccessResponseStatus = "SUCCESS"
-	SuccessResponseStatusFailed  SuccessResponseStatus = "FAILED"
+	StatusSuccess Status = "SUCCESS"
+	StatusFailed  Status = "FAILED"
 )
 
-func (e SuccessResponseStatus) ToPointer() *SuccessResponseStatus {
+func (e Status) ToPointer() *Status {
 	return &e
 }
 
-func (e *SuccessResponseStatus) UnmarshalJSON(data []byte) error {
+func (e *Status) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -27,16 +27,16 @@ func (e *SuccessResponseStatus) UnmarshalJSON(data []byte) error {
 	case "SUCCESS":
 		fallthrough
 	case "FAILED":
-		*e = SuccessResponseStatus(v)
+		*e = Status(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for SuccessResponseStatus: %v", v)
+		return fmt.Errorf("invalid value for Status: %v", v)
 	}
 }
 
 type SuccessResponse struct {
-	Message *string                `json:"message,omitempty"`
-	Status  *SuccessResponseStatus `json:"status,omitempty"`
+	Message *string `json:"message,omitempty"`
+	Status  *Status `json:"status,omitempty"`
 }
 
 func (o *SuccessResponse) GetMessage() *string {
@@ -46,7 +46,7 @@ func (o *SuccessResponse) GetMessage() *string {
 	return o.Message
 }
 
-func (o *SuccessResponse) GetStatus() *SuccessResponseStatus {
+func (o *SuccessResponse) GetStatus() *Status {
 	if o == nil {
 		return nil
 	}

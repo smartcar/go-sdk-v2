@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
 	"net/http"
 )
 
@@ -19,10 +19,13 @@ func (o *GetTeslaSpeedRequest) GetVehicleID() string {
 }
 
 type GetTeslaSpeedResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// returns the speed of a Tesla.
-	Speed       *shared.Speed
-	StatusCode  int
+	Speed *shared.Speed
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 

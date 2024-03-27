@@ -3,31 +3,12 @@
 package operations
 
 import (
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
 	"net/http"
 )
 
 var GetManagementVehicleConnectionsServerList = []string{
 	"https://management.smartcar.com/v2.0",
-}
-
-type GetManagementVehicleConnectionsSecurity struct {
-	Password string `security:"scheme,type=http,subtype=basic,name=password"`
-	Username string `security:"scheme,type=http,subtype=basic,name=username"`
-}
-
-func (o *GetManagementVehicleConnectionsSecurity) GetPassword() string {
-	if o == nil {
-		return ""
-	}
-	return o.Password
-}
-
-func (o *GetManagementVehicleConnectionsSecurity) GetUsername() string {
-	if o == nil {
-		return ""
-	}
-	return o.Username
 }
 
 type GetManagementVehicleConnectionsRequest struct {
@@ -72,9 +53,12 @@ func (o *GetManagementVehicleConnectionsRequest) GetVehicleID() *string {
 type GetManagementVehicleConnectionsResponse struct {
 	// returns vehicle connections
 	ConnectionsResponse *shared.ConnectionsResponse
-	ContentType         string
-	StatusCode          int
-	RawResponse         *http.Response
+	// HTTP response content type for this operation
+	ContentType string
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *GetManagementVehicleConnectionsResponse) GetConnectionsResponse() *shared.ConnectionsResponse {

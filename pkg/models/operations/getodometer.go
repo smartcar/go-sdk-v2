@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
 	"net/http"
 )
 
@@ -19,10 +19,13 @@ func (o *GetOdometerRequest) GetVehicleID() string {
 }
 
 type GetOdometerResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// return odometer reading
-	Odometer    *shared.Odometer
-	StatusCode  int
+	Odometer *shared.Odometer
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 

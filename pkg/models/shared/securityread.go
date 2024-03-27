@@ -5,23 +5,21 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/smartcar/go-sdk-v2/pkg/types"
-	"github.com/smartcar/go-sdk-v2/pkg/utils"
 )
 
-type SecurityReadChargingPortStatus string
+type SecurityReadSchemasChargingPortStatus string
 
 const (
-	SecurityReadChargingPortStatusOpen    SecurityReadChargingPortStatus = "OPEN"
-	SecurityReadChargingPortStatusClosed  SecurityReadChargingPortStatus = "CLOSED"
-	SecurityReadChargingPortStatusUnknown SecurityReadChargingPortStatus = "UNKNOWN"
+	SecurityReadSchemasChargingPortStatusOpen    SecurityReadSchemasChargingPortStatus = "OPEN"
+	SecurityReadSchemasChargingPortStatusClosed  SecurityReadSchemasChargingPortStatus = "CLOSED"
+	SecurityReadSchemasChargingPortStatusUnknown SecurityReadSchemasChargingPortStatus = "UNKNOWN"
 )
 
-func (e SecurityReadChargingPortStatus) ToPointer() *SecurityReadChargingPortStatus {
+func (e SecurityReadSchemasChargingPortStatus) ToPointer() *SecurityReadSchemasChargingPortStatus {
 	return &e
 }
 
-func (e *SecurityReadChargingPortStatus) UnmarshalJSON(data []byte) error {
+func (e *SecurityReadSchemasChargingPortStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -32,53 +30,69 @@ func (e *SecurityReadChargingPortStatus) UnmarshalJSON(data []byte) error {
 	case "CLOSED":
 		fallthrough
 	case "UNKNOWN":
-		*e = SecurityReadChargingPortStatus(v)
+		*e = SecurityReadSchemasChargingPortStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for SecurityReadChargingPortStatus: %v", v)
+		return fmt.Errorf("invalid value for SecurityReadSchemasChargingPortStatus: %v", v)
 	}
 }
 
-type SecurityReadChargingPort struct {
-	Status *SecurityReadChargingPortStatus `json:"status,omitempty"`
-	type_  *string                         `const:"chargingPort" json:"type,omitempty"`
+type Type string
+
+const (
+	TypeChargingPort Type = "chargingPort"
+)
+
+func (e Type) ToPointer() *Type {
+	return &e
 }
 
-func (s SecurityReadChargingPort) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(s, "", false)
-}
-
-func (s *SecurityReadChargingPort) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+func (e *Type) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	return nil
+	switch v {
+	case "chargingPort":
+		*e = Type(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Type: %v", v)
+	}
 }
 
-func (o *SecurityReadChargingPort) GetStatus() *SecurityReadChargingPortStatus {
+type ChargingPort struct {
+	Status *SecurityReadSchemasChargingPortStatus `json:"status,omitempty"`
+	Type   *Type                                  `json:"type,omitempty"`
+}
+
+func (o *ChargingPort) GetStatus() *SecurityReadSchemasChargingPortStatus {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *SecurityReadChargingPort) GetType() *string {
-	return types.String("chargingPort")
+func (o *ChargingPort) GetType() *Type {
+	if o == nil {
+		return nil
+	}
+	return o.Type
 }
 
-type SecurityReadDoorsStatus string
+type SecurityReadStatus string
 
 const (
-	SecurityReadDoorsStatusOpen    SecurityReadDoorsStatus = "OPEN"
-	SecurityReadDoorsStatusClosed  SecurityReadDoorsStatus = "CLOSED"
-	SecurityReadDoorsStatusUnknown SecurityReadDoorsStatus = "UNKNOWN"
+	SecurityReadStatusOpen    SecurityReadStatus = "OPEN"
+	SecurityReadStatusClosed  SecurityReadStatus = "CLOSED"
+	SecurityReadStatusUnknown SecurityReadStatus = "UNKNOWN"
 )
 
-func (e SecurityReadDoorsStatus) ToPointer() *SecurityReadDoorsStatus {
+func (e SecurityReadStatus) ToPointer() *SecurityReadStatus {
 	return &e
 }
 
-func (e *SecurityReadDoorsStatus) UnmarshalJSON(data []byte) error {
+func (e *SecurityReadStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -89,27 +103,27 @@ func (e *SecurityReadDoorsStatus) UnmarshalJSON(data []byte) error {
 	case "CLOSED":
 		fallthrough
 	case "UNKNOWN":
-		*e = SecurityReadDoorsStatus(v)
+		*e = SecurityReadStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for SecurityReadDoorsStatus: %v", v)
+		return fmt.Errorf("invalid value for SecurityReadStatus: %v", v)
 	}
 }
 
-type SecurityReadDoorsType string
+type SecurityReadType string
 
 const (
-	SecurityReadDoorsTypeFrontLeft  SecurityReadDoorsType = "frontLeft"
-	SecurityReadDoorsTypeFrontRight SecurityReadDoorsType = "frontRight"
-	SecurityReadDoorsTypeBackLeft   SecurityReadDoorsType = "backLeft"
-	SecurityReadDoorsTypeBackRight  SecurityReadDoorsType = "backRight"
+	SecurityReadTypeFrontLeft  SecurityReadType = "frontLeft"
+	SecurityReadTypeFrontRight SecurityReadType = "frontRight"
+	SecurityReadTypeBackLeft   SecurityReadType = "backLeft"
+	SecurityReadTypeBackRight  SecurityReadType = "backRight"
 )
 
-func (e SecurityReadDoorsType) ToPointer() *SecurityReadDoorsType {
+func (e SecurityReadType) ToPointer() *SecurityReadType {
 	return &e
 }
 
-func (e *SecurityReadDoorsType) UnmarshalJSON(data []byte) error {
+func (e *SecurityReadType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -122,45 +136,45 @@ func (e *SecurityReadDoorsType) UnmarshalJSON(data []byte) error {
 	case "backLeft":
 		fallthrough
 	case "backRight":
-		*e = SecurityReadDoorsType(v)
+		*e = SecurityReadType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for SecurityReadDoorsType: %v", v)
+		return fmt.Errorf("invalid value for SecurityReadType: %v", v)
 	}
 }
 
-type SecurityReadDoors struct {
-	Status *SecurityReadDoorsStatus `json:"status,omitempty"`
-	Type   *SecurityReadDoorsType   `json:"type,omitempty"`
+type Doors struct {
+	Status *SecurityReadStatus `json:"status,omitempty"`
+	Type   *SecurityReadType   `json:"type,omitempty"`
 }
 
-func (o *SecurityReadDoors) GetStatus() *SecurityReadDoorsStatus {
+func (o *Doors) GetStatus() *SecurityReadStatus {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *SecurityReadDoors) GetType() *SecurityReadDoorsType {
+func (o *Doors) GetType() *SecurityReadType {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-type SecurityReadStorageStatus string
+type SecurityReadSchemasStatus string
 
 const (
-	SecurityReadStorageStatusOpen    SecurityReadStorageStatus = "OPEN"
-	SecurityReadStorageStatusClosed  SecurityReadStorageStatus = "CLOSED"
-	SecurityReadStorageStatusUnknown SecurityReadStorageStatus = "UNKNOWN"
+	SecurityReadSchemasStatusOpen    SecurityReadSchemasStatus = "OPEN"
+	SecurityReadSchemasStatusClosed  SecurityReadSchemasStatus = "CLOSED"
+	SecurityReadSchemasStatusUnknown SecurityReadSchemasStatus = "UNKNOWN"
 )
 
-func (e SecurityReadStorageStatus) ToPointer() *SecurityReadStorageStatus {
+func (e SecurityReadSchemasStatus) ToPointer() *SecurityReadSchemasStatus {
 	return &e
 }
 
-func (e *SecurityReadStorageStatus) UnmarshalJSON(data []byte) error {
+func (e *SecurityReadSchemasStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -171,25 +185,25 @@ func (e *SecurityReadStorageStatus) UnmarshalJSON(data []byte) error {
 	case "CLOSED":
 		fallthrough
 	case "UNKNOWN":
-		*e = SecurityReadStorageStatus(v)
+		*e = SecurityReadSchemasStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for SecurityReadStorageStatus: %v", v)
+		return fmt.Errorf("invalid value for SecurityReadSchemasStatus: %v", v)
 	}
 }
 
-type SecurityReadStorageType string
+type SecurityReadSchemasType string
 
 const (
-	SecurityReadStorageTypeRear  SecurityReadStorageType = "rear"
-	SecurityReadStorageTypeFront SecurityReadStorageType = "front"
+	SecurityReadSchemasTypeRear  SecurityReadSchemasType = "rear"
+	SecurityReadSchemasTypeFront SecurityReadSchemasType = "front"
 )
 
-func (e SecurityReadStorageType) ToPointer() *SecurityReadStorageType {
+func (e SecurityReadSchemasType) ToPointer() *SecurityReadSchemasType {
 	return &e
 }
 
-func (e *SecurityReadStorageType) UnmarshalJSON(data []byte) error {
+func (e *SecurityReadSchemasType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -198,45 +212,45 @@ func (e *SecurityReadStorageType) UnmarshalJSON(data []byte) error {
 	case "rear":
 		fallthrough
 	case "front":
-		*e = SecurityReadStorageType(v)
+		*e = SecurityReadSchemasType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for SecurityReadStorageType: %v", v)
+		return fmt.Errorf("invalid value for SecurityReadSchemasType: %v", v)
 	}
 }
 
-type SecurityReadStorage struct {
-	Status *SecurityReadStorageStatus `json:"status,omitempty"`
-	Type   *SecurityReadStorageType   `json:"type,omitempty"`
+type Storage struct {
+	Status *SecurityReadSchemasStatus `json:"status,omitempty"`
+	Type   *SecurityReadSchemasType   `json:"type,omitempty"`
 }
 
-func (o *SecurityReadStorage) GetStatus() *SecurityReadStorageStatus {
+func (o *Storage) GetStatus() *SecurityReadSchemasStatus {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *SecurityReadStorage) GetType() *SecurityReadStorageType {
+func (o *Storage) GetType() *SecurityReadSchemasType {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-type SecurityReadSunroofStatus string
+type SecurityReadSchemasSunroofStatus string
 
 const (
-	SecurityReadSunroofStatusOpen    SecurityReadSunroofStatus = "OPEN"
-	SecurityReadSunroofStatusClosed  SecurityReadSunroofStatus = "CLOSED"
-	SecurityReadSunroofStatusUnknown SecurityReadSunroofStatus = "UNKNOWN"
+	SecurityReadSchemasSunroofStatusOpen    SecurityReadSchemasSunroofStatus = "OPEN"
+	SecurityReadSchemasSunroofStatusClosed  SecurityReadSchemasSunroofStatus = "CLOSED"
+	SecurityReadSchemasSunroofStatusUnknown SecurityReadSchemasSunroofStatus = "UNKNOWN"
 )
 
-func (e SecurityReadSunroofStatus) ToPointer() *SecurityReadSunroofStatus {
+func (e SecurityReadSchemasSunroofStatus) ToPointer() *SecurityReadSchemasSunroofStatus {
 	return &e
 }
 
-func (e *SecurityReadSunroofStatus) UnmarshalJSON(data []byte) error {
+func (e *SecurityReadSchemasSunroofStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -247,53 +261,69 @@ func (e *SecurityReadSunroofStatus) UnmarshalJSON(data []byte) error {
 	case "CLOSED":
 		fallthrough
 	case "UNKNOWN":
-		*e = SecurityReadSunroofStatus(v)
+		*e = SecurityReadSchemasSunroofStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for SecurityReadSunroofStatus: %v", v)
+		return fmt.Errorf("invalid value for SecurityReadSchemasSunroofStatus: %v", v)
 	}
 }
 
-type SecurityReadSunroof struct {
-	Status *SecurityReadSunroofStatus `json:"status,omitempty"`
-	type_  *string                    `const:"sunroof" json:"type,omitempty"`
+type SecurityReadSchemasSunroofType string
+
+const (
+	SecurityReadSchemasSunroofTypeSunroof SecurityReadSchemasSunroofType = "sunroof"
+)
+
+func (e SecurityReadSchemasSunroofType) ToPointer() *SecurityReadSchemasSunroofType {
+	return &e
 }
 
-func (s SecurityReadSunroof) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(s, "", false)
-}
-
-func (s *SecurityReadSunroof) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+func (e *SecurityReadSchemasSunroofType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	return nil
+	switch v {
+	case "sunroof":
+		*e = SecurityReadSchemasSunroofType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for SecurityReadSchemasSunroofType: %v", v)
+	}
 }
 
-func (o *SecurityReadSunroof) GetStatus() *SecurityReadSunroofStatus {
+type Sunroof struct {
+	Status *SecurityReadSchemasSunroofStatus `json:"status,omitempty"`
+	Type   *SecurityReadSchemasSunroofType   `json:"type,omitempty"`
+}
+
+func (o *Sunroof) GetStatus() *SecurityReadSchemasSunroofStatus {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *SecurityReadSunroof) GetType() *string {
-	return types.String("sunroof")
+func (o *Sunroof) GetType() *SecurityReadSchemasSunroofType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
 }
 
-type SecurityReadWindowsStatus string
+type SecurityReadSchemasWindowsStatus string
 
 const (
-	SecurityReadWindowsStatusOpen    SecurityReadWindowsStatus = "OPEN"
-	SecurityReadWindowsStatusClosed  SecurityReadWindowsStatus = "CLOSED"
-	SecurityReadWindowsStatusUnknown SecurityReadWindowsStatus = "UNKNOWN"
+	SecurityReadSchemasWindowsStatusOpen    SecurityReadSchemasWindowsStatus = "OPEN"
+	SecurityReadSchemasWindowsStatusClosed  SecurityReadSchemasWindowsStatus = "CLOSED"
+	SecurityReadSchemasWindowsStatusUnknown SecurityReadSchemasWindowsStatus = "UNKNOWN"
 )
 
-func (e SecurityReadWindowsStatus) ToPointer() *SecurityReadWindowsStatus {
+func (e SecurityReadSchemasWindowsStatus) ToPointer() *SecurityReadSchemasWindowsStatus {
 	return &e
 }
 
-func (e *SecurityReadWindowsStatus) UnmarshalJSON(data []byte) error {
+func (e *SecurityReadSchemasWindowsStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -304,27 +334,27 @@ func (e *SecurityReadWindowsStatus) UnmarshalJSON(data []byte) error {
 	case "CLOSED":
 		fallthrough
 	case "UNKNOWN":
-		*e = SecurityReadWindowsStatus(v)
+		*e = SecurityReadSchemasWindowsStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for SecurityReadWindowsStatus: %v", v)
+		return fmt.Errorf("invalid value for SecurityReadSchemasWindowsStatus: %v", v)
 	}
 }
 
-type SecurityReadWindowsType string
+type SecurityReadSchemasWindowsType string
 
 const (
-	SecurityReadWindowsTypeFrontLeft  SecurityReadWindowsType = "frontLeft"
-	SecurityReadWindowsTypeFrontRight SecurityReadWindowsType = "frontRight"
-	SecurityReadWindowsTypeBackLeft   SecurityReadWindowsType = "backLeft"
-	SecurityReadWindowsTypeBackRight  SecurityReadWindowsType = "backRight"
+	SecurityReadSchemasWindowsTypeFrontLeft  SecurityReadSchemasWindowsType = "frontLeft"
+	SecurityReadSchemasWindowsTypeFrontRight SecurityReadSchemasWindowsType = "frontRight"
+	SecurityReadSchemasWindowsTypeBackLeft   SecurityReadSchemasWindowsType = "backLeft"
+	SecurityReadSchemasWindowsTypeBackRight  SecurityReadSchemasWindowsType = "backRight"
 )
 
-func (e SecurityReadWindowsType) ToPointer() *SecurityReadWindowsType {
+func (e SecurityReadSchemasWindowsType) ToPointer() *SecurityReadSchemasWindowsType {
 	return &e
 }
 
-func (e *SecurityReadWindowsType) UnmarshalJSON(data []byte) error {
+func (e *SecurityReadSchemasWindowsType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -337,26 +367,26 @@ func (e *SecurityReadWindowsType) UnmarshalJSON(data []byte) error {
 	case "backLeft":
 		fallthrough
 	case "backRight":
-		*e = SecurityReadWindowsType(v)
+		*e = SecurityReadSchemasWindowsType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for SecurityReadWindowsType: %v", v)
+		return fmt.Errorf("invalid value for SecurityReadSchemasWindowsType: %v", v)
 	}
 }
 
-type SecurityReadWindows struct {
-	Status *SecurityReadWindowsStatus `json:"status,omitempty"`
-	Type   *SecurityReadWindowsType   `json:"type,omitempty"`
+type Windows struct {
+	Status *SecurityReadSchemasWindowsStatus `json:"status,omitempty"`
+	Type   *SecurityReadSchemasWindowsType   `json:"type,omitempty"`
 }
 
-func (o *SecurityReadWindows) GetStatus() *SecurityReadWindowsStatus {
+func (o *Windows) GetStatus() *SecurityReadSchemasWindowsStatus {
 	if o == nil {
 		return nil
 	}
 	return o.Status
 }
 
-func (o *SecurityReadWindows) GetType() *SecurityReadWindowsType {
+func (o *Windows) GetType() *SecurityReadSchemasWindowsType {
 	if o == nil {
 		return nil
 	}
@@ -364,22 +394,22 @@ func (o *SecurityReadWindows) GetType() *SecurityReadWindowsType {
 }
 
 type SecurityRead struct {
-	ChargingPort []SecurityReadChargingPort `json:"chargingPort,omitempty"`
-	Doors        []SecurityReadDoors        `json:"doors,omitempty"`
-	IsLocked     *bool                      `json:"isLocked,omitempty"`
-	Storage      []SecurityReadStorage      `json:"storage,omitempty"`
-	Sunroof      []SecurityReadSunroof      `json:"sunroof,omitempty"`
-	Windows      []SecurityReadWindows      `json:"windows,omitempty"`
+	ChargingPort []ChargingPort `json:"chargingPort,omitempty"`
+	Doors        []Doors        `json:"doors,omitempty"`
+	IsLocked     *bool          `json:"isLocked,omitempty"`
+	Storage      []Storage      `json:"storage,omitempty"`
+	Sunroof      []Sunroof      `json:"sunroof,omitempty"`
+	Windows      []Windows      `json:"windows,omitempty"`
 }
 
-func (o *SecurityRead) GetChargingPort() []SecurityReadChargingPort {
+func (o *SecurityRead) GetChargingPort() []ChargingPort {
 	if o == nil {
 		return nil
 	}
 	return o.ChargingPort
 }
 
-func (o *SecurityRead) GetDoors() []SecurityReadDoors {
+func (o *SecurityRead) GetDoors() []Doors {
 	if o == nil {
 		return nil
 	}
@@ -393,21 +423,21 @@ func (o *SecurityRead) GetIsLocked() *bool {
 	return o.IsLocked
 }
 
-func (o *SecurityRead) GetStorage() []SecurityReadStorage {
+func (o *SecurityRead) GetStorage() []Storage {
 	if o == nil {
 		return nil
 	}
 	return o.Storage
 }
 
-func (o *SecurityRead) GetSunroof() []SecurityReadSunroof {
+func (o *SecurityRead) GetSunroof() []Sunroof {
 	if o == nil {
 		return nil
 	}
 	return o.Sunroof
 }
 
-func (o *SecurityRead) GetWindows() []SecurityReadWindows {
+func (o *SecurityRead) GetWindows() []Windows {
 	if o == nil {
 		return nil
 	}

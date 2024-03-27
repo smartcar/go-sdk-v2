@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
 	"net/http"
 )
 
@@ -20,9 +20,12 @@ func (o *GetCadillacChargeTimeRequest) GetVehicleID() string {
 
 type GetCadillacChargeTimeResponse struct {
 	// returns the date and time the vehicle expects to "complete" this charging session.
-	ChargeTime  *shared.ChargeTime
+	ChargeTime *shared.ChargeTime
+	// HTTP response content type for this operation
 	ContentType string
-	StatusCode  int
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 

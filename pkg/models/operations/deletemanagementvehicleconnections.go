@@ -3,31 +3,12 @@
 package operations
 
 import (
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
 	"net/http"
 )
 
 var DeleteManagementVehicleConnectionsServerList = []string{
 	"https://management.smartcar.com/v2.0",
-}
-
-type DeleteManagementVehicleConnectionsSecurity struct {
-	Password string `security:"scheme,type=http,subtype=basic,name=password"`
-	Username string `security:"scheme,type=http,subtype=basic,name=username"`
-}
-
-func (o *DeleteManagementVehicleConnectionsSecurity) GetPassword() string {
-	if o == nil {
-		return ""
-	}
-	return o.Password
-}
-
-func (o *DeleteManagementVehicleConnectionsSecurity) GetUsername() string {
-	if o == nil {
-		return ""
-	}
-	return o.Username
 }
 
 type DeleteManagementVehicleConnectionsRequest struct {
@@ -52,11 +33,14 @@ func (o *DeleteManagementVehicleConnectionsRequest) GetVehicleID() *string {
 }
 
 type DeleteManagementVehicleConnectionsResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// returns all deleted connections
 	DeletedConnectionsResponse []shared.DeletedConnection
-	StatusCode                 int
-	RawResponse                *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *DeleteManagementVehicleConnectionsResponse) GetContentType() string {

@@ -26,11 +26,24 @@ var (
 )
 
 func SerializeRequestBody(ctx context.Context, request interface{}, nullable, optional bool, requestFieldName, serializationMethod, tag string) (io.Reader, string, error) {
+	bodyReader, contentType, err := serializeRequestBody(ctx, request, nullable, optional, requestFieldName, serializationMethod, tag)
+	if err != nil {
+		return nil, "", fmt.Errorf("error serializing request body: %w", err)
+	}
+
+	if bodyReader == nil && !optional {
+		return nil, "", fmt.Errorf("request body is required")
+	}
+
+	return bodyReader, contentType, nil
+}
+
+func serializeRequestBody(ctx context.Context, request interface{}, nullable, optional bool, requestFieldName, serializationMethod, tag string) (io.Reader, string, error) {
 	requestStructType := reflect.TypeOf(request)
 	requestValType := reflect.ValueOf(request)
 
 	if isNil(requestStructType, requestValType) {
-		if optional || !nullable {
+		if !nullable && optional {
 			return nil, "", nil
 		}
 
@@ -54,11 +67,11 @@ func SerializeRequestBody(ctx context.Context, request interface{}, nullable, op
 			// request object (non-flattened)
 			requestVal := requestValType.FieldByName(requestFieldName)
 			if isNil(requestField.Type, requestVal) {
-				if optional || !nullable {
+				if !nullable && optional {
 					return nil, "", nil
 				}
 
-				return serializeContentType(requestFieldName, SerializationMethodToContentType[serializationMethod], requestVal, tag.MediaType)
+				return serializeContentType(requestFieldName, tag.MediaType, requestVal, string(requestField.Tag))
 			}
 
 			return serializeContentType(requestFieldName, tag.MediaType, requestVal, string(requestField.Tag))

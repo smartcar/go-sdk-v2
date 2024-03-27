@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/smartcar/go-sdk-v2/pkg/utils"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/utils"
 	"time"
 )
 

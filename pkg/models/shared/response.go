@@ -6,392 +6,1168 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/smartcar/go-sdk-v2/pkg/utils"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/utils"
+	"time"
 )
 
-type ResponseBodyType string
+type SchemasSecurityReadChargingPortStatus string
 
 const (
-	ResponseBodyTypeLocation              ResponseBodyType = "Location"
-	ResponseBodyTypeOdometer              ResponseBodyType = "Odometer"
-	ResponseBodyTypeFuelTank              ResponseBodyType = "FuelTank"
-	ResponseBodyTypeTirePressure          ResponseBodyType = "TirePressure"
-	ResponseBodyTypeEngineOil             ResponseBodyType = "EngineOil"
-	ResponseBodyTypeChargeStatus          ResponseBodyType = "ChargeStatus"
-	ResponseBodyTypeChargeLimit           ResponseBodyType = "ChargeLimit"
-	ResponseBodyTypeChargeTime            ResponseBodyType = "ChargeTime"
-	ResponseBodyTypeChargeVoltage         ResponseBodyType = "ChargeVoltage"
-	ResponseBodyTypeBatteryLevel          ResponseBodyType = "BatteryLevel"
-	ResponseBodyTypeBatteryCapacity       ResponseBodyType = "BatteryCapacity"
-	ResponseBodyTypeCompatibilityResponse ResponseBodyType = "CompatibilityResponse"
-	ResponseBodyTypeVinInfo               ResponseBodyType = "VinInfo"
-	ResponseBodyTypeUserInfo              ResponseBodyType = "UserInfo"
-	ResponseBodyTypeSuccessResponse       ResponseBodyType = "SuccessResponse"
-	ResponseBodyTypeSecurityRead          ResponseBodyType = "SecurityRead"
+	SchemasSecurityReadChargingPortStatusOpen    SchemasSecurityReadChargingPortStatus = "OPEN"
+	SchemasSecurityReadChargingPortStatusClosed  SchemasSecurityReadChargingPortStatus = "CLOSED"
+	SchemasSecurityReadChargingPortStatusUnknown SchemasSecurityReadChargingPortStatus = "UNKNOWN"
 )
 
-type ResponseBody struct {
-	Location              *Location
-	Odometer              *Odometer
-	FuelTank              *FuelTank
-	TirePressure          *TirePressure
-	EngineOil             *EngineOil
-	ChargeStatus          *ChargeStatus
-	ChargeLimit           *ChargeLimit
-	ChargeTime            *ChargeTime
-	ChargeVoltage         *ChargeVoltage
-	BatteryLevel          *BatteryLevel
-	BatteryCapacity       *BatteryCapacity
-	CompatibilityResponse *CompatibilityResponse
-	VinInfo               *VinInfo
-	UserInfo              *UserInfo
-	SuccessResponse       *SuccessResponse
-	SecurityRead          *SecurityRead
-
-	Type ResponseBodyType
+func (e SchemasSecurityReadChargingPortStatus) ToPointer() *SchemasSecurityReadChargingPortStatus {
+	return &e
 }
 
-func CreateResponseBodyLocation(location Location) ResponseBody {
-	typ := ResponseBodyTypeLocation
-
-	return ResponseBody{
-		Location: &location,
-		Type:     typ,
+func (e *SchemasSecurityReadChargingPortStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "OPEN":
+		fallthrough
+	case "CLOSED":
+		fallthrough
+	case "UNKNOWN":
+		*e = SchemasSecurityReadChargingPortStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for SchemasSecurityReadChargingPortStatus: %v", v)
 	}
 }
 
-func CreateResponseBodyOdometer(odometer Odometer) ResponseBody {
-	typ := ResponseBodyTypeOdometer
+type SchemasType string
 
-	return ResponseBody{
-		Odometer: &odometer,
-		Type:     typ,
+const (
+	SchemasTypeChargingPort SchemasType = "chargingPort"
+)
+
+func (e SchemasType) ToPointer() *SchemasType {
+	return &e
+}
+
+func (e *SchemasType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "chargingPort":
+		*e = SchemasType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for SchemasType: %v", v)
 	}
 }
 
-func CreateResponseBodyFuelTank(fuelTank FuelTank) ResponseBody {
-	typ := ResponseBodyTypeFuelTank
+type SchemasChargingPort struct {
+	Status *SchemasSecurityReadChargingPortStatus `json:"status,omitempty"`
+	Type   *SchemasType                           `json:"type,omitempty"`
+}
 
-	return ResponseBody{
-		FuelTank: &fuelTank,
-		Type:     typ,
+func (o *SchemasChargingPort) GetStatus() *SchemasSecurityReadChargingPortStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}
+
+func (o *SchemasChargingPort) GetType() *SchemasType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
+type SchemasSecurityReadStatus string
+
+const (
+	SchemasSecurityReadStatusOpen    SchemasSecurityReadStatus = "OPEN"
+	SchemasSecurityReadStatusClosed  SchemasSecurityReadStatus = "CLOSED"
+	SchemasSecurityReadStatusUnknown SchemasSecurityReadStatus = "UNKNOWN"
+)
+
+func (e SchemasSecurityReadStatus) ToPointer() *SchemasSecurityReadStatus {
+	return &e
+}
+
+func (e *SchemasSecurityReadStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "OPEN":
+		fallthrough
+	case "CLOSED":
+		fallthrough
+	case "UNKNOWN":
+		*e = SchemasSecurityReadStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for SchemasSecurityReadStatus: %v", v)
 	}
 }
 
-func CreateResponseBodyTirePressure(tirePressure TirePressure) ResponseBody {
-	typ := ResponseBodyTypeTirePressure
+type SchemasSecurityReadType string
 
-	return ResponseBody{
-		TirePressure: &tirePressure,
-		Type:         typ,
+const (
+	SchemasSecurityReadTypeFrontLeft  SchemasSecurityReadType = "frontLeft"
+	SchemasSecurityReadTypeFrontRight SchemasSecurityReadType = "frontRight"
+	SchemasSecurityReadTypeBackLeft   SchemasSecurityReadType = "backLeft"
+	SchemasSecurityReadTypeBackRight  SchemasSecurityReadType = "backRight"
+)
+
+func (e SchemasSecurityReadType) ToPointer() *SchemasSecurityReadType {
+	return &e
+}
+
+func (e *SchemasSecurityReadType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "frontLeft":
+		fallthrough
+	case "frontRight":
+		fallthrough
+	case "backLeft":
+		fallthrough
+	case "backRight":
+		*e = SchemasSecurityReadType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for SchemasSecurityReadType: %v", v)
 	}
 }
 
-func CreateResponseBodyEngineOil(engineOil EngineOil) ResponseBody {
-	typ := ResponseBodyTypeEngineOil
+type SchemasDoors struct {
+	Status *SchemasSecurityReadStatus `json:"status,omitempty"`
+	Type   *SchemasSecurityReadType   `json:"type,omitempty"`
+}
 
-	return ResponseBody{
-		EngineOil: &engineOil,
-		Type:      typ,
+func (o *SchemasDoors) GetStatus() *SchemasSecurityReadStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}
+
+func (o *SchemasDoors) GetType() *SchemasSecurityReadType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
+type SchemasSecurityReadStorageStatus string
+
+const (
+	SchemasSecurityReadStorageStatusOpen    SchemasSecurityReadStorageStatus = "OPEN"
+	SchemasSecurityReadStorageStatusClosed  SchemasSecurityReadStorageStatus = "CLOSED"
+	SchemasSecurityReadStorageStatusUnknown SchemasSecurityReadStorageStatus = "UNKNOWN"
+)
+
+func (e SchemasSecurityReadStorageStatus) ToPointer() *SchemasSecurityReadStorageStatus {
+	return &e
+}
+
+func (e *SchemasSecurityReadStorageStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "OPEN":
+		fallthrough
+	case "CLOSED":
+		fallthrough
+	case "UNKNOWN":
+		*e = SchemasSecurityReadStorageStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for SchemasSecurityReadStorageStatus: %v", v)
 	}
 }
 
-func CreateResponseBodyChargeStatus(chargeStatus ChargeStatus) ResponseBody {
-	typ := ResponseBodyTypeChargeStatus
+type SchemasSecurityReadStorageType string
 
-	return ResponseBody{
-		ChargeStatus: &chargeStatus,
-		Type:         typ,
+const (
+	SchemasSecurityReadStorageTypeRear  SchemasSecurityReadStorageType = "rear"
+	SchemasSecurityReadStorageTypeFront SchemasSecurityReadStorageType = "front"
+)
+
+func (e SchemasSecurityReadStorageType) ToPointer() *SchemasSecurityReadStorageType {
+	return &e
+}
+
+func (e *SchemasSecurityReadStorageType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "rear":
+		fallthrough
+	case "front":
+		*e = SchemasSecurityReadStorageType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for SchemasSecurityReadStorageType: %v", v)
 	}
 }
 
-func CreateResponseBodyChargeLimit(chargeLimit ChargeLimit) ResponseBody {
-	typ := ResponseBodyTypeChargeLimit
+type SchemasStorage struct {
+	Status *SchemasSecurityReadStorageStatus `json:"status,omitempty"`
+	Type   *SchemasSecurityReadStorageType   `json:"type,omitempty"`
+}
 
-	return ResponseBody{
-		ChargeLimit: &chargeLimit,
-		Type:        typ,
+func (o *SchemasStorage) GetStatus() *SchemasSecurityReadStorageStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}
+
+func (o *SchemasStorage) GetType() *SchemasSecurityReadStorageType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
+type SchemasSecurityReadSunroofStatus string
+
+const (
+	SchemasSecurityReadSunroofStatusOpen    SchemasSecurityReadSunroofStatus = "OPEN"
+	SchemasSecurityReadSunroofStatusClosed  SchemasSecurityReadSunroofStatus = "CLOSED"
+	SchemasSecurityReadSunroofStatusUnknown SchemasSecurityReadSunroofStatus = "UNKNOWN"
+)
+
+func (e SchemasSecurityReadSunroofStatus) ToPointer() *SchemasSecurityReadSunroofStatus {
+	return &e
+}
+
+func (e *SchemasSecurityReadSunroofStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "OPEN":
+		fallthrough
+	case "CLOSED":
+		fallthrough
+	case "UNKNOWN":
+		*e = SchemasSecurityReadSunroofStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for SchemasSecurityReadSunroofStatus: %v", v)
 	}
 }
 
-func CreateResponseBodyChargeTime(chargeTime ChargeTime) ResponseBody {
-	typ := ResponseBodyTypeChargeTime
+type SchemasSecurityReadSunroofType string
 
-	return ResponseBody{
-		ChargeTime: &chargeTime,
-		Type:       typ,
+const (
+	SchemasSecurityReadSunroofTypeSunroof SchemasSecurityReadSunroofType = "sunroof"
+)
+
+func (e SchemasSecurityReadSunroofType) ToPointer() *SchemasSecurityReadSunroofType {
+	return &e
+}
+
+func (e *SchemasSecurityReadSunroofType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "sunroof":
+		*e = SchemasSecurityReadSunroofType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for SchemasSecurityReadSunroofType: %v", v)
 	}
 }
 
-func CreateResponseBodyChargeVoltage(chargeVoltage ChargeVoltage) ResponseBody {
-	typ := ResponseBodyTypeChargeVoltage
+type SchemasSunroof struct {
+	Status *SchemasSecurityReadSunroofStatus `json:"status,omitempty"`
+	Type   *SchemasSecurityReadSunroofType   `json:"type,omitempty"`
+}
 
-	return ResponseBody{
-		ChargeVoltage: &chargeVoltage,
-		Type:          typ,
+func (o *SchemasSunroof) GetStatus() *SchemasSecurityReadSunroofStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}
+
+func (o *SchemasSunroof) GetType() *SchemasSecurityReadSunroofType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
+type SchemasSecurityReadWindowsStatus string
+
+const (
+	SchemasSecurityReadWindowsStatusOpen    SchemasSecurityReadWindowsStatus = "OPEN"
+	SchemasSecurityReadWindowsStatusClosed  SchemasSecurityReadWindowsStatus = "CLOSED"
+	SchemasSecurityReadWindowsStatusUnknown SchemasSecurityReadWindowsStatus = "UNKNOWN"
+)
+
+func (e SchemasSecurityReadWindowsStatus) ToPointer() *SchemasSecurityReadWindowsStatus {
+	return &e
+}
+
+func (e *SchemasSecurityReadWindowsStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "OPEN":
+		fallthrough
+	case "CLOSED":
+		fallthrough
+	case "UNKNOWN":
+		*e = SchemasSecurityReadWindowsStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for SchemasSecurityReadWindowsStatus: %v", v)
 	}
 }
 
-func CreateResponseBodyBatteryLevel(batteryLevel BatteryLevel) ResponseBody {
-	typ := ResponseBodyTypeBatteryLevel
+type SchemasSecurityReadWindowsType string
 
-	return ResponseBody{
-		BatteryLevel: &batteryLevel,
-		Type:         typ,
+const (
+	SchemasSecurityReadWindowsTypeFrontLeft  SchemasSecurityReadWindowsType = "frontLeft"
+	SchemasSecurityReadWindowsTypeFrontRight SchemasSecurityReadWindowsType = "frontRight"
+	SchemasSecurityReadWindowsTypeBackLeft   SchemasSecurityReadWindowsType = "backLeft"
+	SchemasSecurityReadWindowsTypeBackRight  SchemasSecurityReadWindowsType = "backRight"
+)
+
+func (e SchemasSecurityReadWindowsType) ToPointer() *SchemasSecurityReadWindowsType {
+	return &e
+}
+
+func (e *SchemasSecurityReadWindowsType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "frontLeft":
+		fallthrough
+	case "frontRight":
+		fallthrough
+	case "backLeft":
+		fallthrough
+	case "backRight":
+		*e = SchemasSecurityReadWindowsType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for SchemasSecurityReadWindowsType: %v", v)
 	}
 }
 
-func CreateResponseBodyBatteryCapacity(batteryCapacity BatteryCapacity) ResponseBody {
-	typ := ResponseBodyTypeBatteryCapacity
+type SchemasWindows struct {
+	Status *SchemasSecurityReadWindowsStatus `json:"status,omitempty"`
+	Type   *SchemasSecurityReadWindowsType   `json:"type,omitempty"`
+}
 
-	return ResponseBody{
-		BatteryCapacity: &batteryCapacity,
+func (o *SchemasWindows) GetStatus() *SchemasSecurityReadWindowsStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}
+
+func (o *SchemasWindows) GetType() *SchemasSecurityReadWindowsType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
+type SecurityReadSchemas struct {
+	ChargingPort []SchemasChargingPort `json:"chargingPort,omitempty"`
+	Doors        []SchemasDoors        `json:"doors,omitempty"`
+	IsLocked     *bool                 `json:"isLocked,omitempty"`
+	Storage      []SchemasStorage      `json:"storage,omitempty"`
+	Sunroof      []SchemasSunroof      `json:"sunroof,omitempty"`
+	Windows      []SchemasWindows      `json:"windows,omitempty"`
+}
+
+func (o *SecurityReadSchemas) GetChargingPort() []SchemasChargingPort {
+	if o == nil {
+		return nil
+	}
+	return o.ChargingPort
+}
+
+func (o *SecurityReadSchemas) GetDoors() []SchemasDoors {
+	if o == nil {
+		return nil
+	}
+	return o.Doors
+}
+
+func (o *SecurityReadSchemas) GetIsLocked() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IsLocked
+}
+
+func (o *SecurityReadSchemas) GetStorage() []SchemasStorage {
+	if o == nil {
+		return nil
+	}
+	return o.Storage
+}
+
+func (o *SecurityReadSchemas) GetSunroof() []SchemasSunroof {
+	if o == nil {
+		return nil
+	}
+	return o.Sunroof
+}
+
+func (o *SecurityReadSchemas) GetWindows() []SchemasWindows {
+	if o == nil {
+		return nil
+	}
+	return o.Windows
+}
+
+type SchemasStatus string
+
+const (
+	SchemasStatusSuccess SchemasStatus = "SUCCESS"
+	SchemasStatusFailed  SchemasStatus = "FAILED"
+)
+
+func (e SchemasStatus) ToPointer() *SchemasStatus {
+	return &e
+}
+
+func (e *SchemasStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "SUCCESS":
+		fallthrough
+	case "FAILED":
+		*e = SchemasStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for SchemasStatus: %v", v)
+	}
+}
+
+type SuccessResponseSchemas struct {
+	Message *string        `json:"message,omitempty"`
+	Status  *SchemasStatus `json:"status,omitempty"`
+}
+
+func (o *SuccessResponseSchemas) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *SuccessResponseSchemas) GetStatus() *SchemasStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}
+
+// UserInfoSchemas - A user ID (UUID v4).
+type UserInfoSchemas struct {
+	ID *string `json:"id,omitempty"`
+}
+
+func (o *UserInfoSchemas) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+// VinInfoSchemas - A vehicle’s manufacturer identifier.
+type VinInfoSchemas struct {
+	Vin *string `json:"vin,omitempty"`
+}
+
+func (o *VinInfoSchemas) GetVin() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Vin
+}
+
+type CompatibilityResponseSchemas struct {
+	Capabilities []Capability `json:"capabilities,omitempty"`
+	Compatible   *bool        `json:"compatible,omitempty"`
+	Reason       *string      `json:"reason,omitempty"`
+}
+
+func (o *CompatibilityResponseSchemas) GetCapabilities() []Capability {
+	if o == nil {
+		return nil
+	}
+	return o.Capabilities
+}
+
+func (o *CompatibilityResponseSchemas) GetCompatible() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Compatible
+}
+
+func (o *CompatibilityResponseSchemas) GetReason() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Reason
+}
+
+type Schemas struct {
+	// The total capacity of the vehicle's battery (in kilowatt-hours).
+	Capacity *float32 `json:"capacity,omitempty"`
+}
+
+func (o *Schemas) GetCapacity() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.Capacity
+}
+
+type BatteryLevelSchemas struct {
+	// An EV battery’s state of charge (in percent).
+	PercentRemaining *float32 `json:"percentRemaining,omitempty"`
+	// The estimated remaining distance the vehicle can travel (in kilometers by default or in miles using the sc-unit-system).
+	Range *float32 `json:"range,omitempty"`
+}
+
+func (o *BatteryLevelSchemas) GetPercentRemaining() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.PercentRemaining
+}
+
+func (o *BatteryLevelSchemas) GetRange() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.Range
+}
+
+type ChargeVoltageSchemas struct {
+	// The voltage of the charger measured by the vehicle.
+	Voltage *float32 `json:"voltage,omitempty"`
+}
+
+func (o *ChargeVoltageSchemas) GetVoltage() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.Voltage
+}
+
+type ChargeTimeSchemas struct {
+	// The date and time the vehicle expects to complete this charging session.
+	Time *time.Time `json:"time,omitempty"`
+}
+
+func (c ChargeTimeSchemas) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *ChargeTimeSchemas) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *ChargeTimeSchemas) GetTime() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.Time
+}
+
+type ChargeLimitSchemas struct {
+	// The level at which the vehicle should stop charging and be considered fully charged (in percent).
+	Limit *float32 `json:"limit,omitempty"`
+}
+
+func (o *ChargeLimitSchemas) GetLimit() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.Limit
+}
+
+type State string
+
+const (
+	StateCharging     State = "CHARGING"
+	StateFullyCharged State = "FULLY_CHARGED"
+	StateNotCharging  State = "NOT_CHARGING"
+)
+
+func (e State) ToPointer() *State {
+	return &e
+}
+
+func (e *State) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "CHARGING":
+		fallthrough
+	case "FULLY_CHARGED":
+		fallthrough
+	case "NOT_CHARGING":
+		*e = State(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for State: %v", v)
+	}
+}
+
+type ChargeStatusSchemas struct {
+	// Indicates whether a charging cable is currently plugged into the vehicle’s charge port.
+	IsPluggedIn *bool  `json:"isPluggedIn,omitempty"`
+	State       *State `json:"state,omitempty"`
+}
+
+func (o *ChargeStatusSchemas) GetIsPluggedIn() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IsPluggedIn
+}
+
+func (o *ChargeStatusSchemas) GetState() *State {
+	if o == nil {
+		return nil
+	}
+	return o.State
+}
+
+type EngineOilSchemas struct {
+	// The engine oil’s remaining life span (as a percentage). Oil life is based on the current quality of the oil. (in percent).
+	LifeRemaining *float32 `json:"lifeRemaining,omitempty"`
+}
+
+func (o *EngineOilSchemas) GetLifeRemaining() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.LifeRemaining
+}
+
+type TirePressureSchemas struct {
+	// The current air pressure of the back left tire (in kilopascals by default or in pounds per square inch using the sc-unit-system).
+	BackLeft *float32 `json:"backLeft,omitempty"`
+	// The current air pressure of the back right tire (in kilopascals by default or in pounds per square inch using the sc-unit-system).
+	BackRight *float32 `json:"backRight,omitempty"`
+	// The current air pressure of the front left tire (in kilopascals by default or in pounds per square inch using the sc-unit-system).
+	FrontLeft *float32 `json:"frontLeft,omitempty"`
+	// The current air pressure of the front right tire (in kilopascals by default or in pounds per square inch using the sc-unit-system).
+	FrontRight *float32 `json:"frontRight,omitempty"`
+}
+
+func (o *TirePressureSchemas) GetBackLeft() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.BackLeft
+}
+
+func (o *TirePressureSchemas) GetBackRight() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.BackRight
+}
+
+func (o *TirePressureSchemas) GetFrontLeft() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.FrontLeft
+}
+
+func (o *TirePressureSchemas) GetFrontRight() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.FrontRight
+}
+
+type FuelTankSchemas struct {
+	// The amount of fuel in the tank (in liters by default or in gallons (U.S.) using the sc-unit-system).
+	AmountRemaining *float32 `json:"amountRemaining,omitempty"`
+	// The remaining level of fuel in the tank (in percent).
+	PercentRemaining *float32 `json:"percentRemaining,omitempty"`
+	// The estimated remaining distance the car can travel (in kilometers by default or in miles using the sc-unit-system).
+	Range *float32 `json:"range,omitempty"`
+}
+
+func (o *FuelTankSchemas) GetAmountRemaining() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.AmountRemaining
+}
+
+func (o *FuelTankSchemas) GetPercentRemaining() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.PercentRemaining
+}
+
+func (o *FuelTankSchemas) GetRange() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.Range
+}
+
+type OdometerSchemas struct {
+	Distance *float32 `json:"distance,omitempty"`
+}
+
+func (o *OdometerSchemas) GetDistance() *float32 {
+	if o == nil {
+		return nil
+	}
+	return o.Distance
+}
+
+type LocationSchemas struct {
+	Latitude  float32 `json:"latitude"`
+	Longitude float32 `json:"longitude"`
+}
+
+func (o *LocationSchemas) GetLatitude() float32 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Latitude
+}
+
+func (o *LocationSchemas) GetLongitude() float32 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Longitude
+}
+
+type BodyType string
+
+const (
+	BodyTypeLocationSchemas              BodyType = "Location_Schemas"
+	BodyTypeOdometerSchemas              BodyType = "Odometer_Schemas"
+	BodyTypeFuelTankSchemas              BodyType = "FuelTank_Schemas"
+	BodyTypeTirePressureSchemas          BodyType = "TirePressure_Schemas"
+	BodyTypeEngineOilSchemas             BodyType = "EngineOil_Schemas"
+	BodyTypeChargeStatusSchemas          BodyType = "ChargeStatus_Schemas"
+	BodyTypeChargeLimitSchemas           BodyType = "ChargeLimit_Schemas"
+	BodyTypeChargeTimeSchemas            BodyType = "ChargeTime_Schemas"
+	BodyTypeChargeVoltageSchemas         BodyType = "ChargeVoltage_Schemas"
+	BodyTypeBatteryLevelSchemas          BodyType = "BatteryLevel_Schemas"
+	BodyTypeSchemas                      BodyType = "Schemas"
+	BodyTypeCompatibilityResponseSchemas BodyType = "CompatibilityResponse_Schemas"
+	BodyTypeVinInfoSchemas               BodyType = "VinInfo_Schemas"
+	BodyTypeUserInfoSchemas              BodyType = "UserInfo_Schemas"
+	BodyTypeSuccessResponseSchemas       BodyType = "SuccessResponse_Schemas"
+	BodyTypeSecurityReadSchemas          BodyType = "SecurityRead_Schemas"
+)
+
+type Body struct {
+	LocationSchemas              *LocationSchemas
+	OdometerSchemas              *OdometerSchemas
+	FuelTankSchemas              *FuelTankSchemas
+	TirePressureSchemas          *TirePressureSchemas
+	EngineOilSchemas             *EngineOilSchemas
+	ChargeStatusSchemas          *ChargeStatusSchemas
+	ChargeLimitSchemas           *ChargeLimitSchemas
+	ChargeTimeSchemas            *ChargeTimeSchemas
+	ChargeVoltageSchemas         *ChargeVoltageSchemas
+	BatteryLevelSchemas          *BatteryLevelSchemas
+	Schemas                      *Schemas
+	CompatibilityResponseSchemas *CompatibilityResponseSchemas
+	VinInfoSchemas               *VinInfoSchemas
+	UserInfoSchemas              *UserInfoSchemas
+	SuccessResponseSchemas       *SuccessResponseSchemas
+	SecurityReadSchemas          *SecurityReadSchemas
+
+	Type BodyType
+}
+
+func CreateBodyLocationSchemas(locationSchemas LocationSchemas) Body {
+	typ := BodyTypeLocationSchemas
+
+	return Body{
+		LocationSchemas: &locationSchemas,
 		Type:            typ,
 	}
 }
 
-func CreateResponseBodyCompatibilityResponse(compatibilityResponse CompatibilityResponse) ResponseBody {
-	typ := ResponseBodyTypeCompatibilityResponse
+func CreateBodyOdometerSchemas(odometerSchemas OdometerSchemas) Body {
+	typ := BodyTypeOdometerSchemas
 
-	return ResponseBody{
-		CompatibilityResponse: &compatibilityResponse,
-		Type:                  typ,
+	return Body{
+		OdometerSchemas: &odometerSchemas,
+		Type:            typ,
 	}
 }
 
-func CreateResponseBodyVinInfo(vinInfo VinInfo) ResponseBody {
-	typ := ResponseBodyTypeVinInfo
+func CreateBodyFuelTankSchemas(fuelTankSchemas FuelTankSchemas) Body {
+	typ := BodyTypeFuelTankSchemas
 
-	return ResponseBody{
-		VinInfo: &vinInfo,
+	return Body{
+		FuelTankSchemas: &fuelTankSchemas,
+		Type:            typ,
+	}
+}
+
+func CreateBodyTirePressureSchemas(tirePressureSchemas TirePressureSchemas) Body {
+	typ := BodyTypeTirePressureSchemas
+
+	return Body{
+		TirePressureSchemas: &tirePressureSchemas,
+		Type:                typ,
+	}
+}
+
+func CreateBodyEngineOilSchemas(engineOilSchemas EngineOilSchemas) Body {
+	typ := BodyTypeEngineOilSchemas
+
+	return Body{
+		EngineOilSchemas: &engineOilSchemas,
+		Type:             typ,
+	}
+}
+
+func CreateBodyChargeStatusSchemas(chargeStatusSchemas ChargeStatusSchemas) Body {
+	typ := BodyTypeChargeStatusSchemas
+
+	return Body{
+		ChargeStatusSchemas: &chargeStatusSchemas,
+		Type:                typ,
+	}
+}
+
+func CreateBodyChargeLimitSchemas(chargeLimitSchemas ChargeLimitSchemas) Body {
+	typ := BodyTypeChargeLimitSchemas
+
+	return Body{
+		ChargeLimitSchemas: &chargeLimitSchemas,
+		Type:               typ,
+	}
+}
+
+func CreateBodyChargeTimeSchemas(chargeTimeSchemas ChargeTimeSchemas) Body {
+	typ := BodyTypeChargeTimeSchemas
+
+	return Body{
+		ChargeTimeSchemas: &chargeTimeSchemas,
+		Type:              typ,
+	}
+}
+
+func CreateBodyChargeVoltageSchemas(chargeVoltageSchemas ChargeVoltageSchemas) Body {
+	typ := BodyTypeChargeVoltageSchemas
+
+	return Body{
+		ChargeVoltageSchemas: &chargeVoltageSchemas,
+		Type:                 typ,
+	}
+}
+
+func CreateBodyBatteryLevelSchemas(batteryLevelSchemas BatteryLevelSchemas) Body {
+	typ := BodyTypeBatteryLevelSchemas
+
+	return Body{
+		BatteryLevelSchemas: &batteryLevelSchemas,
+		Type:                typ,
+	}
+}
+
+func CreateBodySchemas(schemas Schemas) Body {
+	typ := BodyTypeSchemas
+
+	return Body{
+		Schemas: &schemas,
 		Type:    typ,
 	}
 }
 
-func CreateResponseBodyUserInfo(userInfo UserInfo) ResponseBody {
-	typ := ResponseBodyTypeUserInfo
+func CreateBodyCompatibilityResponseSchemas(compatibilityResponseSchemas CompatibilityResponseSchemas) Body {
+	typ := BodyTypeCompatibilityResponseSchemas
 
-	return ResponseBody{
-		UserInfo: &userInfo,
-		Type:     typ,
+	return Body{
+		CompatibilityResponseSchemas: &compatibilityResponseSchemas,
+		Type:                         typ,
 	}
 }
 
-func CreateResponseBodySuccessResponse(successResponse SuccessResponse) ResponseBody {
-	typ := ResponseBodyTypeSuccessResponse
+func CreateBodyVinInfoSchemas(vinInfoSchemas VinInfoSchemas) Body {
+	typ := BodyTypeVinInfoSchemas
 
-	return ResponseBody{
-		SuccessResponse: &successResponse,
+	return Body{
+		VinInfoSchemas: &vinInfoSchemas,
+		Type:           typ,
+	}
+}
+
+func CreateBodyUserInfoSchemas(userInfoSchemas UserInfoSchemas) Body {
+	typ := BodyTypeUserInfoSchemas
+
+	return Body{
+		UserInfoSchemas: &userInfoSchemas,
 		Type:            typ,
 	}
 }
 
-func CreateResponseBodySecurityRead(securityRead SecurityRead) ResponseBody {
-	typ := ResponseBodyTypeSecurityRead
+func CreateBodySuccessResponseSchemas(successResponseSchemas SuccessResponseSchemas) Body {
+	typ := BodyTypeSuccessResponseSchemas
 
-	return ResponseBody{
-		SecurityRead: &securityRead,
-		Type:         typ,
+	return Body{
+		SuccessResponseSchemas: &successResponseSchemas,
+		Type:                   typ,
 	}
 }
 
-func (u *ResponseBody) UnmarshalJSON(data []byte) error {
+func CreateBodySecurityReadSchemas(securityReadSchemas SecurityReadSchemas) Body {
+	typ := BodyTypeSecurityReadSchemas
 
-	odometer := new(Odometer)
-	if err := utils.UnmarshalJSON(data, &odometer, "", true, true); err == nil {
-		u.Odometer = odometer
-		u.Type = ResponseBodyTypeOdometer
+	return Body{
+		SecurityReadSchemas: &securityReadSchemas,
+		Type:                typ,
+	}
+}
+
+func (u *Body) UnmarshalJSON(data []byte) error {
+
+	chargeVoltageSchemas := ChargeVoltageSchemas{}
+	if err := utils.UnmarshalJSON(data, &chargeVoltageSchemas, "", true, true); err == nil {
+		u.ChargeVoltageSchemas = &chargeVoltageSchemas
+		u.Type = BodyTypeChargeVoltageSchemas
 		return nil
 	}
 
-	engineOil := new(EngineOil)
-	if err := utils.UnmarshalJSON(data, &engineOil, "", true, true); err == nil {
-		u.EngineOil = engineOil
-		u.Type = ResponseBodyTypeEngineOil
+	schemas := Schemas{}
+	if err := utils.UnmarshalJSON(data, &schemas, "", true, true); err == nil {
+		u.Schemas = &schemas
+		u.Type = BodyTypeSchemas
 		return nil
 	}
 
-	chargeLimit := new(ChargeLimit)
-	if err := utils.UnmarshalJSON(data, &chargeLimit, "", true, true); err == nil {
-		u.ChargeLimit = chargeLimit
-		u.Type = ResponseBodyTypeChargeLimit
+	userInfoSchemas := UserInfoSchemas{}
+	if err := utils.UnmarshalJSON(data, &userInfoSchemas, "", true, true); err == nil {
+		u.UserInfoSchemas = &userInfoSchemas
+		u.Type = BodyTypeUserInfoSchemas
 		return nil
 	}
 
-	chargeTime := new(ChargeTime)
-	if err := utils.UnmarshalJSON(data, &chargeTime, "", true, true); err == nil {
-		u.ChargeTime = chargeTime
-		u.Type = ResponseBodyTypeChargeTime
+	vinInfoSchemas := VinInfoSchemas{}
+	if err := utils.UnmarshalJSON(data, &vinInfoSchemas, "", true, true); err == nil {
+		u.VinInfoSchemas = &vinInfoSchemas
+		u.Type = BodyTypeVinInfoSchemas
 		return nil
 	}
 
-	chargeVoltage := new(ChargeVoltage)
-	if err := utils.UnmarshalJSON(data, &chargeVoltage, "", true, true); err == nil {
-		u.ChargeVoltage = chargeVoltage
-		u.Type = ResponseBodyTypeChargeVoltage
+	chargeTimeSchemas := ChargeTimeSchemas{}
+	if err := utils.UnmarshalJSON(data, &chargeTimeSchemas, "", true, true); err == nil {
+		u.ChargeTimeSchemas = &chargeTimeSchemas
+		u.Type = BodyTypeChargeTimeSchemas
 		return nil
 	}
 
-	batteryCapacity := new(BatteryCapacity)
-	if err := utils.UnmarshalJSON(data, &batteryCapacity, "", true, true); err == nil {
-		u.BatteryCapacity = batteryCapacity
-		u.Type = ResponseBodyTypeBatteryCapacity
+	engineOilSchemas := EngineOilSchemas{}
+	if err := utils.UnmarshalJSON(data, &engineOilSchemas, "", true, true); err == nil {
+		u.EngineOilSchemas = &engineOilSchemas
+		u.Type = BodyTypeEngineOilSchemas
 		return nil
 	}
 
-	vinInfo := new(VinInfo)
-	if err := utils.UnmarshalJSON(data, &vinInfo, "", true, true); err == nil {
-		u.VinInfo = vinInfo
-		u.Type = ResponseBodyTypeVinInfo
+	odometerSchemas := OdometerSchemas{}
+	if err := utils.UnmarshalJSON(data, &odometerSchemas, "", true, true); err == nil {
+		u.OdometerSchemas = &odometerSchemas
+		u.Type = BodyTypeOdometerSchemas
 		return nil
 	}
 
-	userInfo := new(UserInfo)
-	if err := utils.UnmarshalJSON(data, &userInfo, "", true, true); err == nil {
-		u.UserInfo = userInfo
-		u.Type = ResponseBodyTypeUserInfo
+	chargeLimitSchemas := ChargeLimitSchemas{}
+	if err := utils.UnmarshalJSON(data, &chargeLimitSchemas, "", true, true); err == nil {
+		u.ChargeLimitSchemas = &chargeLimitSchemas
+		u.Type = BodyTypeChargeLimitSchemas
 		return nil
 	}
 
-	location := new(Location)
-	if err := utils.UnmarshalJSON(data, &location, "", true, true); err == nil {
-		u.Location = location
-		u.Type = ResponseBodyTypeLocation
+	chargeStatusSchemas := ChargeStatusSchemas{}
+	if err := utils.UnmarshalJSON(data, &chargeStatusSchemas, "", true, true); err == nil {
+		u.ChargeStatusSchemas = &chargeStatusSchemas
+		u.Type = BodyTypeChargeStatusSchemas
 		return nil
 	}
 
-	chargeStatus := new(ChargeStatus)
-	if err := utils.UnmarshalJSON(data, &chargeStatus, "", true, true); err == nil {
-		u.ChargeStatus = chargeStatus
-		u.Type = ResponseBodyTypeChargeStatus
+	batteryLevelSchemas := BatteryLevelSchemas{}
+	if err := utils.UnmarshalJSON(data, &batteryLevelSchemas, "", true, true); err == nil {
+		u.BatteryLevelSchemas = &batteryLevelSchemas
+		u.Type = BodyTypeBatteryLevelSchemas
 		return nil
 	}
 
-	batteryLevel := new(BatteryLevel)
-	if err := utils.UnmarshalJSON(data, &batteryLevel, "", true, true); err == nil {
-		u.BatteryLevel = batteryLevel
-		u.Type = ResponseBodyTypeBatteryLevel
+	locationSchemas := LocationSchemas{}
+	if err := utils.UnmarshalJSON(data, &locationSchemas, "", true, true); err == nil {
+		u.LocationSchemas = &locationSchemas
+		u.Type = BodyTypeLocationSchemas
 		return nil
 	}
 
-	successResponse := new(SuccessResponse)
-	if err := utils.UnmarshalJSON(data, &successResponse, "", true, true); err == nil {
-		u.SuccessResponse = successResponse
-		u.Type = ResponseBodyTypeSuccessResponse
+	successResponseSchemas := SuccessResponseSchemas{}
+	if err := utils.UnmarshalJSON(data, &successResponseSchemas, "", true, true); err == nil {
+		u.SuccessResponseSchemas = &successResponseSchemas
+		u.Type = BodyTypeSuccessResponseSchemas
 		return nil
 	}
 
-	fuelTank := new(FuelTank)
-	if err := utils.UnmarshalJSON(data, &fuelTank, "", true, true); err == nil {
-		u.FuelTank = fuelTank
-		u.Type = ResponseBodyTypeFuelTank
+	compatibilityResponseSchemas := CompatibilityResponseSchemas{}
+	if err := utils.UnmarshalJSON(data, &compatibilityResponseSchemas, "", true, true); err == nil {
+		u.CompatibilityResponseSchemas = &compatibilityResponseSchemas
+		u.Type = BodyTypeCompatibilityResponseSchemas
 		return nil
 	}
 
-	compatibilityResponse := new(CompatibilityResponse)
-	if err := utils.UnmarshalJSON(data, &compatibilityResponse, "", true, true); err == nil {
-		u.CompatibilityResponse = compatibilityResponse
-		u.Type = ResponseBodyTypeCompatibilityResponse
+	fuelTankSchemas := FuelTankSchemas{}
+	if err := utils.UnmarshalJSON(data, &fuelTankSchemas, "", true, true); err == nil {
+		u.FuelTankSchemas = &fuelTankSchemas
+		u.Type = BodyTypeFuelTankSchemas
 		return nil
 	}
 
-	tirePressure := new(TirePressure)
-	if err := utils.UnmarshalJSON(data, &tirePressure, "", true, true); err == nil {
-		u.TirePressure = tirePressure
-		u.Type = ResponseBodyTypeTirePressure
+	tirePressureSchemas := TirePressureSchemas{}
+	if err := utils.UnmarshalJSON(data, &tirePressureSchemas, "", true, true); err == nil {
+		u.TirePressureSchemas = &tirePressureSchemas
+		u.Type = BodyTypeTirePressureSchemas
 		return nil
 	}
 
-	securityRead := new(SecurityRead)
-	if err := utils.UnmarshalJSON(data, &securityRead, "", true, true); err == nil {
-		u.SecurityRead = securityRead
-		u.Type = ResponseBodyTypeSecurityRead
+	securityReadSchemas := SecurityReadSchemas{}
+	if err := utils.UnmarshalJSON(data, &securityReadSchemas, "", true, true); err == nil {
+		u.SecurityReadSchemas = &securityReadSchemas
+		u.Type = BodyTypeSecurityReadSchemas
 		return nil
 	}
 
 	return errors.New("could not unmarshal into supported union types")
 }
 
-func (u ResponseBody) MarshalJSON() ([]byte, error) {
-	if u.Location != nil {
-		return utils.MarshalJSON(u.Location, "", true)
+func (u Body) MarshalJSON() ([]byte, error) {
+	if u.LocationSchemas != nil {
+		return utils.MarshalJSON(u.LocationSchemas, "", true)
 	}
 
-	if u.Odometer != nil {
-		return utils.MarshalJSON(u.Odometer, "", true)
+	if u.OdometerSchemas != nil {
+		return utils.MarshalJSON(u.OdometerSchemas, "", true)
 	}
 
-	if u.FuelTank != nil {
-		return utils.MarshalJSON(u.FuelTank, "", true)
+	if u.FuelTankSchemas != nil {
+		return utils.MarshalJSON(u.FuelTankSchemas, "", true)
 	}
 
-	if u.TirePressure != nil {
-		return utils.MarshalJSON(u.TirePressure, "", true)
+	if u.TirePressureSchemas != nil {
+		return utils.MarshalJSON(u.TirePressureSchemas, "", true)
 	}
 
-	if u.EngineOil != nil {
-		return utils.MarshalJSON(u.EngineOil, "", true)
+	if u.EngineOilSchemas != nil {
+		return utils.MarshalJSON(u.EngineOilSchemas, "", true)
 	}
 
-	if u.ChargeStatus != nil {
-		return utils.MarshalJSON(u.ChargeStatus, "", true)
+	if u.ChargeStatusSchemas != nil {
+		return utils.MarshalJSON(u.ChargeStatusSchemas, "", true)
 	}
 
-	if u.ChargeLimit != nil {
-		return utils.MarshalJSON(u.ChargeLimit, "", true)
+	if u.ChargeLimitSchemas != nil {
+		return utils.MarshalJSON(u.ChargeLimitSchemas, "", true)
 	}
 
-	if u.ChargeTime != nil {
-		return utils.MarshalJSON(u.ChargeTime, "", true)
+	if u.ChargeTimeSchemas != nil {
+		return utils.MarshalJSON(u.ChargeTimeSchemas, "", true)
 	}
 
-	if u.ChargeVoltage != nil {
-		return utils.MarshalJSON(u.ChargeVoltage, "", true)
+	if u.ChargeVoltageSchemas != nil {
+		return utils.MarshalJSON(u.ChargeVoltageSchemas, "", true)
 	}
 
-	if u.BatteryLevel != nil {
-		return utils.MarshalJSON(u.BatteryLevel, "", true)
+	if u.BatteryLevelSchemas != nil {
+		return utils.MarshalJSON(u.BatteryLevelSchemas, "", true)
 	}
 
-	if u.BatteryCapacity != nil {
-		return utils.MarshalJSON(u.BatteryCapacity, "", true)
+	if u.Schemas != nil {
+		return utils.MarshalJSON(u.Schemas, "", true)
 	}
 
-	if u.CompatibilityResponse != nil {
-		return utils.MarshalJSON(u.CompatibilityResponse, "", true)
+	if u.CompatibilityResponseSchemas != nil {
+		return utils.MarshalJSON(u.CompatibilityResponseSchemas, "", true)
 	}
 
-	if u.VinInfo != nil {
-		return utils.MarshalJSON(u.VinInfo, "", true)
+	if u.VinInfoSchemas != nil {
+		return utils.MarshalJSON(u.VinInfoSchemas, "", true)
 	}
 
-	if u.UserInfo != nil {
-		return utils.MarshalJSON(u.UserInfo, "", true)
+	if u.UserInfoSchemas != nil {
+		return utils.MarshalJSON(u.UserInfoSchemas, "", true)
 	}
 
-	if u.SuccessResponse != nil {
-		return utils.MarshalJSON(u.SuccessResponse, "", true)
+	if u.SuccessResponseSchemas != nil {
+		return utils.MarshalJSON(u.SuccessResponseSchemas, "", true)
 	}
 
-	if u.SecurityRead != nil {
-		return utils.MarshalJSON(u.SecurityRead, "", true)
+	if u.SecurityReadSchemas != nil {
+		return utils.MarshalJSON(u.SecurityReadSchemas, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type: all fields are null")
 }
 
-type ResponseCode string
+type Code string
 
 const (
-	ResponseCodeTwoHundred  ResponseCode = "200"
-	ResponseCodeFiveHundred ResponseCode = "500"
+	CodeTwoHundred  Code = "200"
+	CodeFiveHundred Code = "500"
 )
 
-func (e ResponseCode) ToPointer() *ResponseCode {
+func (e Code) ToPointer() *Code {
 	return &e
 }
 
-func (e *ResponseCode) UnmarshalJSON(data []byte) error {
+func (e *Code) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -400,28 +1176,28 @@ func (e *ResponseCode) UnmarshalJSON(data []byte) error {
 	case "200":
 		fallthrough
 	case "500":
-		*e = ResponseCode(v)
+		*e = Code(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ResponseCode: %v", v)
+		return fmt.Errorf("invalid value for Code: %v", v)
 	}
 }
 
 type Response struct {
-	Body    *ResponseBody `json:"body,omitempty"`
-	Code    *ResponseCode `json:"code,omitempty"`
-	Headers []Header      `json:"headers,omitempty"`
-	Path    *string       `json:"path,omitempty"`
+	Body    *Body    `json:"body,omitempty"`
+	Code    *Code    `json:"code,omitempty"`
+	Headers []Header `json:"headers,omitempty"`
+	Path    *string  `json:"path,omitempty"`
 }
 
-func (o *Response) GetBody() *ResponseBody {
+func (o *Response) GetBody() *Body {
 	if o == nil {
 		return nil
 	}
 	return o.Body
 }
 
-func (o *Response) GetCode() *ResponseCode {
+func (o *Response) GetCode() *Code {
 	if o == nil {
 		return nil
 	}

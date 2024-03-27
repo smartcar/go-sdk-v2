@@ -3,9 +3,11 @@
 package gosdkv2
 
 import (
+	"context"
 	"fmt"
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
-	"github.com/smartcar/go-sdk-v2/pkg/utils"
+	"github.com/smartcar/go-sdk-v2/v3/internal/hooks"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -40,16 +42,17 @@ func Float32(f float32) *float32 { return &f }
 func Float64(f float64) *float64 { return &f }
 
 type sdkConfiguration struct {
-	DefaultClient     HTTPClient
-	SecurityClient    HTTPClient
-	Security          *shared.Security
+	Client            HTTPClient
+	Security          func(context.Context) (interface{}, error)
 	ServerURL         string
 	ServerIndex       int
 	Language          string
 	OpenAPIDocVersion string
 	SDKVersion        string
 	GenVersion        string
+	UserAgent         string
 	RetryConfig       *utils.RetryConfig
+	Hooks             *hooks.Hooks
 }
 
 func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
@@ -62,18 +65,19 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 
 // Smartcar API: OpenAPI schema for Smartcar's API
 type Smartcar struct {
-	Cadillac  *cadillac
-	Chevrolet *chevrolet
 	// Operations about compatibility
-	Compatibility *compatibility
-	// Operations about electric vehicles
-	Evs               *evs
-	Tesla             *tesla
-	User              *user
-	VehicleManagement *vehicleManagement
+	Compatibility *Compatibility
+	// Operations to manage vehicle connections
+	VehicleManagement *VehicleManagement
+	User              *User
 	// Operations about vehicles
-	Vehicles *vehicles
-	Webhooks *webhooks
+	Vehicles *Vehicles
+	Tesla    *Tesla
+	// Operations about electric vehicles
+	Evs       *Evs
+	Cadillac  *Cadillac
+	Chevrolet *Chevrolet
+	Webhooks  *Webhooks
 
 	sdkConfiguration sdkConfiguration
 }
@@ -112,14 +116,29 @@ func WithServerIndex(serverIndex int) SDKOption {
 // WithClient allows the overriding of the default HTTP client used by the SDK
 func WithClient(client HTTPClient) SDKOption {
 	return func(sdk *Smartcar) {
-		sdk.sdkConfiguration.DefaultClient = client
+		sdk.sdkConfiguration.Client = client
+	}
+}
+
+func withSecurity(security interface{}) func(context.Context) (interface{}, error) {
+	return func(context.Context) (interface{}, error) {
+		return security, nil
 	}
 }
 
 // WithSecurity configures the SDK to use the provided security details
 func WithSecurity(security shared.Security) SDKOption {
 	return func(sdk *Smartcar) {
-		sdk.sdkConfiguration.Security = &security
+		sdk.sdkConfiguration.Security = withSecurity(security)
+	}
+}
+
+// WithSecuritySource configures the SDK to invoke the Security Source function on each method call to determine authentication
+func WithSecuritySource(security func(context.Context) (shared.Security, error)) SDKOption {
+	return func(sdk *Smartcar) {
+		sdk.sdkConfiguration.Security = func(ctx context.Context) (interface{}, error) {
+			return security(ctx)
+		}
 	}
 }
 
@@ -135,8 +154,10 @@ func New(opts ...SDKOption) *Smartcar {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "1.7.0",
-			GenVersion:        "2.125.1",
+			SDKVersion:        "3.3.1",
+			GenVersion:        "2.291.0",
+			UserAgent:         "speakeasy-sdk/go 3.3.1 2.291.0 1.0.0 github.com/smartcar/go-sdk-v2",
+			Hooks:             hooks.New(),
 		},
 	}
 	for _, opt := range opts {
@@ -144,32 +165,32 @@ func New(opts ...SDKOption) *Smartcar {
 	}
 
 	// Use WithClient to override the default client if you would like to customize the timeout
-	if sdk.sdkConfiguration.DefaultClient == nil {
-		sdk.sdkConfiguration.DefaultClient = &http.Client{Timeout: 60 * time.Second}
+	if sdk.sdkConfiguration.Client == nil {
+		sdk.sdkConfiguration.Client = &http.Client{Timeout: 60 * time.Second}
 	}
-	if sdk.sdkConfiguration.SecurityClient == nil {
-		if sdk.sdkConfiguration.Security != nil {
-			sdk.sdkConfiguration.SecurityClient = utils.ConfigureSecurityClient(sdk.sdkConfiguration.DefaultClient, sdk.sdkConfiguration.Security)
-		} else {
-			sdk.sdkConfiguration.SecurityClient = sdk.sdkConfiguration.DefaultClient
-		}
+
+	currentServerURL, _ := sdk.sdkConfiguration.GetServerDetails()
+	serverURL := currentServerURL
+	serverURL, sdk.sdkConfiguration.Client = sdk.sdkConfiguration.Hooks.SDKInit(currentServerURL, sdk.sdkConfiguration.Client)
+	if serverURL != currentServerURL {
+		sdk.sdkConfiguration.ServerURL = serverURL
 	}
+
+	sdk.Compatibility = newCompatibility(sdk.sdkConfiguration)
+
+	sdk.VehicleManagement = newVehicleManagement(sdk.sdkConfiguration)
+
+	sdk.User = newUser(sdk.sdkConfiguration)
+
+	sdk.Vehicles = newVehicles(sdk.sdkConfiguration)
+
+	sdk.Tesla = newTesla(sdk.sdkConfiguration)
+
+	sdk.Evs = newEvs(sdk.sdkConfiguration)
 
 	sdk.Cadillac = newCadillac(sdk.sdkConfiguration)
 
 	sdk.Chevrolet = newChevrolet(sdk.sdkConfiguration)
-
-	sdk.Compatibility = newCompatibility(sdk.sdkConfiguration)
-
-	sdk.Evs = newEvs(sdk.sdkConfiguration)
-
-	sdk.Tesla = newTesla(sdk.sdkConfiguration)
-
-	sdk.User = newUser(sdk.sdkConfiguration)
-
-	sdk.VehicleManagement = newVehicleManagement(sdk.sdkConfiguration)
-
-	sdk.Vehicles = newVehicles(sdk.sdkConfiguration)
 
 	sdk.Webhooks = newWebhooks(sdk.sdkConfiguration)
 

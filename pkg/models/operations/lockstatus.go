@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	"github.com/smartcar/go-sdk-v2/v3/pkg/models/shared"
 	"net/http"
 )
 
@@ -19,11 +19,14 @@ func (o *LockStatusRequest) GetVehicleID() string {
 }
 
 type LockStatusResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Returns the lock status for a vehicle and the open status of its doors, windows, storage units, sunroof and charging port where available.
 	SecurityRead *shared.SecurityRead
-	StatusCode   int
-	RawResponse  *http.Response
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *LockStatusResponse) GetContentType() string {

@@ -8,6 +8,7 @@ import (
 	"math/big"
 	"reflect"
 	"regexp"
+	"strconv"
 	"strings"
 	"time"
 
@@ -63,6 +64,29 @@ func Contains(slice []string, item string) bool {
 	return false
 }
 
+func MatchStatusCodes(expectedCodes []string, statusCode int) bool {
+	for _, codeStr := range expectedCodes {
+		code, err := strconv.Atoi(codeStr)
+		if err == nil {
+			if code == statusCode {
+				return true
+			}
+			continue
+		}
+
+		codeRange, err := strconv.Atoi(string(codeStr[0]))
+		if err != nil {
+			continue
+		}
+
+		if statusCode >= (codeRange*100) && statusCode < ((codeRange+1)*100) {
+			return true
+		}
+	}
+
+	return false
+}
+
 func parseStructTag(tagKey string, field reflect.StructField) map[string]string {
 	tag := field.Tag.Get(tagKey)
 	if tag == "" {
@@ -81,7 +105,6 @@ func parseStructTag(tagKey string, field reflect.StructField) map[string]string 
 			parts = append(parts, "true")
 		case 2:
 			// key=value option
-			break
 		default:
 			// invalid option
 			continue
@@ -155,6 +178,14 @@ func populateFromGlobals(fieldType reflect.StructField, valType reflect.Value, p
 }
 
 func isNil(typ reflect.Type, val reflect.Value) bool {
+	// `reflect.TypeOf(nil) == nil` so calling typ.Kind() will cause a nil pointer
+	// dereference panic. Catch it and return early.
+	// https://github.com/golang/go/issues/51649
+	// https://github.com/golang/go/issues/54208
+	if typ == nil {
+		return true
+	}
+
 	if typ.Kind() == reflect.Ptr || typ.Kind() == reflect.Map || typ.Kind() == reflect.Slice || typ.Kind() == reflect.Interface {
 		return val.IsNil()
 	}
