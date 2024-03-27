@@ -3,17 +3,17 @@ id: cff3c3a3-fdbe-410c-9e53-28627f19e6aa
 management:
   docChecksum: 203e4bd19c2b39b1533102dd566af1ff
   docVersion: 1.0.0
-  speakeasyVersion: 1.213.0
-  generationVersion: 2.283.1
-  releaseVersion: 3.3.0
-  configChecksum: 76c29471751ff760e44da1a5cc93a94d
+  speakeasyVersion: 1.227.0
+  generationVersion: 2.291.0
+  releaseVersion: 3.3.1
+  configChecksum: 1f7581cba95a191605f9dbf8f35adcb4
   repoURL: https://github.com/smartcar/go-sdk-v2.git
   repoSubDirectory: .
   installationURL: https://github.com/smartcar/go-sdk-v2
   published: true
 features:
   go:
-    core: 3.4.4
+    core: 3.4.5
     examples: 2.81.3
     globalSecurity: 2.82.9
     globalServerURLs: 2.82.2
