@@ -7,25 +7,25 @@ import (
 	"fmt"
 )
 
-// CompassDirection - The direction the vehicle is traveling.
-type CompassDirection string
+// Direction - The direction the vehicle is traveling.
+type Direction string
 
 const (
-	CompassDirectionN  CompassDirection = "N"
-	CompassDirectionNe CompassDirection = "NE"
-	CompassDirectionE  CompassDirection = "E"
-	CompassDirectionSe CompassDirection = "SE"
-	CompassDirectionS  CompassDirection = "S"
-	CompassDirectionSw CompassDirection = "SW"
-	CompassDirectionW  CompassDirection = "W"
-	CompassDirectionNw CompassDirection = "NW"
+	DirectionN  Direction = "N"
+	DirectionNe Direction = "NE"
+	DirectionE  Direction = "E"
+	DirectionSe Direction = "SE"
+	DirectionS  Direction = "S"
+	DirectionSw Direction = "SW"
+	DirectionW  Direction = "W"
+	DirectionNw Direction = "NW"
 )
 
-func (e CompassDirection) ToPointer() *CompassDirection {
+func (e Direction) ToPointer() *Direction {
 	return &e
 }
 
-func (e *CompassDirection) UnmarshalJSON(data []byte) error {
+func (e *Direction) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -46,21 +46,21 @@ func (e *CompassDirection) UnmarshalJSON(data []byte) error {
 	case "W":
 		fallthrough
 	case "NW":
-		*e = CompassDirection(v)
+		*e = Direction(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CompassDirection: %v", v)
+		return fmt.Errorf("invalid value for Direction: %v", v)
 	}
 }
 
 type Compass struct {
 	// The direction the vehicle is traveling.
-	Direction *CompassDirection `json:"direction,omitempty"`
+	Direction *Direction `json:"direction,omitempty"`
 	// The direction the vehicle is traveling (in degrees).
 	Heading *float32 `json:"heading,omitempty"`
 }
 
-func (o *Compass) GetDirection() *CompassDirection {
+func (o *Compass) GetDirection() *Direction {
 	if o == nil {
 		return nil
 	}

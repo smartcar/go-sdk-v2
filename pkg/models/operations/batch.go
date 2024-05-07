@@ -29,9 +29,12 @@ func (o *BatchRequest) GetVehicleID() string {
 type BatchResponse struct {
 	// A list of responses from multiple Smartcar endpoints
 	BatchResponse *shared.BatchResponse
-	ContentType   string
-	StatusCode    int
-	RawResponse   *http.Response
+	// HTTP response content type for this operation
+	ContentType string
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *BatchResponse) GetBatchResponse() *shared.BatchResponse {

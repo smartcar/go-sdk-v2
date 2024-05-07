@@ -21,9 +21,12 @@ func (o *GetTeslaWattmeterRequest) GetVehicleID() string {
 type GetTeslaWattmeterResponse struct {
 	// returns the wattage of the charger measured by the vehicle.
 	ChargeWattage *shared.ChargeWattage
-	ContentType   string
-	StatusCode    int
-	RawResponse   *http.Response
+	// HTTP response content type for this operation
+	ContentType string
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
 }
 
 func (o *GetTeslaWattmeterResponse) GetChargeWattage() *shared.ChargeWattage {

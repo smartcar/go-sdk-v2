@@ -20,9 +20,12 @@ func (o *GetTeslaChargeTimeRequest) GetVehicleID() string {
 
 type GetTeslaChargeTimeResponse struct {
 	// returns the date and time the vehicle expects to "complete" this charging session.
-	ChargeTime  *shared.ChargeTime
+	ChargeTime *shared.ChargeTime
+	// HTTP response content type for this operation
 	ContentType string
-	StatusCode  int
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 

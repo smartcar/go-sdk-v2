@@ -3,6 +3,8 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -17,11 +19,39 @@ func (o *DisconnectRequest) GetVehicleID() string {
 	return o.VehicleID
 }
 
+// DisconnectStatus - Revoke application access
+type DisconnectStatus string
+
+const (
+	DisconnectStatusSuccess DisconnectStatus = "success"
+)
+
+func (e DisconnectStatus) ToPointer() *DisconnectStatus {
+	return &e
+}
+
+func (e *DisconnectStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "success":
+		*e = DisconnectStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for DisconnectStatus: %v", v)
+	}
+}
+
 type DisconnectResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// Revoke application access
-	Status      *string
-	StatusCode  int
+	Status *DisconnectStatus
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 
@@ -32,7 +62,7 @@ func (o *DisconnectResponse) GetContentType() string {
 	return o.ContentType
 }
 
-func (o *DisconnectResponse) GetStatus() *string {
+func (o *DisconnectResponse) GetStatus() *DisconnectStatus {
 	if o == nil {
 		return nil
 	}

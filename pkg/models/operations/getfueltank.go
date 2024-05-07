@@ -19,10 +19,13 @@ func (o *GetFuelTankRequest) GetVehicleID() string {
 }
 
 type GetFuelTankResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// return fuel tank reading
-	FuelTank    *shared.FuelTank
-	StatusCode  int
+	FuelTank *shared.FuelTank
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 

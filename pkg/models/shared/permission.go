@@ -2,19 +2,19 @@
 
 package shared
 
-type PermissionPaging struct {
+type Paging struct {
 	Count  *int64 `json:"count,omitempty"`
 	Offset *int64 `json:"offset,omitempty"`
 }
 
-func (o *PermissionPaging) GetCount() *int64 {
+func (o *Paging) GetCount() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.Count
 }
 
-func (o *PermissionPaging) GetOffset() *int64 {
+func (o *Paging) GetOffset() *int64 {
 	if o == nil {
 		return nil
 	}
@@ -22,11 +22,11 @@ func (o *PermissionPaging) GetOffset() *int64 {
 }
 
 type Permission struct {
-	Paging      *PermissionPaging `json:"paging,omitempty"`
-	Permissions []string          `json:"permissions,omitempty"`
+	Paging      *Paging  `json:"paging,omitempty"`
+	Permissions []string `json:"permissions,omitempty"`
 }
 
-func (o *Permission) GetPaging() *PermissionPaging {
+func (o *Permission) GetPaging() *Paging {
 	if o == nil {
 		return nil
 	}

@@ -1,0 +1,9 @@
+# SchemasStorage
+
+
+## Fields
+
+| Field                                                                                                      | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `Status`                                                                                                   | [*shared.SchemasSecurityReadStorageStatus](../../../pkg/models/shared/schemassecurityreadstoragestatus.md) | :heavy_minus_sign:                                                                                         | N/A                                                                                                        |
+| `Type`                                                                                                     | [*shared.SchemasSecurityReadStorageType](../../../pkg/models/shared/schemassecurityreadstoragetype.md)     | :heavy_minus_sign:                                                                                         | N/A                                                                                                        |
