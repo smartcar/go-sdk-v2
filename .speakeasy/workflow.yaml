@@ -1,0 +1,11 @@
+workflowVersion: 1.0.0
+sources:
+    my-source:
+        inputs:
+            - location: https://raw.githubusercontent.com/smartcar/api-schema/master/speakeasy/openapi.yaml
+              authHeader: Authorization
+              authSecret: $openapi_doc_auth_token
+targets:
+    smartcar:
+        target: go
+        source: my-source
