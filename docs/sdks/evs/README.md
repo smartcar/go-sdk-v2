@@ -1,4 +1,5 @@
 # Evs
+(*Evs*)
 
 ## Overview
 
@@ -35,11 +36,11 @@ __Response body__
 package main
 
 import(
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
 	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
@@ -51,15 +52,14 @@ func main() {
             },
         }),
     )
-
+    request := operations.GetBatteryCapacityRequest{
+        VehicleID: "<value>",
+    }
     ctx := context.Background()
-    res, err := s.Evs.GetBatteryCapacity(ctx, operations.GetBatteryCapacityRequest{
-        VehicleID: "unde",
-    })
+    res, err := s.Evs.GetBatteryCapacity(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.BatteryCapacity != nil {
         // handle response
     }
@@ -68,16 +68,19 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `request`                                                                                    | [operations.GetBatteryCapacityRequest](../../models/operations/getbatterycapacityrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
+| `request`                                                                                        | [operations.GetBatteryCapacityRequest](../../pkg/models/operations/getbatterycapacityrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `opts`                                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
 
 ### Response
 
-**[*operations.GetBatteryCapacityResponse](../../models/operations/getbatterycapacityresponse.md), error**
-
+**[*operations.GetBatteryCapacityResponse](../../pkg/models/operations/getbatterycapacityresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetBatteryLevel
 
@@ -102,11 +105,11 @@ __Response body__
 package main
 
 import(
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
 	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
@@ -118,15 +121,14 @@ func main() {
             },
         }),
     )
-
+    request := operations.GetBatteryLevelRequest{
+        VehicleID: "<value>",
+    }
     ctx := context.Background()
-    res, err := s.Evs.GetBatteryLevel(ctx, operations.GetBatteryLevelRequest{
-        VehicleID: "nulla",
-    })
+    res, err := s.Evs.GetBatteryLevel(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.BatteryLevel != nil {
         // handle response
     }
@@ -135,16 +137,19 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `request`                                                                              | [operations.GetBatteryLevelRequest](../../models/operations/getbatterylevelrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
+| `request`                                                                                  | [operations.GetBatteryLevelRequest](../../pkg/models/operations/getbatterylevelrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `opts`                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
 
 ### Response
 
-**[*operations.GetBatteryLevelResponse](../../models/operations/getbatterylevelresponse.md), error**
-
+**[*operations.GetBatteryLevelResponse](../../pkg/models/operations/getbatterylevelresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetChargingLimit
 
@@ -158,11 +163,11 @@ Returns the current charge limit of an electric vehicle.
 package main
 
 import(
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
 	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
@@ -174,15 +179,14 @@ func main() {
             },
         }),
     )
-
+    request := operations.GetChargingLimitRequest{
+        VehicleID: "<value>",
+    }
     ctx := context.Background()
-    res, err := s.Evs.GetChargingLimit(ctx, operations.GetChargingLimitRequest{
-        VehicleID: "corrupti",
-    })
+    res, err := s.Evs.GetChargingLimit(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.ChargeLimit != nil {
         // handle response
     }
@@ -191,16 +195,19 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `request`                                                                                | [operations.GetChargingLimitRequest](../../models/operations/getcharginglimitrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
+| `request`                                                                                    | [operations.GetChargingLimitRequest](../../pkg/models/operations/getcharginglimitrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `opts`                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                 | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
 
 ### Response
 
-**[*operations.GetChargingLimitResponse](../../models/operations/getcharginglimitresponse.md), error**
-
+**[*operations.GetChargingLimitResponse](../../pkg/models/operations/getcharginglimitresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetChargingStatus
 
@@ -225,11 +232,11 @@ __Response body__
 package main
 
 import(
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
 	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
@@ -241,15 +248,14 @@ func main() {
             },
         }),
     )
-
+    request := operations.GetChargingStatusRequest{
+        VehicleID: "<value>",
+    }
     ctx := context.Background()
-    res, err := s.Evs.GetChargingStatus(ctx, operations.GetChargingStatusRequest{
-        VehicleID: "illum",
-    })
+    res, err := s.Evs.GetChargingStatus(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.ChargeStatus != nil {
         // handle response
     }
@@ -258,16 +264,19 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
-| `request`                                                                                  | [operations.GetChargingStatusRequest](../../models/operations/getchargingstatusrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
+| `request`                                                                                      | [operations.GetChargingStatusRequest](../../pkg/models/operations/getchargingstatusrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
+| `opts`                                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                                   | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
 
 
 ### Response
 
-**[*operations.GetChargingStatusResponse](../../models/operations/getchargingstatusresponse.md), error**
-
+**[*operations.GetChargingStatusResponse](../../pkg/models/operations/getchargingstatusresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## SetChargingLimit
 
@@ -281,11 +290,11 @@ Returns the current charge limit of an electric vehicle.
 package main
 
 import(
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
 	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
@@ -297,18 +306,17 @@ func main() {
             },
         }),
     )
-
-    ctx := context.Background()
-    res, err := s.Evs.SetChargingLimit(ctx, operations.SetChargingLimitRequest{
+    request := operations.SetChargingLimitRequest{
         ChargeLimit: &shared.ChargeLimit{
-            Limit: gosdkv2.Float32(1),
+            Limit: 1,
         },
-        VehicleID: "vel",
-    })
+        VehicleID: "<value>",
+    }
+    ctx := context.Background()
+    res, err := s.Evs.SetChargingLimit(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.SuccessResponse != nil {
         // handle response
     }
@@ -317,16 +325,19 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `request`                                                                                | [operations.SetChargingLimitRequest](../../models/operations/setcharginglimitrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
+| `request`                                                                                    | [operations.SetChargingLimitRequest](../../pkg/models/operations/setcharginglimitrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `opts`                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                 | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
 
 ### Response
 
-**[*operations.SetChargingLimitResponse](../../models/operations/setcharginglimitresponse.md), error**
-
+**[*operations.SetChargingLimitResponse](../../pkg/models/operations/setcharginglimitresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## StartStopCharge
 
@@ -351,11 +362,11 @@ __Response body__
 package main
 
 import(
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
 	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
@@ -367,18 +378,17 @@ func main() {
             },
         }),
     )
-
-    ctx := context.Background()
-    res, err := s.Evs.StartStopCharge(ctx, operations.StartStopChargeRequest{
+    request := operations.StartStopChargeRequest{
         ChargeAction: &shared.ChargeAction{
-            Action: shared.ChargeActionActionStart.ToPointer(),
+            Action: shared.ActionStart.ToPointer(),
         },
-        VehicleID: "error",
-    })
+        VehicleID: "<value>",
+    }
+    ctx := context.Background()
+    res, err := s.Evs.StartStopCharge(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.SuccessResponse != nil {
         // handle response
     }
@@ -387,13 +397,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `request`                                                                              | [operations.StartStopChargeRequest](../../models/operations/startstopchargerequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
+| `request`                                                                                  | [operations.StartStopChargeRequest](../../pkg/models/operations/startstopchargerequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `opts`                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
 
 ### Response
 
-**[*operations.StartStopChargeResponse](../../models/operations/startstopchargeresponse.md), error**
-
+**[*operations.StartStopChargeResponse](../../pkg/models/operations/startstopchargeresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

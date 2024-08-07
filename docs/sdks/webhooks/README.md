@@ -1,4 +1,5 @@
 # Webhooks
+(*Webhooks*)
 
 ### Available Operations
 
@@ -27,11 +28,11 @@ __Response body__
 package main
 
 import(
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
 	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
@@ -43,20 +44,19 @@ func main() {
             },
         }),
     )
-
-    ctx := context.Background()
-    res, err := s.Webhooks.Subscribe(ctx, operations.SubscribeRequest{
+    request := operations.SubscribeRequest{
         WebhookInfo: &shared.WebhookInfo{
             Vehicleid: gosdkv2.String("dc6ea99e-57d1-4e41-b129-27e7eb58713e"),
             Webhookid: gosdkv2.String("9b6ae692-60cc-4b3e-89d8-71e7549cf805"),
         },
-        VehicleID: "excepturi",
-        WebhookID: "accusantium",
-    })
+        VehicleID: "<value>",
+        WebhookID: "<value>",
+    }
+    ctx := context.Background()
+    res, err := s.Webhooks.Subscribe(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.SuccessResponse != nil {
         // handle response
     }
@@ -65,16 +65,19 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
-| `request`                                                                  | [operations.SubscribeRequest](../../models/operations/subscriberequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `request`                                                                      | [operations.SubscribeRequest](../../pkg/models/operations/subscriberequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `opts`                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                   | :heavy_minus_sign:                                                             | The options for this request.                                                  |
 
 
 ### Response
 
-**[*operations.SubscribeResponse](../../models/operations/subscriberesponse.md), error**
-
+**[*operations.SubscribeResponse](../../pkg/models/operations/subscriberesponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## Unsubscribe
 
@@ -98,11 +101,11 @@ __Response body__
 package main
 
 import(
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
 	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
@@ -114,16 +117,15 @@ func main() {
             },
         }),
     )
-
+    request := operations.UnsubscribeRequest{
+        VehicleID: "<value>",
+        WebhookID: "<value>",
+    }
     ctx := context.Background()
-    res, err := s.Webhooks.Unsubscribe(ctx, operations.UnsubscribeRequest{
-        VehicleID: "iure",
-        WebhookID: "culpa",
-    })
+    res, err := s.Webhooks.Unsubscribe(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.SuccessResponse != nil {
         // handle response
     }
@@ -132,13 +134,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
-| `request`                                                                      | [operations.UnsubscribeRequest](../../models/operations/unsubscriberequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `request`                                                                          | [operations.UnsubscribeRequest](../../pkg/models/operations/unsubscriberequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `opts`                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 
 ### Response
 
-**[*operations.UnsubscribeResponse](../../models/operations/unsubscriberesponse.md), error**
-
+**[*operations.UnsubscribeResponse](../../pkg/models/operations/unsubscriberesponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
