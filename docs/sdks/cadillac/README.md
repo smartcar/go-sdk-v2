@@ -1,4 +1,5 @@
 # Cadillac
+(*Cadillac*)
 
 ### Available Operations
 
@@ -17,11 +18,11 @@ When the vehicle is charging, this endpoint returns the date and time the vehicl
 package main
 
 import(
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
 	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
@@ -33,15 +34,14 @@ func main() {
             },
         }),
     )
-
+    request := operations.GetCadillacChargeTimeRequest{
+        VehicleID: "<value>",
+    }
     ctx := context.Background()
-    res, err := s.Cadillac.GetChargeTime(ctx, operations.GetCadillacChargeTimeRequest{
-        VehicleID: "corrupti",
-    })
+    res, err := s.Cadillac.GetChargeTime(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.ChargeTime != nil {
         // handle response
     }
@@ -50,16 +50,19 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
-| `request`                                                                                          | [operations.GetCadillacChargeTimeRequest](../../models/operations/getcadillacchargetimerequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                  | :heavy_check_mark:                                                                                     | The context to use for the request.                                                                    |
+| `request`                                                                                              | [operations.GetCadillacChargeTimeRequest](../../pkg/models/operations/getcadillacchargetimerequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `opts`                                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                                           | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
 
 
 ### Response
 
-**[*operations.GetCadillacChargeTimeResponse](../../models/operations/getcadillacchargetimeresponse.md), error**
-
+**[*operations.GetCadillacChargeTimeResponse](../../pkg/models/operations/getcadillacchargetimeresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetVoltage
 
@@ -73,11 +76,11 @@ When the vehicle is plugged in, this endpoint returns the voltage of the charger
 package main
 
 import(
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
 	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
@@ -89,15 +92,14 @@ func main() {
             },
         }),
     )
-
+    request := operations.GetCadillacVoltageRequest{
+        VehicleID: "<value>",
+    }
     ctx := context.Background()
-    res, err := s.Cadillac.GetVoltage(ctx, operations.GetCadillacVoltageRequest{
-        VehicleID: "provident",
-    })
+    res, err := s.Cadillac.GetVoltage(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.ChargeVoltage != nil {
         // handle response
     }
@@ -106,13 +108,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `request`                                                                                    | [operations.GetCadillacVoltageRequest](../../models/operations/getcadillacvoltagerequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
+| `request`                                                                                        | [operations.GetCadillacVoltageRequest](../../pkg/models/operations/getcadillacvoltagerequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `opts`                                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
 
 ### Response
 
-**[*operations.GetCadillacVoltageResponse](../../models/operations/getcadillacvoltageresponse.md), error**
-
+**[*operations.GetCadillacVoltageResponse](../../pkg/models/operations/getcadillacvoltageresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

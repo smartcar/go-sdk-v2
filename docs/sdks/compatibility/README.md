@@ -1,4 +1,5 @@
 # Compatibility
+(*Compatibility*)
 
 ## Overview
 
@@ -51,11 +52,11 @@ __Enum Values__
 package main
 
 import(
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
 	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
@@ -67,17 +68,16 @@ func main() {
             },
         }),
     )
-
-    ctx := context.Background()
-    res, err := s.Compatibility.ListCompatibility(ctx, operations.ListCompatibilityRequest{
+    request := operations.ListCompatibilityRequest{
         Country: gosdkv2.String("{country}"),
         Scope: gosdkv2.String("{scope}"),
         Vin: gosdkv2.String("{vin}"),
-    })
+    }
+    ctx := context.Background()
+    res, err := s.Compatibility.ListCompatibility(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.CompatibilityResponse != nil {
         // handle response
     }
@@ -86,13 +86,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
-| `request`                                                                                  | [operations.ListCompatibilityRequest](../../models/operations/listcompatibilityrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
+| `request`                                                                                      | [operations.ListCompatibilityRequest](../../pkg/models/operations/listcompatibilityrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
+| `opts`                                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                                   | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
 
 
 ### Response
 
-**[*operations.ListCompatibilityResponse](../../models/operations/listcompatibilityresponse.md), error**
-
+**[*operations.ListCompatibilityResponse](../../pkg/models/operations/listcompatibilityresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

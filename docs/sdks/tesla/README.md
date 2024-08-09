@@ -1,4 +1,5 @@
 # Tesla
+(*Tesla*)
 
 ### Available Operations
 
@@ -24,11 +25,11 @@ When the vehicle is plugged in, this endpoint returns the amperage of the charge
 package main
 
 import(
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
 	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
@@ -40,15 +41,14 @@ func main() {
             },
         }),
     )
-
+    request := operations.GetTeslaAmmeterRequest{
+        VehicleID: "<value>",
+    }
     ctx := context.Background()
-    res, err := s.Tesla.GetAmmeter(ctx, operations.GetTeslaAmmeterRequest{
-        VehicleID: "deserunt",
-    })
+    res, err := s.Tesla.GetAmmeter(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.ChargeAmmeter != nil {
         // handle response
     }
@@ -57,16 +57,19 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `request`                                                                              | [operations.GetTeslaAmmeterRequest](../../models/operations/getteslaammeterrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
+| `request`                                                                                  | [operations.GetTeslaAmmeterRequest](../../pkg/models/operations/getteslaammeterrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `opts`                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
 
 ### Response
 
-**[*operations.GetTeslaAmmeterResponse](../../models/operations/getteslaammeterresponse.md), error**
-
+**[*operations.GetTeslaAmmeterResponse](../../pkg/models/operations/getteslaammeterresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetChargeTime
 
@@ -80,11 +83,11 @@ When the vehicle is charging, this endpoint returns the date and time the vehicl
 package main
 
 import(
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
 	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
@@ -96,15 +99,14 @@ func main() {
             },
         }),
     )
-
+    request := operations.GetTeslaChargeTimeRequest{
+        VehicleID: "<value>",
+    }
     ctx := context.Background()
-    res, err := s.Tesla.GetChargeTime(ctx, operations.GetTeslaChargeTimeRequest{
-        VehicleID: "suscipit",
-    })
+    res, err := s.Tesla.GetChargeTime(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.ChargeTime != nil {
         // handle response
     }
@@ -113,16 +115,19 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `request`                                                                                    | [operations.GetTeslaChargeTimeRequest](../../models/operations/getteslachargetimerequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
+| `request`                                                                                        | [operations.GetTeslaChargeTimeRequest](../../pkg/models/operations/getteslachargetimerequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `opts`                                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
 
 ### Response
 
-**[*operations.GetTeslaChargeTimeResponse](../../models/operations/getteslachargetimeresponse.md), error**
-
+**[*operations.GetTeslaChargeTimeResponse](../../pkg/models/operations/getteslachargetimeresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetCompass
 
@@ -136,11 +141,11 @@ This endpoint returns the compass heading of a Tesla. The value is in degrees, w
 package main
 
 import(
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
 	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
@@ -152,15 +157,14 @@ func main() {
             },
         }),
     )
-
+    request := operations.GetTeslaCompassRequest{
+        VehicleID: "<value>",
+    }
     ctx := context.Background()
-    res, err := s.Tesla.GetCompass(ctx, operations.GetTeslaCompassRequest{
-        VehicleID: "iure",
-    })
+    res, err := s.Tesla.GetCompass(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Compass != nil {
         // handle response
     }
@@ -169,16 +173,19 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `request`                                                                              | [operations.GetTeslaCompassRequest](../../models/operations/getteslacompassrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
+| `request`                                                                                  | [operations.GetTeslaCompassRequest](../../pkg/models/operations/getteslacompassrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `opts`                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
 
 ### Response
 
-**[*operations.GetTeslaCompassResponse](../../models/operations/getteslacompassresponse.md), error**
-
+**[*operations.GetTeslaCompassResponse](../../pkg/models/operations/getteslacompassresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetExteriorTemperature
 
@@ -192,11 +199,11 @@ This endpoint returns the exterior temperature of a Tesla, in celsius by default
 package main
 
 import(
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
 	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
@@ -208,15 +215,14 @@ func main() {
             },
         }),
     )
-
+    request := operations.GetTeslaExteriorTemperatureRequest{
+        ID: "<id>",
+    }
     ctx := context.Background()
-    res, err := s.Tesla.GetExteriorTemperature(ctx, operations.GetTeslaExteriorTemperatureRequest{
-        ID: "4e0f467c-c879-46ed-951a-05dfc2ddf7cc",
-    })
+    res, err := s.Tesla.GetExteriorTemperature(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Temperature != nil {
         // handle response
     }
@@ -225,16 +231,19 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                      | Type                                                                                                           | Required                                                                                                       | Description                                                                                                    |
-| -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                                          | :heavy_check_mark:                                                                                             | The context to use for the request.                                                                            |
-| `request`                                                                                                      | [operations.GetTeslaExteriorTemperatureRequest](../../models/operations/getteslaexteriortemperaturerequest.md) | :heavy_check_mark:                                                                                             | The request object to use for the request.                                                                     |
+| Parameter                                                                                                          | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                                              | :heavy_check_mark:                                                                                                 | The context to use for the request.                                                                                |
+| `request`                                                                                                          | [operations.GetTeslaExteriorTemperatureRequest](../../pkg/models/operations/getteslaexteriortemperaturerequest.md) | :heavy_check_mark:                                                                                                 | The request object to use for the request.                                                                         |
+| `opts`                                                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                                                       | :heavy_minus_sign:                                                                                                 | The options for this request.                                                                                      |
 
 
 ### Response
 
-**[*operations.GetTeslaExteriorTemperatureResponse](../../models/operations/getteslaexteriortemperatureresponse.md), error**
-
+**[*operations.GetTeslaExteriorTemperatureResponse](../../pkg/models/operations/getteslaexteriortemperatureresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetInteriorTemperature
 
@@ -248,11 +257,11 @@ This endpoint returns the interior temperature of a Tesla, in celsius by default
 package main
 
 import(
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
 	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
@@ -264,15 +273,14 @@ func main() {
             },
         }),
     )
-
+    request := operations.GetTeslaInteriorTemperatureRequest{
+        ID: "<id>",
+    }
     ctx := context.Background()
-    res, err := s.Tesla.GetInteriorTemperature(ctx, operations.GetTeslaInteriorTemperatureRequest{
-        ID: "78ca1ba9-28fc-4816-b42c-b73920592939",
-    })
+    res, err := s.Tesla.GetInteriorTemperature(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Temperature != nil {
         // handle response
     }
@@ -281,16 +289,19 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                      | Type                                                                                                           | Required                                                                                                       | Description                                                                                                    |
-| -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                                          | :heavy_check_mark:                                                                                             | The context to use for the request.                                                                            |
-| `request`                                                                                                      | [operations.GetTeslaInteriorTemperatureRequest](../../models/operations/getteslainteriortemperaturerequest.md) | :heavy_check_mark:                                                                                             | The request object to use for the request.                                                                     |
+| Parameter                                                                                                          | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                                              | :heavy_check_mark:                                                                                                 | The context to use for the request.                                                                                |
+| `request`                                                                                                          | [operations.GetTeslaInteriorTemperatureRequest](../../pkg/models/operations/getteslainteriortemperaturerequest.md) | :heavy_check_mark:                                                                                                 | The request object to use for the request.                                                                         |
+| `opts`                                                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                                                       | :heavy_minus_sign:                                                                                                 | The options for this request.                                                                                      |
 
 
 ### Response
 
-**[*operations.GetTeslaInteriorTemperatureResponse](../../models/operations/getteslainteriortemperatureresponse.md), error**
-
+**[*operations.GetTeslaInteriorTemperatureResponse](../../pkg/models/operations/getteslainteriortemperatureresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetSpeedometer
 
@@ -304,11 +315,11 @@ This endpoint returns the speed of a Tesla (in kilometers/hour by default or in 
 package main
 
 import(
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
 	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
@@ -320,15 +331,14 @@ func main() {
             },
         }),
     )
-
+    request := operations.GetTeslaSpeedRequest{
+        VehicleID: "<value>",
+    }
     ctx := context.Background()
-    res, err := s.Tesla.GetSpeedometer(ctx, operations.GetTeslaSpeedRequest{
-        VehicleID: "laboriosam",
-    })
+    res, err := s.Tesla.GetSpeedometer(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Speed != nil {
         // handle response
     }
@@ -337,16 +347,19 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `request`                                                                          | [operations.GetTeslaSpeedRequest](../../models/operations/getteslaspeedrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.GetTeslaSpeedRequest](../../pkg/models/operations/getteslaspeedrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
 
 ### Response
 
-**[*operations.GetTeslaSpeedResponse](../../models/operations/getteslaspeedresponse.md), error**
-
+**[*operations.GetTeslaSpeedResponse](../../pkg/models/operations/getteslaspeedresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetVoltage
 
@@ -360,11 +373,11 @@ When the vehicle is plugged in, this endpoint returns the voltage of the charger
 package main
 
 import(
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
 	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
@@ -376,15 +389,14 @@ func main() {
             },
         }),
     )
-
+    request := operations.GetTeslaVoltageRequest{
+        VehicleID: "<value>",
+    }
     ctx := context.Background()
-    res, err := s.Tesla.GetVoltage(ctx, operations.GetTeslaVoltageRequest{
-        VehicleID: "hic",
-    })
+    res, err := s.Tesla.GetVoltage(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.ChargeVoltage != nil {
         // handle response
     }
@@ -393,16 +405,19 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `request`                                                                              | [operations.GetTeslaVoltageRequest](../../models/operations/getteslavoltagerequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
+| `request`                                                                                  | [operations.GetTeslaVoltageRequest](../../pkg/models/operations/getteslavoltagerequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `opts`                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
 
 ### Response
 
-**[*operations.GetTeslaVoltageResponse](../../models/operations/getteslavoltageresponse.md), error**
-
+**[*operations.GetTeslaVoltageResponse](../../pkg/models/operations/getteslavoltageresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetWattmeter
 
@@ -416,11 +431,11 @@ When the vehicle is plugged in, this endpoint returns the wattage of the charger
 package main
 
 import(
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
 	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
@@ -432,15 +447,14 @@ func main() {
             },
         }),
     )
-
+    request := operations.GetTeslaWattmeterRequest{
+        VehicleID: "<value>",
+    }
     ctx := context.Background()
-    res, err := s.Tesla.GetWattmeter(ctx, operations.GetTeslaWattmeterRequest{
-        VehicleID: "saepe",
-    })
+    res, err := s.Tesla.GetWattmeter(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.ChargeWattage != nil {
         // handle response
     }
@@ -449,16 +463,19 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
-| `request`                                                                                  | [operations.GetTeslaWattmeterRequest](../../models/operations/getteslawattmeterrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
+| `request`                                                                                      | [operations.GetTeslaWattmeterRequest](../../pkg/models/operations/getteslawattmeterrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
+| `opts`                                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                                   | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
 
 
 ### Response
 
-**[*operations.GetTeslaWattmeterResponse](../../models/operations/getteslawattmeterresponse.md), error**
-
+**[*operations.GetTeslaWattmeterResponse](../../pkg/models/operations/getteslawattmeterresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## SetAmmeter
 
@@ -472,11 +489,11 @@ When the vehicle is plugged in, this endpoint sets the amperage of the charger m
 package main
 
 import(
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
 	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
@@ -488,18 +505,17 @@ func main() {
             },
         }),
     )
-
-    ctx := context.Background()
-    res, err := s.Tesla.SetAmmeter(ctx, operations.SetTeslaAmmeterRequest{
+    request := operations.SetTeslaAmmeterRequest{
         ChargeAmmeter: &shared.ChargeAmmeter{
             Amperage: gosdkv2.Float32(48),
         },
-        VehicleID: "fuga",
-    })
+        VehicleID: "<value>",
+    }
+    ctx := context.Background()
+    res, err := s.Tesla.SetAmmeter(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.SuccessResponse != nil {
         // handle response
     }
@@ -508,13 +524,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `request`                                                                              | [operations.SetTeslaAmmeterRequest](../../models/operations/setteslaammeterrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
+| `request`                                                                                  | [operations.SetTeslaAmmeterRequest](../../pkg/models/operations/setteslaammeterrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `opts`                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
 
 ### Response
 
-**[*operations.SetTeslaAmmeterResponse](../../models/operations/setteslaammeterresponse.md), error**
-
+**[*operations.SetTeslaAmmeterResponse](../../pkg/models/operations/setteslaammeterresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

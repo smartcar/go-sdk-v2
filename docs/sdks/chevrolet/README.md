@@ -1,4 +1,5 @@
 # Chevrolet
+(*Chevrolet*)
 
 ### Available Operations
 
@@ -17,11 +18,11 @@ When the vehicle is charging, this endpoint returns the date and time the vehicl
 package main
 
 import(
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
 	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
@@ -33,15 +34,14 @@ func main() {
             },
         }),
     )
-
+    request := operations.GetChevroletChargeTimeRequest{
+        VehicleID: "<value>",
+    }
     ctx := context.Background()
-    res, err := s.Chevrolet.GetChargeTime(ctx, operations.GetChevroletChargeTimeRequest{
-        VehicleID: "distinctio",
-    })
+    res, err := s.Chevrolet.GetChargeTime(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.ChargeTime != nil {
         // handle response
     }
@@ -50,16 +50,19 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
-| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                | :heavy_check_mark:                                                                                   | The context to use for the request.                                                                  |
-| `request`                                                                                            | [operations.GetChevroletChargeTimeRequest](../../models/operations/getchevroletchargetimerequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
+| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                    | :heavy_check_mark:                                                                                       | The context to use for the request.                                                                      |
+| `request`                                                                                                | [operations.GetChevroletChargeTimeRequest](../../pkg/models/operations/getchevroletchargetimerequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
+| `opts`                                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                                             | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
 
 
 ### Response
 
-**[*operations.GetChevroletChargeTimeResponse](../../models/operations/getchevroletchargetimeresponse.md), error**
-
+**[*operations.GetChevroletChargeTimeResponse](../../pkg/models/operations/getchevroletchargetimeresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 ## GetVoltage
 
@@ -73,11 +76,11 @@ When the vehicle is plugged in, this endpoint returns the voltage of the charger
 package main
 
 import(
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
 	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 )
 
 func main() {
@@ -89,15 +92,14 @@ func main() {
             },
         }),
     )
-
+    request := operations.GetChevroletVoltageRequest{
+        VehicleID: "<value>",
+    }
     ctx := context.Background()
-    res, err := s.Chevrolet.GetVoltage(ctx, operations.GetChevroletVoltageRequest{
-        VehicleID: "quibusdam",
-    })
+    res, err := s.Chevrolet.GetVoltage(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-
     if res.ChargeVoltage != nil {
         // handle response
     }
@@ -106,13 +108,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
-| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
-| `request`                                                                                      | [operations.GetChevroletVoltageRequest](../../models/operations/getchevroletvoltagerequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
+| `request`                                                                                          | [operations.GetChevroletVoltageRequest](../../pkg/models/operations/getchevroletvoltagerequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+| `opts`                                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                                       | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
 
 
 ### Response
 
-**[*operations.GetChevroletVoltageResponse](../../models/operations/getchevroletvoltageresponse.md), error**
-
+**[*operations.GetChevroletVoltageResponse](../../pkg/models/operations/getchevroletvoltageresponse.md), error**
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
