@@ -101,3 +101,13 @@ Based on:
 - [go v1.8.1] .
 ### Releases
 - [Go v1.8.1] https://github.com/smartcar/go-sdk-v2/releases/tag/v1.8.1 - .
+
+## 2024-08-15 00:03:22
+### Changes
+Based on:
+- OpenAPI Doc 1.0.0 
+- Speakeasy CLI 1.368.0 (2.399.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v1.8.2] .
+### Releases
+- [Go v1.8.2] https://github.com/smartcar/go-sdk-v2/releases/tag/v1.8.2 - .

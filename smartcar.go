@@ -157,9 +157,9 @@ func New(opts ...SDKOption) *Smartcar {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "1.8.1",
-			GenVersion:        "2.393.4",
-			UserAgent:         "speakeasy-sdk/go 1.8.1 2.393.4 1.0.0 github.com/smartcar/go-sdk-v2",
+			SDKVersion:        "1.8.2",
+			GenVersion:        "2.399.0",
+			UserAgent:         "speakeasy-sdk/go 1.8.2 2.399.0 1.0.0 github.com/smartcar/go-sdk-v2",
 			Hooks:             hooks.New(),
 		},
 	}
