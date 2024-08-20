@@ -3,10 +3,10 @@ id: 0e78a3b4-f235-423a-976c-6dd1457be924
 management:
   docChecksum: db9b997c1ab2aa5eca5eb96adcd9cce2
   docVersion: 1.0.0
-  speakeasyVersion: 1.368.0
-  generationVersion: 2.399.0
-  releaseVersion: 1.8.2
-  configChecksum: fa487c1f5b82b07ab2fad55fbc8defdb
+  speakeasyVersion: 1.376.0
+  generationVersion: 2.402.5
+  releaseVersion: 1.8.3
+  configChecksum: 4720d7849c0c35da181777acf8b3a0f0
   repoURL: https://github.com/smartcar/go-sdk-v2.git
   repoSubDirectory: .
   installationURL: https://github.com/smartcar/go-sdk-v2
@@ -14,7 +14,7 @@ management:
 features:
   go:
     additionalDependencies: 0.1.0
-    core: 3.5.4
+    core: 3.5.5
     defaultEnabledRetries: 0.2.0
     envVarSecurityUsage: 0.3.0
     examples: 2.81.3
