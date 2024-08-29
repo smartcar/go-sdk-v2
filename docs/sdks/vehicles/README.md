@@ -69,8 +69,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
@@ -79,13 +77,16 @@ func main() {
 | `request`                                                              | [operations.BatchRequest](../../pkg/models/operations/batchrequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
 | `opts`                                                                 | [][operations.Option](../../pkg/models/operations/option.md)           | :heavy_minus_sign:                                                     | The options for this request.                                          |
 
-
 ### Response
 
 **[*operations.BatchResponse](../../pkg/models/operations/batchresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |
+
 
 ## LockStatus
 
@@ -127,8 +128,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
@@ -137,13 +136,16 @@ func main() {
 | `request`                                                                              | [operations.GetLockStatusRequest](../../pkg/models/operations/getlockstatusrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 | `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
-
 ### Response
 
 **[*operations.GetLockStatusResponse](../../pkg/models/operations/getlockstatusresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |
+
 
 ## Disconnect
 
@@ -193,8 +195,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
@@ -203,13 +203,16 @@ func main() {
 | `request`                                                                        | [operations.DisconnectRequest](../../pkg/models/operations/disconnectrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 | `opts`                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
-
 ### Response
 
 **[*operations.DisconnectResponse](../../pkg/models/operations/disconnectresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |
+
 
 ## Get
 
@@ -266,8 +269,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
@@ -276,13 +277,16 @@ func main() {
 | `request`                                                                        | [operations.GetVehicleRequest](../../pkg/models/operations/getvehiclerequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 | `opts`                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
-
 ### Response
 
 **[*operations.GetVehicleResponse](../../pkg/models/operations/getvehicleresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |
+
 
 ## GetEngineOil
 
@@ -336,8 +340,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
@@ -346,13 +348,16 @@ func main() {
 | `request`                                                                            | [operations.GetEngineOilRequest](../../pkg/models/operations/getengineoilrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 | `opts`                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                         | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
 
-
 ### Response
 
 **[*operations.GetEngineOilResponse](../../pkg/models/operations/getengineoilresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |
+
 
 ## GetFuelTank
 
@@ -408,8 +413,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
@@ -418,13 +421,16 @@ func main() {
 | `request`                                                                          | [operations.GetFuelTankRequest](../../pkg/models/operations/getfueltankrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 | `opts`                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
-
 ### Response
 
 **[*operations.GetFuelTankResponse](../../pkg/models/operations/getfueltankresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |
+
 
 ## GetLocation
 
@@ -479,8 +485,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
@@ -489,13 +493,16 @@ func main() {
 | `request`                                                                          | [operations.GetLocationRequest](../../pkg/models/operations/getlocationrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 | `opts`                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
-
 ### Response
 
 **[*operations.GetLocationResponse](../../pkg/models/operations/getlocationresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |
+
 
 ## GetOdometer
 
@@ -549,8 +556,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
@@ -559,13 +564,16 @@ func main() {
 | `request`                                                                          | [operations.GetOdometerRequest](../../pkg/models/operations/getodometerrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 | `opts`                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
-
 ### Response
 
 **[*operations.GetOdometerResponse](../../pkg/models/operations/getodometerresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |
+
 
 ## GetPermissions
 
@@ -626,8 +634,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
@@ -636,13 +642,16 @@ func main() {
 | `request`                                                                                | [operations.GetPermissionsRequest](../../pkg/models/operations/getpermissionsrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 | `opts`                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                             | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
 
-
 ### Response
 
 **[*operations.GetPermissionsResponse](../../pkg/models/operations/getpermissionsresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |
+
 
 ## GetTirePressure
 
@@ -698,8 +707,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
@@ -708,13 +715,16 @@ func main() {
 | `request`                                                                                  | [operations.GetTirePressureRequest](../../pkg/models/operations/gettirepressurerequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 | `opts`                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
-
 ### Response
 
 **[*operations.GetTirePressureResponse](../../pkg/models/operations/gettirepressureresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |
+
 
 ## GetVin
 
@@ -758,8 +768,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
@@ -768,13 +776,16 @@ func main() {
 | `request`                                                                | [operations.GetVinRequest](../../pkg/models/operations/getvinrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
 | `opts`                                                                   | [][operations.Option](../../pkg/models/operations/option.md)             | :heavy_minus_sign:                                                       | The options for this request.                                            |
 
-
 ### Response
 
 **[*operations.GetVinResponse](../../pkg/models/operations/getvinresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |
+
 
 ## ListVehicles
 
@@ -833,8 +844,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
@@ -843,13 +852,16 @@ func main() {
 | `request`                                                                            | [operations.ListVehiclesRequest](../../pkg/models/operations/listvehiclesrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 | `opts`                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                         | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
 
-
 ### Response
 
 **[*operations.ListVehiclesResponse](../../pkg/models/operations/listvehiclesresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |
+
 
 ## LockUnlock
 
@@ -906,8 +918,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
@@ -916,13 +926,16 @@ func main() {
 | `request`                                                                        | [operations.LockUnlockRequest](../../pkg/models/operations/lockunlockrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 | `opts`                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
-
 ### Response
 
 **[*operations.LockUnlockResponse](../../pkg/models/operations/lockunlockresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |
+
 
 ## SendDestination
 
@@ -970,8 +983,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
@@ -980,10 +991,12 @@ func main() {
 | `request`                                                                                  | [operations.SendDestinationRequest](../../pkg/models/operations/senddestinationrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 | `opts`                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
-
 ### Response
 
 **[*operations.SendDestinationResponse](../../pkg/models/operations/senddestinationresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |

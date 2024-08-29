@@ -1,6 +1,8 @@
 # Cadillac
 (*Cadillac*)
 
+## Overview
+
 ### Available Operations
 
 * [GetChargeTime](#getchargetime) - Retrieve charging completion time for a Cadillac.
@@ -48,8 +50,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
@@ -58,13 +58,16 @@ func main() {
 | `request`                                                                                              | [operations.GetCadillacChargeTimeRequest](../../pkg/models/operations/getcadillacchargetimerequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
 | `opts`                                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                                           | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
 
-
 ### Response
 
 **[*operations.GetCadillacChargeTimeResponse](../../pkg/models/operations/getcadillacchargetimeresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |
+
 
 ## GetVoltage
 
@@ -108,8 +111,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
@@ -118,10 +119,12 @@ func main() {
 | `request`                                                                                        | [operations.GetCadillacVoltageRequest](../../pkg/models/operations/getcadillacvoltagerequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 | `opts`                                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
-
 ### Response
 
 **[*operations.GetCadillacVoltageResponse](../../pkg/models/operations/getcadillacvoltageresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |

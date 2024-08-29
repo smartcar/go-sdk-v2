@@ -66,8 +66,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
@@ -76,13 +74,16 @@ func main() {
 | `request`                                                                                        | [operations.GetBatteryCapacityRequest](../../pkg/models/operations/getbatterycapacityrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 | `opts`                                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
-
 ### Response
 
 **[*operations.GetBatteryCapacityResponse](../../pkg/models/operations/getbatterycapacityresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |
+
 
 ## GetBatteryLevel
 
@@ -137,8 +138,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
@@ -147,13 +146,16 @@ func main() {
 | `request`                                                                                  | [operations.GetBatteryLevelRequest](../../pkg/models/operations/getbatterylevelrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 | `opts`                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
-
 ### Response
 
 **[*operations.GetBatteryLevelResponse](../../pkg/models/operations/getbatterylevelresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |
+
 
 ## GetChargingLimit
 
@@ -197,8 +199,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
@@ -207,13 +207,16 @@ func main() {
 | `request`                                                                                    | [operations.GetChargingLimitRequest](../../pkg/models/operations/getcharginglimitrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `opts`                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                 | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
-
 ### Response
 
 **[*operations.GetChargingLimitResponse](../../pkg/models/operations/getcharginglimitresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |
+
 
 ## GetChargingStatus
 
@@ -268,8 +271,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
@@ -278,13 +279,16 @@ func main() {
 | `request`                                                                                      | [operations.GetChargingStatusRequest](../../pkg/models/operations/getchargingstatusrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
 | `opts`                                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                                   | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
 
-
 ### Response
 
 **[*operations.GetChargingStatusResponse](../../pkg/models/operations/getchargingstatusresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |
+
 
 ## SetChargingLimit
 
@@ -331,8 +335,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
@@ -341,13 +343,16 @@ func main() {
 | `request`                                                                                    | [operations.SetChargingLimitRequest](../../pkg/models/operations/setcharginglimitrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `opts`                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                 | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
-
 ### Response
 
 **[*operations.SetChargingLimitResponse](../../pkg/models/operations/setcharginglimitresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |
+
 
 ## StartStopCharge
 
@@ -405,8 +410,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
@@ -415,10 +418,12 @@ func main() {
 | `request`                                                                                  | [operations.StartStopChargeRequest](../../pkg/models/operations/startstopchargerequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 | `opts`                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
-
 ### Response
 
 **[*operations.StartStopChargeResponse](../../pkg/models/operations/startstopchargeresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |

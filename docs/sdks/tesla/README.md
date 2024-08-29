@@ -1,6 +1,8 @@
 # Tesla
 (*Tesla*)
 
+## Overview
+
 ### Available Operations
 
 * [GetAmmeter](#getammeter) - Retrieve charging ammeter time for a Tesla.
@@ -55,8 +57,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
@@ -65,13 +65,16 @@ func main() {
 | `request`                                                                                  | [operations.GetTeslaAmmeterRequest](../../pkg/models/operations/getteslaammeterrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 | `opts`                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
-
 ### Response
 
 **[*operations.GetTeslaAmmeterResponse](../../pkg/models/operations/getteslaammeterresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |
+
 
 ## GetChargeTime
 
@@ -115,8 +118,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
@@ -125,13 +126,16 @@ func main() {
 | `request`                                                                                        | [operations.GetTeslaChargeTimeRequest](../../pkg/models/operations/getteslachargetimerequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 | `opts`                                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
-
 ### Response
 
 **[*operations.GetTeslaChargeTimeResponse](../../pkg/models/operations/getteslachargetimeresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |
+
 
 ## GetCompass
 
@@ -175,8 +179,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
@@ -185,13 +187,16 @@ func main() {
 | `request`                                                                                  | [operations.GetTeslaCompassRequest](../../pkg/models/operations/getteslacompassrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 | `opts`                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
-
 ### Response
 
 **[*operations.GetTeslaCompassResponse](../../pkg/models/operations/getteslacompassresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |
+
 
 ## GetExteriorTemperature
 
@@ -235,8 +240,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                                          | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        |
@@ -245,13 +248,16 @@ func main() {
 | `request`                                                                                                          | [operations.GetTeslaExteriorTemperatureRequest](../../pkg/models/operations/getteslaexteriortemperaturerequest.md) | :heavy_check_mark:                                                                                                 | The request object to use for the request.                                                                         |
 | `opts`                                                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                                                       | :heavy_minus_sign:                                                                                                 | The options for this request.                                                                                      |
 
-
 ### Response
 
 **[*operations.GetTeslaExteriorTemperatureResponse](../../pkg/models/operations/getteslaexteriortemperatureresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |
+
 
 ## GetInteriorTemperature
 
@@ -295,8 +301,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                                          | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        |
@@ -305,13 +309,16 @@ func main() {
 | `request`                                                                                                          | [operations.GetTeslaInteriorTemperatureRequest](../../pkg/models/operations/getteslainteriortemperaturerequest.md) | :heavy_check_mark:                                                                                                 | The request object to use for the request.                                                                         |
 | `opts`                                                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                                                       | :heavy_minus_sign:                                                                                                 | The options for this request.                                                                                      |
 
-
 ### Response
 
 **[*operations.GetTeslaInteriorTemperatureResponse](../../pkg/models/operations/getteslainteriortemperatureresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |
+
 
 ## GetSpeedometer
 
@@ -355,8 +362,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
@@ -365,13 +370,16 @@ func main() {
 | `request`                                                                              | [operations.GetTeslaSpeedRequest](../../pkg/models/operations/getteslaspeedrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 | `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
-
 ### Response
 
 **[*operations.GetTeslaSpeedResponse](../../pkg/models/operations/getteslaspeedresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |
+
 
 ## GetVoltage
 
@@ -415,8 +423,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
@@ -425,13 +431,16 @@ func main() {
 | `request`                                                                                  | [operations.GetTeslaVoltageRequest](../../pkg/models/operations/getteslavoltagerequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 | `opts`                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
-
 ### Response
 
 **[*operations.GetTeslaVoltageResponse](../../pkg/models/operations/getteslavoltageresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |
+
 
 ## GetWattmeter
 
@@ -475,8 +484,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
@@ -485,13 +492,16 @@ func main() {
 | `request`                                                                                      | [operations.GetTeslaWattmeterRequest](../../pkg/models/operations/getteslawattmeterrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
 | `opts`                                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                                   | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
 
-
 ### Response
 
 **[*operations.GetTeslaWattmeterResponse](../../pkg/models/operations/getteslawattmeterresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |
+
 
 ## SetAmmeter
 
@@ -538,8 +548,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
@@ -548,10 +556,12 @@ func main() {
 | `request`                                                                                  | [operations.SetTeslaAmmeterRequest](../../pkg/models/operations/setteslaammeterrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 | `opts`                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
-
 ### Response
 
 **[*operations.SetTeslaAmmeterResponse](../../pkg/models/operations/setteslaammeterresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |

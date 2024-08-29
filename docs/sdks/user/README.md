@@ -1,6 +1,8 @@
 # User
 (*User*)
 
+## Overview
+
 ### Available Operations
 
 * [GetInfo](#getinfo) - User Info
@@ -44,8 +46,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
@@ -53,10 +53,12 @@ func main() {
 | `ctx`                                                        | [context.Context](https://pkg.go.dev/context#Context)        | :heavy_check_mark:                                           | The context to use for the request.                          |
 | `opts`                                                       | [][operations.Option](../../pkg/models/operations/option.md) | :heavy_minus_sign:                                           | The options for this request.                                |
 
-
 ### Response
 
 **[*operations.GetInfoResponse](../../pkg/models/operations/getinforesponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |

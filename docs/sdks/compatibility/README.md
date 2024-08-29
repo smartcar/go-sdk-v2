@@ -84,8 +84,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
@@ -94,10 +92,12 @@ func main() {
 | `request`                                                                                      | [operations.ListCompatibilityRequest](../../pkg/models/operations/listcompatibilityrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
 | `opts`                                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                                   | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
 
-
 ### Response
 
 **[*operations.ListCompatibilityResponse](../../pkg/models/operations/listcompatibilityresponse.md), error**
+
+### Errors
+
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |
