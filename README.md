@@ -4,9 +4,30 @@
 
 The [Smartcar API](https://smartcar.com/docs) lets you read vehicle data (location, odometer, fuel, etc.) and send commands to vehicles (lock, unlock) using HTTP requests.
 
+<!-- Start Summary [summary] -->
+## Summary
+
+Smartcar API: OpenAPI schema for Smartcar's API
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Retries](#retries)
+* [Error Handling](#error-handling)
+* [Server Selection](#server-selection)
+* [Custom HTTP Client](#custom-http-client)
+* [Authentication](#authentication)
+* [Special Types](#special-types)
+<!-- End Table of Contents [toc] -->
+
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
+To add the SDK as a dependency to your project:
 ```bash
 go get github.com/smartcar/go-sdk-v2
 ```
@@ -37,11 +58,11 @@ func main() {
 			},
 		}),
 	)
-	request := operations.GetLocationRequest{
-		VehicleID: "36ab27d0-fd9d-4455-823a-ce30af709ffc",
-	}
+
 	ctx := context.Background()
-	res, err := s.Vehicles.GetLocation(ctx, request)
+	res, err := s.Vehicles.GetLocation(ctx, operations.GetLocationRequest{
+		VehicleID: "36ab27d0-fd9d-4455-823a-ce30af709ffc",
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -163,13 +184,13 @@ func main() {
 			},
 		}),
 	)
-	request := operations.ListCompatibilityRequest{
+
+	ctx := context.Background()
+	res, err := s.Compatibility.ListCompatibility(ctx, operations.ListCompatibilityRequest{
 		Country: gosdkv2.String("{country}"),
 		Scope:   gosdkv2.String("{scope}"),
 		Vin:     gosdkv2.String("{vin}"),
-	}
-	ctx := context.Background()
-	res, err := s.Compatibility.ListCompatibility(ctx, request, operations.WithRetries(
+	}, operations.WithRetries(
 		retry.Config{
 			Strategy: "backoff",
 			Backoff: &retry.BackoffStrategy{
@@ -223,13 +244,13 @@ func main() {
 			},
 		}),
 	)
-	request := operations.ListCompatibilityRequest{
+
+	ctx := context.Background()
+	res, err := s.Compatibility.ListCompatibility(ctx, operations.ListCompatibilityRequest{
 		Country: gosdkv2.String("{country}"),
 		Scope:   gosdkv2.String("{scope}"),
 		Vin:     gosdkv2.String("{vin}"),
-	}
-	ctx := context.Background()
-	res, err := s.Compatibility.ListCompatibility(ctx, request)
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -274,13 +295,13 @@ func main() {
 			},
 		}),
 	)
-	request := operations.ListCompatibilityRequest{
+
+	ctx := context.Background()
+	res, err := s.Compatibility.ListCompatibility(ctx, operations.ListCompatibilityRequest{
 		Country: gosdkv2.String("{country}"),
 		Scope:   gosdkv2.String("{scope}"),
 		Vin:     gosdkv2.String("{vin}"),
-	}
-	ctx := context.Background()
-	res, err := s.Compatibility.ListCompatibility(ctx, request)
+	})
 	if err != nil {
 
 		var e *sdkerrors.SDKError
@@ -328,13 +349,13 @@ func main() {
 			},
 		}),
 	)
-	request := operations.ListCompatibilityRequest{
+
+	ctx := context.Background()
+	res, err := s.Compatibility.ListCompatibility(ctx, operations.ListCompatibilityRequest{
 		Country: gosdkv2.String("{country}"),
 		Scope:   gosdkv2.String("{scope}"),
 		Vin:     gosdkv2.String("{vin}"),
-	}
-	ctx := context.Background()
-	res, err := s.Compatibility.ListCompatibility(ctx, request)
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -370,13 +391,13 @@ func main() {
 			},
 		}),
 	)
-	request := operations.ListCompatibilityRequest{
+
+	ctx := context.Background()
+	res, err := s.Compatibility.ListCompatibility(ctx, operations.ListCompatibilityRequest{
 		Country: gosdkv2.String("{country}"),
 		Scope:   gosdkv2.String("{scope}"),
 		Vin:     gosdkv2.String("{vin}"),
-	}
-	ctx := context.Background()
-	res, err := s.Compatibility.ListCompatibility(ctx, request)
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -410,9 +431,9 @@ func main() {
 			},
 		}),
 	)
-	request := operations.DeleteManagementVehicleConnectionsRequest{}
+
 	ctx := context.Background()
-	res, err := s.VehicleManagement.DeleteManagementVehicleConnections(ctx, request, operations.WithServerURL("https://management.smartcar.com/v2.0/"))
+	res, err := s.VehicleManagement.DeleteManagementVehicleConnections(ctx, operations.DeleteManagementVehicleConnectionsRequest{}, operations.WithServerURL("https://management.smartcar.com/v2.0/"))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -486,13 +507,13 @@ func main() {
 			},
 		}),
 	)
-	request := operations.ListCompatibilityRequest{
+
+	ctx := context.Background()
+	res, err := s.Compatibility.ListCompatibility(ctx, operations.ListCompatibilityRequest{
 		Country: gosdkv2.String("{country}"),
 		Scope:   gosdkv2.String("{scope}"),
 		Vin:     gosdkv2.String("{vin}"),
-	}
-	ctx := context.Background()
-	res, err := s.Compatibility.ListCompatibility(ctx, request)
+	})
 	if err != nil {
 		log.Fatal(err)
 	}

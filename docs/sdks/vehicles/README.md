@@ -34,8 +34,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -48,7 +48,9 @@ func main() {
             },
         }),
     )
-    request := operations.BatchRequest{
+
+    ctx := context.Background()
+    res, err := s.Vehicles.Batch(ctx, operations.BatchRequest{
         BatchRequest: &shared.BatchRequest{
             Requests: []shared.Path{
                 shared.Path{
@@ -57,9 +59,7 @@ func main() {
             },
         },
         VehicleID: "<value>",
-    }
-    ctx := context.Background()
-    res, err := s.Vehicles.Batch(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -100,8 +100,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -114,11 +114,11 @@ func main() {
             },
         }),
     )
-    request := operations.GetLockStatusRequest{
-        VehicleID: "<value>",
-    }
+
     ctx := context.Background()
-    res, err := s.Vehicles.LockStatus(ctx, request)
+    res, err := s.Vehicles.LockStatus(ctx, operations.GetLockStatusRequest{
+        VehicleID: "<value>",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -167,8 +167,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -181,11 +181,11 @@ func main() {
             },
         }),
     )
-    request := operations.DisconnectRequest{
-        VehicleID: "<value>",
-    }
+
     ctx := context.Background()
-    res, err := s.Vehicles.Disconnect(ctx, request)
+    res, err := s.Vehicles.Disconnect(ctx, operations.DisconnectRequest{
+        VehicleID: "<value>",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -241,8 +241,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -255,11 +255,11 @@ func main() {
             },
         }),
     )
-    request := operations.GetVehicleRequest{
-        VehicleID: "<value>",
-    }
+
     ctx := context.Background()
-    res, err := s.Vehicles.Get(ctx, request)
+    res, err := s.Vehicles.Get(ctx, operations.GetVehicleRequest{
+        VehicleID: "<value>",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -312,8 +312,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -326,11 +326,11 @@ func main() {
             },
         }),
     )
-    request := operations.GetEngineOilRequest{
-        VehicleID: "<value>",
-    }
+
     ctx := context.Background()
-    res, err := s.Vehicles.GetEngineOil(ctx, request)
+    res, err := s.Vehicles.GetEngineOil(ctx, operations.GetEngineOilRequest{
+        VehicleID: "<value>",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -385,8 +385,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -399,11 +399,11 @@ func main() {
             },
         }),
     )
-    request := operations.GetFuelTankRequest{
-        VehicleID: "<value>",
-    }
+
     ctx := context.Background()
-    res, err := s.Vehicles.GetFuelTank(ctx, request)
+    res, err := s.Vehicles.GetFuelTank(ctx, operations.GetFuelTankRequest{
+        VehicleID: "<value>",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -457,8 +457,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -471,11 +471,11 @@ func main() {
             },
         }),
     )
-    request := operations.GetLocationRequest{
-        VehicleID: "36ab27d0-fd9d-4455-823a-ce30af709ffc",
-    }
+
     ctx := context.Background()
-    res, err := s.Vehicles.GetLocation(ctx, request)
+    res, err := s.Vehicles.GetLocation(ctx, operations.GetLocationRequest{
+        VehicleID: "36ab27d0-fd9d-4455-823a-ce30af709ffc",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -528,8 +528,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -542,11 +542,11 @@ func main() {
             },
         }),
     )
-    request := operations.GetOdometerRequest{
-        VehicleID: "<value>",
-    }
+
     ctx := context.Background()
-    res, err := s.Vehicles.GetOdometer(ctx, request)
+    res, err := s.Vehicles.GetOdometer(ctx, operations.GetOdometerRequest{
+        VehicleID: "<value>",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -606,8 +606,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -620,11 +620,11 @@ func main() {
             },
         }),
     )
-    request := operations.GetPermissionsRequest{
-        VehicleID: "<value>",
-    }
+
     ctx := context.Background()
-    res, err := s.Vehicles.GetPermissions(ctx, request)
+    res, err := s.Vehicles.GetPermissions(ctx, operations.GetPermissionsRequest{
+        VehicleID: "<value>",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -679,8 +679,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -693,11 +693,11 @@ func main() {
             },
         }),
     )
-    request := operations.GetTirePressureRequest{
-        VehicleID: "<value>",
-    }
+
     ctx := context.Background()
-    res, err := s.Vehicles.GetTirePressure(ctx, request)
+    res, err := s.Vehicles.GetTirePressure(ctx, operations.GetTirePressureRequest{
+        VehicleID: "<value>",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -740,8 +740,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -754,11 +754,11 @@ func main() {
             },
         }),
     )
-    request := operations.GetVinRequest{
-        VehicleID: "<value>",
-    }
+
     ctx := context.Background()
-    res, err := s.Vehicles.GetVin(ctx, request)
+    res, err := s.Vehicles.GetVin(ctx, operations.GetVinRequest{
+        VehicleID: "<value>",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -818,8 +818,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -832,9 +832,9 @@ func main() {
             },
         }),
     )
-    request := operations.ListVehiclesRequest{}
+
     ctx := context.Background()
-    res, err := s.Vehicles.ListVehicles(ctx, request)
+    res, err := s.Vehicles.ListVehicles(ctx, operations.ListVehiclesRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -887,8 +887,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -901,14 +901,14 @@ func main() {
             },
         }),
     )
-    request := operations.LockUnlockRequest{
+
+    ctx := context.Background()
+    res, err := s.Vehicles.LockUnlock(ctx, operations.LockUnlockRequest{
         SecurityAction: &shared.SecurityAction{
             Action: shared.SecurityActionActionUnlock.ToPointer(),
         },
         VehicleID: "<value>",
-    }
-    ctx := context.Background()
-    res, err := s.Vehicles.LockUnlock(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -951,8 +951,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -965,15 +965,15 @@ func main() {
             },
         }),
     )
-    request := operations.SendDestinationRequest{
+
+    ctx := context.Background()
+    res, err := s.Vehicles.SendDestination(ctx, operations.SendDestinationRequest{
         SendDestination: &shared.SendDestination{
             Latitude: 37.4292,
             Longitude: 122.1381,
         },
         VehicleID: "<value>",
-    }
-    ctx := context.Background()
-    res, err := s.Vehicles.SendDestination(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }

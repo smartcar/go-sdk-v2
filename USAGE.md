@@ -19,11 +19,11 @@ func main() {
 			},
 		}),
 	)
-	request := operations.GetLocationRequest{
-		VehicleID: "36ab27d0-fd9d-4455-823a-ce30af709ffc",
-	}
+
 	ctx := context.Background()
-	res, err := s.Vehicles.GetLocation(ctx, request)
+	res, err := s.Vehicles.GetLocation(ctx, operations.GetLocationRequest{
+		VehicleID: "36ab27d0-fd9d-4455-823a-ce30af709ffc",
+	})
 	if err != nil {
 		log.Fatal(err)
 	}

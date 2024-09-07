@@ -32,8 +32,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -46,16 +46,16 @@ func main() {
             },
         }),
     )
-    request := operations.SubscribeRequest{
+
+    ctx := context.Background()
+    res, err := s.Webhooks.Subscribe(ctx, operations.SubscribeRequest{
         WebhookInfo: &shared.WebhookInfo{
             Vehicleid: gosdkv2.String("dc6ea99e-57d1-4e41-b129-27e7eb58713e"),
             Webhookid: gosdkv2.String("9b6ae692-60cc-4b3e-89d8-71e7549cf805"),
         },
         VehicleID: "<value>",
         WebhookID: "<value>",
-    }
-    ctx := context.Background()
-    res, err := s.Webhooks.Subscribe(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -108,8 +108,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -122,12 +122,12 @@ func main() {
             },
         }),
     )
-    request := operations.UnsubscribeRequest{
+
+    ctx := context.Background()
+    res, err := s.Webhooks.Unsubscribe(ctx, operations.UnsubscribeRequest{
         VehicleID: "<value>",
         WebhookID: "<value>",
-    }
-    ctx := context.Background()
-    res, err := s.Webhooks.Unsubscribe(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }

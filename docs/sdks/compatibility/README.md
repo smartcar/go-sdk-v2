@@ -54,8 +54,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -68,13 +68,13 @@ func main() {
             },
         }),
     )
-    request := operations.ListCompatibilityRequest{
+
+    ctx := context.Background()
+    res, err := s.Compatibility.ListCompatibility(ctx, operations.ListCompatibilityRequest{
         Country: gosdkv2.String("{country}"),
         Scope: gosdkv2.String("{scope}"),
         Vin: gosdkv2.String("{vin}"),
-    }
-    ctx := context.Background()
-    res, err := s.Compatibility.ListCompatibility(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }

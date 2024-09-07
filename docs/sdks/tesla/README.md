@@ -29,8 +29,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -43,11 +43,11 @@ func main() {
             },
         }),
     )
-    request := operations.GetTeslaAmmeterRequest{
-        VehicleID: "<value>",
-    }
+
     ctx := context.Background()
-    res, err := s.Tesla.GetAmmeter(ctx, request)
+    res, err := s.Tesla.GetAmmeter(ctx, operations.GetTeslaAmmeterRequest{
+        VehicleID: "<value>",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -90,8 +90,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -104,11 +104,11 @@ func main() {
             },
         }),
     )
-    request := operations.GetTeslaChargeTimeRequest{
-        VehicleID: "<value>",
-    }
+
     ctx := context.Background()
-    res, err := s.Tesla.GetChargeTime(ctx, request)
+    res, err := s.Tesla.GetChargeTime(ctx, operations.GetTeslaChargeTimeRequest{
+        VehicleID: "<value>",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -151,8 +151,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -165,11 +165,11 @@ func main() {
             },
         }),
     )
-    request := operations.GetTeslaCompassRequest{
-        VehicleID: "<value>",
-    }
+
     ctx := context.Background()
-    res, err := s.Tesla.GetCompass(ctx, request)
+    res, err := s.Tesla.GetCompass(ctx, operations.GetTeslaCompassRequest{
+        VehicleID: "<value>",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -212,8 +212,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -226,11 +226,11 @@ func main() {
             },
         }),
     )
-    request := operations.GetTeslaExteriorTemperatureRequest{
-        ID: "<id>",
-    }
+
     ctx := context.Background()
-    res, err := s.Tesla.GetExteriorTemperature(ctx, request)
+    res, err := s.Tesla.GetExteriorTemperature(ctx, operations.GetTeslaExteriorTemperatureRequest{
+        ID: "<id>",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -273,8 +273,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -287,11 +287,11 @@ func main() {
             },
         }),
     )
-    request := operations.GetTeslaInteriorTemperatureRequest{
-        ID: "<id>",
-    }
+
     ctx := context.Background()
-    res, err := s.Tesla.GetInteriorTemperature(ctx, request)
+    res, err := s.Tesla.GetInteriorTemperature(ctx, operations.GetTeslaInteriorTemperatureRequest{
+        ID: "<id>",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -334,8 +334,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -348,11 +348,11 @@ func main() {
             },
         }),
     )
-    request := operations.GetTeslaSpeedRequest{
-        VehicleID: "<value>",
-    }
+
     ctx := context.Background()
-    res, err := s.Tesla.GetSpeedometer(ctx, request)
+    res, err := s.Tesla.GetSpeedometer(ctx, operations.GetTeslaSpeedRequest{
+        VehicleID: "<value>",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -395,8 +395,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -409,11 +409,11 @@ func main() {
             },
         }),
     )
-    request := operations.GetTeslaVoltageRequest{
-        VehicleID: "<value>",
-    }
+
     ctx := context.Background()
-    res, err := s.Tesla.GetVoltage(ctx, request)
+    res, err := s.Tesla.GetVoltage(ctx, operations.GetTeslaVoltageRequest{
+        VehicleID: "<value>",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -456,8 +456,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -470,11 +470,11 @@ func main() {
             },
         }),
     )
-    request := operations.GetTeslaWattmeterRequest{
-        VehicleID: "<value>",
-    }
+
     ctx := context.Background()
-    res, err := s.Tesla.GetWattmeter(ctx, request)
+    res, err := s.Tesla.GetWattmeter(ctx, operations.GetTeslaWattmeterRequest{
+        VehicleID: "<value>",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -517,8 +517,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -531,14 +531,14 @@ func main() {
             },
         }),
     )
-    request := operations.SetTeslaAmmeterRequest{
+
+    ctx := context.Background()
+    res, err := s.Tesla.SetAmmeter(ctx, operations.SetTeslaAmmeterRequest{
         ChargeAmmeter: &shared.ChargeAmmeter{
             Amperage: gosdkv2.Float32(48),
         },
         VehicleID: "<value>",
-    }
-    ctx := context.Background()
-    res, err := s.Tesla.SetAmmeter(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }

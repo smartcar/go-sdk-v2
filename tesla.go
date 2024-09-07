@@ -169,17 +169,25 @@ func (s *Tesla) GetAmmeter(ctx context.Context, request operations.GetTeslaAmmet
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
+	getRawBody := func() ([]byte, error) {
+		rawBody, err := io.ReadAll(httpRes.Body)
+		if err != nil {
+			return nil, fmt.Errorf("error reading response body: %w", err)
+		}
+		httpRes.Body.Close()
+		httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
+		return rawBody, nil
 	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := getRawBody()
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.ChargeAmmeter
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -187,13 +195,28 @@ func (s *Tesla) GetAmmeter(ctx context.Context, request operations.GetTeslaAmmet
 
 			res.ChargeAmmeter = &out
 		default:
+			rawBody, err := getRawBody()
+			if err != nil {
+				return nil, err
+			}
+
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		fallthrough
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		rawBody, err := getRawBody()
+		if err != nil {
+			return nil, err
+		}
+
 		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
+		rawBody, err := getRawBody()
+		if err != nil {
+			return nil, err
+		}
+
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -344,17 +367,25 @@ func (s *Tesla) GetChargeTime(ctx context.Context, request operations.GetTeslaCh
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
+	getRawBody := func() ([]byte, error) {
+		rawBody, err := io.ReadAll(httpRes.Body)
+		if err != nil {
+			return nil, fmt.Errorf("error reading response body: %w", err)
+		}
+		httpRes.Body.Close()
+		httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
+		return rawBody, nil
 	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := getRawBody()
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.ChargeTime
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -362,13 +393,28 @@ func (s *Tesla) GetChargeTime(ctx context.Context, request operations.GetTeslaCh
 
 			res.ChargeTime = &out
 		default:
+			rawBody, err := getRawBody()
+			if err != nil {
+				return nil, err
+			}
+
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		fallthrough
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		rawBody, err := getRawBody()
+		if err != nil {
+			return nil, err
+		}
+
 		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
+		rawBody, err := getRawBody()
+		if err != nil {
+			return nil, err
+		}
+
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -519,17 +565,25 @@ func (s *Tesla) GetCompass(ctx context.Context, request operations.GetTeslaCompa
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
+	getRawBody := func() ([]byte, error) {
+		rawBody, err := io.ReadAll(httpRes.Body)
+		if err != nil {
+			return nil, fmt.Errorf("error reading response body: %w", err)
+		}
+		httpRes.Body.Close()
+		httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
+		return rawBody, nil
 	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := getRawBody()
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.Compass
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -537,13 +591,28 @@ func (s *Tesla) GetCompass(ctx context.Context, request operations.GetTeslaCompa
 
 			res.Compass = &out
 		default:
+			rawBody, err := getRawBody()
+			if err != nil {
+				return nil, err
+			}
+
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		fallthrough
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		rawBody, err := getRawBody()
+		if err != nil {
+			return nil, err
+		}
+
 		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
+		rawBody, err := getRawBody()
+		if err != nil {
+			return nil, err
+		}
+
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -694,17 +763,25 @@ func (s *Tesla) GetExteriorTemperature(ctx context.Context, request operations.G
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
+	getRawBody := func() ([]byte, error) {
+		rawBody, err := io.ReadAll(httpRes.Body)
+		if err != nil {
+			return nil, fmt.Errorf("error reading response body: %w", err)
+		}
+		httpRes.Body.Close()
+		httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
+		return rawBody, nil
 	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := getRawBody()
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.Temperature
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -712,13 +789,28 @@ func (s *Tesla) GetExteriorTemperature(ctx context.Context, request operations.G
 
 			res.Temperature = &out
 		default:
+			rawBody, err := getRawBody()
+			if err != nil {
+				return nil, err
+			}
+
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		fallthrough
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		rawBody, err := getRawBody()
+		if err != nil {
+			return nil, err
+		}
+
 		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
+		rawBody, err := getRawBody()
+		if err != nil {
+			return nil, err
+		}
+
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -869,17 +961,25 @@ func (s *Tesla) GetInteriorTemperature(ctx context.Context, request operations.G
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
+	getRawBody := func() ([]byte, error) {
+		rawBody, err := io.ReadAll(httpRes.Body)
+		if err != nil {
+			return nil, fmt.Errorf("error reading response body: %w", err)
+		}
+		httpRes.Body.Close()
+		httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
+		return rawBody, nil
 	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := getRawBody()
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.Temperature
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -887,13 +987,28 @@ func (s *Tesla) GetInteriorTemperature(ctx context.Context, request operations.G
 
 			res.Temperature = &out
 		default:
+			rawBody, err := getRawBody()
+			if err != nil {
+				return nil, err
+			}
+
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		fallthrough
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		rawBody, err := getRawBody()
+		if err != nil {
+			return nil, err
+		}
+
 		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
+		rawBody, err := getRawBody()
+		if err != nil {
+			return nil, err
+		}
+
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -1044,17 +1159,25 @@ func (s *Tesla) GetSpeedometer(ctx context.Context, request operations.GetTeslaS
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
+	getRawBody := func() ([]byte, error) {
+		rawBody, err := io.ReadAll(httpRes.Body)
+		if err != nil {
+			return nil, fmt.Errorf("error reading response body: %w", err)
+		}
+		httpRes.Body.Close()
+		httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
+		return rawBody, nil
 	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := getRawBody()
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.Speed
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -1062,13 +1185,28 @@ func (s *Tesla) GetSpeedometer(ctx context.Context, request operations.GetTeslaS
 
 			res.Speed = &out
 		default:
+			rawBody, err := getRawBody()
+			if err != nil {
+				return nil, err
+			}
+
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		fallthrough
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		rawBody, err := getRawBody()
+		if err != nil {
+			return nil, err
+		}
+
 		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
+		rawBody, err := getRawBody()
+		if err != nil {
+			return nil, err
+		}
+
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -1219,17 +1357,25 @@ func (s *Tesla) GetVoltage(ctx context.Context, request operations.GetTeslaVolta
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
+	getRawBody := func() ([]byte, error) {
+		rawBody, err := io.ReadAll(httpRes.Body)
+		if err != nil {
+			return nil, fmt.Errorf("error reading response body: %w", err)
+		}
+		httpRes.Body.Close()
+		httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
+		return rawBody, nil
 	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := getRawBody()
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.ChargeVoltage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -1237,13 +1383,28 @@ func (s *Tesla) GetVoltage(ctx context.Context, request operations.GetTeslaVolta
 
 			res.ChargeVoltage = &out
 		default:
+			rawBody, err := getRawBody()
+			if err != nil {
+				return nil, err
+			}
+
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		fallthrough
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		rawBody, err := getRawBody()
+		if err != nil {
+			return nil, err
+		}
+
 		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
+		rawBody, err := getRawBody()
+		if err != nil {
+			return nil, err
+		}
+
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -1394,17 +1555,25 @@ func (s *Tesla) GetWattmeter(ctx context.Context, request operations.GetTeslaWat
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
+	getRawBody := func() ([]byte, error) {
+		rawBody, err := io.ReadAll(httpRes.Body)
+		if err != nil {
+			return nil, fmt.Errorf("error reading response body: %w", err)
+		}
+		httpRes.Body.Close()
+		httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
+		return rawBody, nil
 	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := getRawBody()
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.ChargeWattage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -1412,13 +1581,28 @@ func (s *Tesla) GetWattmeter(ctx context.Context, request operations.GetTeslaWat
 
 			res.ChargeWattage = &out
 		default:
+			rawBody, err := getRawBody()
+			if err != nil {
+				return nil, err
+			}
+
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		fallthrough
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		rawBody, err := getRawBody()
+		if err != nil {
+			return nil, err
+		}
+
 		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
+		rawBody, err := getRawBody()
+		if err != nil {
+			return nil, err
+		}
+
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -1575,17 +1759,25 @@ func (s *Tesla) SetAmmeter(ctx context.Context, request operations.SetTeslaAmmet
 		RawResponse: httpRes,
 	}
 
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
+	getRawBody := func() ([]byte, error) {
+		rawBody, err := io.ReadAll(httpRes.Body)
+		if err != nil {
+			return nil, fmt.Errorf("error reading response body: %w", err)
+		}
+		httpRes.Body.Close()
+		httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
+		return rawBody, nil
 	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := getRawBody()
+			if err != nil {
+				return nil, err
+			}
+
 			var out shared.SuccessResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
@@ -1593,13 +1785,28 @@ func (s *Tesla) SetAmmeter(ctx context.Context, request operations.SetTeslaAmmet
 
 			res.SuccessResponse = &out
 		default:
+			rawBody, err := getRawBody()
+			if err != nil {
+				return nil, err
+			}
+
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		fallthrough
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		rawBody, err := getRawBody()
+		if err != nil {
+			return nil, err
+		}
+
 		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
+		rawBody, err := getRawBody()
+		if err != nil {
+			return nil, err
+		}
+
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 

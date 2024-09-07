@@ -22,8 +22,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -36,9 +36,9 @@ func main() {
             },
         }),
     )
-    request := operations.DeleteManagementVehicleConnectionsRequest{}
+
     ctx := context.Background()
-    res, err := s.VehicleManagement.DeleteManagementVehicleConnections(ctx, request)
+    res, err := s.VehicleManagement.DeleteManagementVehicleConnections(ctx, operations.DeleteManagementVehicleConnectionsRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -79,8 +79,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -93,9 +93,9 @@ func main() {
             },
         }),
     )
-    request := operations.GetManagementVehicleConnectionsRequest{}
+
     ctx := context.Background()
-    res, err := s.VehicleManagement.GetManagementVehicleConnections(ctx, request)
+    res, err := s.VehicleManagement.GetManagementVehicleConnections(ctx, operations.GetManagementVehicleConnectionsRequest{})
     if err != nil {
         log.Fatal(err)
     }

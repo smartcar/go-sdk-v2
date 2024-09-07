@@ -38,8 +38,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -52,11 +52,11 @@ func main() {
             },
         }),
     )
-    request := operations.GetBatteryCapacityRequest{
-        VehicleID: "<value>",
-    }
+
     ctx := context.Background()
-    res, err := s.Evs.GetBatteryCapacity(ctx, request)
+    res, err := s.Evs.GetBatteryCapacity(ctx, operations.GetBatteryCapacityRequest{
+        VehicleID: "<value>",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -110,8 +110,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -124,11 +124,11 @@ func main() {
             },
         }),
     )
-    request := operations.GetBatteryLevelRequest{
-        VehicleID: "<value>",
-    }
+
     ctx := context.Background()
-    res, err := s.Evs.GetBatteryLevel(ctx, request)
+    res, err := s.Evs.GetBatteryLevel(ctx, operations.GetBatteryLevelRequest{
+        VehicleID: "<value>",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -171,8 +171,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -185,11 +185,11 @@ func main() {
             },
         }),
     )
-    request := operations.GetChargingLimitRequest{
-        VehicleID: "<value>",
-    }
+
     ctx := context.Background()
-    res, err := s.Evs.GetChargingLimit(ctx, request)
+    res, err := s.Evs.GetChargingLimit(ctx, operations.GetChargingLimitRequest{
+        VehicleID: "<value>",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -243,8 +243,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -257,11 +257,11 @@ func main() {
             },
         }),
     )
-    request := operations.GetChargingStatusRequest{
-        VehicleID: "<value>",
-    }
+
     ctx := context.Background()
-    res, err := s.Evs.GetChargingStatus(ctx, request)
+    res, err := s.Evs.GetChargingStatus(ctx, operations.GetChargingStatusRequest{
+        VehicleID: "<value>",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -304,8 +304,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -318,14 +318,14 @@ func main() {
             },
         }),
     )
-    request := operations.SetChargingLimitRequest{
+
+    ctx := context.Background()
+    res, err := s.Evs.SetChargingLimit(ctx, operations.SetChargingLimitRequest{
         ChargeLimit: &shared.ChargeLimit{
             Limit: 1,
         },
         VehicleID: "<value>",
-    }
-    ctx := context.Background()
-    res, err := s.Evs.SetChargingLimit(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -379,8 +379,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -393,14 +393,14 @@ func main() {
             },
         }),
     )
-    request := operations.StartStopChargeRequest{
+
+    ctx := context.Background()
+    res, err := s.Evs.StartStopCharge(ctx, operations.StartStopChargeRequest{
         ChargeAction: &shared.ChargeAction{
             Action: shared.ActionStart.ToPointer(),
         },
         VehicleID: "<value>",
-    }
-    ctx := context.Background()
-    res, err := s.Evs.StartStopCharge(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }

@@ -22,8 +22,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -36,11 +36,11 @@ func main() {
             },
         }),
     )
-    request := operations.GetCadillacChargeTimeRequest{
-        VehicleID: "<value>",
-    }
+
     ctx := context.Background()
-    res, err := s.Cadillac.GetChargeTime(ctx, request)
+    res, err := s.Cadillac.GetChargeTime(ctx, operations.GetCadillacChargeTimeRequest{
+        VehicleID: "<value>",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -83,8 +83,8 @@ package main
 import(
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
 	gosdkv2 "github.com/smartcar/go-sdk-v2"
-	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
 	"log"
 )
 
@@ -97,11 +97,11 @@ func main() {
             },
         }),
     )
-    request := operations.GetCadillacVoltageRequest{
-        VehicleID: "<value>",
-    }
+
     ctx := context.Background()
-    res, err := s.Cadillac.GetVoltage(ctx, request)
+    res, err := s.Cadillac.GetVoltage(ctx, operations.GetCadillacVoltageRequest{
+        VehicleID: "<value>",
+    })
     if err != nil {
         log.Fatal(err)
     }
