@@ -1,0 +1,9 @@
+# Windows
+
+
+## Fields
+
+| Field                                                                                                      | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `Status`                                                                                                   | [*shared.SecurityReadSchemasWindowsStatus](../../../pkg/models/shared/securityreadschemaswindowsstatus.md) | :heavy_minus_sign:                                                                                         | N/A                                                                                                        |
+| `Type`                                                                                                     | [*shared.SecurityReadSchemasWindowsType](../../../pkg/models/shared/securityreadschemaswindowstype.md)     | :heavy_minus_sign:                                                                                         | N/A                                                                                                        |

@@ -1,4 +1,5 @@
 # Vehicles
+(*Vehicles*)
 
 ## Overview
 
@@ -19,6 +20,7 @@ Operations about vehicles
 * [GetVin](#getvin) - Returns the vehicle’s manufacturer identifier.
 * [ListVehicles](#listvehicles) - All Vehicles
 * [LockUnlock](#lockunlock) - Lock/Unlock Vehicle
+* [SendDestination](#senddestination) - Send Destination to vehicle navigation system
 
 ## Batch
 
@@ -30,11 +32,11 @@ __Description__ Returns a list of responses from multiple Smartcar endpoints, al
 package main
 
 import(
-	"context"
-	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"context"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -49,15 +51,18 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.Batch(ctx, operations.BatchRequest{
-        RequestBody: []string{
-            "/odometer",
+        BatchRequest: &shared.BatchRequest{
+            Requests: []shared.Path{
+                shared.Path{
+                    Path: gosdkv2.String("/odometer"),
+                },
+            },
         },
-        VehicleID: "architecto",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.BatchResponse != nil {
         // handle response
     }
@@ -66,15 +71,21 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                          | Type                                                               | Required                                                           | Description                                                        |
-| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| `ctx`                                                              | [context.Context](https://pkg.go.dev/context#Context)              | :heavy_check_mark:                                                 | The context to use for the request.                                |
-| `request`                                                          | [operations.BatchRequest](../../models/operations/batchrequest.md) | :heavy_check_mark:                                                 | The request object to use for the request.                         |
-
+| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `ctx`                                                                  | [context.Context](https://pkg.go.dev/context#Context)                  | :heavy_check_mark:                                                     | The context to use for the request.                                    |
+| `request`                                                              | [operations.BatchRequest](../../pkg/models/operations/batchrequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
+| `opts`                                                                 | [][operations.Option](../../pkg/models/operations/option.md)           | :heavy_minus_sign:                                                     | The options for this request.                                          |
 
 ### Response
 
-**[*operations.BatchResponse](../../models/operations/batchresponse.md), error**
+**[*operations.BatchResponse](../../pkg/models/operations/batchresponse.md), error**
+
+### Errors
+
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 
 ## LockStatus
@@ -87,11 +98,11 @@ Returns the lock status for a vehicle and the open status of its doors, windows,
 package main
 
 import(
-	"context"
-	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"context"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -105,13 +116,12 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Vehicles.LockStatus(ctx, operations.LockStatusRequest{
-        VehicleID: "ipsa",
+    res, err := s.Vehicles.LockStatus(ctx, operations.GetLockStatusRequest{
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.SecurityRead != nil {
         // handle response
     }
@@ -120,15 +130,21 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
-| `request`                                                                    | [operations.LockStatusRequest](../../models/operations/lockstatusrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
-
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.GetLockStatusRequest](../../pkg/models/operations/getlockstatusrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
 ### Response
 
-**[*operations.LockStatusResponse](../../models/operations/lockstatusresponse.md), error**
+**[*operations.GetLockStatusResponse](../../pkg/models/operations/getlockstatusresponse.md), error**
+
+### Errors
+
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 
 ## Disconnect
@@ -149,11 +165,11 @@ __Response body__
 package main
 
 import(
-	"context"
-	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"context"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -168,12 +184,11 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.Disconnect(ctx, operations.DisconnectRequest{
-        VehicleID: "reiciendis",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Status != nil {
         // handle response
     }
@@ -182,15 +197,21 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
-| `request`                                                                    | [operations.DisconnectRequest](../../models/operations/disconnectrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
-
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `request`                                                                        | [operations.DisconnectRequest](../../pkg/models/operations/disconnectrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `opts`                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
 ### Response
 
-**[*operations.DisconnectResponse](../../models/operations/disconnectresponse.md), error**
+**[*operations.DisconnectResponse](../../pkg/models/operations/disconnectresponse.md), error**
+
+### Errors
+
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 
 ## Get
@@ -218,11 +239,11 @@ __Response Body__
 package main
 
 import(
-	"context"
-	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"context"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -237,12 +258,11 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.Get(ctx, operations.GetVehicleRequest{
-        VehicleID: "est",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.VehicleInfo != nil {
         // handle response
     }
@@ -251,15 +271,21 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
-| `request`                                                                    | [operations.GetVehicleRequest](../../models/operations/getvehiclerequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
-
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `request`                                                                        | [operations.GetVehicleRequest](../../pkg/models/operations/getvehiclerequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `opts`                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
 ### Response
 
-**[*operations.GetVehicleResponse](../../models/operations/getvehicleresponse.md), error**
+**[*operations.GetVehicleResponse](../../pkg/models/operations/getvehicleresponse.md), error**
+
+### Errors
+
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 
 ## GetEngineOil
@@ -284,11 +310,11 @@ __Response body__
 package main
 
 import(
-	"context"
-	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"context"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -303,12 +329,11 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.GetEngineOil(ctx, operations.GetEngineOilRequest{
-        VehicleID: "mollitia",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.EngineOil != nil {
         // handle response
     }
@@ -317,15 +342,21 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
-| `request`                                                                        | [operations.GetEngineOilRequest](../../models/operations/getengineoilrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
+| `request`                                                                            | [operations.GetEngineOilRequest](../../pkg/models/operations/getengineoilrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `opts`                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                         | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
 
 ### Response
 
-**[*operations.GetEngineOilResponse](../../models/operations/getengineoilresponse.md), error**
+**[*operations.GetEngineOilResponse](../../pkg/models/operations/getengineoilresponse.md), error**
+
+### Errors
+
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 
 ## GetFuelTank
@@ -352,11 +383,11 @@ __Response Body__
 package main
 
 import(
-	"context"
-	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"context"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -371,12 +402,11 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.GetFuelTank(ctx, operations.GetFuelTankRequest{
-        VehicleID: "laborum",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.FuelTank != nil {
         // handle response
     }
@@ -385,15 +415,21 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
-| `request`                                                                      | [operations.GetFuelTankRequest](../../models/operations/getfueltankrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `request`                                                                          | [operations.GetFuelTankRequest](../../pkg/models/operations/getfueltankrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `opts`                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 ### Response
 
-**[*operations.GetFuelTankResponse](../../models/operations/getfueltankresponse.md), error**
+**[*operations.GetFuelTankResponse](../../pkg/models/operations/getfueltankresponse.md), error**
+
+### Errors
+
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 
 ## GetLocation
@@ -419,11 +455,11 @@ __Response Body__
 package main
 
 import(
-	"context"
-	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"context"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -443,7 +479,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Location != nil {
         // handle response
     }
@@ -452,15 +487,21 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
-| `request`                                                                      | [operations.GetLocationRequest](../../models/operations/getlocationrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `request`                                                                          | [operations.GetLocationRequest](../../pkg/models/operations/getlocationrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `opts`                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 ### Response
 
-**[*operations.GetLocationResponse](../../models/operations/getlocationresponse.md), error**
+**[*operations.GetLocationResponse](../../pkg/models/operations/getlocationresponse.md), error**
+
+### Errors
+
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 
 ## GetOdometer
@@ -485,11 +526,11 @@ __Response Body__
 package main
 
 import(
-	"context"
-	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"context"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -504,12 +545,11 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.GetOdometer(ctx, operations.GetOdometerRequest{
-        VehicleID: "dolores",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Odometer != nil {
         // handle response
     }
@@ -518,15 +558,21 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
-| `request`                                                                      | [operations.GetOdometerRequest](../../models/operations/getodometerrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `request`                                                                          | [operations.GetOdometerRequest](../../pkg/models/operations/getodometerrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `opts`                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 ### Response
 
-**[*operations.GetOdometerResponse](../../models/operations/getodometerresponse.md), error**
+**[*operations.GetOdometerResponse](../../pkg/models/operations/getodometerresponse.md), error**
+
+### Errors
+
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 
 ## GetPermissions
@@ -558,11 +604,11 @@ __Response Body__
 package main
 
 import(
-	"context"
-	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"context"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -577,14 +623,11 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.GetPermissions(ctx, operations.GetPermissionsRequest{
-        Limit: gosdkv2.Int64(210382),
-        Offset: gosdkv2.Int64(358152),
-        VehicleID: "explicabo",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Permission != nil {
         // handle response
     }
@@ -593,15 +636,21 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
-| `request`                                                                            | [operations.GetPermissionsRequest](../../models/operations/getpermissionsrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
+| `request`                                                                                | [operations.GetPermissionsRequest](../../pkg/models/operations/getpermissionsrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `opts`                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                             | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
 
 ### Response
 
-**[*operations.GetPermissionsResponse](../../models/operations/getpermissionsresponse.md), error**
+**[*operations.GetPermissionsResponse](../../pkg/models/operations/getpermissionsresponse.md), error**
+
+### Errors
+
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 
 ## GetTirePressure
@@ -628,11 +677,11 @@ __Example Response__
 package main
 
 import(
-	"context"
-	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"context"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -647,12 +696,11 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.GetTirePressure(ctx, operations.GetTirePressureRequest{
-        VehicleID: "nobis",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.TirePressure != nil {
         // handle response
     }
@@ -661,15 +709,21 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `request`                                                                              | [operations.GetTirePressureRequest](../../models/operations/gettirepressurerequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
-
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
+| `request`                                                                                  | [operations.GetTirePressureRequest](../../pkg/models/operations/gettirepressurerequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `opts`                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
 ### Response
 
-**[*operations.GetTirePressureResponse](../../models/operations/gettirepressureresponse.md), error**
+**[*operations.GetTirePressureResponse](../../pkg/models/operations/gettirepressureresponse.md), error**
+
+### Errors
+
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 
 ## GetVin
@@ -684,11 +738,11 @@ Returns the vehicle’s manufacturer identifier.
 package main
 
 import(
-	"context"
-	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"context"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -703,12 +757,11 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Vehicles.GetVin(ctx, operations.GetVinRequest{
-        VehicleID: "enim",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.VinInfo != nil {
         // handle response
     }
@@ -717,15 +770,21 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
-| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `ctx`                                                                | [context.Context](https://pkg.go.dev/context#Context)                | :heavy_check_mark:                                                   | The context to use for the request.                                  |
-| `request`                                                            | [operations.GetVinRequest](../../models/operations/getvinrequest.md) | :heavy_check_mark:                                                   | The request object to use for the request.                           |
-
+| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `ctx`                                                                    | [context.Context](https://pkg.go.dev/context#Context)                    | :heavy_check_mark:                                                       | The context to use for the request.                                      |
+| `request`                                                                | [operations.GetVinRequest](../../pkg/models/operations/getvinrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
+| `opts`                                                                   | [][operations.Option](../../pkg/models/operations/option.md)             | :heavy_minus_sign:                                                       | The options for this request.                                            |
 
 ### Response
 
-**[*operations.GetVinResponse](../../models/operations/getvinresponse.md), error**
+**[*operations.GetVinResponse](../../pkg/models/operations/getvinresponse.md), error**
+
+### Errors
+
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 
 ## ListVehicles
@@ -757,11 +816,11 @@ __Response Body__
 package main
 
 import(
-	"context"
-	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"context"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -775,14 +834,10 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Vehicles.ListVehicles(ctx, operations.ListVehiclesRequest{
-        Limit: gosdkv2.Int64(607831),
-        Offset: gosdkv2.Int64(363711),
-    })
+    res, err := s.Vehicles.ListVehicles(ctx, operations.ListVehiclesRequest{})
     if err != nil {
         log.Fatal(err)
     }
-
     if res.VehiclesResponse != nil {
         // handle response
     }
@@ -791,15 +846,21 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
-| `request`                                                                        | [operations.ListVehiclesRequest](../../models/operations/listvehiclesrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
+| `request`                                                                            | [operations.ListVehiclesRequest](../../pkg/models/operations/listvehiclesrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `opts`                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                         | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
 
 ### Response
 
-**[*operations.ListVehiclesResponse](../../models/operations/listvehiclesresponse.md), error**
+**[*operations.ListVehiclesResponse](../../pkg/models/operations/listvehiclesresponse.md), error**
+
+### Errors
+
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
 
 
 ## LockUnlock
@@ -824,11 +885,11 @@ __Response body__
 package main
 
 import(
-	"context"
-	"log"
-	gosdkv2 "github.com/smartcar/go-sdk-v2"
 	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"context"
 	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -846,12 +907,11 @@ func main() {
         SecurityAction: &shared.SecurityAction{
             Action: shared.SecurityActionActionUnlock.ToPointer(),
         },
-        VehicleID: "minima",
+        VehicleID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.SuccessResponse != nil {
         // handle response
     }
@@ -860,13 +920,83 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
-| `request`                                                                    | [operations.LockUnlockRequest](../../models/operations/lockunlockrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
-
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `request`                                                                        | [operations.LockUnlockRequest](../../pkg/models/operations/lockunlockrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `opts`                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
 ### Response
 
-**[*operations.LockUnlockResponse](../../models/operations/lockunlockresponse.md), error**
+**[*operations.LockUnlockResponse](../../pkg/models/operations/lockunlockresponse.md), error**
 
+### Errors
+
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |
+
+
+## SendDestination
+
+__Description__
+
+Send destination coordinates to the vehicle's navigation system.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"github.com/smartcar/go-sdk-v2/pkg/models/shared"
+	gosdkv2 "github.com/smartcar/go-sdk-v2"
+	"context"
+	"github.com/smartcar/go-sdk-v2/pkg/models/operations"
+	"log"
+)
+
+func main() {
+    s := gosdkv2.New(
+        gosdkv2.WithSecurity(shared.Security{
+            BasicAuth: &shared.SchemeBasicAuth{
+                Password: "",
+                Username: "",
+            },
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.Vehicles.SendDestination(ctx, operations.SendDestinationRequest{
+        SendDestination: &shared.SendDestination{
+            Latitude: 37.4292,
+            Longitude: 122.1381,
+        },
+        VehicleID: "<value>",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.SuccessResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
+| `request`                                                                                  | [operations.SendDestinationRequest](../../pkg/models/operations/senddestinationrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `opts`                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
+
+### Response
+
+**[*operations.SendDestinationResponse](../../pkg/models/operations/senddestinationresponse.md), error**
+
+### Errors
+
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.SDKError | 4xx-5xx            | */*                |

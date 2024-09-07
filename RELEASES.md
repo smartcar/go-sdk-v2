@@ -81,3 +81,63 @@ Based on:
 - [go v1.7.0] .
 ### Releases
 - [Go v1.7.0] https://github.com/smartcar/go-sdk-v2/releases/tag/v1.7.0 - .
+
+## 2024-08-09 00:03:03
+### Changes
+Based on:
+- OpenAPI Doc 1.0.0 
+- Speakeasy CLI 1.358.0 (2.390.6) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v1.8.0] .
+### Releases
+- [Go v1.8.0] https://github.com/smartcar/go-sdk-v2/releases/tag/v1.8.0 - .
+
+## 2024-08-12 00:03:08
+### Changes
+Based on:
+- OpenAPI Doc 1.0.0 
+- Speakeasy CLI 1.361.1 (2.393.4) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v1.8.1] .
+### Releases
+- [Go v1.8.1] https://github.com/smartcar/go-sdk-v2/releases/tag/v1.8.1 - .
+
+## 2024-08-15 00:03:22
+### Changes
+Based on:
+- OpenAPI Doc 1.0.0 
+- Speakeasy CLI 1.368.0 (2.399.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v1.8.2] .
+### Releases
+- [Go v1.8.2] https://github.com/smartcar/go-sdk-v2/releases/tag/v1.8.2 - .
+
+## 2024-08-20 00:03:23
+### Changes
+Based on:
+- OpenAPI Doc 1.0.0 
+- Speakeasy CLI 1.376.0 (2.402.5) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v1.8.3] .
+### Releases
+- [Go v1.8.3] https://github.com/smartcar/go-sdk-v2/releases/tag/v1.8.3 - .
+
+## 2024-08-29 00:03:32
+### Changes
+Based on:
+- OpenAPI Doc 1.0.0 
+- Speakeasy CLI 1.382.0 (2.404.11) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v1.8.4] .
+### Releases
+- [Go v1.8.4] https://github.com/smartcar/go-sdk-v2/releases/tag/v1.8.4 - .
+
+## 2024-09-07 00:03:16
+### Changes
+Based on:
+- OpenAPI Doc 1.0.0 
+- Speakeasy CLI 1.392.1 (2.411.9) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v1.8.5] .
+### Releases
+- [Go v1.8.5] https://github.com/smartcar/go-sdk-v2/releases/tag/v1.8.5 - .

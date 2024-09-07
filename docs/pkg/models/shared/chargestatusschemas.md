@@ -1,0 +1,9 @@
+# ChargeStatusSchemas
+
+
+## Fields
+
+| Field                                                                                   | Type                                                                                    | Required                                                                                | Description                                                                             | Example                                                                                 |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `IsPluggedIn`                                                                           | *bool*                                                                                  | :heavy_check_mark:                                                                      | Indicates whether a charging cable is currently plugged into the vehicle’s charge port. | true                                                                                    |
+| `State`                                                                                 | [shared.State](../../../pkg/models/shared/state.md)                                     | :heavy_check_mark:                                                                      | N/A                                                                                     | FULLY_CHARGED                                                                           |
